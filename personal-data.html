@@ -1,0 +1,224 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+<title>STORE_DANY_Gestion_Ventas_Online</title>
+    <link rel="icon" href="logotipo.png" type="image/png">
+    
+    <!-- Framework Bootstrap 4.3.1 -->
+    <link href="css/bootstrap-4.3.1.css" rel="stylesheet" type="text/css">
+    <!-- estilos CSS  -->
+    <link href="Style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+    
+<!-- 🧭 MENÚ DE NAVEGACIÓN -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark main-navbar">
+    <div class="container-fluid">
+        
+        <!-- Bloque de Título de la izquierda -->
+        <div class="navbar-brand-wrapper">
+            <h4 class="titulo-brand">Gestión de Ventas Online</h4>
+            <span class="subtitulo-brand">Negocio "STORE DANY"</span>
+        </div>
+        
+        <!-- Logotipo Central/Izquierdo -->
+        <img src="logotipo.png" alt="Logotipo STORE DANY" class="img-logotipo">
+                
+        <!-- Botón para pantallas de celulares -->
+        <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarContenido" aria-controls="navbarContenido" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <!-- Caja de Enlaces del menú -->
+        <div class="collapse navbar-collapse" id="navbarContenido">
+            <ul class="navbar-nav ml-auto custom-nav-links">
+                <li class="nav-item"> 
+                    <a class="nav-link current-page" href="index.html">INICIO</a>
+                </li>  
+                <li class="nav-item"> 
+                    <a class="nav-link" href="shopping-cart.html">CATÁLOGO</a>
+                </li>
+        
+                <!-- Menú Desplegable -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        SELEC. PRODUCTO
+                    </a>
+                    <div class="dropdown-menu custom-dropdown" aria-labelledby="navbarDropdown1">
+                        <a class="dropdown-item" href="nike.html">NIKE</a>
+                        <a class="dropdown-item" href="adidas.html">ADIDAS</a>
+                        <a class="dropdown-item" href="puma.html">PUMA</a>
+                        <a class="dropdown-item" href="new-balance.html">NEW BALANCE</a>
+                        <a class="dropdown-item" href="reebok.html">REEBOK</a>
+                    </div>
+                </li>
+                
+                <li class="nav-item"> 
+                    <a class="nav-link text-chat-online" href="contactar.html">CHAT ONLINE</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
+    
+    <main class="container contenedor-formulario mb-5 animate-fade-in">
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+                
+                <div class="card-formulario shadow-lg rounded p-4 p-md-5 bg-white" data-reveal>
+                    <!-- Volver al inicio (esquina) -->
+                    <a href="index.html" class="btn-volver-esquina">← Inicio</a>
+                    <div class="text-center mb-4">
+                        <div class="encabezado-formulario">
+                            <div class="wrapper-icono-bd">
+                                <img src="Base de datos.png" alt="Icono Base de Datos" class="img-base-datos">
+                            </div>
+                            <div>
+                                <h2 class="titulo-formulario mb-1">INGRESO DE DATOS PERSONALES</h2>
+                                <p class="texto-informativo mx-auto">Por favor, ingrese sus datos en cada casilla correspondiente; nos comprometemos a brindarle la mayor seguridad, privacidad y prioridad a su información personal</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Indicador de pasos -->
+                        <div class="pasos-formulario">
+                            <span class="paso activo">1 · Sus datos</span>
+                            <span class="paso-linea"></span>
+                            <span class="paso" id="paso-dos">2 · Confirmación del pedido</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Formulario de Registro -->
+                    <form action="enviar.php" method="POST" name="formulario_registro">
+                        
+                        <!-- enviar.php el formulario de base de datos -->
+                        <input type="hidden" name="origen_formulario" value="clientes">
+                        
+                        <!-- Sección 1: Datos personales -->
+                        <h4 class="titulo-seccion-formulario"><span class="numero-paso">1</span> 👤 Datos personales</h4>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="nombre" class="label-formulario">Nombre(s)</label>
+                                <div class="campo-icono">
+                                    <span class="icono-input">👤</span>
+                                    <input class="inut-registro" type="text" id="nombre" name="nombre" placeholder="Ej. Juan Carlos" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="apellidos" class="label-formulario">Apellido(s)</label>
+                                <div class="campo-icono">
+                                    <span class="icono-input">👥</span>
+                                    <input class="inut-registro" type="text" id="apellidos" name="apellidos" placeholder="Ej. Pérez Gómez" required>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label for="cedula" class="label-formulario">Documento de Identidad (Cédula)</label>
+                                <div class="campo-icono">
+                                    <span class="icono-input">🪪</span>
+                                    <input class="inut-registro" type="text" id="cedula" name="cedula" placeholder="Número de identificación" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Sección 2: Datos de contacto -->
+                        <h4 class="titulo-seccion-formulario"><span class="numero-paso">2</span> 📞 Datos de contacto</h4>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="celular" class="label-formulario">Celular</label>
+                                <div class="campo-icono">
+                                    <span class="icono-input">📱</span>
+                                    <input class="inut-registro" type="tel" id="celular" name="celular" placeholder="Ej. 3001234567" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="email" class="label-formulario">Correo Electrónico</label>
+                                <div class="campo-icono">
+                                    <span class="icono-input">✉️</span>
+                                    <input class="inut-registro" type="email" id="email" name="email" placeholder="ejemplo@correo.com" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Sección 3: Dirección de envío -->
+                        <h4 class="titulo-seccion-formulario"><span class="numero-paso">3</span> 📍 Dirección de envío</h4>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label for="departamento" class="label-formulario">Departamento</label>
+                                <div class="campo-icono">
+                                    <span class="icono-input">🗺️</span>
+                                    <input class="inut-registro" type="text" id="departamento" name="departamento" placeholder="Ej. Santander" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="municipio" class="label-formulario">Municipio / Ciudad</label>
+                                <div class="campo-icono">
+                                    <span class="icono-input">🏙️</span>
+                                    <input class="inut-registro" type="text" id="municipio" name="municipio" placeholder="Ej. Bucaramanga" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="barrio" class="label-formulario">Dirección de Entrega</label>
+                                <div class="campo-icono">
+                                    <span class="icono-input">🏠</span>
+                                    <input class="inut-registro" type="text" id="barrio" name="barrio" placeholder="Ej. Calle 10 #20-30" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Seguridad SSL -->
+                        <div class="badge-seguridad text-center my-4 p-2 rounded">
+                            <span class="text-success font-weight-bold">🔒 Conexión Segura SSL</span>
+                            <small class="text-muted d-block text-center mt-1" style="font-size: 11px;">Tus datos personales están encriptados y protegidos bajo políticas de estricta confidencialidad.</small>
+                        </div>
+                        
+                        <!-- Botón  -->
+                        <div class="row mt-4">
+                            <div class="col-12 text-center">
+                                <button type="submit" class="btn-enviar btn-accion-brillo">REGISTRAR DATOS</button>
+                            </div>
+                        </div>
+                    </form>
+                </div> 
+            </div>
+        </div>
+    </main>
+    
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap-4.3.1.js"></script>
+<script src="js/main.js"></script>
+
+<!-- ✔️ El paso 2 solo se ilumina en verde cuando todos los campos están completos y válidos -->
+<script>
+(function () {
+    var formulario = document.forms['formulario_registro'];
+    var pasoDos = document.getElementById('paso-dos');
+    if (!formulario || !pasoDos) { return; }
+
+    function revisarDatos() {
+        var campos = formulario.querySelectorAll('input[required]');
+        var completo = true;
+        for (var i = 0; i < campos.length; i++) {
+            if (campos[i].value.trim() === '' || !campos[i].checkValidity()) {
+                completo = false;
+                break;
+            }
+        }
+        if (completo) {
+            pasoDos.classList.add('listo');
+        } else {
+            pasoDos.classList.remove('listo');
+        }
+    }
+
+    formulario.addEventListener('input', revisarDatos);
+    formulario.addEventListener('change', revisarDatos);
+})();
+</script>
+    
+    </body>
+</html>

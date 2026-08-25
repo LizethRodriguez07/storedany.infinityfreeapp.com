@@ -1,0 +1,544 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+<title>STORE_DANY_Gestion_Ventas_Online</title>
+   <link rel="icon" href="logotipo.png" type="image/png">
+    
+    <!-- Framework Bootstrap 4.3.1 -->
+    <link href="css/bootstrap-4.3.1.css" rel="stylesheet" type="text/css">
+    <!-- estilos css -->
+    <link href="Style.css" rel="stylesheet" type="text/css">
+    
+</head>
+<body>
+    
+<!-- 🧭 MENÚ DE NAVEGACIÓN -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark main-navbar">
+    <div class="container-fluid">
+        
+        <!-- Bloque de Título de la izquierda -->
+        <div class="navbar-brand-wrapper">
+            <h4 class="titulo-brand">Gestión de Ventas Online</h4>
+            <span class="subtitulo-brand">Negocio "STORE DANY"</span>
+        </div>
+        
+        <!-- Logotipo Central/Izquierdo -->
+        <img src="logotipo.png" alt="Logotipo STORE DANY" class="img-logotipo">
+                
+        <!-- Botón para pantallas de celulares -->
+        <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarContenido" aria-controls="navbarContenido" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <!-- Caja de Enlaces del menú -->
+        <div class="collapse navbar-collapse" id="navbarContenido">
+            <ul class="navbar-nav ml-auto custom-nav-links">
+                <li class="nav-item"> 
+                    <a class="nav-link current-page" href="index.html">INICIO</a>
+                </li>  
+                <li class="nav-item"> 
+                    <a class="nav-link" href="shopping-cart.html">CATÁLOGO</a>
+                </li>
+        
+                <!-- Menú Desplegable -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        SELEC. PRODUCTO
+                    </a>
+                    <div class="dropdown-menu custom-dropdown" aria-labelledby="navbarDropdown1">
+                        <a class="dropdown-item" href="nike.html">NIKE</a>
+                        <a class="dropdown-item" href="adidas.html">ADIDAS</a>
+                        <a class="dropdown-item" href="puma.html">PUMA</a>
+                        <a class="dropdown-item" href="new-balance.html">NEW BALANCE</a>
+                        <a class="dropdown-item" href="reebok.html">REEBOK</a>
+                    </div>
+                </li>
+                
+                <li class="nav-item"> 
+                    <a class="nav-link text-chat-online" href="contactar.html">CHAT ONLINE</a>
+                               
+                <!-- Carrito de Compras -->
+<li class="nav-item ml-lg-3 mt-2 mt-lg-0" style="position: relative; list-style: none;">
+    <div class="container-icon" style="position: relative; display: inline-block; vertical-align: middle;">
+        
+        <!-- 🛒 ICONO DEL BOLSO -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+             class="icon-cart" id="cart-icon" style="cursor: pointer; stroke: #ECC998; width: 32px; height: 32px; display: block;">
+            <path d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+        </svg>
+                
+        <!-- ⚪ BURBUJA CONTADORA SOBRE EL BOLSO (Fondo Blanco) -->
+        <div class="count-products" style="position: absolute; top: -5px; right: -5px; background-color: #ffffff; color: #b32e2e;
+     width: 18px; height: 18px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 11px;
+     font-weight: bold; pointer-events: none; border: 1.5px solid #ECC998; box-shadow: 0 2px 4px rgba(0,0,0,0.15);">
+            <span id="contador-productos">0</span>
+        </div>
+        
+        <!-- 📦 VENTANA DESPLEGABLE CARRITO -->
+        <div class="container-cart-products hidden-cart" id="cart-container" style="position: absolute; top: 48px; right: 0; width: 340px; background-color: #ffffff; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.25); padding: 18px; z-index: 99999; border: 1px solid #ECC998; text-align: left; font-family: 'Segoe UI', Roboto, sans-serif; box-sizing: border-box; display: block; max-height: 85vh; overflow-y: auto;">
+            
+            <!-- Encabezado -->
+            <div class="cart-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f5ede2; padding-bottom: 10px; margin-bottom: 12px;">
+                <h5 style="margin: 0; font-weight: 700; color: #4a3b32; font-size: 15px; letter-spacing: 0.5px;">Tu Carrito de Compras</h5>
+                <button id="cerrar-carrito" type="button" style="background: none; border: none; font-size: 24px; cursor: pointer; color: #857059; padding: 0 5px;">&times;</button>
+            </div>
+
+            <!-- ↕️ Productos Seleccionados -->
+            <div id="row-product" class="row-product-scroll" style="max-height: 150px; overflow-y: auto; margin-bottom: 12px; padding-right: 5px; display: block; clear: both;">
+            </div>
+            
+            <!-- Resumen de Costos -->
+            <div class="cart-summary-details" style="background-color: #fdfbf7; border-radius: 8px; padding: 12px; margin-bottom: 12px; border: 1px solid #f5ede2; clear: both;">
+                <div class="summary-row" style="display: flex; justify-content: space-between; font-size: 13px; color: #666; margin-bottom: 5px;">
+                    <span>Subtotal:</span>
+                    <span class="subtotal-valor" style="font-weight: 600;">$0</span>
+                </div>
+                <div class="summary-row" style="display: flex; justify-content: space-between; font-size: 13px; color: #666; margin-bottom: 5px;">
+                    <span>Su Envío es:</span>
+                    <span class="envio-valor" style="color: #28a745; font-weight: bold;"><strong>Gratis</strong></span>
+                </div>
+                <hr class="summary-divider" style="margin: 6px 0; border: none; border-top: 1px dashed #ECC998; opacity: 0.5;">
+                <div class="cart-total" style="display: flex; justify-content: space-between; align-items: center;">
+                    <h3 style="margin: 0; font-size: 14px; font-weight: 700; color: #4a3b32;">Total a pagar:</h3>
+                    <span id="total-monto-texto" class="total-pagar" style="font-size: 16px; font-weight: 800; color: #b32e2e;">$0</span>
+                </div>
+            </div>
+
+            <!-- PASO 1: Selección del Método de Pago -->
+            <div class="medio-pago-seccion" style="margin-bottom: 12px; clear: both;">
+                <label for="metodo-pago" style="font-weight: 700; font-size: 11px; color: #857059; display: block; margin-bottom: 5px; letter-spacing: 0.3px;">💰 MÉTODO DE PAGO SEGURO:</label>
+                <select id="metodo-pago" class="select-custom" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ECC998; font-weight: 600; font-size: 13px; color: #4a3b32; background-color: #ffffff; cursor: pointer; display: block;">
+                    <option value="" disabled selected>Selecciona cómo deseas pagar...</option>
+                    <option value="Nequi">📱 Nequi (Transferencia Directa)</option>
+                    <option value="Daviplata">💬 Daviplata (Transferencia Directa)</option>
+                    <option value="Contraentrega">🚚 Pago Contraentrega (Pagas al recibir)</option>
+                </select>
+            </div>
+
+            <!-- PASO 2: Confirmación visual del Monto (Aparece al seleccionar Nequi/Daviplata/Contraentrega) -->
+            <div id="contenedor-monto" style="display: none; margin-bottom: 12px; clear: both; background-color: #fff9f0; border: 1px solid #ECC998; padding: 10px; border-radius: 6px; text-align: center;">
+                <span style="font-size: 11px; font-weight: 700; color: #857059; display: block;">💵 MONTO EXACTO A PAGAR:</span>
+                <strong id="monto-confirmado" style="font-size: 18px; color: #b32e2e; display: block; margin-top: 2px;">$0</strong>
+            </div>
+
+            <!-- PASO 3: Campo donde el cliente ingresa el valor o número desde el que pagará -->
+            <div id="contenedor-cuenta" style="display: none; margin-bottom: 12px; clear: both; background-color: #fdfbf7; border: 1px dashed #ECC998; padding: 10px; border-radius: 6px;">
+                <label id="label-cuenta" for="numero-cuenta" style="font-weight: 700; font-size: 11px; color: #857059; display: block; margin-bottom: 5px; letter-spacing: 0.3px;">📱 INGRESA TU NÚMERO DE CUENTA / CELULAR:</label>
+                <input type="tel" id="numero-cuenta" placeholder="Ej: 300 123 4567" maxlength="10" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ECC998; font-weight: 600; font-size: 13px; color: #4a3b32; box-sizing: border-box; outline: none;">
+            </div>
+
+            <!-- PASO 4: Aparece el número destino oficial de la tienda para realizar la transferencia -->
+            <div id="banner-estado-pago" style="display: none; margin-bottom: 12px; clear: both; background-color: #eef9f1; border: 1px solid #28a745; padding: 12px; border-radius: 6px; text-align: center;">
+                <span id="titulo-destino" style="font-size: 11px; font-weight: 700; color: #155724; display: block;">TRANSFERIR A LA CUENTA OFICIAL:</span>
+                <strong id="numero-destino" style="font-size: 16px; color: #28a745; display: block; margin: 4px 0;">300 123 4567</strong>
+                <span style="font-size: 10px; color: #155724; display: block;">Realiza la transferencia para confirmar tu pedido.</span>
+            </div>
+
+            <!-- Badges informativos -->
+            <div class="payment-badges" style="display: flex; justify-content: space-around; align-items: center; background: #fdfdfd; padding: 8px; border-radius: 6px; border: 1px solid #f0f0f0; margin-bottom: 15px; font-size: 12px; font-weight: bold; color: #4a3b32; clear: both;">
+                <span>📱 Nequi</span>
+                <span>💬 Daviplata</span>
+                <span class="badge-text" style="color: #28a745;">🚚 Envío Seguro</span>
+            </div>
+
+            <!-- Botones de Acción -->
+            <div class="cart-actions" style="display: flex; flex-direction: column; gap: 10px; clear: both; width: 100%;">
+                <button id="finalizar-compra" type="button" class="btn-checkout btn-accion-brillo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-shield-lock-fill" viewBox="0 0 16 16" style="display: inline-block;">
+                        <path fill-rule="evenodd" d="M8 0c-.69 0-1.843.265-2.928.56-1.11.3-2.229.655-2.887.87a1.54 1.54 0 0 0-1.044 1.262c-.596 4.477.787 7.795 2.465 9.99a11.8 11.8 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7 7 0 0 0 1.048-.625 11.8 11.8 0 0 0 2.517-2.453c1.678-2.195 3.061-5.513 2.465-9.99a1.54 1.54 0 0 0-1.044-1.263 62 62 0 0 0-2.887-.87C9.843.266 8.69 0 8 0m0 5a1.5 1.5 0 0 1 .5 2.915V9.5a.5.5 0 0 1-1 0V7.915A1.5 1.5 0 0 1 8 5"/>
+                    </svg> PROCEDER AL PAGO SEGURO
+                </button>
+                
+                <button id="vaciar-carrito" type="button" class="btn-empty" style="width: 100%; background-color: transparent; border: 1px solid #dc3545; color: #dc3545; padding: 9px; border-radius: 6px; font-weight: 600; font-size: 12px; cursor: pointer; display: block; text-align: center;">Vaciar Carrito</button>
+            </div>
+
+            <!-- Informe de protección -->
+            <p class="secure-footer-text" style="text-align: center; font-size: 10px; color: #a0a0a0; margin-top: 12px; margin-bottom: 0; clear: both;">
+                🔒 Tus datos están protegidos.
+            </p>
+        </div>
+    </div>
+</li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container content-wrapper" style="margin-top: 20px; margin-bottom: 60px;">
+        <div class="text-center mb-5 animate-fade-in">
+            <h2 class="titulo-marcas d-inline-flex align-items-center justify-content-center">
+                CALZADO REEBOK
+                <img src="Imagenes Resbook/Logo Resbook.jpg" alt="Logo Nike" class="ml-3 rounded-circle"
+                     style="width: 50px; height: 50px; object-fit: contain; border: 1px solid #857059;">
+            </h2>
+        </div>
+        
+        <!-- (Catalogo de productos) -->
+        <div class="row" id="lista-productos">
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-4 item">
+                <div class="card-producto text-center h-100 p-3 shadow-sm d-flex flex-column justify-content-between" data-marca="Reebok">
+                    <div class="wrapper-foto-tenis mb-2" onclick="abrirVisor(this)">
+                        <img src="Imagenes Resbook/reebook1.jpg" class="img-fluid img-tenis">
+                    <div class="indicador-zoom">
+                    <span>🔍 Ampliar</span>
+                </div>
+            </div> 
+                    
+                    <div class="inf-product">
+                        <h3><strong>REEBOK CLASSIC GL6000</strong></h3>
+                        <p>Zapatos que no solo calzan, sino que impulsan tus metas en este 2026.</p>
+                        
+                        <div class="mb-2">
+<label class="talla-etiqueta">TALLA</label>
+                        <div class="talla-opciones">
+                        <button type="button" class="talla-pill" data-talla="37">37</button>
+                        <button type="button" class="talla-pill" data-talla="38">38</button>
+                        <button type="button" class="talla-pill" data-talla="39">39</button>
+                        <button type="button" class="talla-pill" data-talla="40">40</button>
+                        <button type="button" class="talla-pill" data-talla="41">41</button>
+                        <button type="button" class="talla-pill" data-talla="42">42</button>
+                        </div>
+                        <select class="talla-seleccion" hidden><option value="" selected>Talla</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option></select>
+                        </div>
+                        <p class="color-info">COLOR: (gris y azul marino)</p>
+                        <p class="price-tag">$119.000</p>
+                        <button type="button" class="btn-comprar-vitrina btn-add-cart">AGREGAR AL CARRITO</button>   
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-4 item">
+                <div class="card-producto text-center h-100 p-3 shadow-sm d-flex flex-column justify-content-between" data-marca="Reebok">
+                    <div class="wrapper-foto-tenis mb-2" onclick="abrirVisor(this)">
+                        <img src="Imagenes Resbook/reebook2.jpg" class="img-fluid img-tenis">
+                    <div class="indicador-zoom">
+                    <span>🔍 Ampliar</span>
+                </div>
+            </div> 
+                    
+                    <div class="inf-product">
+                        <h3><strong>REEBOK CLASSIC</strong></h3>
+                        <p>La comodidad de un fin de semana, disponible todos los días de la semana.</p>
+                        
+                        <div class="mb-2">
+<label class="talla-etiqueta">TALLA</label>
+                        <div class="talla-opciones">
+                        <button type="button" class="talla-pill" data-talla="37">37</button>
+                        <button type="button" class="talla-pill" data-talla="38">38</button>
+                        <button type="button" class="talla-pill" data-talla="39">39</button>
+                        <button type="button" class="talla-pill" data-talla="40">40</button>
+                        <button type="button" class="talla-pill" data-talla="41">41</button>
+                        <button type="button" class="talla-pill" data-talla="42">42</button>
+                        </div>
+                        <select class="talla-seleccion" hidden><option value="" selected>Talla</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option></select>
+                        </div>
+                        <p class="color-info">COLOR: (negro y rojo)</p>
+                        <p class="price-tag">$175.000</p>
+                        <button type="button" class="btn-comprar-vitrina btn-add-cart">AGREGAR AL CARRITO</button>   
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-4 item">
+                <div class="card-producto text-center h-100 p-3 shadow-sm d-flex flex-column justify-content-between" data-marca="Reebok">
+                    <div class="wrapper-foto-tenis mb-2" onclick="abrirVisor(this)">
+                        <img src="Imagenes Resbook/reebook3.jpg" class="img-fluid img-tenis">
+                   <div class="indicador-zoom">
+                    <span>🔍 Ampliar</span>
+                </div>
+            </div> 
+                    
+                    <div class="inf-product">
+                        <h3><strong>REEBOK ZIG</strong></h3>
+                        <p>Camina hacia el futuro con materiales reciclados y un estilo inigualable.</p>
+                        
+                        <div class="mb-2">
+<label class="talla-etiqueta">TALLA</label>
+                        <div class="talla-opciones">
+                        <button type="button" class="talla-pill" data-talla="37">37</button>
+                        <button type="button" class="talla-pill" data-talla="38">38</button>
+                        <button type="button" class="talla-pill" data-talla="39">39</button>
+                        <button type="button" class="talla-pill" data-talla="40">40</button>
+                        <button type="button" class="talla-pill" data-talla="41">41</button>
+                        <button type="button" class="talla-pill" data-talla="42">42</button>
+                        </div>
+                        <select class="talla-seleccion" hidden><option value="" selected>Talla</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option></select>
+                        </div>
+                        <p class="color-info">COLOR: (blanco y azul)</p>
+                        <p class="price-tag">$190.000</p>
+                        <button type="button" class="btn-comprar-vitrina btn-add-cart">AGREGAR AL CARRITO</button>   
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-4 item">
+                <div class="card-producto text-center h-100 p-3 shadow-sm d-flex flex-column justify-content-between" data-marca="Reebok">
+                    <div class="wrapper-foto-tenis mb-2" onclick="abrirVisor(this)">
+                        <img src="Imagenes Resbook/reebook4.jpg" class="img-fluid img-tenis">
+                   <div class="indicador-zoom">
+                    <span>🔍 Ampliar</span>
+                </div>
+            </div> 
+                    
+                    <div class="inf-product">
+                        <h3><strong>REEDOK CLASSIC LEATHER</strong></h3>
+                        <p>¡Para pies que nunca se cansan de explorar: resistencia pura en cada terreno!</p>
+                        
+                        <div class="mb-2">
+<label class="talla-etiqueta">TALLA</label>
+                        <div class="talla-opciones">
+                        <button type="button" class="talla-pill" data-talla="37">37</button>
+                        <button type="button" class="talla-pill" data-talla="38">38</button>
+                        <button type="button" class="talla-pill" data-talla="39">39</button>
+                        <button type="button" class="talla-pill" data-talla="40">40</button>
+                        <button type="button" class="talla-pill" data-talla="41">41</button>
+                        <button type="button" class="talla-pill" data-talla="42">42</button>
+                        </div>
+                        <select class="talla-seleccion" hidden><option value="" selected>Talla</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option></select>
+                        </div>
+                        <p class="color-info">COLOR: (blanco)</p>
+                        <p class="price-tag">$240.000</p>
+                        <button type="button" class="btn-comprar-vitrina btn-add-cart">AGREGAR AL CARRITO</button>   
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-4 item">
+                <div class="card-producto text-center h-100 p-3 shadow-sm d-flex flex-column justify-content-between" data-marca="Reebok">
+                    <div class="wrapper-foto-tenis mb-2" onclick="abrirVisor(this)">
+                        <img src="Imagenes Resbook/reebook5.jpg" class="img-fluid img-tenis">
+                    <div class="indicador-zoom">
+                    <span>🔍 Ampliar</span>
+                </div>
+            </div> 
+                    
+                    <div class="inf-product">
+                        <h3><strong>REEBOK</strong></h3>
+                        <p>Dale a tus pasos el brillo que el 2026 exige; descubre nuestra nueva colección de tendencia.</p>
+                        
+                        <div class="mb-2">
+<label class="talla-etiqueta">TALLA</label>
+                        <div class="talla-opciones">
+                        <button type="button" class="talla-pill" data-talla="37">37</button>
+                        <button type="button" class="talla-pill" data-talla="38">38</button>
+                        <button type="button" class="talla-pill" data-talla="39">39</button>
+                        <button type="button" class="talla-pill" data-talla="40">40</button>
+                        <button type="button" class="talla-pill" data-talla="41">41</button>
+                        <button type="button" class="talla-pill" data-talla="42">42</button>
+                        </div>
+                        <select class="talla-seleccion" hidden><option value="" selected>Talla</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option></select>
+                        </div>
+                        <p class="color-info">COLOR: (blanco)</p>
+                        <p class="price-tag">$210.000</p>
+                        <button type="button" class="btn-comprar-vitrina btn-add-cart">AGREGAR AL CARRITO</button>   
+                    </div>
+                </div>
+            </div>
+            
+           <div class="col-sm-6 col-md-4 col-lg-3 mb-4 item">
+                <div class="card-producto text-center h-100 p-3 shadow-sm d-flex flex-column justify-content-between" data-marca="Reebok">
+                    <div class="wrapper-foto-tenis mb-2" onclick="abrirVisor(this)">
+                        <img src="Imagenes Resbook/reebook6.jpg" class="img-fluid img-tenis">
+                    <div class="indicador-zoom">
+                    <span>🔍 Ampliar</span>
+                </div>
+            </div> 
+                    
+                    <div class="inf-product">
+                        <h3><strong>ZAPATILLAS DEPORTIVAS REEBOK</strong></h3>
+                        <p>Un calzado tan ligero que olvidarás que lo llevas puesto, pero todos lo notarán.</p>
+                        
+                        <div class="mb-2">
+<label class="talla-etiqueta">TALLA</label>
+                        <div class="talla-opciones">
+                        <button type="button" class="talla-pill" data-talla="37">37</button>
+                        <button type="button" class="talla-pill" data-talla="38">38</button>
+                        <button type="button" class="talla-pill" data-talla="39">39</button>
+                        <button type="button" class="talla-pill" data-talla="40">40</button>
+                        <button type="button" class="talla-pill" data-talla="41">41</button>
+                        <button type="button" class="talla-pill" data-talla="42">42</button>
+                        </div>
+                        <select class="talla-seleccion" hidden><option value="" selected>Talla</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option></select>
+                        </div>
+                        <p class="color-info">COLOR: (blanco, azul marino y amarillo)</p>
+                        <p class="price-tag">$190.000</p>
+                        <button type="button" class="btn-comprar-vitrina btn-add-cart">AGREGAR AL CARRITO</button>   
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-4 item">
+                <div class="card-producto text-center h-100 p-3 shadow-sm d-flex flex-column justify-content-between" data-marca="Reebok">
+                    <div class="wrapper-foto-tenis mb-2" onclick="abrirVisor(this)">
+                        <img src="Imagenes Resbook/reebook7.jpg" class="img-fluid img-tenis">
+                    <div class="indicador-zoom">
+                    <span>🔍 Ampliar</span>
+                </div>
+            </div> 
+                    
+                    <div class="inf-product">
+                        <form><h3><strong>REEBOK FUSIUM RUN2.0</strong></h3>
+                            <p><em>Donde el calzado artesanal abraza la innovación tecnológica del mañana.</em></p>
+                            
+                            <div class="mb-2">
+<label class="talla-etiqueta">TALLA</label>
+                        <div class="talla-opciones">
+                        <button type="button" class="talla-pill" data-talla="37">37</button>
+                        <button type="button" class="talla-pill" data-talla="38">38</button>
+                        <button type="button" class="talla-pill" data-talla="39">39</button>
+                        <button type="button" class="talla-pill" data-talla="40">40</button>
+                        <button type="button" class="talla-pill" data-talla="41">41</button>
+                        <button type="button" class="talla-pill" data-talla="42">42</button>
+                        </div>
+                        <select class="talla-seleccion" hidden><option value="" selected>Talla</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option></select>
+                            </div>
+                            <p class="color-info">COLOR: (blanco, negro y detalles vino tinto)</p>
+                            <p class="price-tag">$200.000</p></form>
+                        <button type="button" class="btn-comprar-vitrina btn-add-cart">AGREGAR AL CARRITO</button>   
+                    </div>
+                </div>
+            </div>
+            
+           <div class="col-sm-6 col-md-4 col-lg-3 mb-4 item">
+                <div class="card-producto text-center h-100 p-3 shadow-sm d-flex flex-column justify-content-between" data-marca="Reebok">
+                    <div class="wrapper-foto-tenis mb-2" onclick="abrirVisor(this)">
+                        <img src="Imagenes Resbook/reebook8.jpg" class="img-fluid img-tenis">
+                    <div class="indicador-zoom">
+                    <span>🔍 Ampliar</span>
+                </div>
+            </div> 
+                    
+                    <div class="inf-product">
+                        <h3><strong>REEBOK CLASSIC</strong></h3>
+                        <p>"Pisa fuerte, pisa seguro: la durabilidad que tu ritmo de trabajo merece."</p>
+                        
+                        <div class="mb-2">
+<label class="talla-etiqueta">TALLA</label>
+                        <div class="talla-opciones">
+                        <button type="button" class="talla-pill" data-talla="37">37</button>
+                        <button type="button" class="talla-pill" data-talla="38">38</button>
+                        <button type="button" class="talla-pill" data-talla="39">39</button>
+                        <button type="button" class="talla-pill" data-talla="40">40</button>
+                        <button type="button" class="talla-pill" data-talla="41">41</button>
+                        <button type="button" class="talla-pill" data-talla="42">42</button>
+                        </div>
+                        <select class="talla-seleccion" hidden><option value="" selected>Talla</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option></select>
+                        </div>
+                        <p class="color-info">COLOR: (blancos)</p>
+                        <p class="price-tag">120.000</p>
+                        <button type="button" class="btn-comprar-vitrina btn-add-cart">AGREGAR AL CARRITO</button>   
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-4 item">
+                <div class="card-producto text-center h-100 p-3 shadow-sm d-flex flex-column justify-content-between" data-marca="Reebok">
+                    <div class="wrapper-foto-tenis mb-2" onclick="abrirVisor(this)">
+                        <img src="Imagenes Resbook/reebook9.jpg" class="img-fluid img-tenis">
+                    <div class="indicador-zoom">
+                    <span>🔍 Ampliar</span>
+                </div>
+            </div> 
+                    
+                    <div class="inf-product">
+                        <h3><strong>REEBOK CLASSIC</strong></h3>
+                        <p>"Porque cada gran historia comienza con un paso firme y el par de zapatos correcto"</p>
+                        
+                        <div class="mb-2">
+<label class="talla-etiqueta">TALLA</label>
+                        <div class="talla-opciones">
+                        <button type="button" class="talla-pill" data-talla="37">37</button>
+                        <button type="button" class="talla-pill" data-talla="38">38</button>
+                        <button type="button" class="talla-pill" data-talla="39">39</button>
+                        <button type="button" class="talla-pill" data-talla="40">40</button>
+                        <button type="button" class="talla-pill" data-talla="41">41</button>
+                        <button type="button" class="talla-pill" data-talla="42">42</button>
+                        </div>
+                        <select class="talla-seleccion" hidden><option value="" selected>Talla</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option></select>
+                        </div>
+                        <p class="color-info">COLOR: (blancos)</p>
+                        <p class="price-tag">$180.000</p>
+                        <button type="button" class="btn-comprar-vitrina btn-add-cart">AGREGAR AL CARRITO</button>   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+<!--  PIE DE PAGINA (FOOTER) -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="row">
+            
+            <!-- Columna 1: Identidad del Negocio -->
+            <div class="col-md-3 col-sm-6 text-center text-md-left mb-4 footer-col">
+                <h5 class="footer-brand font-weight-bold text-white">STORE DANY</h5>
+                <p class="footer-text text-light">Venta de calzado exclusivo para hombre. Comodidad, estilo y las marcas más top del mercado.</p>
+            </div>
+            
+            <!-- Columna 2: Sobre Nosotros -->
+            <div class="col-md-3 col-sm-6 text-center text-md-left mb-4 footer-col">
+                <h6 class="footer-titulo">Sobre nosotros</h6>
+                <p class="footer-text text-light mb-0">Somos una tienda chucureña dedicada al calzado masculino, con <span class="texto-destacado-suave">2 años de experiencia</span> en punto de venta físico y la innovación de este año: ampliar nuestro alcance comercial al entorno online.</p>
+            </div>
+
+            <!-- Columna 3: Horario de Atención -->
+            <div class="col-md-3 col-sm-6 text-center text-md-left mb-4 footer-col">
+                <h6 class="footer-titulo">🕒 Horario de atención</h6>
+                <div class="footer-horario-item"><span>Lunes - Viernes</span><span>8:00 am - 7:00 pm</span></div>
+                <div class="footer-horario-item"><span>Sábados</span><span>8:00 am - 6:00 pm</span></div>
+                <div class="footer-horario-item"><span>Domingos</span><span>9:00 am - 12:00 m</span></div>
+            </div>
+
+            <!-- Columna 4: Ubicación y Confianza -->
+            <div class="col-md-3 col-sm-6 text-center text-md-left mb-4 footer-col">
+                <h6 class="footer-titulo">📍 Ubicación</h6>
+                <p class="footer-text font-weight-bold mb-1" style="color: #caa435;">San Vicente de Chucurí</p>
+                <p class="footer-text text-white font-weight-bold mb-3">Santander, Colombia</p>
+                <h6 class="footer-titulo">🔒 Compra segura</h6>
+                <p class="footer-text text-light mb-0">Verificamos cada pago para una entrega legal y sin estafas.</p>
+            </div>
+            
+        </div>
+
+        <!-- Línea divisoria inferior de créditos limpia y en una sola línea -->
+        <div class="row mt-4 pt-3 border-top border-secondary">
+            <div class="col-12 text-center">
+                <small class="text-light" style="opacity: 0.75;">
+                    © 2026 STORE DANY. Todos los derechos reservados | Propietaria: Katherine Rodríguez | Gestión de Ventas Online
+                </small>
+            </div>
+        </div>
+    </div>
+</footer>
+    
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap-4.3.1.js"></script>
+<script src="js/main.js"></script>
+<script src="reebok.js"></script> 
+    
+    
+    <div id="visorImagen" class="visor-pantalla-completa" onclick="cerrarVisor()">
+    <div class="vista-rapida" onclick="event.stopPropagation()">
+        <button type="button" class="vista-rapida-cerrar" onclick="cerrarVisor()">&times;</button>
+        <div class="vista-rapida-foto">
+            <img src="" id="visorImgElemento" alt="Producto seleccionado">
+            <span class="vista-rapida-marca" id="visorMarcaElemento"></span>
+        </div>
+        <div class="vista-rapida-info">
+            <h3 id="visorTextoElemento"></h3>
+            <p class="vista-rapida-precio" id="visorPrecioElemento"></p>
+            <p class="vista-rapida-color" id="visorColorElemento"></p>
+            <label class="talla-etiqueta">ELIGE TU TALLA</label>
+            <div class="talla-opciones" id="visorTallas"></div>
+            <button type="button" class="btn-checkout vista-rapida-btn" id="visorAgregarBtn">AGREGAR AL CARRITO</button>
+            <span class="vista-rapida-nota">Envío gratis</span>
+        </div>
+    </div>
+</div>
+    
+    </body>
+</html>

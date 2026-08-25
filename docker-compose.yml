@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  servidor_web:
+    image: php:8.2-apache
+    container_name: apache_storedany
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html/
+    depends_on:
+      - base_datos
+    command: >
+      sh -c "docker-php-ext-install pdo pdo_mysql && apache2-foreground"
+
+  base_datos:
+    image: mariadb:10.6
+    container_name: mariadb_storedany
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: clave_storedany_2026
+      MYSQL_DATABASE: gst_ventasonline
+      MYSQL_USER: usuario_storedany
+      MYSQL_PASSWORD: clave_usuario_2026

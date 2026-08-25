@@ -1,0 +1,345 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STORE_DANY_Gestion_Ventas_Online</title>
+    <link rel="icon" href="logotipo.png" type="image/png">
+    <!-- Framework Bootstrap 4.3.1 -->
+    <link href="css/bootstrap-4.3.1.css" rel="stylesheet" type="text/css">
+    <!-- Tu archivo de estilos -->
+    <link href="Style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    
+<!-- 🧭 MENÚ DE NAVEGACIÓN -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark main-navbar">
+    <div class="container-fluid">
+        
+        <!-- Bloque de Título de la izquierda -->
+        <div class="navbar-brand-wrapper">
+            <h4 class="titulo-brand">Gestión de Ventas Online</h4>
+            <span class="subtitulo-brand">Negocio "STORE DANY"</span>
+        </div>
+        
+        <!-- Logotipo Central/Izquierdo -->
+        <img src="logotipo.png" alt="Logotipo STORE DANY" class="img-logotipo">
+                
+        <!-- Botón para pantallas de celulares -->
+        <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarContenido" aria-controls="navbarContenido" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <!-- Caja de Enlaces del menú -->
+        <div class="collapse navbar-collapse" id="navbarContenido">
+            <ul class="navbar-nav ml-auto custom-nav-links">
+                <li class="nav-item"> 
+                    <a class="nav-link current-page" href="index.html">INICIO</a>
+                </li>  
+                <li class="nav-item"> 
+                    <a class="nav-link" href="shopping-cart.html">CATÁLOGO</a>
+                </li>
+        
+                <!-- Menú Desplegable -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        SELEC. PRODUCTO
+                    </a>
+                    <div class="dropdown-menu custom-dropdown" aria-labelledby="navbarDropdown1">
+                        <a class="dropdown-item" href="nike.html">NIKE</a>
+                        <a class="dropdown-item" href="adidas.html">ADIDAS</a>
+                        <a class="dropdown-item" href="puma.html">PUMA</a>
+                        <a class="dropdown-item" href="new-balance.html">NEW BALANCE</a>
+                        <a class="dropdown-item" href="reebok.html">REEBOK</a>
+                    </div>
+                </li>
+                
+                <li class="nav-item"> 
+                    <a class="nav-link text-chat-online" href="contactar.html">CHAT ONLINE</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
+    
+        <main class="container-fluid px-0">
+
+        <!-- ⭐ HERO DEL CATÁLOGO: imagen protagonista + lectura rápida -->
+        <div class="hero-section animate-fade-in position-relative py-5 px-3 px-md-5">
+        <div class="row align-items-center mb-3">
+
+            <!-- Imagen protagonista -->
+            <div class="col-lg-6 text-center mb-4 mb-lg-0">
+                <div class="contenedor-imagen-premium marco-protagonista">
+                    <img src="Calzado para hombre.png" alt="Catálogo exclusivo STORE DANY" class="img-fluid img-principal-tienda">
+                    <div class="badge-marcas">NUEVO PORTAFOLIO</div>
+                </div>
+            </div>
+
+            <!-- Lectura rápida y jerarquizada -->
+            <div class="col-lg-6">
+                <h3 class="titulo-seccion mb-2">CATÁLOGO EXCLUSIVO</h3>
+                <h1 class="descripcion-bienvenida">¡Explora las Tendencias Exclusivas de STORE DANY!</h1>
+                <p class="intro-catalogo mb-4">Todas las marcas top reunidas en un solo lugar; explora el portafolio, elige tu modelo favorito y realiza tu pedido sin salir de casa</p>
+                
+                <!-- Mini-beneficios: lo que gana el cliente -->
+                <div class="row mini-beneficios mb-4">
+                    <div class="col-4 mb-2">
+                        <div class="mini-beneficio">
+                            <span class="mini-beneficio-icono">🛡️</span>
+                            <span class="mini-beneficio-texto">Compra Segura</span>
+                        </div>
+                    </div>
+                    <div class="col-4 mb-2">
+                        <div class="mini-beneficio">
+                            <span class="mini-beneficio-icono">🚚</span>
+                            <span class="mini-beneficio-texto">Entrega Confiable</span>
+                        </div>
+                    </div>
+                    <div class="col-4 mb-2">
+                        <div class="mini-beneficio">
+                            <span class="mini-beneficio-icono">💬</span>
+                            <span class="mini-beneficio-texto">Asesoría 1 a 1</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Boton de Ver Marcas -->
+                <div class="text-center text-lg-right">
+                    <button class="btn-ver-marcas btn-accion-brillo" type="button" data-toggle="collapse" data-target="#marcasColapsables" aria-expanded="false" aria-controls="marcasColapsables">
+👁️
+ VER MARCAS DISPONIBLES</button>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- 🏷️ PANEL DE MARCAS (sobre el fondo de la imagen) -->
+        <div class="container">
+            <div class="collapse mt-3" id="marcasColapsables">
+                <div class="card card-body border-cafe-tienda shadow-sm">
+                    <h3 class="titulo-seccion text-center mb-2">
+                        Selecciona tu marca favorita:
+                    </h3>
+                    <!-- justify-content-center centra la fila en móviles -->
+                    <div class="row px-2 justify-content-center">
+                        
+                        <div class="col-6 col-auto mb-3">
+                            <a href="nike.html" class="tarjeta-marca-link marca-nike">
+                                <span class="icono-tenis">👟</span>
+                                <span class="texto-marca">NIKE</span>
+                            </a>
+                        </div>
+                        
+                        <div class="col-6 col-auto mb-3">
+                            <a href="adidas.html" class="tarjeta-marca-link marca-adidas">
+                                <span class="icono-tenis">👟</span>
+                                <span class="texto-marca">ADIDAS</span>
+                            </a>
+                        </div>
+                        
+                        <div class="col-6 col-auto mb-3">
+                            <a href="puma.html" class="tarjeta-marca-link marca-puma">
+                                <span class="icono-tenis">👟</span>
+                                <span class="texto-marca">PUMA</span>
+                            </a>
+                        </div>
+                        
+                        <div class="col-6 col-auto mb-3">
+                            <a href="new-balance.html" class="tarjeta-marca-link marca-newbalance">
+                                <span class="icono-tenis">👟</span>
+                                <span class="texto-marca">NEW Balance</span>
+                            </a>
+                        </div>
+                        
+                        <div class="col-6 col-auto mb-3">
+                            <a href="reebok.html" class="tarjeta-marca-link marca-reebok">
+                                <span class="icono-tenis">👟</span>
+                                <span class="texto-marca">REEBOK</span>
+                            </a>
+                        </div>
+                        
+                    </div>
+                </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 📊 INFORMACIÓN ORGANIZADA -->
+        <div class="container zona-info-catalogo mb-5" data-reveal>
+            <div class="row align-items-stretch">
+                
+                <!-- Sobre STORE DANY -->
+                <div class="col-lg-7 mb-4">
+                    <div class="info-store h-100">
+                        <h6 class="info-store-titulo">🏪 Sobre STORE DANY</h6>
+                        <p class="info-store-texto">
+                            Somos un negocio con reconocimiento Chucureño dedicado a la venta de
+                            calzado para hombre con las marcas más top del mercado. Exhibimos los últimos
+                            estilos de Nike, Adidas, Puma, New Balance y Reebok y, desde el inicio de
+                            nuestro emprendimiento, nos caracterizamos por ofrecer excelente calidad y una atención
+                            cercana que nos ha convertido en uno de los negocios más recomendados al público.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Datos rápidos -->
+                <div class="col-lg-5 mb-4">
+                    <div class="datos-rapidos h-100">
+                        <div class="dato-rapido">
+                            <span class="dato-rapido-valor">+5</span>
+                            <span class="dato-rapido-etiqueta">Marcas Top</span>
+                        </div>
+                        <div class="dato-rapido">
+                            <span class="dato-rapido-valor">100%</span>
+                            <span class="dato-rapido-etiqueta">Originales</span>
+                        </div>
+                        <div class="dato-rapido">
+                            <span class="dato-rapido-valor">37-42</span>
+                            <span class="dato-rapido-etiqueta">Tallas</span>
+                        </div>
+                        <div class="dato-rapido">
+                            <span class="dato-rapido-valor">🚚</span>
+                            <span class="dato-rapido-etiqueta">Envío Local</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tarjeta de la Asesora Online -->
+            <div class="asesora-card shadow-lg mb-4">
+                <div class="asesora-avatar">👩🏻<span class="asesora-estado"></span></div>
+                <div class="asesora-info">
+                    <span class="asesora-etiqueta">💡 Tu Asesora Online</span>
+                    <h5 class="asesora-nombre">Lizeth</h5>
+                    <p class="asesora-texto mb-2">Estoy aquí para acompañarte en cada paso: te ayudo a elegir tu talla, tu estilo ideal y a gestionar tu compra de la forma más cómoda y segura.</p>
+                    <div class="asesora-promesas">
+                        <span>⏱️ Respondo en minutos</span>
+                        <span>📏 Talla exacta</span>
+                        <span>🔒 Compra segura</span>
+                    </div>
+                    <div class="asesora-confianza">
+                        <p class="mb-1">🤩 ¡Compra con total confianza! <span class="resaltado-dorado">Calidad original</span> y <span class="resaltado-dorado">seguridad garantizada</span> en cada entrega online.</p>
+                        <span class="frase-explora">"Explora y encuentra lo que necesitas" 🥳</span>
+                        <span class="asesora-horario">🟢 Atención: Lun a Sáb · 8am - 7pm</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 💬 TESTIMONIOS DE CLIENTES -->
+        <div class="container zona-testimonios mb-5" data-reveal>
+            <h3 class="titulo-seccion text-center mb-4">💬 Lo que dicen nuestros clientes</h3>
+            <div class="row justify-content-center">
+
+                <div class="col-md-4 mb-3">
+                    <div class="tarjeta-testimonio">
+                        <div class="testimonio-estrellas">★★★★★</div>
+                        <p class="testimonio-texto">"Compré unos Nike desde Bucaramanga y llegaron tal como se veían en la página; el pago se sintió muy seguro"</p>
+                        <div class="testimonio-autor">
+                            <span class="testimonio-avatar">🧑</span>
+                            <div>
+                                <span class="testimonio-nombre">Andrés M.</span>
+                                <small class="testimonio-lugar">Bucaramanga, Santander</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <div class="tarjeta-testimonio">
+                        <div class="testimonio-estrellas">★★★★★</div>
+                        <p class="testimonio-texto">"La asesora Lizeth me guió para elegir la talla correcta; el proceso por la web es fácil, rápido y confiable"</p>
+                        <div class="testimonio-autor">
+                            <span class="testimonio-avatar">👩</span>
+                            <div>
+                                <span class="testimonio-nombre">Carolina S.</span>
+                                <small class="testimonio-lugar">San Vicente de Chucurí</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <div class="tarjeta-testimonio">
+                        <div class="testimonio-estrellas">★★★★★</div>
+                        <p class="testimonio-texto">"Mi pedido llegó puntual, en la fecha que me indicaron; se nota el compromiso de la tienda con sus clientes"</p>
+                        <div class="testimonio-autor">
+                            <span class="testimonio-avatar">👨</span>
+                            <div>
+                                <span class="testimonio-nombre">Jhoan P.</span>
+                                <small class="testimonio-lugar">El Carmen de Chucurí</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 🚚 SELLO DE COMPROMISO DE ENTREGA -->
+            <div class="sello-entrega p-4 mt-3" data-reveal>
+                <span class="sello-entrega-icono">🚚</span>
+                <div class="text-center text-md-left">
+                    <h5>Nuestro compromiso con tu tiempo</h5>
+                    <p>Cada pedido se despacha y se entrega en la fecha acordada; la puntualidad y el cuidado de cada envío son el respaldo que nos recomienda entre nuestros clientes</p>
+                </div>
+            </div>
+        </div>
+                </main>
+<!--  PIE DE PAGINA (FOOTER) -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="row">
+            
+            <!-- Columna 1: Identidad del Negocio -->
+            <div class="col-md-3 col-sm-6 text-center text-md-left mb-4 footer-col">
+                <h5 class="footer-brand font-weight-bold text-white">STORE DANY</h5>
+                <p class="footer-text text-light">Venta de calzado exclusivo para hombre. Comodidad, estilo y las marcas más top del mercado.</p>
+            </div>
+            
+            <!-- Columna 2: Sobre Nosotros -->
+            <div class="col-md-3 col-sm-6 text-center text-md-left mb-4 footer-col">
+                <h6 class="footer-titulo">Sobre nosotros</h6>
+                <p class="footer-text text-light mb-0">Somos una tienda chucureña dedicada al calzado masculino, con <span class="texto-destacado-suave">2 años de experiencia</span> en punto de venta físico y la innovación de este año: ampliar nuestro alcance comercial al entorno online.</p>
+            </div>
+
+            <!-- Columna 3: Horario de Atención -->
+            <div class="col-md-3 col-sm-6 text-center text-md-left mb-4 footer-col">
+                <h6 class="footer-titulo">🕒 Horario de atención</h6>
+                <div class="footer-horario-item"><span>Lunes - Viernes</span><span>8:00 am - 7:00 pm</span></div>
+                <div class="footer-horario-item"><span>Sábados</span><span>8:00 am - 6:00 pm</span></div>
+                <div class="footer-horario-item"><span>Domingos</span><span>9:00 am - 12:00 m</span></div>
+            </div>
+
+            <!-- Columna 4: Ubicación y Confianza -->
+            <div class="col-md-3 col-sm-6 text-center text-md-left mb-4 footer-col">
+                <h6 class="footer-titulo">📍 Ubicación</h6>
+                <p class="footer-text font-weight-bold mb-1" style="color: #caa435;">San Vicente de Chucurí</p>
+                <p class="footer-text text-white font-weight-bold mb-3">Santander, Colombia</p>
+                <h6 class="footer-titulo">🔒 Compra segura</h6>
+                <p class="footer-text text-light mb-0">Verificamos cada pago para una entrega legal y sin estafas.</p>
+            </div>
+            
+        </div>
+
+        <!-- Línea divisoria inferior de créditos limpia y en una sola línea -->
+        <div class="row mt-4 pt-3 border-top border-secondary">
+            <div class="col-12 text-center">
+                <small class="text-light" style="opacity: 0.75;">
+                    © 2026 STORE DANY. Todos los derechos reservados | Propietaria: Katherine Rodríguez | Gestión de Ventas Online
+                </small>
+            </div>
+        </div>
+    </div>
+</footer>
+    
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap-4.3.1.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
