@@ -67,14 +67,13 @@
         
         <!-- 🛒 ICONO DEL BOLSO -->
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-             class="icon-cart" id="cart-icon" style="cursor: pointer; stroke: #ECC998; width: 32px; height: 32px; display: block;">
+             class="icon-cart" id="cart-icon" style="cursor: pointer; stroke: #ECC998; width: 36px; height: 36px; display: block;">
             <path d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
         </svg>
+        <span class="label-carrito-nav">CARRITO</span>
                 
-        <!-- ⚪ BURBUJA CONTADORA SOBRE EL BOLSO (Fondo Blanco) -->
-        <div class="count-products" style="position: absolute; top: -5px; right: -5px; background-color: #ffffff; color: #b32e2e;
-     width: 18px; height: 18px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 11px;
-     font-weight: bold; pointer-events: none; border: 1.5px solid #ECC998; box-shadow: 0 2px 4px rgba(0,0,0,0.15);">
+        <!-- ⚪ BURBUJA CONTADORA SOBRE EL BOLSO -->
+        <div class="count-products">
             <span id="contador-productos">0</span>
         </div>
         
@@ -82,6 +81,10 @@
         <div class="container-cart-products hidden-cart" id="cart-container" style="position: absolute; top: 48px; right: 0; width: 340px; background-color: #ffffff; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.25); padding: 18px; z-index: 99999; border: 1px solid #ECC998; text-align: left; font-family: 'Segoe UI', Roboto, sans-serif; box-sizing: border-box; display: block; max-height: 85vh; overflow-y: auto;">
             
             <!-- Encabezado -->
+            <div class="cart-header-logo">
+                <img src="logotipo.png" alt="Store Dany">
+                <span>STORE DANY</span>
+            </div>
             <div class="cart-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f5ede2; padding-bottom: 10px; margin-bottom: 12px;">
                 <h5 style="margin: 0; font-weight: 700; color: #4a3b32; font-size: 15px; letter-spacing: 0.5px;">Tu Carrito de Compras</h5>
                 <button id="cerrar-carrito" type="button" style="background: none; border: none; font-size: 24px; cursor: pointer; color: #857059; padding: 0 5px;">&times;</button>
@@ -154,6 +157,8 @@
                 </button>
                 
                 <button id="vaciar-carrito" type="button" class="btn-empty" style="width: 100%; background-color: transparent; border: 1px solid #dc3545; color: #dc3545; padding: 9px; border-radius: 6px; font-weight: 600; font-size: 12px; cursor: pointer; display: block; text-align: center;">Vaciar Carrito</button>
+                
+                <button type="button" class="btn-seguir-comprando" onclick="document.getElementById('cart-container').classList.add('hidden-cart');">🛒 Seguir Comprando</button>
             </div>
 
             <!-- Informe de protección -->
@@ -177,7 +182,7 @@
         </div>
         
         <!-- (Catalogo de productos) -->
-        <div class="row" id="lista-productos">
+        <div class="row catalogo-puma" id="lista-productos">
             <div class="col-sm-6 col-md-4 col-lg-3 mb-4 item">
                 <div class="card-producto text-center h-100 p-3 shadow-sm d-flex flex-column justify-content-between" data-marca="Puma">
                     <div class="wrapper-foto-tenis mb-2" onclick="abrirVisor(this)">

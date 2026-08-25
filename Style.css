@@ -1184,6 +1184,67 @@ body {
 .catalogo-newbalance .card-producto::after { content: 'NEW BALANCE'; color: rgba(11, 61, 145, 0.6); }
 .catalogo-reebok .card-producto::after { content: 'REEBOK'; color: rgba(228, 0, 43, 0.55); }
 
+/* ===== DIFERENCIACIÓN VISUAL POR MARCA ===== */
+.catalogo-nike      { --accent-marca: #111111; --accent-oscuro: #2b2b2b; --accent-brillo: #4a4a4a; }
+.catalogo-adidas    { --accent-marca: #0065AD; --accent-oscuro: #003087; --accent-brillo: #1a80e0; }
+.catalogo-puma      { --accent-marca: #E70005; --accent-oscuro: #b30003; --accent-brillo: #ff4444; }
+.catalogo-newbalance { --accent-marca: #0B3D91; --accent-oscuro: #082d6b; --accent-brillo: #1a56c4; }
+.catalogo-reebok    { --accent-marca: #E4002B; --accent-oscuro: #a5001e; --accent-brillo: #ff4466; }
+
+/* Borde inferior de tarjeta */
+.catalogo-nike .card-producto      { border-bottom-color: #111111; }
+.catalogo-adidas .card-producto    { border-bottom-color: #0065AD; }
+.catalogo-puma .card-producto      { border-bottom-color: #E70005; }
+.catalogo-newbalance .card-producto { border-bottom-color: #0B3D91; }
+.catalogo-reebok .card-producto    { border-bottom-color: #E4002B; }
+
+/* Sombra al hacer hover */
+.catalogo-nike .card-producto:hover      { box-shadow: 0 8px 20px rgba(17, 17, 17, 0.25) !important; }
+.catalogo-adidas .card-producto:hover    { box-shadow: 0 8px 20px rgba(0, 101, 173, 0.25) !important; }
+.catalogo-puma .card-producto:hover      { box-shadow: 0 8px 20px rgba(231, 0, 5, 0.22) !important; }
+.catalogo-newbalance .card-producto:hover { box-shadow: 0 8px 20px rgba(11, 61, 145, 0.25) !important; }
+.catalogo-reebok .card-producto:hover    { box-shadow: 0 8px 20px rgba(228, 0, 43, 0.22) !important; }
+
+/* Badge de precio */
+.catalogo-nike .price-tag      { background: linear-gradient(135deg, #111111, #2b2b2b); box-shadow: 0 5px 14px rgba(17, 17, 17, 0.35); }
+.catalogo-adidas .price-tag    { background: linear-gradient(135deg, #0065AD, #003087); box-shadow: 0 5px 14px rgba(0, 101, 173, 0.35); }
+.catalogo-puma .price-tag      { background: linear-gradient(135deg, #E70005, #b30003); box-shadow: 0 5px 14px rgba(231, 0, 5, 0.35); }
+.catalogo-newbalance .price-tag { background: linear-gradient(135deg, #0B3D91, #082d6b); box-shadow: 0 5px 14px rgba(11, 61, 145, 0.35); }
+.catalogo-reebok .price-tag    { background: linear-gradient(135deg, #E4002B, #a5001e); box-shadow: 0 5px 14px rgba(228, 0, 43, 0.35); }
+
+/* Botón agregar al carrito */
+.catalogo-nike .btn-comprar-vitrina      { background: linear-gradient(135deg, #4a4a4a, #111111); box-shadow: 0 5px 14px rgba(17, 17, 17, 0.35), inset 0 1px 0 rgba(255,255,255,0.2); }
+.catalogo-nike .btn-comprar-vitrina:hover { background: linear-gradient(135deg, #2b2b2b, #111111); box-shadow: 0 10px 24px rgba(17, 17, 17, 0.5); }
+.catalogo-adidas .btn-comprar-vitrina      { background: linear-gradient(135deg, #1a80e0, #003087); box-shadow: 0 5px 14px rgba(0, 101, 173, 0.35), inset 0 1px 0 rgba(255,255,255,0.2); }
+.catalogo-adidas .btn-comprar-vitrina:hover { background: linear-gradient(135deg, #0065AD, #003087); box-shadow: 0 10px 24px rgba(0, 101, 173, 0.5); }
+.catalogo-puma .btn-comprar-vitrina      { background: linear-gradient(135deg, #ff4444, #b30003); box-shadow: 0 5px 14px rgba(231, 0, 5, 0.35), inset 0 1px 0 rgba(255,255,255,0.2); }
+.catalogo-puma .btn-comprar-vitrina:hover { background: linear-gradient(135deg, #E70005, #b30003); box-shadow: 0 10px 24px rgba(231, 0, 5, 0.5); }
+.catalogo-newbalance .btn-comprar-vitrina      { background: linear-gradient(135deg, #1a56c4, #082d6b); box-shadow: 0 5px 14px rgba(11, 61, 145, 0.35), inset 0 1px 0 rgba(255,255,255,0.2); }
+.catalogo-newbalance .btn-comprar-vitrina:hover { background: linear-gradient(135deg, #0B3D91, #082d6b); box-shadow: 0 10px 24px rgba(11, 61, 145, 0.5); }
+.catalogo-reebok .btn-comprar-vitrina      { background: linear-gradient(135deg, #ff4466, #a5001e); box-shadow: 0 5px 14px rgba(228, 0, 43, 0.35), inset 0 1px 0 rgba(255,255,255,0.2); }
+.catalogo-reebok .btn-comprar-vitrina:hover { background: linear-gradient(135deg, #E4002B, #a5001e); box-shadow: 0 10px 24px rgba(228, 0, 43, 0.5); }
+
+/* Badge zoom */
+.catalogo-nike .indicador-zoom      { background-color: rgba(17, 17, 17, 0.8); }
+.catalogo-adidas .indicador-zoom    { background-color: rgba(0, 101, 173, 0.8); }
+.catalogo-puma .indicador-zoom      { background-color: rgba(231, 0, 5, 0.8); }
+.catalogo-newbalance .indicador-zoom { background-color: rgba(11, 61, 145, 0.8); }
+.catalogo-reebok .indicador-zoom    { background-color: rgba(228, 0, 43, 0.8); }
+
+/* Badge "ORIGINAL" */
+.catalogo-nike .card-producto::before      { background: linear-gradient(135deg, #111111, #2b2b2b); }
+.catalogo-adidas .card-producto::before    { background: linear-gradient(135deg, #0065AD, #003087); }
+.catalogo-puma .card-producto::before      { background: linear-gradient(135deg, #E70005, #b30003); }
+.catalogo-newbalance .card-producto::before { background: linear-gradient(135deg, #0B3D91, #082d6b); }
+.catalogo-reebok .card-producto::before    { background: linear-gradient(135deg, #E4002B, #a5001e); }
+
+/* Título hero por marca */
+.catalogo-nike .titulo-marcas      { color: #111111; }
+.catalogo-adidas .titulo-marcas    { color: #0065AD; }
+.catalogo-puma .titulo-marcas      { color: #E70005; }
+.catalogo-newbalance .titulo-marcas { color: #0B3D91; }
+.catalogo-reebok .titulo-marcas    { color: #E4002B; }
+
 /* --- Mejoras tipográficas del producto --- */
 .inf-product h3 { font-family: Impact, sans-serif; font-size: 1.05rem; letter-spacing: 0.5px; margin-top: 10px; margin-bottom: 5px; }
 .inf-product h3 strong { color: #1a1a1a; }
@@ -3408,4 +3469,244 @@ a.chip-canal:hover { text-decoration: none; color: inherit; transform: translate
     margin: 8px auto 0;
     border-radius: 2px;
     background: linear-gradient(90deg, transparent, var(--dorado), transparent);
+}
+
+/* ============================================================
+   CARRITO: ICONO MEJORADO + LABEL EN NAVBAR
+   ============================================================ */
+.icon-cart {
+    width: 36px !important;
+    height: 36px !important;
+    transition: transform 0.25s ease, stroke 0.25s ease;
+}
+.icon-cart:hover {
+    transform: scale(1.12);
+    stroke: #fff !important;
+}
+.label-carrito-nav {
+    display: block;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #ECC998;
+    text-transform: uppercase;
+    margin-top: -2px;
+}
+@media (max-width: 991.98px) {
+    .label-carrito-nav { display: none; }
+}
+
+/* Badge contador mejorado */
+.count-products {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: linear-gradient(135deg, #ECC998, #ffc107);
+    color: #3f3428;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 11px;
+    font-weight: 800;
+    border: 2px solid #2c2218;
+    box-shadow: 0 2px 8px rgba(236,201,152,0.4);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 10;
+}
+.count-products.pulse {
+    animation: badgePulse 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes badgePulse {
+    0% { transform: scale(1); }
+    40% { transform: scale(1.45); }
+    100% { transform: scale(1); }
+}
+
+/* Flash dorado en el icono del carrito al agregar */
+.icon-cart.flash {
+    animation: cartFlash 0.6s ease;
+}
+@keyframes cartFlash {
+    0% { filter: drop-shadow(0 0 0 transparent); transform: scale(1); }
+    30% { filter: drop-shadow(0 0 12px #ECC998); transform: scale(1.15); }
+    100% { filter: drop-shadow(0 0 0 transparent); transform: scale(1); }
+}
+
+/* ============================================================
+   CARRITO: BOTÓN FLOTANTE
+   ============================================================ */
+.btn-carrito-flotante {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #857059, #3f3428);
+    border: 3px solid #ECC998;
+    color: #ECC998;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1500;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.35), 0 0 0 0 rgba(236,201,152,0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.btn-carrito-flotante:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.45), 0 0 0 6px rgba(236,201,152,0.2);
+}
+.btn-carrito-flotante svg {
+    width: 26px;
+    height: 26px;
+    stroke: #ECC998;
+}
+.btn-carrito-flotante .badge-flotante {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: linear-gradient(135deg, #ECC998, #ffc107);
+    color: #3f3428;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 11px;
+    font-weight: 800;
+    border: 2px solid #3f3428;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.btn-carrito-flotante .badge-flotante.pulse {
+    animation: badgePulse 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.btn-carrito-flotante .subtotal-flotante {
+    font-size: 8px;
+    font-weight: 700;
+    color: #ECC998;
+    margin-top: 1px;
+    max-width: 60px;
+    text-align: center;
+    line-height: 1.1;
+    letter-spacing: 0.3px;
+}
+.btn-carrito-flotante.oculto {
+    transform: scale(0);
+    pointer-events: none;
+}
+@media (max-width: 576px) {
+    .btn-carrito-flotante { bottom: 18px; right: 18px; width: 56px; height: 56px; }
+    .btn-carrito-flotante svg { width: 22px; height: 22px; }
+    .btn-carrito-flotante .subtotal-flotante { font-size: 7px; }
+}
+
+/* ============================================================
+   CARRITO: TOAST NOTIFICACIÓN
+   ============================================================ */
+.toast-carrito {
+    position: fixed;
+    bottom: 100px;
+    right: 28px;
+    background: #3f3428;
+    color: #ECC998;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    z-index: 9999;
+    border: 1px solid #ECC998;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    transform: translateX(120%);
+    transition: transform 0.4s cubic-bezier(0.34, 1.2, 0.64, 1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    max-width: 300px;
+}
+.toast-carrito.visible {
+    transform: translateX(0);
+}
+.toast-carrito svg {
+    width: 18px;
+    height: 18px;
+    stroke: #ECC998;
+    flex-shrink: 0;
+}
+@media (max-width: 576px) {
+    .toast-carrito { right: 14px; bottom: 90px; font-size: 12px; padding: 10px 14px; max-width: 250px; }
+}
+
+/* ============================================================
+   CARRITO: ETIQUETA "CARRITO DE COMPRAS" EN HEADER DEL PANEL
+   ============================================================ */
+.cart-header-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #ECC998;
+}
+.cart-header-logo img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: contain;
+    border: 1px solid #ECC998;
+}
+.cart-header-logo span {
+    font-family: 'Baloo 2', 'Segoe UI', sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #857059;
+    text-transform: uppercase;
+}
+
+/* Miniatura en items del carrito */
+.cart-item-info {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+}
+.cart-item-thumb {
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 1px solid #ECC998;
+    flex-shrink: 0;
+    background: #fdfbf7;
+}
+.cart-item-texto {
+    flex: 1;
+    min-width: 0;
+}
+@media (max-width: 576px) {
+    .cart-item-thumb { width: 36px; height: 36px; }
+}
+
+/* Botón Seguir Comprando */
+.btn-seguir-comprando {
+    width: 100%;
+    background: transparent;
+    border: 1px solid #857059;
+    color: #857059;
+    padding: 9px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 12px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+.btn-seguir-comprando:hover {
+    background: #857059;
+    color: #fff;
 }

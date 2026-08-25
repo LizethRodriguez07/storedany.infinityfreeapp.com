@@ -161,6 +161,9 @@
 
     /* ---------- 4. BOTÓN FLOTANTE DE WHATSAPP ---------- */
     function crearWhatsAppFlotante() {
+        var paginasMarca = ['nike.html','adidas.html','puma.html','reebok.html','new-balance.html'];
+        var actual = window.location.pathname.split('/').pop().toLowerCase();
+        if (paginasMarca.indexOf(actual) !== -1) return;
         var enlace = document.createElement('a');
         enlace.id = 'btn-whatsapp-flotante';
         enlace.href = 'https://wa.me/573123555400?text=' + encodeURIComponent('Hola Store Dany 👟, quiero información sobre sus calzados');

@@ -27,9 +27,17 @@ try {
             // =========================================================================
             $nombre    = isset($_POST['nombre']) ? trim($_POST['nombre']) : '';
             $apellidos = isset($_POST['apellidos']) ? trim($_POST['apellidos']) : '';
+            $email     = isset($_POST['email']) ? trim($_POST['email']) : '';
+            $telefono  = isset($_POST['telefono']) ? trim($_POST['telefono']) : '';
             $mensaje_txt = isset($_POST['textarea']) ? trim($_POST['textarea']) : '';
             // Unimos Nombre y Apellido para guardarlo en tu columna 'usuario'
             $usuario_completo = trim($nombre . ' ' . $apellidos);
+            // Agregamos teléfono y correo al mensaje si existen
+            $info_extra = [];
+            if ($email) { $info_extra[] = "Email: " . $email; }
+            if ($telefono) { $info_extra[] = "Tel: " . $telefono; }
+            $mensaje_completo = $mensaje_txt;
+            if (!empty($info_extra)) { $mensaje_completo .= "\n\nContacto → " . implode(" | ", $info_extra); }
 
             // Consulta SQL adaptada exactamente a tu tabla 'chatonline'
             $sql_consulta = "INSERT INTO chatonline (usuario, mensaje) 
@@ -38,7 +46,7 @@ try {
             $stmt_consulta = $pdo->prepare($sql_consulta);
             $stmt_consulta->execute([
                 ':usuario' => $usuario_completo,
-                ':mensaje' => $mensaje_txt
+                ':mensaje' => $mensaje_completo
             ]);
             echo "<script>
                     alert('¡Tu consulta ha sido registrada con éxito en el Chat Online!');
