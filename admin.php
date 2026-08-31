@@ -1199,12 +1199,6 @@ $ticketPromedio = count($pedidos) > 0 ? $ventasTotal / count($pedidos) : 0;
     <!-- ===== BUSCADOR Y FILTROS ===== -->
     <div class="barra-filtros">
         <input type="text" id="buscador-pedidos" class="input-buscador" placeholder="&#128269; Buscar por cliente, cedula o numero de guia...">
-        <select id="filtro-estado" class="select-filtro">
-            <option value="">Todos los estados</option>
-            <option value="completado">Completado</option>
-            <option value="pendiente">Pendiente / En espera</option>
-            <option value="cancelado">Cancelado / Devuelto</option>
-        </select>
         <span class="resultados-contador" id="contador-resultados"></span>
     </div>
     <!-- ===== ALERTS ===== -->
@@ -1236,15 +1230,12 @@ $ticketPromedio = count($pedidos) > 0 ? $ventasTotal / count($pedidos) : 0;
                     $color_estado = 'var(--danger)';
                     $bg_estado = 'var(--danger-bg)';
                     $ancho_barra = '100%';
-                    $ancho_barra = '100%';
                 }
-                $estado_filtro = 'completado';
-                if (strpos($estado_limpio, 'pend') !== false || strpos($estado_limpio, 'espera') !== false) { $estado_filtro = 'pendiente'; }
-                elseif (strpos($estado_limpio, 'canc') !== false || strpos($estado_limpio, 'devu') !== false) { $estado_filtro = 'cancelado'; }
             ?>
 
 
-            <div class="orden-card colapsada" data-busqueda="<?php echo strtolower(htmlspecialchars(($row['nombre'] ?? '') . ' ' . ($row['apellidos'] ?? '') . ' ' . ($row['cedula'] ?? '') . ' ' . $row['orden_id'])); ?>" data-estado="<?php echo $estado_filtro; ?>">
+
+            <div class="orden-card colapsada" data-busqueda="<?php echo strtolower(htmlspecialchars(($row['nombre'] ?? '') . ' ' . ($row['apellidos'] ?? '') . ' ' . ($row['cedula'] ?? '') . ' ' . $row['orden_id'])); ?>">
                 
                 <!-- Encabezado -->
                 <div class="orden-header" onclick="toggleOrden(this)" title="Clic para ver u ocultar el detalle"><span class="plegable-flecha">&#9662;</span>
@@ -1387,20 +1378,17 @@ $checkbox_id = "check_" . $row['orden_id'] . "_" . $index;
 
     (function () {
         var inp = document.getElementById('buscador-pedidos');
-        var sel = document.getElementById('filtro-estado');
         var cont = document.getElementById('contador-resultados');
-        if (!inp || !sel || !cont) return;
+        if (!inp || !cont) return;
 
         function filtrar() {
             var q = (inp.value || '').trim().toLowerCase();
-            var est = sel.value;
             var visibles = 0, total = 0;
             var tarjetas = document.querySelectorAll('.orden-card');
             for (var k = 0; k < tarjetas.length; k++) {
                 total++;
                 var okQ = !q || (tarjetas[k].dataset.busqueda || '').indexOf(q) !== -1;
-                var okE = !est || (tarjetas[k].dataset.estado || '') === est;
-                var mostrar = okQ && okE;
+                var mostrar = okQ;
                 tarjetas[k].style.display = mostrar ? '' : 'none';
                 if (mostrar) visibles++;
             }
@@ -1408,7 +1396,6 @@ $checkbox_id = "check_" . $row['orden_id'] . "_" . $index;
         }
 
         inp.addEventListener('input', filtrar);
-        sel.addEventListener('change', filtrar);
         filtrar();
     })();
 </script>

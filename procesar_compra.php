@@ -82,11 +82,15 @@ try {
     $idPedido = $pdo->lastInsertId();
 
     // B. Tabla pagos
-    $sqlPago = "INSERT INTO pagos (id_pedido, monto, estado) VALUES (:id_pedido, :monto, 'Completado')";
+    // Estado dinámico según el método de pago: pago previo = Completado, contra entrega = Pendiente
+    $metodoPagoNormalizado = strtolower(trim($metodoPago));
+    $estadoPago = (strpos($metodoPagoNormalizado, 'contra') !== false) ? 'Pendiente' : 'Completado';
+    $sqlPago = "INSERT INTO pagos (id_pedido, monto, estado) VALUES (:id_pedido, :monto, :estado)";
     $stmtPago = $pdo->prepare($sqlPago);
     $stmtPago->execute([
         ':id_pedido' => $idPedido,
-        ':monto'     => $montoPagado
+        ':monto'     => $montoPagado,
+        ':estado'    => $estadoPago
     ]);
 
             // C. Tabla detallpago
@@ -163,6 +167,7 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comprobante de Compra - STORE DANY</title>
+    <link rel="icon" type="image/png" href="logotipo.png">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
@@ -188,8 +193,9 @@ try {
             margin: 0;
             padding: 40px 15px;
             display: flex;
-            justify-content: center;
-            align-items: flex-start;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
             min-height: 100vh;
         }
 
@@ -546,6 +552,86 @@ try {
             line-height: 1.5;
         }
 
+        /* Stepper de progreso */
+        .stepper-compra {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 4px;
+            max-width: 660px;
+            margin: 0 auto;
+            padding: 14px 16px 12px;
+            background: rgba(255, 255, 255, 0.55);
+            border: 1px solid #eadfc8;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(90, 75, 59, 0.08);
+        }
+        .stepper-paso {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            text-align: center;
+            cursor: default;
+        }
+        .stepper-circulo {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 2px solid #d8cfc2;
+            background: #fffdf8;
+            color: #a99f8f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            font-weight: 600;
+            line-height: 1;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 2px 6px rgba(90, 75, 59, 0.10);
+        }
+        .stepper-etiqueta {
+            font-size: 11.5px;
+            color: #a99f8f;
+            margin-top: 7px;
+            letter-spacing: 0.4px;
+            font-weight: 400;
+            white-space: nowrap;
+        }
+        .stepper-paso::before {
+            content: '';
+            position: absolute;
+            top: 18px;
+            left: calc(-50% + 18px);
+            width: calc(100% - 36px);
+            height: 3px;
+            border-radius: 3px;
+            background: #e5ddd0;
+            z-index: 1;
+        }
+        .stepper-paso:first-child::before { display: none; }
+        .stepper-paso.completado .stepper-circulo {
+            background: linear-gradient(135deg, #43b673, #2e9e5b);
+            border-color: #2e9e5b;
+            color: #fff;
+            box-shadow: 0 3px 10px rgba(46, 158, 91, 0.35);
+        }
+        .stepper-paso.completado::before { background: linear-gradient(90deg, #43b673, #2e9e5b); }
+        .stepper-paso.completado .stepper-etiqueta { color: #2e9e5b; font-weight: 500; }
+        .stepper-paso.activo .stepper-circulo {
+            border-color: #e6a817;
+            background: linear-gradient(135deg, #ffd86b, #ffc107);
+            color: #5a4b3b;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(255, 193, 7, 0.5);
+            transform: scale(1.08);
+        }
+        .stepper-paso.activo::before { background: linear-gradient(90deg, #2e9e5b, #e6a817); }
+        .stepper-paso.activo .stepper-etiqueta { color: #b98a17; font-weight: 600; }
+
         @media print {
             body { background: #ffffff; padding: 0; display: block; }
             .recibo { box-shadow: none; border: none; max-width: 100%; border-top-width: 4px; }
@@ -554,6 +640,13 @@ try {
     </style>
 </head>
 <body>
+
+<div class="stepper-compra" style="max-width:640px; margin: 0 auto 14px;">
+    <div class="stepper-paso completado"><div class="stepper-circulo">✓</div><span class="stepper-etiqueta">Registro</span></div>
+    <div class="stepper-paso completado"><div class="stepper-circulo">✓</div><span class="stepper-etiqueta">Carrito</span></div>
+    <div class="stepper-paso completado"><div class="stepper-circulo">✓</div><span class="stepper-etiqueta">Pago</span></div>
+    <div class="stepper-paso activo"><div class="stepper-circulo">4</div><span class="stepper-etiqueta">Confirmación</span></div>
+</div>
 
 <div class="recibo">
 

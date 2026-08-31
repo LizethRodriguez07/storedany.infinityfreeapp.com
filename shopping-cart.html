@@ -66,6 +66,14 @@
     
         <main class="container-fluid px-0">
 
+        <!-- 📊 STEPPER DE PROGRESO -->
+        <div class="stepper-compra" data-reveal>
+            <div class="stepper-paso activo"><div class="stepper-circulo">1</div><span class="stepper-etiqueta">Registro</span></div>
+            <div class="stepper-paso"><div class="stepper-circulo">2</div><span class="stepper-etiqueta">Carrito</span></div>
+            <div class="stepper-paso"><div class="stepper-circulo">3</div><span class="stepper-etiqueta">Pago</span></div>
+            <div class="stepper-paso"><div class="stepper-circulo">4</div><span class="stepper-etiqueta">Confirmación</span></div>
+        </div>
+
         <!-- ⭐ HERO DEL CATÁLOGO: imagen protagonista + lectura rápida -->
         <div class="hero-section animate-fade-in position-relative py-5 px-3 px-md-5">
         <div class="row align-items-center mb-3">
@@ -114,9 +122,10 @@
 
             </div>
         </div>
+        </div>
 
 
-        <!-- 🏷️ PANEL DE MARCAS (sobre el fondo de la imagen) -->
+        <!-- 🏷️ PANEL DE MARCAS (se despliega justo debajo del botón "Ver marcas", como un grupo) -->
         <div class="container">
             <div class="collapse mt-3" id="marcasColapsables">
                 <div class="card card-body border-cafe-tienda shadow-sm">
@@ -163,10 +172,17 @@
                         
                     </div>
                 </div>
-                </div>
-
             </div>
         </div>
+
+        <!-- 🛡️ SELLO DE CONFIANZA -->
+        <div class="barra-confianza" data-reveal>
+            <span class="sello-confianza"><span class="sello-icono">🔒</span> Pago seguro</span>
+            <span class="sello-confianza"><span class="sello-icono">🚚</span> Envío confiable</span>
+            <span class="sello-confianza"><span class="sello-icono">✅</span> Productos originales</span>
+            <span class="sello-confianza"><span class="sello-icono">🛠️</span> Garantía de fábrica</span>
+        </div>
+
 
         <!-- 📊 INFORMACIÓN ORGANIZADA -->
         <div class="container zona-info-catalogo mb-5" data-reveal>
@@ -289,6 +305,37 @@
                 </div>
             </div>
         </div>
+
+        <!-- 🛡️ GARANTÍA Y CAMBIOS -->
+        <div class="container mb-5">
+            <div class="seccion-garantia" data-reveal>
+                <h3 class="titulo-seccion text-center garantia-titulo">🛡️ Garantía y cambios</h3>
+                <p class="text-center text-muted mb-4">En STORE DANY nos respaldamos y respaldamos tu compra. Si tu producto presenta un daño de fábrica, tienes hasta <span class="garantia-em">1 mes</span> para solicitar el cambio.</p>
+                <div class="garantia-items">
+                    <div class="garantia-item">
+                        <span class="garantia-icono">🏭</span>
+                        <p class="mb-1">Garantía por daño de fábrica</p>
+                        <small class="text-muted">Cubrimos defectos de fabricación que impidan el uso normal del calzado.</small>
+                    </div>
+                    <div class="garantia-item">
+                        <span class="garantia-icono">📅</span>
+                        <p class="mb-1">Dentro del primer mes</p>
+                        <small class="text-muted">El cambio se procesa dentro del primer mes desde la entrega del producto.</small>
+                    </div>
+                    <div class="garantia-item">
+                        <span class="garantia-icono">🔄</span>
+                        <p class="mb-1">Cambio, no devolución</p>
+                        <small class="text-muted">Realizamos cambio por el mismo modelo o similar, no devolución del dinero.</small>
+                    </div>
+                    <div class="garantia-item">
+                        <span class="garantia-icono">🤝</span>
+                        <p class="mb-1">Proceso sencillo</p>
+                        <small class="text-muted">Contactas con nosotras, revisamos el producto y coordinamos el cambio sin complicaciones.</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
                 </main>
 <!--  PIE DE PAGINA (FOOTER) -->
 <footer class="site-footer">
@@ -327,7 +374,18 @@
         </div>
 
         <!-- Línea divisoria inferior de créditos limpia y en una sola línea -->
-        <div class="row mt-4 pt-3 border-top border-secondary">
+        <!-- 📇 DATOS LEGALES DEL NEGOCIO -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="footer-legal">
+                    <span class="footer-legal-titulo">📇 Datos del negocio</span>
+                    <div class="footer-legal-linea">STORE DANY · NIT 1.092.567.891-0</div>
+                    <div class="footer-legal-linea">Calle 8 # 19 - 51 Yariguies 1 · San Vicente de Chucurí, Santander, Colombia</div>
+                    <div class="footer-legal-linea">Propietaria: Katherine Rodríguez · Tel: 312 355 5400</div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3 pt-3 border-top border-secondary">
             <div class="col-12 text-center">
                 <small class="text-light" style="opacity: 0.75;">
                     © 2026 STORE DANY. Todos los derechos reservados | Propietaria: Katherine Rodríguez | Gestión de Ventas Online

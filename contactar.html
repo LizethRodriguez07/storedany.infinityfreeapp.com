@@ -146,18 +146,19 @@
             <!-- Formulario -->
             <form action="enviar.php" method="POST" name="formulario_chatonline">
                 <input type="hidden" name="origen_formulario" value="contacto">
+                <div class="leyenda-campos mb-3"><span class="req-asterisco" data-tip="Campo obligatorio" aria-hidden="true">*</span> Campo obligatorio</div>
                 <div class="row">
                     <div class="col-md-6 form-group mb-3">
-                        <label for="nombre" class="label-premium">Nombre</label>
+                        <label for="nombre" class="label-premium">Nombre<span class="req-asterisco" data-tip="Campo obligatorio" aria-hidden="true">*</span></label>
                         <input class="input-premium" type="text" id="nombre" name="nombre" placeholder="Ej. Juan Carlos" required>
                     </div>
                     <div class="col-md-6 form-group mb-3">
-                        <label for="apellidos" class="label-premium">Apellidos</label>
+                        <label for="apellidos" class="label-premium">Apellidos<span class="req-asterisco" data-tip="Campo obligatorio" aria-hidden="true">*</span></label>
                         <input class="input-premium" type="text" id="apellidos" name="apellidos" placeholder="Ej. Pérez" required>
                     </div>
                 </div>
                 <div class="form-group mb-3">
-                    <label for="tipo-consulta" class="label-premium">Tipo de consulta</label>
+                    <label for="tipo-consulta" class="label-premium">Tipo de consulta<span class="req-asterisco" data-tip="Campo obligatorio" aria-hidden="true">*</span></label>
                     <select class="input-premium select-cascada" id="tipo-consulta" name="tipo_consulta" required>
                         <option value="" disabled selected>Selecciona el motivo...</option>
                         <option value="COMPRA">📦 Compra</option>
@@ -167,7 +168,7 @@
                     </select>
                 </div>
                 <div class="form-group mb-4">
-                    <label for="mensaje" class="label-premium">Mensaje</label>
+                    <label for="mensaje" class="label-premium">Mensaje<span class="req-asterisco" data-tip="Campo obligatorio" aria-hidden="true">*</span></label>
                     <textarea class="input-premium" id="mensaje" name="textarea" rows="5" placeholder="¿En qué te podemos ayudar hoy?" style="resize: none;" required></textarea>
                 </div>
                 
@@ -216,8 +217,19 @@
             
         </div>
 
+        <!-- 📇 DATOS LEGALES DEL NEGOCIO -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="footer-legal">
+                    <span class="footer-legal-titulo">📇 Datos del negocio</span>
+                    <div class="footer-legal-linea">STORE DANY · NIT 1.092.567.891-0</div>
+                    <div class="footer-legal-linea">Calle 8 # 19 - 51 Yariguies 1 · San Vicente de Chucurí, Santander, Colombia</div>
+                    <div class="footer-legal-linea">Propietaria: Katherine Rodríguez · Tel: 312 355 5400</div>
+                </div>
+            </div>
+        </div>
         <!-- Línea divisoria inferior de créditos limpia y en una sola línea -->
-        <div class="row mt-4 pt-3 border-top border-secondary">
+        <div class="row mt-3 pt-3 border-top border-secondary">
             <div class="col-12 text-center">
                 <small class="text-light" style="opacity: 0.75;">
                     © 2026 STORE DANY. Todos los derechos reservados | Propietaria: Katherine Rodríguez | Gestión de Ventas Online

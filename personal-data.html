@@ -70,6 +70,14 @@
         <div class="row justify-content-center">
             <div class="col-lg-9">
                 
+                <!-- 📊 STEPPER DE PROGRESO -->
+                <div class="stepper-compra mb-4" data-reveal>
+                    <div class="stepper-paso activo"><div class="stepper-circulo">1</div><span class="stepper-etiqueta">Registro</span></div>
+                    <div class="stepper-paso"><div class="stepper-circulo">2</div><span class="stepper-etiqueta">Carrito</span></div>
+                    <div class="stepper-paso"><div class="stepper-circulo">3</div><span class="stepper-etiqueta">Pago</span></div>
+                    <div class="stepper-paso"><div class="stepper-circulo">4</div><span class="stepper-etiqueta">Confirmación</span></div>
+                </div>
+
                 <div class="card-formulario shadow-lg rounded p-4 p-md-5 bg-white" data-reveal>
                     <!-- Volver al inicio (esquina) -->
                     <a href="index.html" class="btn-volver-esquina">← Inicio</a>
@@ -83,13 +91,6 @@
                                 <p class="texto-informativo mx-auto">Por favor, ingrese sus datos en cada casilla correspondiente; nos comprometemos a brindarle la mayor seguridad, privacidad y prioridad a su información personal</p>
                             </div>
                         </div>
-                        
-                        <!-- Indicador de pasos -->
-                        <div class="pasos-formulario">
-                            <span class="paso activo">1 · Sus datos</span>
-                            <span class="paso-linea"></span>
-                            <span class="paso" id="paso-dos">2 · Confirmación del pedido</span>
-                        </div>
                     </div>
                     
                     <!-- Formulario de Registro -->
@@ -98,25 +99,28 @@
                         <!-- enviar.php el formulario de base de datos -->
                         <input type="hidden" name="origen_formulario" value="clientes">
                         
+                        <!-- Leyenda de campos obligatorios -->
+                        <div class="leyenda-campos" data-reveal><span class="req-asterisco" data-tip="Campo obligatorio" aria-hidden="true">*</span> Campo obligatorio</div>
+                        
                         <!-- Sección 1: Datos personales -->
                         <h4 class="titulo-seccion-formulario"><span class="numero-paso">1</span> 👤 Datos personales</h4>
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="nombre" class="label-formulario">Nombre(s)</label>
+                                <label for="nombre" class="label-formulario">Nombre(s)<span class="req-asterisco" data-tip="Campo obligatorio" aria-hidden="true">*</span></label>
                                 <div class="campo-icono">
                                     <span class="icono-input">👤</span>
                                     <input class="inut-registro" type="text" id="nombre" name="nombre" placeholder="Ej. Juan Carlos" required>
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="apellidos" class="label-formulario">Apellido(s)</label>
+                                <label for="apellidos" class="label-formulario">Apellido(s)<span class="req-asterisco" data-tip="Campo obligatorio" aria-hidden="true">*</span></label>
                                 <div class="campo-icono">
                                     <span class="icono-input">👥</span>
                                     <input class="inut-registro" type="text" id="apellidos" name="apellidos" placeholder="Ej. Pérez Gómez" required>
                                 </div>
                             </div>
                             <div class="col-12 mb-3">
-                                <label for="cedula" class="label-formulario">Documento de Identidad (Cédula)</label>
+                                <label for="cedula" class="label-formulario">Documento de Identidad (Cédula)<span class="req-asterisco" data-tip="Campo obligatorio" aria-hidden="true">*</span></label>
                                 <div class="campo-icono">
                                     <span class="icono-input">🪪</span>
                                     <input class="inut-registro" type="text" id="cedula" name="cedula" placeholder="Número de identificación" required>
@@ -128,14 +132,14 @@
                         <h4 class="titulo-seccion-formulario"><span class="numero-paso">2</span> 📞 Datos de contacto</h4>
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="celular" class="label-formulario">Celular</label>
+                                <label for="celular" class="label-formulario">Celular<span class="req-asterisco" data-tip="Campo obligatorio" aria-hidden="true">*</span></label>
                                 <div class="campo-icono">
                                     <span class="icono-input">📱</span>
                                     <input class="inut-registro" type="tel" id="celular" name="celular" placeholder="Ej. 3001234567" required>
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="email" class="label-formulario">Correo Electrónico</label>
+                                <label for="email" class="label-formulario">Correo Electrónico<span class="req-asterisco" data-tip="Campo obligatorio" aria-hidden="true">*</span></label>
                                 <div class="campo-icono">
                                     <span class="icono-input">✉️</span>
                                     <input class="inut-registro" type="email" id="email" name="email" placeholder="ejemplo@correo.com" required>
@@ -147,21 +151,21 @@
                         <h4 class="titulo-seccion-formulario"><span class="numero-paso">3</span> 📍 Dirección de envío</h4>
                         <div class="row">
                             <div class="col-md-4 mb-3">
-                                <label for="departamento" class="label-formulario">Departamento</label>
+                                <label for="departamento" class="label-formulario">Departamento<span class="req-asterisco" data-tip="Campo obligatorio" aria-hidden="true">*</span></label>
                                 <div class="campo-icono">
                                     <span class="icono-input">🗺️</span>
                                     <input class="inut-registro" type="text" id="departamento" name="departamento" placeholder="Ej. Antioquia" required>
                                 </div>
                             </div>
                             <div class="col-md-4 mb-3">
-                                <label for="municipio" class="label-formulario">Municipio / Ciudad</label>
+                                <label for="municipio" class="label-formulario">Municipio / Ciudad<span class="req-asterisco" data-tip="Campo obligatorio" aria-hidden="true">*</span></label>
                                 <div class="campo-icono">
                                     <span class="icono-input">🏙️</span>
                                     <input class="inut-registro" type="text" id="municipio" name="municipio" placeholder="Ej. Medellín" required>
                                 </div>
                             </div>
                             <div class="col-md-4 mb-3">
-                                <label for="barrio" class="label-formulario">Dirección de Entrega</label>
+                                <label for="barrio" class="label-formulario">Dirección de Entrega<span class="req-asterisco" data-tip="Campo obligatorio" aria-hidden="true">*</span></label>
                                 <div class="campo-icono">
                                     <span class="icono-input">🏠</span>
                                     <input class="inut-registro" type="text" id="barrio" name="barrio" placeholder="Ej. Calle 10 #20-30" required>
@@ -192,14 +196,16 @@
 <script src="js/bootstrap-4.3.1.js"></script>
 <script src="js/main.js"></script>
 
-<!-- ✔️ El paso 2 solo se ilumina en verde cuando todos los campos están completos y válidos -->
+<!-- ✔️ El paso "Pago" se ilumina cuando todos los campos están completos y válidos -->
 <script>
 (function () {
     var formulario = document.forms['formulario_registro'];
-    var pasoDos = document.getElementById('paso-dos');
-    if (!formulario || !pasoDos) { return; }
+    if (!formulario) { return; }
 
-    function revisarDatos() {
+    // El paso 3 (Pago) del stepper se marca como "listo" cuando el formulario está completo
+    function marcarPaso3() {
+        var pasoTres = document.querySelectorAll('.stepper-paso')[2];
+        if (!pasoTres) return;
         var campos = formulario.querySelectorAll('input[required]');
         var completo = true;
         for (var i = 0; i < campos.length; i++) {
@@ -209,14 +215,14 @@
             }
         }
         if (completo) {
-            pasoDos.classList.add('listo');
+            pasoTres.classList.add('listo');
         } else {
-            pasoDos.classList.remove('listo');
+            pasoTres.classList.remove('listo');
         }
     }
 
-    formulario.addEventListener('input', revisarDatos);
-    formulario.addEventListener('change', revisarDatos);
+    formulario.addEventListener('input', marcarPaso3);
+    formulario.addEventListener('change', marcarPaso3);
 })();
 </script>
 

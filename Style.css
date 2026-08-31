@@ -169,7 +169,7 @@ body.site-lockeado {
 
 body {
     padding-top:140px;
-    background-color: #DDCFB4;
+    background-color: #E2D5BE;
     /* Luz suave de profundidad, sin patrones */
     background-image:
         radial-gradient(ellipse at 15% 8%, rgba(255, 255, 255, 0.35) 0%, transparent 50%),
@@ -3790,4 +3790,386 @@ a.chip-canal:hover { text-decoration: none; color: inherit; transform: translate
 }
 @media (max-width: 576px) {
     .badge-producto { font-size: 9px; padding: 3px 8px; top: 6px; left: 6px; }
+}
+
+/* ============================================================
+   MEJORAS DE PRESENTACIÓN — Proyecto Final
+   Tipografía cómoda (sin negrillas), sello de confianza,
+   botones elegantes, datos legales y garantía.
+   ============================================================ */
+
+/* Base: texto más grande y cómodo para leer */
+body {
+    font-family: 'Poppins', 'Inter', 'Segoe UI', Roboto, sans-serif !important;
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+/* Quitar negrillas en contenido informativo para sentirse cómodo */
+p, .lead, .introduccion-historia, .footer-text, .info-store-texto,
+.tarjeta-testimonio .testimonio-texto, .asesora-texto, .texto-informativo,
+.descripcion-bienvenida, .titulo-seccion, .titulo-historia {
+    font-weight: 400 !important;
+}
+
+/* Títulos de sección con línea decorativa dorada */
+.titulo-seccion, .titulo-historia, .info-store-titulo, .asesora-etiqueta {
+    position: relative;
+}
+.titulo-seccion::after, .titulo-historia::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 64px;
+    height: 3px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--dorado), var(--dorado-suave));
+}
+.titulo-seccion.text-center::after, .titulo-historia.text-center::after {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Botones más elegantes y redondeados, sin negrilla */
+.btn-enviar, .btn-enviar-premium, .btn-acepto, .btn-ver-marcas, .btn-accion-brillo {
+    font-weight: 400 !important;
+    letter-spacing: 0.5px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+.btn-enviar:hover, .btn-enviar-premium:hover, .btn-acepto:hover,
+.btn-ver-marcas:hover, .btn-accion-brillo:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(255, 193, 7, 0.35);
+}
+
+/* Tarjetas de producto: elevación y zoom suave al pasar el mouse */
+.card-producto {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 14px !important;
+}
+.card-producto:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 30px rgba(90, 75, 59, 0.18) !important;
+}
+.card-producto .img-tenis {
+    transition: transform 0.4s ease;
+}
+.card-producto:hover .img-tenis {
+    transform: scale(1.05);
+}
+
+/* Sello de confianza: barra con sellos visuales */
+.barra-confianza {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    padding: 14px 16px;
+    background: linear-gradient(135deg, #ffffff, #fdf6e7);
+    border: 1px solid var(--dorado-suave);
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(90, 75, 59, 0.08);
+    margin: 20px 0;
+}
+.sello-confianza {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background: #fff;
+    border-radius: 30px;
+    border: 1px solid #f0e0bd;
+    color: var(--cafe-oscuro);
+    font-size: 13.5px;
+    font-weight: 400;
+    box-shadow: 0 2px 6px rgba(90, 75, 59, 0.06);
+}
+.sello-confianza .sello-icono {
+    font-size: 17px;
+}
+
+/* Sección Garantía y Devoluciones */
+.seccion-garantia {
+    background: linear-gradient(160deg, #ffffff 0%, #faf3e6 100%);
+    border: 1px solid var(--dorado-suave);
+    border-radius: 18px;
+    padding: 30px 26px;
+    box-shadow: var(--sombra-suave);
+}
+.seccion-garantia .garantia-titulo {
+    color: var(--cafe-oscuro);
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+}
+.garantia-items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    align-items: stretch;
+}
+.garantia-item {
+    background: #fff;
+    border: 1px solid #f0e0bd;
+    border-radius: 12px;
+    padding: 18px 16px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.garantia-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(90, 75, 59, 0.12);
+}
+.garantia-item .garantia-icono {
+    font-size: 30px;
+    display: block;
+    margin-bottom: 8px;
+    line-height: 1;
+}
+.garantia-item p {
+    margin: 0 0 6px;
+    font-weight: 400;
+    color: var(--cafe-oscuro);
+    width: 100%;
+}
+.garantia-item small {
+    margin-top: auto;
+    display: block;
+    text-align: center;
+    line-height: 1.5;
+    color: var(--texto);
+    max-width: 100%;
+}
+.garantia-item .garantia-em {
+    color: var(--verde);
+    font-weight: 400;
+}
+
+@media (max-width: 992px) {
+    .garantia-items { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 520px) {
+    .garantia-items { grid-template-columns: repeat(1, 1fr); }
+}
+
+/* Datos legales en el footer */
+.footer-legal {
+    background: rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 193, 7, 0.18);
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin-top: 14px;
+}
+.footer-legal .footer-legal-titulo {
+    color: var(--dorado);
+    letter-spacing: 1px;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+.footer-legal .footer-legal-linea {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* Mejora visual de testimonios */
+.tarjeta-testimonio {
+    background: linear-gradient(160deg, #ffffff, #fdf6e7);
+    border: 1px solid var(--dorado-suave);
+    border-radius: 16px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.tarjeta-testimonio:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 26px rgba(90, 75, 59, 0.14);
+}
+.testimonio-estrellas {
+    color: var(--dorado);
+    font-size: 17px;
+    letter-spacing: 2px;
+}
+
+/* Indicador personalizado de progreso en admin (si aplica) */
+@media (max-width: 576px) {
+    body { font-size: 15px; }
+    .barra-confianza { gap: 8px; }
+    .sello-confianza { font-size: 12.5px; padding: 6px 10px; }
+}
+
+/* ============================================================
+   STEPPER DE PROGRESO — Carrito → Registro → Pago → Confirmación
+   ============================================================ */
+.stepper-compra {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 4px;
+    max-width: 660px;
+    margin: 0 auto;
+    padding: 14px 16px 12px;
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid #eadfc8;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(90, 75, 59, 0.08);
+    backdrop-filter: blur(4px);
+}
+.stepper-paso {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    text-align: center;
+    cursor: default;
+}
+.stepper-circulo {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid #d8cfc2;
+    background: #fffdf8;
+    color: #a99f8f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 2px 6px rgba(90, 75, 59, 0.10);
+}
+.stepper-etiqueta {
+    font-size: 11.5px;
+    color: #a99f8f;
+    margin-top: 7px;
+    letter-spacing: 0.4px;
+    font-weight: 400;
+    white-space: nowrap;
+}
+.stepper-paso::before {
+    content: '';
+    position: absolute;
+    top: 18px;
+    left: calc(-50% + 18px);
+    width: calc(100% - 36px);
+    height: 3px;
+    border-radius: 3px;
+    background: #e5ddd0;
+    z-index: 1;
+}
+.stepper-paso:first-child::before {
+    display: none;
+}
+
+/* Pasos completados */
+.stepper-paso.completado .stepper-circulo {
+    background: linear-gradient(135deg, #43b673, #2e9e5b);
+    border-color: #2e9e5b;
+    color: #fff;
+    box-shadow: 0 3px 10px rgba(46, 158, 91, 0.35);
+}
+.stepper-paso.completado::before {
+    background: linear-gradient(90deg, #43b673, #2e9e5b);
+}
+.stepper-paso.completado .stepper-etiqueta {
+    color: #2e9e5b;
+    font-weight: 500;
+}
+
+/* Paso activo */
+.stepper-paso.activo .stepper-circulo {
+    border-color: #e6a817;
+    background: linear-gradient(135deg, #ffd86b, #ffc107);
+    color: #5a4b3b;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(255, 193, 7, 0.5);
+    transform: scale(1.08);
+}
+.stepper-paso.activo::before {
+    background: linear-gradient(90deg, #2e9e5b, #e6a817);
+}
+.stepper-paso.activo .stepper-etiqueta {
+    color: #b98a17;
+    font-weight: 600;
+}
+
+/* Paso listo (formulario completo pero aún no enviado) */
+.stepper-paso.listo .stepper-circulo {
+    border-color: var(--verde-brillo);
+    background: #e8f5e9;
+    color: var(--verde);
+    box-shadow: 0 0 0 3px rgba(67, 160, 71, 0.2);
+}
+.stepper-paso.listo .stepper-etiqueta {
+    color: var(--verde);
+}
+
+@media (max-width: 480px) {
+    .stepper-etiqueta { font-size: 9.5px; }
+    .stepper-circulo { width: 30px; height: 30px; font-size: 13px; }
+    .stepper-paso::before { top: 15px; left: calc(-50% + 15px); width: calc(100% - 30px); }
+}
+
+/* ---------- ASTERISCO DE CAMPOS OBLIGATORIOS ---------- */
+/* Marco el asterisco en rojo suave y suave, con tooltip breve al pasar el mouse */
+.req-asterisco {
+    color: #d64545;
+    font-weight: 700;
+    margin-left: 2px;
+    cursor: help;
+    position: relative;
+    text-decoration: none;
+}
+.req-asterisco:hover::after {
+    content: attr(data-tip);
+    position: absolute;
+    left: 0;
+    bottom: 130%;
+    transform: translateY(-4px);
+    background: #3f3428;
+    color: #ffe9a8;
+    font-size: 11px;
+    font-weight: 400;
+    padding: 5px 9px;
+    border-radius: 6px;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(20, 15, 10, 0.25);
+    z-index: 10;
+}
+
+/* Etiqueta de campo opcional (no usado actualmente, listo por si aplica) */
+.label-formulario .req-opcional,
+.label-premium .req-opcional {
+    color: #8a8a8a;
+    font-size: 0.78rem;
+    font-weight: 400;
+    font-style: italic;
+    margin-left: 4px;
+}
+
+/* Leyenda que aclara el significado de los campos obligatorios */
+.leyenda-campos {
+    font-size: 11.5px;
+    color: #8a7a6a;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 14px;
+}
+.leyenda-campos .req-asterisco {
+    margin-left: 0;
+    font-size: 15px;
+    line-height: 1;
+}
+@media (max-width: 480px) {
+    .leyenda-campos { margin-bottom: 10px; }
 }
