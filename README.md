@@ -30,10 +30,11 @@ index.html (inicio)
 ### Páginas de marca (`nike`, `adidas`, `puma`, `reebok`, `new-balance` + sus `.js`)
 - Catálogo con tarjetas de producto.
 - **Vista rápida** (modal): pastillas de tallas disponibles + botón agregar al carrito; fondo oscuro con desenfoque.
+- **Badges "Más vendido" / "Nuevo"** en productos destacados de cada marca (dorado/azul).
 - Cada `.js` maneja: agregar al carrito, persistencia en `localStorage`, render del carrito lateral, cálculo de totales y el **checkout** (`datosCompra`) hacia `procesar_compra.php`.
 - En el checkout se envía también **`id_cliente`** leído de `localStorage.cliente_dany`.
 - Guardia de registro: si no hay cliente registrado, avisa y redirige a `personal-data.html`.
-- **Carrito mejorado**: logo STORE DANY en header, miniaturas de producto, botón "Seguir Comprando", badge dorado con animación pulse + flash en icono + toast de confirmación.
+- **Carrito mejorado**: logo STORE DANY en header, miniaturas de producto (52×52, object-fit contain), layout horizontal (imagen al lado del texto), área de scroll 350px, borde dorado por item, botón "Seguir Comprando", badge dorado con animación pulse + flash en icono + toast de confirmación.
 - WhatsApp flotante "Escríbenos" deshabilitado en páginas de marca (solo visible en el resto del sitio).
 
 ### `shopping-cart.html`
@@ -45,11 +46,14 @@ index.html (inicio)
 ### `contactar.html`
 - Encabezado claro: "Contáctanos" con badge "CANALES DE ATENCIÓN DIRECTA".
 - Panel de asesora Lizeth con chips clicables (teléfono + WhatsApp + horario + punto físico).
-- Formulario "Cuéntanos en qué te ayudamos": nombres, apellidos, correo, teléfono (opcional) y mensaje.
+- **Indicador dinámico** "Abierto ahora" / "Cerrado" según hora Colombia (actualiza cada 60s).
+- Formulario "Cuéntanos en qué te ayudamos": nombres, apellidos, **selector tipo de consulta** (compra, devolución, garantía, otro) y mensaje.
 - Footer con horarios detallados (L-V 8-7, Sáb 8-6, Dom 9-12), ubicación y compra segura.
 
 ### `Style.css`
 - Hoja de estilos global compartida (header, footer, tarjetas, modales, botón volver-arriba).
+- **Badges de producto** (`.badge-producto`): posicionamiento absoluto, dorado para "Más vendido", azul para "Nuevo".
+- **Indicador horario** (`.status-horario`): badge dinámico con animación pulse.
 
 ---
 
@@ -99,73 +103,63 @@ Acceso restringido por sesión (`storedany_admin`). Contiene dos vistas:
 ## Estado del proyecto
 
 ### ✅ Implementado
+
+**Catálogo y productos**
 - [x] Catálogo de 5 marcas + vista rápida con tallas
-- [x] **Diferenciación visual por marca**: Nike (negro), Adidas (azul), Puma (rojo), Reebok (rojo oscuro), New Balance (azul oscuro) — borde, precio, botón, zoom, badge y título hero teñidos con color de marca
+- [x] Diferenciación visual por marca (colores, bordes, botones, badges, hero teñidos)
+- [x] Badges "Más vendido" / "Nuevo" en productos destacados de cada marca
+
+**Carrito de compras**
 - [x] Carrito persistente por marca (localStorage)
-- [x] **Carrito mejorado**: logo STORE DANY en header, miniaturas de producto en cada item, botón "Seguir Comprando", badge dorado con animación pulse, flash en icono del carrito y toast "Agregado al carrito"
+- [x] Carrito mejorado: logo, miniaturas, layout horizontal, scroll 350px, borde dorado por item
+- [x] Botón "Seguir Comprando", badge dorado pulse, flash en icono, toast de confirmación
+- [x] Checkout con `id_cliente` vinculado al pedido
+
+**Registro y contacto**
 - [x] Registro de cliente vinculado al pedido (`id_cliente`)
+- [x] Formulario contacto simplificado (nombre, apellidos, tipo de consulta, mensaje)
+- [x] Indicador dinámico "Abierto ahora" / "Cerrado" (hora Colombia, cada 60s)
+- [x] Selector tipo de consulta (compra, devolución, garantía, otro)
+
+**Backend y recibo**
 - [x] Checkout transaccional (pedido + pago + detalle atómicos)
 - [x] Recibo premium con código SD-XXXXX, fechas hábiles y cuenta enmascarada
-- [x] Hora correcta en pedidos nuevos (PHP/Bogotá, inmune al reloj del servidor BD)
-- [x] Panel admin con login premium (logo amplio, fondo zapatos, shake, spinner, bloqueo 3 intentos, Bloq Mayús, copyright)
-- [x] KPIs + buscador/filtros + guías plegables en admin
-- [x] Página de contacto mejorada (título claro, formulario simplificado: nombre + apellidos + mensaje, emoji codificado)
-- [x] Botón volver arriba y detalles responsive básicos
+- [x] Hora correcta en pedidos (PHP/Bogotá, inmune al reloj del servidor BD)
 - [x] Corrección de encoding en emojis y textos especiales
-- [x] WhatsApp "Escríbenos" solo visible en páginas no-marca (inicio, contacto, registro)
+
+**Panel admin**
+- [x] Login premium (logo amplio, fondo, shake, spinner, bloqueo 3 intentos, Bloq Mayús, copyright)
+- [x] KPIs + buscador/filtros + guías plegables
+
+**Transversales**
+- [x] Botón volver arriba y detalles responsive básicos
+- [x] WhatsApp "Escríbenos" solo visible en páginas no-marca
 
 ### 🔜 Pendiente / Mejoras funcionales
-- [ ] **Estados de la guía editables** desde admin (marcar enviado/entregado)
-- [ ] **Seguimiento para el cliente**: página donde el comprador consulte su guía con el código SD
-- [ ] Paginación/buscador avanzado cuando crezca el volumen de guías
-- [ ] Login del lado servidor: hash de contraseña y HTTPS
-- [ ] Inventario: descontar tallas vendidas y avisar stock bajo
+*No hay mejoras funcionales pendientes por el momento.*
 
-### 🎨 Propuestas de mejora de diseño
+### 🎨 Mejoras de diseño pendientes
 
-**1. Páginas de marca (nike, adidas, puma, reebok, new-balance)**
-- Agregar badge de "Más vendido" o "Nuevo" en productos destacados
-- Filtro por talla visible en la grilla (no solo en la vista rápida)
-- Animación de entrada staggered para las tarjetas al cargar la página
-
-**2. Carrito de compras (panel lateral en páginas de marca)**
-- ~~Miniaturas de los productos en la tabla del carrito~~ → ✅ Implementado
-- ~~Botón "Seguir comprando" más visible para volver al catálogo~~ → ✅ Implementado
+**1. Carrito de compras (panel lateral en páginas de marca)**
 - Resumen sticky en el lateral que se mantenga visible al hacer scroll
 - Stepper visual tipo "progress bar" que muestre: Carrito → Registro → Pago → Confirmación
 
-**3. Registro de datos (personal-data.html)**
-- Selector de departamento/municipio con cascada (seleccionar depto filtra los municipios)
+**2. Registro de datos (personal-data.html)**
 - Indicador de fortaleza de datos completos (barra que se llena al llenar campos obligatorios)
 - Tooltips o asteriscos claros en campos obligatorios vs opcionales
 
-**4. Recibo de compra (procesar_compra.php)**
-- Barra de progreso visual del pedido: Pagado → En preparación → Enviado → Entregado
-- Código QR con el número de guía SD para escanear desde el celular
-- Fecha de entrega en formato más legible ("Miércoles 2 de Septiembre" en vez de solo "02/09/2026")
-- Opción de descargar el recibo como PDF (además de imprimir)
-
-**5. Panel admin (admin.php)**
+**3. Panel admin (admin.php)**
 - Gráfico de ventas semanal/mensual (usando Chart.js o similar ligero)
 - Modo oscuro toggle para el administrador
 - Exportar guías a PDF o CSV para el transportador
-- Notificación sonora o visual cuando llega un pedido nuevo
 - Filtro por rango de fechas en las guías (además de texto y estado)
 
-**6. Contactar (contactar.html)**
-- Mapa de Google Maps incrustado con la ubicación exacta del punto de venta
-- Horario dinámico que muestre "Abierto ahora" / "Cerrado" según hora actual
-- Chat en vivo con Lizeth (usando socket simple o servicio gratuito como Tawk.to)
-- Formulario con selector de tipo de consulta (compra, devolución, garantía, otro)
-
-**7. Mejoras transversales (afectan todas las páginas)**
+**4. Transversales (todas las páginas)**
 - Favicon consistente en todas las páginas (algunas aún no lo tienen)
-- Transiciones suaves entre páginas (fade-in al cargar)
 - Lazy loading en imágenes de productos (mejora la carga inicial)
 - Dark mode global con toggle en el header
-- Animaciones micro-interacciones: hover en botones, press states, ripple effects
-- Google Analytics o similares para medir tráfico
+- Micro-interacciones: hover en botones, press states, ripple effects
 
 ---
 
-*Última actualización: 25 de agosto 2026.*
+*Última actualización: 26 de agosto 2026.*

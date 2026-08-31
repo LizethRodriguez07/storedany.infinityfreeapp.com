@@ -1555,10 +1555,10 @@ body {
 }
 
 .row-product-scroll {
-    min-height: 100px !important; /* 🌟 Asegura un espacio mínimo para que siempre se vean */
-    max-height: 200px !important; /* Mantiene el límite para que no empuje los botones */
-    overflow-y: auto !important;  /* Activa la barrita si hay muchos productos */
-    flex-shrink: 0 !important;    /* 🌟 ¡ESTA ES LA CLAVE! Evita que los botones aplasten esta zona */
+    min-height: 100px !important;
+    max-height: 350px !important;
+    overflow-y: auto !important;
+    flex-shrink: 0 !important;
     padding-right: 6px !important;
     margin-bottom: 12px !important;
 }
@@ -3238,8 +3238,8 @@ select.talla-seleccion[hidden] {
 .cart-product-item {
     padding: 11px 10px !important;
     margin: 0 -6px 6px !important;
-    border-bottom: none !important;
     border: 1px solid transparent !important;
+    border-left: 3px solid #ECC998 !important;
     border-radius: 12px !important;
     transition: all 0.25s ease !important;
 }
@@ -3672,24 +3672,27 @@ a.chip-canal:hover { text-decoration: none; color: inherit; transform: translate
 /* Miniatura en items del carrito */
 .cart-item-info {
     display: flex !important;
+    flex-direction: row !important;
     align-items: center !important;
     gap: 10px !important;
 }
 .cart-item-thumb {
-    width: 42px;
-    height: 42px;
+    width: 52px;
+    height: 52px;
     border-radius: 8px;
-    object-fit: cover;
+    object-fit: contain;
     border: 1px solid #ECC998;
     flex-shrink: 0;
     background: #fdfbf7;
+    padding: 2px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
 .cart-item-texto {
     flex: 1;
     min-width: 0;
 }
 @media (max-width: 576px) {
-    .cart-item-thumb { width: 36px; height: 36px; }
+    .cart-item-thumb { width: 40px; height: 40px; }
 }
 
 /* Botón Seguir Comprando */
@@ -3709,4 +3712,82 @@ a.chip-canal:hover { text-decoration: none; color: inherit; transform: translate
 .btn-seguir-comprando:hover {
     background: #857059;
     color: #fff;
+}
+
+/* ============================================================
+   SELECT CASCADA (Departamento / Municipio)
+   ============================================================ */
+.select-cascada {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23857059' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 01.753 1.659l-4.796 5.48a1 1 0 01-1.506 0z'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 12px center !important;
+    background-size: 12px !important;
+    padding-right: 32px !important;
+    cursor: pointer;
+}
+.select-cascada:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: #f5f0e8 !important;
+}
+
+/* ============================================================
+   INDICADOR "ABIERTO AHORA" / "CERRADO"
+   ============================================================ */
+.status-horario {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-top: 6px;
+}
+.status-horario.abierto {
+    background: #e8f5e9;
+    color: #2e7d32;
+    animation: pulsoAbierto 2s ease-in-out infinite;
+}
+.status-horario.cerrado {
+    background: #fce4ec;
+    color: #c62828;
+}
+@keyframes pulsoAbierto {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(46, 125, 50, 0.3); }
+    50% { box-shadow: 0 0 0 6px rgba(46, 125, 50, 0); }
+}
+
+/* ============================================================
+   BADGES DE PRODUCTO (Más vendido / Nuevo)
+   ============================================================ */
+.wrapper-foto-tenis {
+    position: relative;
+}
+.badge-producto {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    z-index: 5;
+    text-transform: uppercase;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    pointer-events: none;
+}
+.badge-producto.vendido {
+    background: linear-gradient(135deg, #ECC998, #ffc107);
+    color: #3f3428;
+}
+.badge-producto.nuevo {
+    background: linear-gradient(135deg, #1976d2, #42a5f5);
+    color: #ffffff;
+}
+@media (max-width: 576px) {
+    .badge-producto { font-size: 9px; padding: 3px 8px; top: 6px; left: 6px; }
 }
