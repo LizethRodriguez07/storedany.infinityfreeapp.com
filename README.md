@@ -210,12 +210,16 @@ Pendientes enfocados en **diseño y presentación** de las pantallas existentes 
 
 ## 📅 Bitácora / Cronograma de trabajo
 
-Registro de las sesiones de desarrollo y las fechas reales en que se trabajó el proyecto:
+Registro de las sesiones de desarrollo y las fechas reales en que se trabajó el proyecto. El diseño y escritura del código se realizó en **Visual Studio** durante **mayo de 2026**; las entregas y refinamiento al repositorio fueron a partir de **agosto de 2026**.
 
-| Fecha | Etapa | Detalle | Estado |
+| Fecha | Actividad / Mejora | Detalle | Estado |
 |---|---|---|---|
-| 25 ago 2026 | **Entrega inicial** | Se subió el proyecto base al repositorio (catálogo, carrito, registro, compra, panel admin). | ✅ Completado |
-| 31 ago 2026 | **Mejoras de diseño y flujo** | Fondo crema arena, stepper de progreso (Registro → Carrito → Pago → Confirmación), panel admin, panel de marcas, sección garantía y recibo en columna centrada. | ✅ Completado |
-| 02 sep 2026 | **Refinamiento y documentación** | Muro de Términos y Condiciones, registro obligatorio por pedido, stepper automático (pasos 2 y 3), lazy loading en imágenes, documentación funcional del README y definición de pendientes de diseño. | ✅ Completado |
+| 20–21 may 2026 | **Diseño y desarrollo del código** | Se diseñó y escribió el código base del proyecto en Visual Studio: todas las páginas (HTML), los scripts de cada marca (JS), la hoja de estilos (CSS) y los archivos del backend (PHP) con su base de datos. | ✅ Completado |
+| 25 ago 2026 | Primera entrega del proyecto | Se subió el proyecto final al repositorio (catálogo, carrito, registro, compra, panel admin). | ✅ Completado |
+| 31 ago 2026 | Mejoras de diseño y flujo | Fondo crema arena `#E2D5BE`, stepper de progreso (Registro → Carrito → Pago → Confirmación), panel admin (sin filtro de estado, estado dinámico), panel de marcas, sección garantía, recibo en columna centrada, `new-balance.js` renombrado. | ✅ Completado |
+| 02 sep 2026 | Muro de términos y flujo de cliente | Muro de Términos y Condiciones rediseñado (sellos de seguridad animados, texto destacado, botón "ACEPTO Y ACCEDO CON TOTAL CONFIANZA") y **cada pedido exige un cliente nuevo registrado** (no se reutiliza el último). | ✅ Completado |
+| 02 sep 2026 | Actualización del README | Documentación actualizada (muro de términos, flujo de cliente, bitácora de trabajo). | ✅ Completado |
+| 02 sep 2026 | Lazy loading de imágenes | Se agregó `loading="lazy"` a las 45 imágenes de producto del catálogo (9 por cada una de las 5 marcas) para mejorar la carga inicial. | ✅ Completado |
+| 02 sep 2026 | Stepper: pasos 2 y 3 automáticos | El paso 2 (Carrito) se marca completado al añadir ≥1 producto, y el paso 3 (Pago) al seleccionar método de pago y contar con la cuenta (Nequi/Daviplata) o solo el método (contra entrega). | ✅ Completado |
 
 *Última actualización: 02 de septiembre de 2026.*
