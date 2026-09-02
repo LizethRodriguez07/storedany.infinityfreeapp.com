@@ -40,12 +40,9 @@ admin.php  (panel de guías / despachos del ADMIN)
 | — | **Despacho** | `admin.php` | El administrador consulta las guías/pedidos.
 
 ---
-
 ## Frontend (HTML, CSS y JS del navegador)
 
-## Frontend (HTML, CSS y JS del navegador)
-
-A continuación, el papel de cada pantalla desde la visión **funcional**: qué hace el cliente en ella, con qué propósito se construyó y qué información maneja. (No se listan detalles internos de código.)
+A continuación, el papel de cada pantalla desde la visión **funcional**: qué hace el cliente en ella, con qué propósito se construyó y qué información maneja.
 
 ### 📄 `index.html` — Portada de la tienda
 
