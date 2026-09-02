@@ -24,6 +24,21 @@ const numeroDestino = document.getElementById('numero-destino');
 // Variable global para mantener el total numérico calculado
 let totalDineroGlobal = 0;
 
+// Marcar paso 3 (Pago) como completado al seleccionar método y cuenta
+function marcarPasoPago() {
+    var pasos = document.querySelectorAll('.stepper-paso');
+    if (pasos.length < 3) return;
+    var metodo = selectMetodoPago ? selectMetodoPago.value : '';
+    var completo = false;
+    if (metodo === 'Nequi' || metodo === 'Daviplata') {
+        if (inputNumeroCuenta && inputNumeroCuenta.value.trim().length >= 7) completo = true;
+    } else if (metodo !== '') {
+        completo = true;
+    }
+    if (completo) { pasos[2].classList.add('completado'); }
+    else { pasos[2].classList.remove('completado'); }
+}
+
 // 🔒 LEER PERSISTENCIA DESDE LOCALSTORAGE
 let productosCarrito = JSON.parse(localStorage.getItem('carrito_tienda')) || [];
 
@@ -95,6 +110,9 @@ if (selectMetodoPago) {
                 contenedorMonto.style.display = 'block';
             }
         }
+
+        // Marcar el paso 3 (Pago) como completado
+        marcarPasoPago();
     });
 }
 
@@ -107,6 +125,9 @@ if (inputNumeroCuenta) {
         } else {
             if (bannerEstadoPago) bannerEstadoPago.style.display = 'none';
         }
+
+        // Marcar el paso 3 (Pago) como completado
+        marcarPasoPago();
     });
 }
 
@@ -256,6 +277,16 @@ const actualizarCarritoHTML = () => {
 
     // Persistir en LocalStorage
     localStorage.setItem('carrito_tienda', JSON.stringify(productosCarrito));
+
+    // Marcar el paso 2 (Carrito) del stepper como completado si hay productos
+    var pasosStepper = document.querySelectorAll('.stepper-paso');
+    if (pasosStepper.length >= 2) {
+        if (productosCarrito.length > 0) {
+            pasosStepper[1].classList.add('completado');
+        } else {
+            pasosStepper[1].classList.remove('completado');
+        }
+    }
 };
 
 

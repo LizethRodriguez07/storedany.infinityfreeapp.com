@@ -176,6 +176,7 @@ Acceso restringido por sesión (`storedany_admin`). Contiene dos vistas:
 - [x] Línea decorativa dorada en títulos de sección
 - [x] Botones elegantes con sombra dorada y elevación al hover
 - [x] Muro de Términos y Condiciones con sellos de seguridad animados, texto destacado y checkbox de aceptación obligatorio
+- [x] Lazy loading (`loading="lazy"`) en las imágenes de producto del catálogo de las 5 marcas (mejora la carga inicial)
 
 ### 🔜 Pendiente / Mejoras funcionales
 *No hay mejoras funcionales pendientes por el momento.*
@@ -197,7 +198,6 @@ Acceso restringido por sesión (`storedany_admin`). Contiene dos vistas:
   - Botones/toggle para alternar entre vista semanal y mensual.
 
 **4. Transversales (todas las páginas)**
-- Lazy loading en imágenes de productos (mejora la carga inicial)
 - Dark mode global con toggle en el header
 
 ---
@@ -212,5 +212,7 @@ Registro de las sesiones de desarrollo y las fechas reales en que se trabajó el
 | 31 ago 2026 | Mejoras de diseño y flujo | Fondo crema arena `#E2D5BE`, stepper de progreso (Registro → Carrito → Pago → Confirmación), panel admin (sin filtro de estado, estado dinámico), panel de marcas, sección garantía, recibo en columna centrada, `new-balance.js` renombrado. | ✅ Completado |
 | 02 sep 2026 | Muro de términos y flujo de cliente | Muro de Términos y Condiciones rediseñado (sellos de seguridad animados, texto destacado, botón "ACEPTO Y ACCEDO CON TOTAL CONFIANZA") y **cada pedido exige un cliente nuevo registrado** (no se reutiliza el último). | ✅ Completado |
 | 02 sep 2026 | Actualización del README | Documentación actualizada (muro de términos, flujo de cliente, bitácora de trabajo). | ✅ Completado |
+| 02 sep 2026 | Lazy loading de imágenes | Se agregó `loading="lazy"` a las 45 imágenes de producto del catálogo (9 por cada una de las 5 marcas) para mejorar la carga inicial. | ✅ Completado |
+| 02 sep 2026 | Stepper: pasos 2 y 3 automáticos | El paso 2 (Carrito) se marca completado al añadir ≥1 producto, y el paso 3 (Pago) al seleccionar método de pago y contar con la cuenta (Nequi/Daviplata) o solo el método (contra entrega). | ✅ Completado |
 
 *Última actualización: 02 de septiembre de 2026.*
