@@ -147,7 +147,7 @@ Tablas principales del sistema y la información que almacenan:
 
 ## Estado del proyecto
 
-### ✅ Implementado — Lista de chequeo (todo el flujo conlleva a la base de datos)
+### ✅ Implementado — Lista de chequeo 
 
 > **Hilo conductor del proyecto:** cada acción del cliente (elegir, registrarse, pagar, confirmar) conlleva un **dato que se guarda en la base de datos `gst_ventasonline`**, y cada pantalla tiene un **diseño/estilo** que sostiene ese proceso.
 
@@ -190,27 +190,21 @@ Tablas principales del sistema y la información que almacenan:
 - ✅ Lazy loading en las imágenes de producto (mejora la carga inicial).
 - ✅ Botón volver arriba, hover premium, botones elegantes y favicon consistente.
 
-### 🔜 Pendiente / Mejoras funcionales
-*No hay mejoras funcionales pendientes por el momento.*
+### 🎨 Nuevos pendientes / Mejoras de diseño
 
-### 🎨 Mejoras de diseño pendientes
+Pendientes enfocados en **diseño y presentación** de las pantallas existentes (sin crear más páginas).
 
-**1. Carrito de compras (panel lateral en páginas de marca)**
-- Resumen sticky en el lateral que se mantenga visible al hacer scroll
+**1. Resumen sticky en el carrito**
+- Que el panel lateral del carrito (total y botón de compra) permanezca visible al hacer scroll, sin perderse al bajar por el catálogo.
 
-**2. Registro de datos (personal-data.html)**
-- Indicador de fortaleza de datos completos (barra que se llena al llenar campos obligatorios)
+**2. Dark mode global**
+- Modo oscuro que se active con un interruptor en el header y guarde la preferencia del usuario.
 
-**3. Panel admin (admin.php)**
-- **Gráfico de ventas semanal/mensual (Chart.js)**. Plan propuesto:
-  - Verificar que la tabla de ventas/pedidos en `gst_ventasonline` guarde `fecha` y `total` por pedido.
-  - Crear un endpoint PHP que devuelva `SUM(total)` agrupado por día (semanal) o por mes (mensual) en formato JSON.
-  - Cargar Chart.js por CDN y un `<canvas>` en el dashboard.
-  - Conectar con `fetch()` para dibujar el gráfico (barra o línea) con los colores café (#857059) y dorado (#ffc107).
-  - Botones/toggle para alternar entre vista semanal y mensual.
+**3. Mejoras visuales en el panel admin**
+- Afinar el diseño del dashboard (gráfico de ventas y tarjetas KPIs) con la paleta café + dorado para una vista más profesional.
 
-**4. Transversales (todas las páginas)**
-- Dark mode global con toggle en el header
+**4. Pulido visual general**
+- Revisión fina de espaciados, sombras y animaciones para que la experiencia en todas las páginas sea más elegante y consistente.
 
 ---
 
@@ -218,13 +212,10 @@ Tablas principales del sistema y la información que almacenan:
 
 Registro de las sesiones de desarrollo y las fechas reales en que se trabajó el proyecto:
 
-| Fecha | Actividad / Mejora | Detalle | Estado |
+| Fecha | Etapa | Detalle | Estado |
 |---|---|---|---|
-| 25 ago 2026 | Primera entrega del proyecto | Se subió el proyecto final al repositorio (catálogo, carrito, registro, compra, panel admin). | ✅ Completado |
-| 31 ago 2026 | Mejoras de diseño y flujo | Fondo crema arena `#E2D5BE`, stepper de progreso (Registro → Carrito → Pago → Confirmación), panel admin (sin filtro de estado, estado dinámico), panel de marcas, sección garantía, recibo en columna centrada, `new-balance.js` renombrado. | ✅ Completado |
-| 02 sep 2026 | Muro de términos y flujo de cliente | Muro de Términos y Condiciones rediseñado (sellos de seguridad animados, texto destacado, botón "ACEPTO Y ACCEDO CON TOTAL CONFIANZA") y **cada pedido exige un cliente nuevo registrado** (no se reutiliza el último). | ✅ Completado |
-| 02 sep 2026 | Actualización del README | Documentación actualizada (muro de términos, flujo de cliente, bitácora de trabajo). | ✅ Completado |
-| 02 sep 2026 | Lazy loading de imágenes | Se agregó `loading="lazy"` a las 45 imágenes de producto del catálogo (9 por cada una de las 5 marcas) para mejorar la carga inicial. | ✅ Completado |
-| 02 sep 2026 | Stepper: pasos 2 y 3 automáticos | El paso 2 (Carrito) se marca completado al añadir ≥1 producto, y el paso 3 (Pago) al seleccionar método de pago y contar con la cuenta (Nequi/Daviplata) o solo el método (contra entrega). | ✅ Completado |
+| 25 ago 2026 | **Entrega inicial** | Se subió el proyecto base al repositorio (catálogo, carrito, registro, compra, panel admin). | ✅ Completado |
+| 31 ago 2026 | **Mejoras de diseño y flujo** | Fondo crema arena, stepper de progreso (Registro → Carrito → Pago → Confirmación), panel admin, panel de marcas, sección garantía y recibo en columna centrada. | ✅ Completado |
+| 02 sep 2026 | **Refinamiento y documentación** | Muro de Términos y Condiciones, registro obligatorio por pedido, stepper automático (pasos 2 y 3), lazy loading en imágenes, documentación funcional del README y definición de pendientes de diseño. | ✅ Completado |
 
 *Última actualización: 02 de septiembre de 2026.*
