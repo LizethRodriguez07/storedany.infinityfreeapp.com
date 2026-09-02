@@ -55,11 +55,13 @@ $stmtCli->execute([':id' => $idCliente]);
 $cliente = $stmtCli->fetch();
 
 if (!$cliente) {
-    // Respaldo: ultimo cliente registrado (flujo normal: el cliente se registra antes de comprar)
-    $stmtLast = $pdo->query("SELECT id, nombre, apellidos, cedula, celular, correo, departamento, municipio, direccion
-                             FROM clientes ORDER BY id DESC LIMIT 1");
-    $cliente   = $stmtLast->fetch();
-    $idCliente = $cliente ? intval($cliente['id']) : 1;
+    // Cada pedido exige un cliente recién registrado: NO se reutiliza el último cliente.
+    header('Content-Type: text/html; charset=utf-8');
+    die("<div style='max-width:560px;margin:60px auto;padding:30px 28px;text-align:center;font-family:Arial,sans-serif;border:2px solid #e6a817;border-radius:18px;background:#fffdf8'>
+         <h2 style='color:#3f3428;margin:0 0 10px;'>👤 Necesitas registrarte primero</h2>
+         <p style='color:#5a4b3b;font-size:15px;line-height:1.6;margin:0 0 20px;'>Cada pedido requiere un cliente nuevo con sus datos personales. Por favor registra tus datos para continuar con total seguridad.</p>
+         <a href='personal-data.html' style='display:inline-block;padding:13px 26px;background:linear-gradient(135deg,#857059,#3f3428);color:#fff;text-decoration:none;border-radius:12px;font-weight:700;'>IR A REGISTRARME</a>
+       </div>");
 }
 
 $nombreCompleto   = $cliente ? trim($cliente['nombre'] . ' ' . $cliente['apellidos']) : 'Cliente Registrado';

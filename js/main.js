@@ -121,15 +121,22 @@
             '<img src="logotipo.png" alt="Logotipo STORE DANY" class="terms-logo">' +
             '<h2 id="termsWallTitulo">STORE DANY</h2>' +
             '<p class="terms-subtitulo">Términos y Condiciones del Servicio</p>' +
-            '<p class="terms-texto">Al hacer clic en aceptar, confirmas que estás de acuerdo con ' +
-            'nuestras políticas de atención flexible, verificación segura de pedidos y ' +
-            'compromisos comerciales mutuos. Sin tu aceptación no es posible acceder a la ' +
-            'información del negocio, a la gestión de datos personales ni a la navegación del sitio.</p>' +
+            '<p class="terms-texto">Al continuar, confirmas que has leído y aceptas de forma voluntaria ' +
+            'nuestras condiciones de servicio: tu pedido será verificado y gestionado con total seriedad; ' +
+            'tus datos personales se mantienen protegidos y en estricta privacidad; y cada compra cuenta ' +
+            'con respaldo, seguimiento y garantía real.</p>' +
+            '<p class="terms-destacado">Solo aceptando podrás acceder a la información del negocio, ' +
+            'registrar tus datos y navegar por el sitio con total tranquilidad y confianza.</p>' +
+            '<div class="terms-sellos">' +
+            '<div class="terms-sello"><span class="terms-sello-icono">🔒</span><span>Pago seguro</span></div>' +
+            '<div class="terms-sello"><span class="terms-sello-icono">🚚</span><span>Envío protegido</span></div>' +
+            '<div class="terms-sello"><span class="terms-sello-icono">🛡️</span><span>Datos privados</span></div>' +
+            '</div>' +
             '<label class="terms-check">' +
             '<input type="checkbox" id="checkTerminosWall">' +
             '<span>He leído y acepto los términos y condiciones descritos anteriormente.</span>' +
             '</label>' +
-            '<button id="btnAceptarWall" type="button" class="btn-acepto" disabled>ACEPTO Y CONTINUAR</button>';
+            '<button id="btnAceptarWall" type="button" class="btn-acepto" disabled>ACEPTO Y ACCEDO CON TOTAL CONFIANZA</button>';
 
         muro.appendChild(tarjeta);
         document.body.appendChild(muro);

@@ -339,6 +339,8 @@ if (btnFinalizar) {
             // Limpiar memoria al completar la compra
             productosCarrito = [];
             localStorage.setItem('carrito_tienda', JSON.stringify(productosCarrito));
+            // Cada pedido exige un cliente nuevo: se borra el registro anterior
+            localStorage.removeItem('cliente_dany');
             
             // Renderizar la respuesta del servidor (recibo)
             document.body.innerHTML = data;

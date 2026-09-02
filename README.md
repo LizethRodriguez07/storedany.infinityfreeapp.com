@@ -77,6 +77,7 @@ index.html (inicio)
 - **Favicon consistente** con el logotipo (`logotipo.png`) en todas las páginas visibles.
 - **Alt de logos corregidos** por marca (Puma, Reebok, New Balance ya no dicen "Logo Nike").
 - **Hover premium**: tarjetas de producto que se elevan + zoom suave en la imagen.
+- **Muro de Términos y Condiciones** (`js/main.js` + CSS en `Style.css`): bloquea el acceso hasta aceptar; tarjeta premium con logo, texto continuo que inspira confianza (comas / dos puntos / punto y coma / punto final), frase final **destacada y centrada** (`.terms-destacado`), **sellos de seguridad** animados (`.terms-sellos`): 🔒 Pago seguro, 🚚 Envío protegido, 🛡️ Datos privados — en tarjetas centradas, checkbox personalizado y botón "ACEPTO Y ACCEDO CON TOTAL CONFIANZA".
 - **Línea decorativa dorada** bajo los títulos de sección.
 - **Botones elegantes**: redondeados, sombra dorada y elevación al hover.
 
@@ -88,6 +89,7 @@ index.html (inicio)
 1. Recibe datos de dos formularios (identificados por `origen_formulario`):
    - **Registro de cliente** (`personal-data.html`): `INSERT INTO clientes` → obtiene `lastInsertId()` → guarda `localStorage.cliente_dany = { id, nombre, telefono }` → redirige al carrito.
    - **Contacto** (`contactar.html`): guarda nombre, apellidos, correo, teléfono y mensaje en tabla `chatonline`.
+2. **Registro obligatorio por pedido**: el cliente debe registrarse antes de comprar; al completar la compra, el carrito y `cliente_dany` se **borran** del navegador, de modo que el siguiente pedido exige un registro nuevo (no se reutiliza el cliente anterior).
 
 ### `procesar_compra.php`
 Recibe por POST (JSON) el detalle de la compra desde el `.js` de la marca:
@@ -95,7 +97,7 @@ Recibe por POST (JSON) el detalle de la compra desde el `.js` de la marca:
 | Función | Qué hace |
 |---|---|
 | Conexión BD | Local (`base_datos`) o remota (InfinityFree) según `HTTP_HOST` |
-| Cliente real | Consulta `clientes` por `id_cliente`; si falta, usa el último registrado |
+| Cliente real | Consulta `clientes` por `id_cliente`; **cada pedido exige un cliente recién registrado** — si no hay `id_cliente` válido, **rechaza el pedido** con mensaje y enlace al registro (ya NO reutiliza el último cliente de la BD) |
 | Transacción | Inserta en `pedidos` → `pagos` → `detalle_pedido` con commit/rollback; **estado del pago dinámico** (Completado para Nequi/Daviplata, Pendiente para contra entrega) |
 | **Hora del pedido** | Estampada por **PHP** con `date('Y-m-d H:i:s')` y zona `America/Bogota` (no depende del reloj del servidor BD) |
 | Código de orden | Genera `SD-00001` (relleno a 5 dígitos) |
@@ -139,10 +141,11 @@ Acceso restringido por sesión (`storedany_admin`). Contiene dos vistas:
 - [x] Carrito persistente por marca (localStorage)
 - [x] Carrito mejorado: logo, miniaturas, layout horizontal, scroll 350px, borde dorado por item
 - [x] Botón "Seguir Comprando", badge dorado pulse, flash en icono, toast de confirmación
-- [x] Checkout con `id_cliente` vinculado al pedido
+- [x] Checkout con `id_cliente` vinculado al pedido (cada pedido exige un cliente recién registrado)
+- [x] Al completar la compra se **limpia el carrito y `cliente_dany`** para que el siguiente pedido requiera registro nuevo
 
 **Registro y contacto**
-- [x] Registro de cliente vinculado al pedido (`id_cliente`)
+- [x] Registro de cliente vinculado al pedido (`id_cliente`); sin registro válido el servidor **rechaza** el pedido (no reutiliza al último cliente)
 - [x] Formulario contacto simplificado (nombre, apellidos, tipo de consulta, mensaje)
 - [x] Indicador dinámico "Abierto ahora" / "Cerrado" (hora Colombia, cada 60s)
 - [x] Selector tipo de consulta (compra, devolución, garantía, otro)
@@ -172,6 +175,7 @@ Acceso restringido por sesión (`storedany_admin`). Contiene dos vistas:
 - [x] Hover premium: tarjetas se elevan + zoom de imagen
 - [x] Línea decorativa dorada en títulos de sección
 - [x] Botones elegantes con sombra dorada y elevación al hover
+- [x] Muro de Términos y Condiciones con sellos de seguridad animados, texto destacado y checkbox de aceptación obligatorio
 
 ### 🔜 Pendiente / Mejoras funcionales
 *No hay mejoras funcionales pendientes por el momento.*
@@ -198,4 +202,15 @@ Acceso restringido por sesión (`storedany_admin`). Contiene dos vistas:
 
 ---
 
-*Última actualización: 31 de agosto 2026.*
+## 📅 Bitácora / Cronograma de trabajo
+
+Registro de las sesiones de desarrollo y las fechas reales en que se trabajó el proyecto:
+
+| Fecha | Actividad / Mejora | Detalle | Estado |
+|---|---|---|---|
+| 25 ago 2026 | Primera entrega del proyecto | Se subió el proyecto final al repositorio (catálogo, carrito, registro, compra, panel admin). | ✅ Completado |
+| 31 ago 2026 | Mejoras de diseño y flujo | Fondo crema arena `#E2D5BE`, stepper de progreso (Registro → Carrito → Pago → Confirmación), panel admin (sin filtro de estado, estado dinámico), panel de marcas, sección garantía, recibo en columna centrada, `new-balance.js` renombrado. | ✅ Completado |
+| 02 sep 2026 | Muro de términos y flujo de cliente | Muro de Términos y Condiciones rediseñado (sellos de seguridad animados, texto destacado, botón "ACEPTO Y ACCEDO CON TOTAL CONFIANZA") y **cada pedido exige un cliente nuevo registrado** (no se reutiliza el último). | ✅ Completado |
+| 02 sep 2026 | Actualización del README | Documentación actualizada (muro de términos, flujo de cliente, bitácora de trabajo). | ✅ Completado |
+
+*Última actualización: 02 de septiembre de 2026.*
