@@ -1,130 +1,150 @@
 # STORE DANY — Documentación del Proyecto
 
-Tienda online de calzado para hombre. PHP + MySQL (XAMPP) con frontend en HTML/CSS/JS vanilla.
-Identidad visual: café (#857059 / #3f3428) + dorado (#ffc107 / #ecc998), tipografías **Baloo 2** (títulos) e **Inter** (texto). Fondo general del sitio en **crema arena** `#E2D5BE` (ajustado a mitad entre claro y beige, con degradado de luz suave).
+Tienda online de calzado para hombre. Desarrollada con un stack de código abierto: **PHP + MySQL (MariaDB)** en el backend, con **frontend en HTML, CSS y JavaScript vanilla** y **Bootstrap 4** como framework de estilos. El entorno de desarrollo corre con **Docker Compose sobre WSL** (`docker-compose.yml`): un contenedor **Apache con PHP 8.2** (servidor web, puerto 8080) y un contenedor **MariaDB 10.6** (base de datos, puerto 3306). La base de datos se llama **`gst_ventasonline`** (en el contenedor y también en la nube como `if0_41988386_gst_ventasonline` con InfinityFree). Enfoque del proyecto: **comercio electrónico (e-commerce)** tipo catálogo con registro de cliente por pedido, carrito de compras, checkout y panel logístico de despachos.
 
 ---
 
 ## Estructura general del flujo de compra
 
+El proceso de compra sigue un orden de **4 pasos**: **1. Registro → 2. Carrito → 3. Pago → 4. Confirmación**.
+
 ```
 index.html (inicio)
-   └── Marcas: nike.html · adidas.html · puma.html · reebok.html
-              new-balance.html (+ vista rápida en cada una)
-        └── Registro: personal-data.html  (datos del cliente)  ← paso 1
-              └── enviar.php  (guarda cliente en BD + localStorage)
-                    └── Carrito: shopping-cart.html  (selección de pedidos) ← paso 2
-                          └── "Finalizar compra"
-                                └── procesar_compra.php  (Pago → recibo) ← pasos 3-4
-                                      └── admin.php  (panel de guías de despacho)
+   │
+   ▼
+Paso 1 · Registro del cliente
+   en: personal-data.html  →  enviar.php  (guarda cliente en BD + localStorage)
+   │
+   ▼
+Paso 2 · Selección de pedidos (Carrito)
+   en: nike.html · adidas.html · puma.html · reebok.html · new-balance.html  (vista rápida)
+       └── ▶ continuar en shopping-cart.html  (carrito + resumen)
+   │
+   ▼
+Paso 3 · Pago
+   │
+   ▼
+Paso 4 · Confirmación (recibo)
+   en: procesar_compra.php  (guarda pedido + genera recibo)
+   │
+   ▼
+admin.php  (panel de guías / despachos del ADMIN)
 ```
-**(Orden del flujo: 1 Registro → 2 Carrito → 3 Pago → 4 Confirmación)**
+
+| Paso | Nombre | Página / archivo | Qué ocurre |
+|---|---|---|---|
+| 1 | **Registro** | `personal-data.html` → `enviar.php` | El cliente ingresa sus datos; se guarda en BD y en `localStorage`.
+| 2 | **Carrito** | páginas de marca → `shopping-cart.html` | Se seleccionan los productos y se confirma el pedido.
+| 3 | **Pago** | páginas de marca / `shopping-cart.html` | Se elige método de pago (Nequi, Daviplata o contra entrega).
+| 4 | **Confirmación** | `procesar_compra.php` | Se registra el pedido, se calcula el recibo y se muestra el comprobante.
+| — | **Despacho** | `admin.php` | El administrador consulta las guías/pedidos.
 
 ---
 
-## Páginas y archivos
+## Frontend (HTML, CSS y JS del navegador)
 
-### `index.html`
-- Portada de la tienda: hero, categorías por marca, accesos a carrito y contacto.
-- Botón global "volver arriba" y navegación fija.
-- **Sello de confianza** con 4 badges (pago seguro, envío confiable, originales, garantía).
+## Frontend (HTML, CSS y JS del navegador)
 
-### Páginas de marca (`nike`, `adidas`, `puma`, `reebok`, `new-balance`)
-- Catálogo con tarjetas de producto.
-- **Vista rápida** (modal): pastillas de tallas disponibles + botón agregar al carrito; fondo oscuro con desenfoque.
-- **Badges "Más vendido" / "Nuevo"** en productos destacados de cada marca (dorado/azul).
-- **Sello de confianza** con 4 badges justo encima del catálogo.
-- **Stepper de progreso**: paso activo "Registro" (el cliente se registra antes de seleccionar pedidos).
-- Nota: `new-balance.html` carga el script `newbalanc.js` (nombre sin separador).
-- Cada `.js` maneja: agregar al carrito, persistencia en `localStorage`, render del carrito lateral, cálculo de totales y el **checkout** (`datosCompra`) hacia `procesar_compra.php`.
-- En el checkout se envía también **`id_cliente`** leído de `localStorage.cliente_dany`.
-- Guardia de registro: si no hay cliente registrado, avisa y redirige a `personal-data.html`.
-- **Carrito mejorado**: logo STORE DANY en header, miniaturas de producto (52×52, object-fit contain), layout horizontal (imagen al lado del texto), área de scroll 350px, borde dorado por item, botón "Seguir Comprando", badge dorado con animación pulse + flash en icono + toast de confirmación.
-- WhatsApp flotante "Escríbenos" deshabilitado en páginas de marca (solo visible en el resto del sitio).
+A continuación, el papel de cada pantalla desde la visión **funcional**: qué hace el cliente en ella, con qué propósito se construyó y qué información maneja. (No se listan detalles internos de código.)
 
-### `shopping-cart.html`
-- Vista completa del catálogo, carrito, resumen del pedido y acceso al registro de datos personales.
-- **Panel de marcas disponibles**: botón "Ver marcas" que despliega las 5 marcas (NIKE, ADIDAS, PUMA, NEW BALANCE, REEBOK) en grupo, **justo debajo del botón** (antes del sello de confianza).
-- **Sello de confianza** (pago seguro, envío confiable, originales, garantía).
-- **Stepper de progreso**: paso activo "Registro" (el cliente se registra antes de seleccionar pedidos).
-- **Sección Garantía y Cambios**: garantía por daño de fábrica dentro del primer mes, cambio (no devolución de dinero), proceso sencillo, organizada en **cuadrícula centrada de 4 tarjetas uniformes**.
+### 📄 `index.html` — Portada de la tienda
 
-### `personal-data.html`
-- Formulario de registro del comprador (nombre, apellidos, cédula, celular, correo, departamento, municipio, dirección).
-- **Stepper de progreso**: paso 1 "Registro" activo; al completar todos los datos del cliente, el paso 1 pasa a completo (✓) y continúa con Carrito → Pago → Confirmación.
-- **Asteriscos de campos obligatorios** con tooltip en todos los campos + leyenda aclaratoria.
+| Aspecto | Descripción |
+|---|---|
+| **Función para el cliente** | Es la **puerta de entrada**. Le permite conocer la tienda, ver las categorías por marca, abrir el carrito, ir a los datos de registro y al contacto. |
+| **Propósito** | Presentar la marca STORE DANY de forma atractiva, dar confianza (sello de 4 badges: pago seguro, envío, originales, garantía) y encauzar al cliente hacia la compra o la consulta. |
+| **Información que maneja** | Información de presentación (marcas, ofertas, confianza); no recopila datos personales en esta pantalla. |
 
-### `contactar.html`
-- Encabezado claro: "Contáctanos" con badge "CANALES DE ATENCIÓN DIRECTA".
-- Panel de asesora Lizeth con chips clicables (teléfono + WhatsApp + horario + punto físico).
-- **Indicador dinámico** "Abierto ahora" / "Cerrado" según hora Colombia (actualiza cada 60s).
-- Formulario "Cuéntanos en qué te ayudamos": nombres, apellidos, **selector tipo de consulta** (compra, devolución, garantía, otro) y mensaje, con **asteriscos de campos obligatorios** + leyenda.
-- Footer con horarios detallados (L-V 8-7, Sáb 8-6, Dom 9-12), ubicación y compra segura.
+### 📄 Páginas de marca: `nike.html`, `adidas.html`, `puma.html`, `reebok.html`, `new-balance.html`
 
-### `Style.css`
+| Aspecto | Descripción |
+|---|---|
+| **Función para el cliente** | **Explorar y elegir calzado**: ver el catálogo de cada marca, ampliar cada producto (vista rápida con tallas), agregar al carrito y gestionar su pedido. |
+| **Propósito** | Vender el calzado de la marca: mostrar productos con badges (Más vendido / Nuevo), permitir seleccionar talla y cantidad, y llevar el control del carrito en pantalla. |
+| **Información que maneja** | Datos del **producto** (nombre, marca, precio, talla, color) y del **cliente** vía registro obligatorio previo (nombre, cédula, teléfono) para poder su compra. |
+
+### 📄 `shopping-cart.html` — Carrito y resumen del pedido
+
+| Aspecto | Descripción |
+|---|---|
+| **Función para el cliente** | **Revisar y confirmar su pedido**: ver el catálogo completo, desplegar marcas, revisar el carrito con el resumen del total y acceder a su registro. |
+| **Propósito** | Que el cliente verifique qué va a comprar y cuánto pagará antes de finalizar, usando el sello de confianza y la sección de Garantía y Cambios para tranquilidad. |
+| **Información que maneja** | Resumen del **pedido** (productos, cantidades, totales) y datos de **registro del cliente** para continuar la compra. |
+
+### 📄 `personal-data.html` — Registro de datos del cliente
+
+| Aspecto | Descripción |
+|---|---|
+| **Función para el cliente** | **Registrarse como comprador** antes de pagar, llenando sus datos personales y de domicilio. |
+| **Propósito** | Identificar de forma **única e individual** a quien compra (cada pedido exige un cliente nuevo registrado), para generar su despacho y su recibo a su nombre. |
+| **Información que maneja** | Datos personales y de contacto: **nombre, apellidos, cédula, celular, correo, departamento, municipio y dirección**. |
+
+### 📄 `contactar.html` — Contacto y atención al cliente
+
+| Aspecto | Descripción |
+|---|---|
+| **Función para el cliente** | **Comunicarse con la tienda**: ver canales directos (teléfono, WhatsApp, horario, punto físico), saber si la tienda está abierta y enviar una consulta. |
+| **Propósito** | Brindar atención y soporte (compras, devoluciones, garantías), indicando el horario real según la hora de Colombia. |
+| **Información que maneja** | Datos de la **consulta**: **nombres, apellidos, correo, teléfono, tipo de consulta (compra/devolución/garantía/otro) y mensaje**. |
+
+---
+
+### 🎨 Estilos (CSS) — `Style.css`
 - Hoja de estilos global compartida (header, footer, tarjetas, modales, botón volver-arriba).
-- **Badges de producto** (`.badge-producto`): posicionamiento absoluto, dorado para "Más vendido", azul para "Nuevo".
-- **Indicador horario** (`.status-horario`): badge dinámico con animación pulse.
+- **Estética del negocio**: paleta café + dorado, tipografía Poppins, sello de confianza y sección garantía.
+- **Estados visuales de producto**: badges "Más vendido" (dorado) / "Nuevo" (azul) e indicador horario animado.
 
-### Mejoras de presentación (capas de diseño)
-- **Fondo general** en crema arena `#E2D5BE` con degradado de luz suave (sin imagen, solo color).
-- **Tipografía Poppins** en todo el sitio, sin negrillas en contenido informativo (lectura cómoda).
-- **Sello de confianza** (`.barra-confianza` / `.sello-confianza`): badges de pago seguro, envío confiable, productos originales y garantía.
-- **Sección garantía** (`.seccion-garantia` / `.garantia-item`): tarjeta con garantía por daño de fábrica (1 mes) y cambio de producto, en **cuadrícula centrada de 4 tarjetas de ancho/alto uniforme** (responsive: 4 → 2 → 1 columnas).
-- **Datos legales** (`.footer-legal`): NIT ficticio en el footer del negocio.
-- **Stepper de progreso** (`.stepper-compra`): barra visual Registro → Carrito → Pago → Confirmación en una tarjeta integrada; pasos completados en verde degradado, paso actual en dorado con realce, línea conectora redondeada.
-- **Asteriscos de campos obligatorios** (`.req-asterisco`): marca roja con tooltip ("Campo obligatorio") en todos los campos de los formularios + leyenda aclaratoria.
-- **Favicon consistente** con el logotipo (`logotipo.png`) en todas las páginas visibles.
-- **Alt de logos corregidos** por marca (Puma, Reebok, New Balance ya no dicen "Logo Nike").
-- **Hover premium**: tarjetas de producto que se elevan + zoom suave en la imagen.
-- **Muro de Términos y Condiciones** (`js/main.js` + CSS en `Style.css`): bloquea el acceso hasta aceptar; tarjeta premium con logo, texto continuo que inspira confianza (comas / dos puntos / punto y coma / punto final), frase final **destacada y centrada** (`.terms-destacado`), **sellos de seguridad** animados (`.terms-sellos`): 🔒 Pago seguro, 🚚 Envío protegido, 🛡️ Datos privados — en tarjetas centradas, checkbox personalizado y botón "ACEPTO Y ACCEDO CON TOTAL CONFIANZA".
-- **Línea decorativa dorada** bajo los títulos de sección.
-- **Botones elegantes**: redondeados, sombra dorada y elevación al hover.
+### ⚙️ Lógica del navegador (JavaScript)
+- **`js/main.js`**: comportamiento global (menú, volver-arriba) y el **muro de Términos y Condiciones** que el cliente debe aceptar antes de usar el sitio.
+- **`nike.js` / `adidas.js` / `puma.js` / `reebok.js` / `newbalanc.js`**: catálogo, selección de tallas, gestión del carrito, cálculo de totales y envío del pedido al backend de cada marca.
+- **`js/bootstrap-4.3.1.js` + `js/jquery-3.3.1.min.js` + `js/popper.min.js`**: librerías del framework visual Bootstrap 4.
 
 ---
 
-## Backend
+## Backend (PHP y Base de Datos)
 
-### `enviar.php`
-1. Recibe datos de dos formularios (identificados por `origen_formulario`):
-   - **Registro de cliente** (`personal-data.html`): `INSERT INTO clientes` → obtiene `lastInsertId()` → guarda `localStorage.cliente_dany = { id, nombre, telefono }` → redirige al carrito.
-   - **Contacto** (`contactar.html`): guarda nombre, apellidos, correo, teléfono y mensaje en tabla `chatonline`.
-2. **Registro obligatorio por pedido**: el cliente debe registrarse antes de comprar; al completar la compra, el carrito y `cliente_dany` se **borran** del navegador, de modo que el siguiente pedido exige un registro nuevo (no se reutiliza el cliente anterior).
+### 🖥️ `enviar.php` — Recepción de registro y contacto
 
-### `procesar_compra.php`
-Recibe por POST (JSON) el detalle de la compra desde el `.js` de la marca:
+| Aspecto | Descripción |
+|---|---|
+| **Función** | Recibe y **guarda los datos** que el cliente envía desde el formulario de registro o de contacto. |
+| **Propósito** | Registrar al cliente para que pueda comprar (cada pedido exige un cliente nuevo) y almacenar las consultas de contacto. |
+| **Información que maneja** | Del **registro**: nombre, apellidos, cédula, celular, correo y dirección. Del **contacto**: nombres, apellidos, correo, teléfono y mensaje. |
+
+### 🖥️ `procesar_compra.php` — Proceso de compra y recibo
 
 | Función | Qué hace |
 |---|---|
-| Conexión BD | Local (`base_datos`) o remota (InfinityFree) según `HTTP_HOST` |
-| Cliente real | Consulta `clientes` por `id_cliente`; **cada pedido exige un cliente recién registrado** — si no hay `id_cliente` válido, **rechaza el pedido** con mensaje y enlace al registro (ya NO reutiliza el último cliente de la BD) |
-| Transacción | Inserta en `pedidos` → `pagos` → `detalle_pedido` con commit/rollback; **estado del pago dinámico** (Completado para Nequi/Daviplata, Pendiente para contra entrega) |
-| **Hora del pedido** | Estampada por **PHP** con `date('Y-m-d H:i:s')` y zona `America/Bogota` (no depende del reloj del servidor BD) |
-| Código de orden | Genera `SD-00001` (relleno a 5 dígitos) |
-| Fechas del recibo | Pago realizado (hoy) + entrega estimada a **8 días hábiles**, meses en español |
-| Cuenta Nequi/Daviplata | Se muestra enmascarada (primeros 3 + *** + últimos 2 dígitos) |
-| Monto recibido | Usa el monto pagado real; si no viene, el total. Calcula la devuelta |
-| Recibo | Diseño premium café/dorado con logo, datos del cliente, productos, totales e impresión |
-| **Stepper** | Muestra el flujo completo (Registro → Carrito → Pago → Confirmación) con los pasos 1-3 completados y "Confirmación" activo; cuerpo en **columna centrada** (pasos arriba, comprobante debajo) con CSS del stepper integrado |
-| Acciones finales | Imprimir comprobante + volver a la tienda (sin WhatsApp, por decisión del negocio) |
+| Conexión BD | Local (Docker) o remota (InfinityFree) según el servidor |
+| Cliente real | Solo acepta un **cliente recién registrado**; si no existe, **rechaza el pedido** e invita a registrarse |
+| Registro del pedido | Guarda el **pedido → pago → detalle** y marca el pago (Completado en Nequi/Daviplata, Pendiente en contra entrega) |
+| **Hora del pedido** | Usa la hora de **Colombia** (PHP/Bogotá), no depende del servidor |
+| Código de orden | Genera el número de guía `SD-00001` |
+| Fechas del recibo | Pago al día + entrega estimada a **8 días hábiles**, en español |
+| Cuenta de pago | La muestra **enmascarada** (primeros 3 + *** + últimos 2 dígitos) para seguridad |
+| Monto y devuelta | Usa el monto pagado real y calcula la devuelta |
+| Recibo | Muestra el comprobante con logo, datos del cliente, productos y totales, con opción de imprimir |
 
-### `admin.php` — Panel de Logística y Despachos
-Acceso restringido por sesión (`storedany_admin`). Contiene dos vistas:
+### 🖥️ `admin.php` — Panel de Logística y Despachos
 
-**Login del administrador**
-- Logo STORE DANY amplio en cabecera café con brillo dorado; fondo con foto de zapatos y velo café.
-- Favicon con el logotipo en la pestaña.
-- Mostrar/ocultar contraseña (ojo).
-- Aviso de Bloq Mayús activado.
-- Bloqueo de 30 s tras 3 intentos fallidos (cuenta regresiva en pantalla).
-- Animación shake si las credenciales son incorrectas; spinner al ingresar.
-- Pie con © STORE DANY y año automático.
+| Aspecto | Descripción |
+|---|---|
+| **Función** | Es la **vista del negocio**: permite al administrador ingresar con credenciales e inspeccionar los pedidos/despachos. |
+| **Propósito** | Llevar el **control logístico**: consultar las guías de despacho, el estado de pago de cada pedido y las ventas, para gestionar las entregas. |
+| **Información que maneja** | Ventas del día/mes, pedidos totales, y por cada guía: **cliente** (nombre, cédula, celular, dirección), **productos** (tallas/colores), **estado de pago** y fecha de despacho. |
 
-**Dashboard**
-- **KPIs de ventas**: ventas de hoy, ventas del mes y pedidos totales (tarjetas con borde dorado).
-- **Buscador**: filtra guías por cliente, cédula o número de guía + contador de resultados.
-- **Guías de despacho plegables**: cada tarjeta muestra badge dorado de guía, fecha (hora Colombia corregida), cliente (nombre, cédula, celular, dirección completa), productos con tallas/colores, **estado de pago dinámico** (punto + badge: verde "Completado" para pagos previos Nequi/Daviplata, naranja "Pendiente" para contra entrega) con barra de progreso logístico.
-- Botón **Vaciar Todo** para borrar las guías de prueba.
+### 🗄️ Base de Datos — `gst_ventasonline`
+
+Tablas principales del sistema y la información que almacenan:
+
+| Tabla | Información que guarda |
+|---|---|
+| `clientes` | Datos personales y de contacto de cada comprador registrado. |
+| `pedidos` | Cabecera de cada compra (fecha, total, código de guía, cliente). |
+| `pagos` | Datos del pago (método, cuenta, estado: completado/pendiente, monto recibido). |
+| `detallpago` | Detalle de los **productos** de cada pedido (artículo, talla, color, cantidad, subtotal). |
+| `producto` | Catálogo de calzado (nombre, marca, precio, imagen). |
+| `chatonline` | Mensajes enviados por los clientes desde el formulario de contacto. |
 
 ---
 
