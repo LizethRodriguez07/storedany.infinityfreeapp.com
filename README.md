@@ -147,53 +147,48 @@ Tablas principales del sistema y la información que almacenan:
 
 ## Estado del proyecto
 
-### ✅ Implementado
+### ✅ Implementado — Lista de chequeo (todo el flujo conlleva a la base de datos)
 
-**Catálogo y productos**
-- [x] Catálogo de 5 marcas + vista rápida con tallas
-- [x] Diferenciación visual por marca (colores, bordes, botones, badges, hero teñidos)
-- [x] Badges "Más vendido" / "Nuevo" en productos destacados de cada marca
+> **Hilo conductor del proyecto:** cada acción del cliente (elegir, registrarse, pagar, confirmar) conlleva un **dato que se guarda en la base de datos `gst_ventasonline`**, y cada pantalla tiene un **diseño/estilo** que sostiene ese proceso.
 
-**Carrito de compras**
-- [x] Carrito persistente por marca (localStorage)
-- [x] Carrito mejorado: logo, miniaturas, layout horizontal, scroll 350px, borde dorado por item
-- [x] Botón "Seguir Comprando", badge dorado pulse, flash en icono, toast de confirmación
-- [x] Checkout con `id_cliente` vinculado al pedido (cada pedido exige un cliente recién registrado)
-- [x] Al completar la compra se **limpia el carrito y `cliente_dany`** para que el siguiente pedido requiera registro nuevo
+**🏬 Catálogo y productos**
+- ✅ Catálogo de 5 marcas con vista rápida y tallas.
+- ✅ Diferenciación visual por marca (colores, bordes, botones, badges).
+- ✅ Badges "Más vendido" / "Nuevo" en productos destacados.
+- ✅ Cada producto está registrado en la tabla `producto` → **conlleva a la BD**.
 
-**Registro y contacto**
-- [x] Registro de cliente vinculado al pedido (`id_cliente`); sin registro válido el servidor **rechaza** el pedido (no reutiliza al último cliente)
-- [x] Formulario contacto simplificado (nombre, apellidos, tipo de consulta, mensaje)
-- [x] Indicador dinámico "Abierto ahora" / "Cerrado" (hora Colombia, cada 60s)
-- [x] Selector tipo de consulta (compra, devolución, garantía, otro)
+**🛒 Carrito de compras**
+- ✅ Carrito que se guarda en el navegador (`localStorage`) mientras el cliente arma su pedido.
+- ✅ Carrito mejorado: logo, miniaturas, layout horizontal, scroll, borde dorado por item.
+- ✅ Botón "Seguir Comprando", badge dorado pulse, flash en icono y toast de confirmación.
+- ✅ El checkout envía el pedido con el cliente vinculado al **registro en BD**.
+- ✅ Al finalizar se limpia el carrito para que el siguiente pedido exija registro nuevo.
 
-**Backend y recibo**
-- [x] Checkout transaccional (pedido + pago + detalle atómicos)
-- [x] Recibo premium con código SD-XXXXX, fechas hábiles y cuenta enmascarada
-- [x] Hora correcta en pedidos (PHP/Bogotá, inmune al reloj del servidor BD)
-- [x] Corrección de encoding en emojis y textos especiales
+**👤 Registro y contacto**
+- ✅ Registro del cliente vinculado a la compra; sin registro válido el sistema **rechaza** el pedido.
+- ✅ Formulario de contacto simplificado (nombre, apellidos, tipo de consulta, mensaje).
+- ✅ Indicador dinámico "Abierto ahora" / "Cerrado" (hora Colombia).
+- ✅ Los datos del registro y el contacto **se guardan en la BD** (tablas `clientes` y `chatonline`).
 
-**Panel admin**
-- [x] Login premium (logo amplio, fondo, shake, spinner, bloqueo 3 intentos, Bloq Mayús, copyright)
-- [x] KPIs + buscador por cliente/cédula/guía + guías plegables
-- [x] Estado de pago dinámico por guía (verde "Completado" para Nequi/Daviplata, naranja "Pendiente" para contra entrega); se eliminó el filtro desplegable "Todos los estados"
+**💳 Backend y recibo** (todo lo que el cliente decide aquí **se registra en la BD**)
+- ✅ Checkout transaccional: el pedido se guarda como **pedido → pago → detalle** (tablas `pedidos`, `pagos`, `detallpago`).
+- ✅ Registrar el pedido dejando el estado de pago (Completado / Pendiente) según el método elegido.
+- ✅ Generar el número de guía `SD-00001` y la fecha con hora de Colombia.
+- ✅ Mostrar el **recibo** con los productos, totales y la cuenta de pago enmascarada.
 
-**Transversales**
-- [x] Botón volver arriba y detalles responsive básicos
-- [x] WhatsApp "Escríbenos" solo visible en páginas no-marca
-- [x] Tipografía Poppins en todo el sitio (sin negrillas, lectura cómoda)
-- [x] Sello de confianza con 4 badges (pago seguro, envío, originales, garantía) en index, catálogo y marcas
-- [x] Sección Garantía y Cambios (daño de fábrica, 1 mes, cambio de producto)
-- [x] Datos legales ficticios en el footer (NIT)
-- [x] Stepper de progreso de compra (Registro → Carrito → Pago → Confirmación) en todo el flujo
-- [x] Recibo/procesar_compra.php en columna centrada (stepper arriba, comprobante debajo) con CSS del stepper integrado
-- [x] Asteriscos de campos obligatorios con tooltip + leyenda en los formularios
-- [x] Favicon consistente (logotipo) en todas las páginas visibles
-- [x] Hover premium: tarjetas se elevan + zoom de imagen
-- [x] Línea decorativa dorada en títulos de sección
-- [x] Botones elegantes con sombra dorada y elevación al hover
-- [x] Muro de Términos y Condiciones con sellos de seguridad animados, texto destacado y checkbox de aceptación obligatorio
-- [x] Lazy loading (`loading="lazy"`) en las imágenes de producto del catálogo de las 5 marcas (mejora la carga inicial)
+**👨‍💼 Panel admin** (leer la información que conllevó a la BD)
+- ✅ Login de administrador con acceso restringido y bloqueo por intentos fallidos.
+- ✅ KPIs de ventas (hoy, mes, pedidos) + buscador por cliente/cédula/guía.
+- ✅ Guías de despacho con estado de pago dinámico, consultando **directamente la BD**.
+
+**🎨 Transversales** (el diseño/estilo que acompaña todo el proceso)
+- ✅ Estética STORE DANY (paleta café + dorado, tipografía Poppins, fondo crema arena) en todo el sitio.
+- ✅ Sello de confianza con 4 badges en index, catálogo y marcas.
+- ✅ Sección Garantía y Cambios (daño de fábrica, 1 mes, cambio de producto).
+- ✅ Stepper de progreso Registro → Carrito → Pago → Confirmación en todo el flujo.
+- ✅ Muro de Términos y Condiciones con sellos de seguridad y aceptación obligatoria.
+- ✅ Lazy loading en las imágenes de producto (mejora la carga inicial).
+- ✅ Botón volver arriba, hover premium, botones elegantes y favicon consistente.
 
 ### 🔜 Pendiente / Mejoras funcionales
 *No hay mejoras funcionales pendientes por el momento.*
