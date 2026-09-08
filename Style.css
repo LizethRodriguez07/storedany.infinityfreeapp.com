@@ -291,35 +291,42 @@ body {
 }
 
 .titulo-brand {
-    color: #cca885 !important;
-    font-size: 1.3rem !important;
-    font-weight: 600 !important;
-    letter-spacing: 1px;
+    color: #e9cda8 !important;
+    font-family: Georgia, 'Times New Roman', 'Palatino Linotype', 'Book Antiqua', serif !important;
+    font-size: 1.55rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 1.5px;
     margin-bottom: 2px !important;
     text-transform: uppercase;
-    line-height: 1.2 !important;
+    line-height: 1.15 !important;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.6);
 }
 
 .subtitulo-brand {
     color: #ffc107 !important;                
-    font-size: 1.05rem !important;
+    font-family: Georgia, 'Times New Roman', 'Palatino Linotype', 'Book Antiqua', serif !important;
+    font-size: 1.15rem !important;
     font-weight: 700;
-    letter-spacing: 1.5px;
+    letter-spacing: 2px;
     text-transform: uppercase;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.6);
 }
 
 /* --- LOGOTIPO --- */
 .img-logotipo {
-    max-height: 80px !important;   
+    max-height: 105px !important;   
     width: auto;
     object-fit: contain;
-    margin-left: 20px;
-    margin-right: 25px;
-    transition: transform 0.3s ease;
+    margin-left: 18px;
+    margin-right: 28px;
+    border-radius: 10px;
+    box-shadow: 0 0 14px rgba(255, 193, 7, 0.35);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .img-logotipo:hover {
-    transform: scale(1.05);                   
+    transform: scale(1.05);
+    box-shadow: 0 0 22px rgba(255, 193, 7, 0.55);
 }
 
 /* --- ENLACES DE NAVEGACIÓN --- */
@@ -329,12 +336,12 @@ body {
 
 .custom-nav-links .nav-link {
     color: #ffffff !important;
-    font-size: 0.85rem !important;
-    font-weight: 600 !important;
+    font-size: 0.92rem !important;
+    font-weight: 700 !important;
     letter-spacing: 1px;
-    padding: 8px 16px !important;
+    padding: 10px 18px !important;
     position: relative;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, background 0.3s ease;
 }
 
 /* Animación de línea inferior al pasar el mouse por los enlaces */
@@ -359,14 +366,17 @@ body {
 
 /* Enlace de la página activa actual */
 .current-page {
-    color: #ffc107 !important;
+    color: #000 !important;
+    background: linear-gradient(135deg, #ffc107, #e6a800) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 3px 10px rgba(255, 193, 7, 0.4) !important;
 }
 
 /* Resalte especial para CHAT ONLINE */
 .text-chat-online {
     border: 1px solid #ffc107;
-    border-radius: 4px;
-    background: rgba(255, 193, 7, 0.05);
+    border-radius: 25px;
+    background: rgba(255, 193, 7, 0.08);
 }
 
 .text-chat-online:hover {
@@ -418,14 +428,19 @@ body {
 
     .img-logotipo {
         order: 2 !important;      /* Segundo: El logo al lado del texto */
-        max-height: 45px !important; /* Se achica para no romper la línea */
+        max-height: 60px !important; /* Se achica pero sigue visible */
         margin-left: 10px !important;
         margin-right: 15px !important;
+        box-shadow: 0 0 10px rgba(255, 193, 7, 0.3);
     }
 
     .custom-toggler {
         order: 3 !important;      /* Tercero: El botón se alinea a la extrema derecha */
-        border-color: rgba(255, 193, 7, 0.5) !important;
+        border-color: rgba(255, 193, 7, 0.9) !important;
+        border-width: 2px !important;
+        border-radius: 8px !important;
+        background: rgba(255, 193, 7, 0.12) !important;
+        padding: 8px 12px !important;
     }
 
     .navbar-collapse {
@@ -455,28 +470,43 @@ body {
     }
 
     .custom-nav-links .nav-link {
-        font-size: 0.95rem !important; 
-        padding: 8px 0 !important;
+        font-size: 1.05rem !important; 
+        font-weight: 700 !important;
+        padding: 10px 0 !important;
+        letter-spacing: 1.5px;
     }
 
     .custom-nav-links .nav-link::after {
         display: none !important; /* Quitamos la línea flotante en táctil */
     }
 
+    /* Enlaces de página activa en pastilla en móvil */
+    .custom-nav-links .nav-link.current-page {
+        text-align: center;
+        padding: 10px 14px !important;
+    }
+
     /* Botón Chat Online en móvil */
     .text-chat-online {
         text-align: center;
         margin-top: 10px;
-        padding: 10px !important;
+        padding: 12px !important;
+        font-weight: 700 !important;
     }
 
     /* Desplegable de marcas en móvil */
     .custom-dropdown {
         background-color: #1a1a1a !important;
-        border: none !important;
+        border: 1px solid rgba(255, 193, 7, 0.3) !important;
         box-shadow: none !important;
         margin-top: 5px !important;
         padding-left: 15px !important; 
+        border-radius: 8px !important;
+    }
+
+    .custom-dropdown .dropdown-item {
+        font-size: 1rem !important;
+        padding: 12px 20px !important;
     }
 
     /* Icono del botón en color dorado */
@@ -484,8 +514,6 @@ body {
         background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://w3.org stroke='%23ffc107' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") !important;
     }
 }
-
-
 /* Index */
 .hero-section {
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url('zapatos.jpg') no-repeat center center;
@@ -757,9 +785,14 @@ body {
     font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", "Arial Black", sans-serif;
     font-size: clamp(1.6rem, 4vw, 2.1rem);
     font-weight: 400;
-    color: #111111;
+    color: #b8860b;
     letter-spacing: 1.5px;
     text-transform: uppercase;
+    background: linear-gradient(180deg, #e8c27a 0%, #d4a444 30%, #b07d15 55%, #8a5f08 78%, #6e4a06 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 3px rgba(60, 40, 0, 0.3));
 }
 
 /* Subtítulo estilizado, limpio y muy fácil de leer */
@@ -775,22 +808,22 @@ body {
 
 /* Caja contenedora principal */
 .carrusel-marcas-contenedor {
-    background: #ffffff;
-    height: 140px;
+    background: linear-gradient(135deg, #3a2d1e 0%, #5a4632 45%, #8a6a3c 100%);
+    height: 170px;
     margin: 0 auto;
     overflow: hidden;
     position: relative;
     width: 100%;
     display: flex;
     align-items: center;
-    border-radius: 18px;
-    border: 1px solid rgba(133, 112, 89, 0.18);
-    box-shadow: 0 12px 30px rgba(90, 75, 59, 0.12);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 193, 7, 0.35);
+    box-shadow: 0 14px 34px rgba(90, 75, 59, 0.28), inset 0 0 60px rgba(0, 0, 0, 0.15);
     transition: box-shadow 0.3s ease;
 }
 
 .carrusel-marcas-contenedor:hover {
-    box-shadow: 0 16px 38px rgba(90, 75, 59, 0.18);
+    box-shadow: 0 18px 42px rgba(90, 75, 59, 0.35), inset 0 0 60px rgba(0, 0, 0, 0.18);
 }
 
 /* Desvanecido lateral para la entrada/salida suave de los logos */
@@ -807,12 +840,12 @@ body {
 
 .carrusel-marcas-contenedor::before {
     left: 0;
-    background: linear-gradient(90deg, #ffffff, rgba(255, 255, 255, 0));
+    background: linear-gradient(90deg, #3a2d1e, rgba(58, 45, 30, 0));
 }
 
 .carrusel-marcas-contenedor::after {
     right: 0;
-    background: linear-gradient(270deg, #ffffff, rgba(255, 255, 255, 0));
+    background: linear-gradient(270deg, #3a2d1e, rgba(58, 45, 30, 0));
 }
 
 /* galeria desplegable */
@@ -826,31 +859,83 @@ body {
 
 /* Espacio individual para cada logo de marca */
 .carrusel-logo-item {
-    height: 120px;
+    height: 150px;
     width: 220px;
     min-width: 220px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px;
-    background: #ffffff;
+    padding: 14px 20px;
+    background: transparent;
+    flex-shrink: 0;
+    gap: 10px;
+}
+
+/* Medallón circular con borde dorado */
+.carrusel-logo-medallon {
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 32% 28%, #ffffff, #e9dcbc);
+    border: 3px solid var(--dorado);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35), 0 0 0 4px rgba(255, 193, 7, 0.18);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
     flex-shrink: 0;
 }
 
-/* Control estricto de la proporción de las imágenes */
-.carrusel-logo-item img {
-    max-width: 100%;
-    max-height: 100%;
+.carrusel-logo-medallon img {
+    max-width: 68%;
+    max-height: 68%;
     object-fit: contain;
-    filter: grayscale(0.4);
-    transition: transform 0.3s ease, filter 0.3s ease;
+    filter: none;
+    transition: transform 0.35s ease;
 }
 
-/* Efecto visual al pasar el cursor encima de un logo */
-.carrusel-logo-item img:hover {
-    transform: scale(1.1);
-    filter: grayscale(0);
-    cursor: pointer;
+/* Destello que cruza el medallón */
+.carrusel-logo-medallon::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -80%;
+    width: 55%;
+    background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.75), transparent);
+    transform: skewX(-20deg);
+    opacity: 0;
+    transition: left 0.5s ease, opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.carrusel-logo-item:hover .carrusel-logo-medallon {
+    transform: scale(1.1) rotate(-2deg);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45), 0 0 0 6px rgba(255, 193, 7, 0.35);
+}
+
+.carrusel-logo-item:hover .carrusel-logo-medallon::after {
+    left: 130%;
+    opacity: 1;
+}
+
+.carrusel-logo-item:hover .carrusel-logo-medallon img {
+    transform: scale(1.05);
+}
+
+/* Nombre de la marca bajo el logo */
+.carrusel-logo-nombre {
+    font-family: Impact, "Arial Black", sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 2px;
+    color: #ffd76a;
+    text-transform: uppercase;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    line-height: 1.1;
 }
 
 /* Detiene automáticamente el movimiento mientras el usuario mantenga el mouse encima */
@@ -1249,11 +1334,6 @@ body {
     .asesora-promesas span { font-size: 0.62rem; }
 }
 
-/* --- Píldoras de marcas disponibles --- */
-.marcas-pildoras { display: flex; flex-wrap: wrap; gap: 8px; }
-.marcas-pildora { display: inline-flex; align-items: center; gap: 6px; background: rgba(255, 255, 255, 0.10); border: 1px solid rgba(255, 255, 255, 0.14); color: #ffffff; font-size: 1.08rem; font-weight: 700; letter-spacing: 0.5px; padding: 7px 14px; border-radius: 50px; transition: all 0.3s ease; }
-.marcas-pildora:hover { background: linear-gradient(135deg, var(--dorado), var(--cafe)); border-color: transparent; color: #ffffff; transform: translateY(-2px); }
-
 /* --- Flecha "explorar" en el selector de marcas --- */
 .tarjeta-marca-link .texto-marca::after { content: ''; display: inline-block; margin-left: 6px; opacity: 0; transform: translateX(-6px); transition: all 0.3s ease; }
 .tarjeta-marca-link:hover .texto-marca::after { content: '→'; opacity: 1; transform: translateX(0); color: var(--dorado); }
@@ -1350,7 +1430,7 @@ body {
 .info-store-texto strong { color: var(--dorado); font-weight: 800; }
 
 /* Levantamos el resto de bloques por encima del brillo decorativo */
-.asesora-card, .mini-beneficio, .marcas-pildora, .dato-rapido, .bg-recuadro { position: relative; z-index: 1; }
+.asesora-card, .mini-beneficio, .dato-rapido, .bg-recuadro { position: relative; z-index: 1; }
 
 /* --- Fila de datos rápidos --- */
 .datos-rapidos { display: flex; flex-wrap: wrap; gap: 12px; }
@@ -1358,10 +1438,6 @@ body {
 .dato-rapido:hover { background: rgba(255, 193, 7, 0.12); border-color: rgba(255, 193, 7, 0.4); }
 .dato-rapido-valor { display: block; color: var(--dorado); font-family: Impact, sans-serif; font-size: 1.3rem; letter-spacing: 1px; line-height: 1; }
 .dato-rapido-etiqueta { display: block; color: rgba(255, 255, 255, 0.85); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; margin-top: 5px; }
-
-
-
-
 .btn-ver-marcas {
     background: linear-gradient(135deg, var(--cafe), var(--cafe-oscuro));
     color: #ffffff;
@@ -1383,53 +1459,6 @@ body {
     line-height: 1.6;
 }
 
-.texto-catalogo-asesora {
-    color: #ffffff !important;
-    font-size: 0.95rem !important;
-    line-height: 1.6 !important;
-    font-family: 'Segoe UI', Roboto, sans-serif !important;
-    letter-spacing: 0.3px !important;
-}
-
-.texto-catalogo-asesora strong {
-    color: #857059 !important;
-    font-weight: 800 !important;
-}
-
-.texto-catalogo-historia {
-    color: #ffffff !important;
-    font-size: 0.95rem !important;
-    line-height: 1.6 !important;
-    font-family: 'Segoe UI', Roboto, sans-serif !important;
-    letter-spacing: 0.3px !important;
-}
-
-.texto-catalogo-historia strong {
-    color: #8a6d53 !important;
-    font-weight: 800 !important;
-}
-
-.bloque-asesora {
-    background: #111111 !important;
-    border: 1px solid #222222 !important;
-    padding: 20px !important;
-    border-radius: 20px !important;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important;
-    transition: border-color 0.3s ease;
-}
-
-.bloque-asesora:hover {
-    border-color: #857059 !important;
-}
-
-.bloque-historia {
-    background: #161616 !important;
-    border-left: 3px solid #8a6d53 !important;
-    padding: 20px !important;
-    border-radius: 4px 20px 20px 4px !important;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important;
-}
-
 .btn-ver-marcas:hover {
     background: linear-gradient(135deg, var(--dorado), var(--cafe));
     color: #ffffff;
@@ -1439,11 +1468,6 @@ body {
 }
 .btn-ver-marcas:active {
     transform: scale(1);
-}
-
-.btn-volver-catalogo:hover {
-    background-color: #6d5c49;
-    transform: scale(1.05);
 }
 
 .border-cafe-tienda {
@@ -1523,17 +1547,10 @@ body {
 .marca-newbalance:hover { background: linear-gradient(135deg, #1456c4, #0b3d91); box-shadow: 0 12px 28px rgba(11, 61, 145, 0.55); }
 .marca-reebok:hover { background: linear-gradient(135deg, #f52242, #a5001e); box-shadow: 0 12px 28px rgba(228, 0, 43, 0.5); }
 
-/* Ajuste para celular*/
-@media (max-width: 991.98px) {
-    .column-reverse-mobile {
-        flex-direction: column-reverse;
-    }
-}
-
 /* CARRUSEL RESPONSIVO PARA PANTALLAS MÓVILES */
 @media (max-width: 768px) {
     .carrusel-marcas-contenedor {
-        height: 105px !important;
+        height: 130px !important;
         display: flex !important;
         align-items: center !important;
         overflow: hidden !important; 
@@ -1550,25 +1567,38 @@ body {
     }
     
     .carrusel-marcas-contenedor .carrusel-logo-item {
-        height: 95px !important;
+        height: 118px !important;
         width: 150px !important;
         min-width: 150px !important;
         max-width: 150px !important;
         flex-shrink: 0 !important;      
-        padding: 12px !important;       
+        padding: 10px !important;       
         display: flex !important;
+        flex-direction: column !important;
         justify-content: center !important;
         align-items: center !important;
-        background: #ffffff !important;
+        gap: 7px !important;
+        background: transparent !important;
     }
     
-    .carrusel-marcas-contenedor .carrusel-logo-item img {
+    .carrusel-marcas-contenedor .carrusel-logo-medallon {
+        width: 66px !important;
+        height: 66px !important;
+        border-width: 2px !important;
+    }
+    
+    .carrusel-marcas-contenedor .carrusel-logo-medallon img {
         display: block !important;
         width: auto !important;         
         height: auto !important;        
-        max-width: 100% !important;     
-        max-height: 100% !important;    
+        max-width: 66% !important;     
+        max-height: 66% !important;    
         object-fit: contain !important; 
+    }
+    
+    .carrusel-marcas-contenedor .carrusel-logo-nombre {
+        font-size: 0.78rem !important;
+        letter-spacing: 1px !important;
     }
     
     .carrusel-marcas-contenedor:hover .carrusel-marcas-pista {
@@ -1710,11 +1740,23 @@ body {
 
 /* 5. RESUMEN DE COSTOS (SUBTOTAL / ENVÍO) */
 .cart-summary-details {
-    background-color: #fdfbf7 !important;
-    border-radius: 8px !important;
-    padding: 12px !important;
+    background-color: #fffdf9 !important;
+    border-radius: 12px !important;
+    padding: 14px !important;
     margin: 12px 0 !important;
-    border: 1px solid #f5ede2 !important;
+    border: 1px solid #f0e2c8 !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+}
+.cart-summary-details .summary-row {
+    padding: 4px 2px !important;
+}
+.cart-summary-details .summary-row > span:first-child {
+    font-weight: 600 !important;
+    color: #857059 !important;
+}
+.cart-summary-details .summary-row > span:last-child {
+    font-weight: 700 !important;
+    color: #4a3b32 !important;
 }
 .summary-row {
     display: flex !important;
@@ -1724,7 +1766,7 @@ body {
     margin-bottom: 5px !important;
 }
 .summary-divider {
-    margin: 6px 0 !important;
+    margin: 8px 0 !important;
     border-top: 1px dashed #ECC998 !important;
     opacity: 0.5 !important;
 }
@@ -1732,16 +1774,20 @@ body {
     display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
+    background: linear-gradient(135deg, #f7f1e6, #fdf9f2) !important;
+    border-radius: 8px !important;
+    padding: 8px 10px !important;
+    margin-top: 4px !important;
 }
 .cart-total h3 {
     margin: 0 !important;
     font-size: 14px !important;
-    font-weight: 700 !important;
+    font-weight: 800 !important;
     color: #4a3b32 !important;
 }
 .total-pagar {
-    font-size: 16px !important;
-    font-weight: 800 !important;
+    font-size: 18px !important;
+    font-weight: 900 !important;
     color: #28a745 !important;
 }
 
@@ -1754,7 +1800,7 @@ body {
     font-size: 11px !important;
     color: #857059 !important;
     display: block !important;
-    margin-bottom: 5px !important;
+    margin-bottom: 8px !important;
     letter-spacing: 0.3px !important;
 }
 .select-custom {
@@ -1769,24 +1815,75 @@ body {
     cursor: pointer !important;
 }
 
-/* 7. BLOQUES INFORMATIVOS CON EMOJIS */
-.payment-badges {
+/* 6.1 TARJETAS VISUALES DE MÉTODO DE PAGO */
+.opciones-pago {
     display: flex !important;
-    justify-content: space-around !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+}
+.pago-opcion {
+    display: flex !important;
     align-items: center !important;
-    background: #fdfdfd !important;
-    padding: 8px !important;
-    border-radius: 6px !important;
-    border: 1px solid #f0f0f0 !important;
-    margin-bottom: 15px !important;
-    font-size: 12px !important;
-    font-weight: bold !important;
+    width: 100% !important;
+    gap: 12px !important;
+    padding: 11px 12px !important;
+    border: 1.5px solid #f0e2c8 !important;
+    border-radius: 10px !important;
+    background-color: #ffffff !important;
+    cursor: pointer !important;
+    text-align: left !important;
+    font-family: inherit !important;
+    transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease !important;
+}
+.pago-opcion:hover {
+    border-color: #ECC998 !important;
+    background-color: #fffbf3 !important;
+    transform: translateY(-1px) !important;
+}
+.pago-opcion.pago-opcion-activa {
+    border-color: #28a745 !important;
+    background-color: #f1faef !important;
+    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.15) !important;
+}
+.pago-icono {
+    font-size: 20px !important;
+    line-height: 1 !important;
+    display: inline-flex !important;
+    width: 34px !important;
+    height: 34px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+    background-color: #f7f1e6 !important;
+    flex-shrink: 0 !important;
+}
+.pago-opcion.pago-opcion-activa .pago-icono {
+    background-color: #e4f2e1 !important;
+}
+.pago-texto {
+    display: flex !important;
+    flex-direction: column !important;
+    line-height: 1.2 !important;
+}
+.pago-titulo {
+    font-size: 13px !important;
+    font-weight: 700 !important;
     color: #4a3b32 !important;
 }
-.badge-text {
+.pago-sub {
     font-size: 11px !important;
-    font-weight: bold !important;
+    color: #857059 !important;
+}
+.pago-check {
+    margin-left: auto !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
     color: #28a745 !important;
+    opacity: 0 !important;
+    transition: opacity 0.2s ease !important;
+}
+.pago-opcion.pago-opcion-activa .pago-check {
+    opacity: 1 !important;
 }
 
 /* 8. BOTONES DE ACCIÓN DEL CHECKOUT */
@@ -1933,14 +2030,13 @@ body {
     }
 }
 
-
 /* === AJUSTES SOLO PARA MÓVIL Y TABLET (antes estaban sueltos y afectaban al PC) === */
 @media (max-width: 767.98px) {
     body {
         padding-top: 110px !important;
     }
 
-    .titulo-marcas, .titulo-seccion-premium {
+    .titulo-marcas {
         font-size: 24px !important;
         text-align: center !important;
     }
@@ -1964,7 +2060,6 @@ body {
         text-align: left;
     }
 
-    .btn-whatsapp-premium,
     .btn-enviar-premium,
     .btn-ver-marcas,
     .btn-enviar,
@@ -2010,77 +2105,6 @@ body {
   transition: transform 0.3s ease;
 }
 
-
-/* --- Estilos del Visor de Imagen Ampliada (Modal) --- */
-
-.visor-pantalla-completa {
-  display: none; /* Oculto por defecto */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.9); /* Fondo negro semitransparente */
-  z-index: 1050; /* Por encima de todo el catálogo */
-  justify-content: center;
-  align-items: center;
-  cursor: zoom-out; /* Indica que al hacer clic se cierra */
-}
-
-/* Contenedor interno para que la imagen y el texto se agrupen */
-.visor-bloque {
-  text-align: center;
-  max-width: 90%;
-  max-height: 85vh;
-  cursor: default; /* Evita el cursor de salida dentro del bloque */
-}
-
-.visor-imagen-principal {
-  max-width: 100%;
-  max-height: 75vh;
-  object-fit: contain;
-  border-radius: 6px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-  animation: efectoEntrada 0.25s ease-out;
-}
-
-.visor-titulo-producto {
-  color: #ffffff;
-  margin-top: 15px;
-  font-weight: bold;
-  font-size: 1.5rem;
-  letter-spacing: 0.5px;
-}
-
-/* Botón de cerrar (X) */
-.visor-cerrar {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  color: #ffffff;
-  font-size: 45px;
-  font-weight: 300;
-  cursor: pointer;
-  line-height: 1;
-  transition: color 0.2s;
-}
-
-.visor-cerrar:hover {
-  color: #dddddd;
-}
-
-/* Animación de apertura para la imagen */
-@keyframes efectoEntrada {
-  from {
-    transform: scale(0.9);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
 /* === Ajustes de columnas y etiquetas de marca (solo móvil/tablet) === */
 @media (max-width: 767.98px) {
     .row.justify-content-center {
@@ -2118,11 +2142,213 @@ body {
 /* Selec.Producto */
 .titulo-marcas {
     text-align: center;
-    font-size: 36px; 
+    font-size: 40px;
     font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", "Arial Black", sans-serif;
-    color: #857059; 
-    letter-spacing: 1px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    color: #b8860b;
     margin-bottom: 30px;
+    text-transform: uppercase;
+    /* Efecto dorado metalizado (tonos oscuros, menos brillo) */
+    background: linear-gradient(180deg, #e8c27a 0%, #d4a444 30%, #b07d15 55%, #8a5f08 78%, #6e4a06 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 3px 4px rgba(60, 40, 0, 0.45));
+}
+
+@supports not (background-clip: text) {
+    .titulo-marcas {
+        -webkit-text-fill-color: initial;
+        color: #b8860b;
+    }
+}
+
+/* Descripción motivacional bajo el título de cada marca */
+.descripcion-marca {
+    max-width: 720px;
+    margin: -15px auto 0 auto;
+    font-size: 1.05rem;
+    font-weight: 500;
+    line-height: 1.6;
+    text-align: center;
+    color: #5a4b3b;
+    background: linear-gradient(135deg, #fdfbf7, #f7efe2);
+    border: 1px solid rgba(133, 112, 89, 0.25);
+    border-left: 4px solid var(--dorado);
+    border-radius: 10px;
+    padding: 12px 22px;
+    box-shadow: 0 4px 12px rgba(133, 112, 89, 0.12);
+}
+
+@media (max-width: 576px) {
+    .descripcion-marca {
+        font-size: 0.95rem;
+        padding: 10px 16px;
+        margin-left: 8px;
+        margin-right: 8px;
+    }
+}
+
+/* ============================================================
+   LOGOS DE MARCA (título) — marco elegante
+   ============================================================ */
+.logo-marca {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 76px;
+    height: 76px;
+    border-radius: 18px;
+    background: linear-gradient(145deg, #ffffff, #f0e6d2);
+    border: 2px solid var(--dorado);
+    box-shadow: 0 4px 14px rgba(133, 112, 89, 0.25), inset 0 0 0 3px rgba(133, 112, 89, 0.08);
+    overflow: hidden;
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+    cursor: default;
+    flex-shrink: 0;
+}
+
+.logo-marca img {
+    max-width: 70%;
+    max-height: 70%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.35s ease;
+}
+
+/* Destello metálico que cruza el logo al pasar el mouse */
+.logo-marca::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -80%;
+    width: 60%;
+    background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+    transform: skewX(-20deg);
+    opacity: 0;
+    transition: left 0.55s ease, opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.logo-marca:hover {
+    transform: scale(1.12) rotate(-3deg);
+    border-color: var(--dorado);
+    box-shadow: 0 10px 26px rgba(133, 112, 89, 0.35), 0 0 0 4px rgba(255, 193, 7, 0.25);
+}
+
+.logo-marca:hover::after {
+    left: 130%;
+    opacity: 1;
+}
+
+.logo-marca:hover img {
+    transform: scale(1.06);
+}
+
+/* ============================================================
+   FRANJA DE MARCAS (todas las marcas, navegación rápida)
+   ============================================================ */
+.franja-marcas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    background: linear-gradient(135deg, #fdfbf7, #f3ead9);
+    border: 1px solid rgba(133, 112, 89, 0.2);
+    border-radius: 16px;
+    padding: 16px 20px;
+    box-shadow: 0 4px 16px rgba(133, 112, 89, 0.10);
+}
+
+.franja-marca {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none !important;
+    color: #5a4b3b;
+    padding: 10px 14px;
+    border-radius: 14px;
+    border: 2px solid transparent;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+    min-width: 92px;
+}
+
+.franja-marca:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 193, 7, 0.6);
+    box-shadow: 0 8px 20px rgba(133, 112, 89, 0.18);
+    background: #fff;
+}
+
+/* Marca actual resaltada */
+.franja-marca.activa {
+    border-color: var(--dorado);
+    background: linear-gradient(145deg, #fffdf6, #f8efdc);
+    box-shadow: 0 6px 18px rgba(255, 193, 7, 0.35);
+}
+
+.franja-marca-logo {
+    width: 58px;
+    height: 58px;
+    border-radius: 14px;
+    background: linear-gradient(145deg, #ffffff, #f0e6d2);
+    border: 2px solid rgba(133, 112, 89, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 8px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.franja-marca-logo img {
+    max-width: 72%;
+    max-height: 72%;
+    object-fit: contain;
+}
+
+.franja-marca.activa .franja-marca-logo {
+    border-color: var(--dorado);
+    box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.2);
+}
+
+.franja-marca-nombre {
+    font-family: Impact, "Arial Black", sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 1.5px;
+    color: #857059;
+}
+
+.franja-marca.activa .franja-marca-nombre {
+    color: var(--dorado);
+}
+
+@media (max-width: 576px) {
+    .franja-marcas {
+        gap: 8px;
+        padding: 12px 10px;
+    }
+    .franja-marca {
+        min-width: 70px;
+        padding: 6px 6px;
+    }
+    .franja-marca-logo {
+        width: 46px;
+        height: 46px;
+    }
+    .franja-marca-nombre {
+        font-size: 0.68rem;
+        letter-spacing: 1px;
+    }
+    .logo-marca {
+        width: 62px;
+        height: 62px;
+        border-radius: 14px;
+    }
 }
 
 .card-producto {
@@ -2227,12 +2453,6 @@ body {
 }
 
 /* Sistema e Iconografía del Carrito Flotante (Menú Superior) */
-.container-icon {
-    position: relative;
-    display: inline-block;
-    vertical-align: middle;
-}
-
 .icon-cart {
     transition: transform 0.2s ease, stroke 0.2s ease;
 }
@@ -2288,27 +2508,6 @@ body {
     margin-bottom: 15px !important;
 }
 
-.inf-cart-product {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-    flex: 1;
-}
-
-.titulo-producto-carrito {
-    font-size: 14px;
-    color: #333333;
-    font-weight: bold;
-    margin: 0;
-}
-
-.precio-producto-carrito {
-    font-size: 14px;
-    color: #857059;
-    margin: 3px 0;
-    font-weight: 600;
-}
-
 /* Botón 'X' para remover tenis del carrito */
 .icon-close {
     width: 18px;
@@ -2336,25 +2535,6 @@ body {
     font-size: 18px;
     color: #000000;
 }
-/* Botón limpiar y vaciar la cesta */
-.styles-btn-vaciar {
-    background-color: #dc3545; 
-    color: white !important;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    width: 100%;
-    transition: background-color 0.2s ease;
-    text-transform: uppercase;
-    font-weight: bold;
-}
-
-.styles-btn-vaciar:hover {
-    background-color: #bd2130;
-}
-
 /* 5. Ajustes de selectores de Tallas */
 .select-custom {
     border: 1px solid #cccccc;
@@ -2362,30 +2542,6 @@ body {
     padding: 2px 6px;
     background-color: #fdfdfd;
     font-size: 13px;
-}
-
-
-
-/*Chat Online*/
-.wrapper-badge-chat {
-    display: inline-block;
-    background-color: #857059;
-    color: #ffffff;
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 2px;
-    padding: 6px 16px;
-    border-radius: 50px;
-    text-transform: uppercase;
-}
-
-.titulo-seccion-premium {
-    font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", "Arial Black", sans-serif;
-    font-size: 2.2rem;
-    font-weight: 400;
-    color: #111111;
-    letter-spacing: 1px;
-    margin-top: 10px;
 }
 
 /* Contenedor del Jumbotron/Dashboard de Contacto */
@@ -2442,30 +2598,6 @@ body {
 
 .border-light-premium {
     border-color: #2a2a2a !important;
-}
-
-/* Enlace a tu WhatsApp Oficial */
-.btn-whatsapp-premium {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #ffffff; /* Botón blanco que resalta con fuerza sobre el fondo negro */
-    color: #0f0f0f !important;
-    text-decoration: none !important;
-    font-weight: 800;
-    font-size: 13px;
-    letter-spacing: 1px;
-    padding: 14px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.btn-whatsapp-premium:hover {
-    background: #857059; /* Cambia a tu café al pasar el mouse */
-    color: #ffffff !important;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(133, 112, 89, 0.4);
 }
 
 /* Área del formulario del lado derecho */
@@ -2721,7 +2853,7 @@ body {
    TIPOGRAFÍA ALEGRE Y LECTURA CÓMODA
    ============================================================ */
 .titulo-seccion, .titulo-historia, .titulo-formulario, .titulo-marcas,
-.titulo-seccion-premium, .titulo-seccion-formulario, .header-carrusel-marcas,
+.titulo-seccion-formulario, .header-carrusel-marcas,
 .inf-product h3, .badge-marcas, .icono-tarjeta, .asesora-avatar, .terms-logo {
     font-family: 'Baloo 2', 'Segoe UI', Tahoma, sans-serif !important;
     letter-spacing: 0.5px;
@@ -2810,49 +2942,6 @@ main .lead {
 
 .campo-icono .inut-registro {
     padding-left: 42px;
-}
-
-.pasos-formulario {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
-    margin-bottom: 6px;
-    flex-wrap: wrap;
-}
-
-.pasos-formulario .paso {
-    font-size: 0.82rem;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    color: #9b8b7a;
-    background-color: #f4eee6;
-    padding: 7px 16px;
-    border-radius: 50px;
-    transition: all 0.3s ease;
-}
-
-.pasos-formulario .paso.activo {
-    background: linear-gradient(135deg, var(--verde), var(--verde-oscuro));
-    color: #ffffff;
-    box-shadow: 0 4px 14px rgba(46, 125, 50, 0.35);
-}
-
-.pasos-formulario .paso.listo {
-    background: linear-gradient(135deg, var(--verde), var(--verde-oscuro));
-    color: #ffffff;
-    box-shadow: 0 4px 14px rgba(46, 125, 50, 0.35);
-}
-
-.pasos-formulario .paso.listo::before {
-    content: '✓ ';
-}
-
-.pasos-formulario .paso-linea {
-    width: 46px;
-    height: 2px;
-    background-color: #e3d9cc;
 }
 
 /* ============================================================
@@ -3172,7 +3261,7 @@ main .lead {
 }
 
 body.tiene-barra-anuncio {
-    padding-top: calc(140px + var(--altura-barra));
+    padding-top: calc(155px + var(--altura-barra));
 }
 
 body.tiene-barra-anuncio .main-navbar {
@@ -3181,7 +3270,7 @@ body.tiene-barra-anuncio .main-navbar {
 
 @media (max-width: 767.98px) {
     body.tiene-barra-anuncio {
-        padding-top: calc(110px + var(--altura-barra)) !important;
+        padding-top: calc(115px + var(--altura-barra)) !important;
     }
     .barra-anuncio-texto { font-size: 0.72rem; }
 }
@@ -3228,10 +3317,6 @@ body.tiene-barra-anuncio .main-navbar {
     color: #6f6257;
 }
 /* ============ SELECTOR VISUAL DE TALLAS (paginas por marca) ============ */
-.talla-grupo {
-    margin: 12px 0 8px;
-}
-
 .talla-etiqueta {
     display: block;
     font-size: 0.68rem;
@@ -3406,13 +3491,6 @@ select.talla-seleccion[hidden] {
 #contenedor-monto, #contenedor-cuenta, #banner-estado-pago {
     border-radius: 12px !important;
 }
-.payment-badges {
-    background: #fdf8ec !important;
-    border: 1px dashed rgba(236, 201, 152, 0.8) !important;
-    border-radius: 999px !important;
-    padding: 9px 14px !important;
-    font-size: 11.5px !important;
-}
 .btn-checkout {
     border-radius: 12px !important;
 }
@@ -3513,8 +3591,6 @@ select.talla-seleccion[hidden] {
     .vista-rapida { grid-template-columns: 1fr; gap: 18px; }
 }
 
-
-
 /* CHIPS DE CONTACTO CLICABLES */
 a.chip-canal { text-decoration: none; color: inherit; }
 a.chip-canal:hover { text-decoration: none; color: inherit; transform: translateY(-4px); }
@@ -3575,18 +3651,6 @@ a.chip-canal:hover { text-decoration: none; color: inherit; transform: translate
     transform: scale(1.12);
     stroke: #fff !important;
 }
-.label-carrito-nav {
-    display: block;
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    color: #ECC998;
-    text-transform: uppercase;
-    margin-top: -2px;
-}
-@media (max-width: 991.98px) {
-    .label-carrito-nav { display: none; }
-}
 
 /* Badge contador mejorado */
 .count-products {
@@ -3627,80 +3691,7 @@ a.chip-canal:hover { text-decoration: none; color: inherit; transform: translate
     100% { filter: drop-shadow(0 0 0 transparent); transform: scale(1); }
 }
 
-/* ============================================================
-   CARRITO: BOTÓN FLOTANTE
-   ============================================================ */
-.btn-carrito-flotante {
-    position: fixed;
-    bottom: 28px;
-    right: 28px;
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #857059, #3f3428);
-    border: 3px solid #ECC998;
-    color: #ECC998;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 1500;
-    box-shadow: 0 6px 24px rgba(0,0,0,0.35), 0 0 0 0 rgba(236,201,152,0.4);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.btn-carrito-flotante:hover {
-    transform: scale(1.1);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.45), 0 0 0 6px rgba(236,201,152,0.2);
-}
-.btn-carrito-flotante svg {
-    width: 26px;
-    height: 26px;
-    stroke: #ECC998;
-}
-.btn-carrito-flotante .badge-flotante {
-    position: absolute;
-    top: -4px;
-    right: -4px;
-    background: linear-gradient(135deg, #ECC998, #ffc107);
-    color: #3f3428;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 11px;
-    font-weight: 800;
-    border: 2px solid #3f3428;
-    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-.btn-carrito-flotante .badge-flotante.pulse {
-    animation: badgePulse 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-.btn-carrito-flotante .subtotal-flotante {
-    font-size: 8px;
-    font-weight: 700;
-    color: #ECC998;
-    margin-top: 1px;
-    max-width: 60px;
-    text-align: center;
-    line-height: 1.1;
-    letter-spacing: 0.3px;
-}
-.btn-carrito-flotante.oculto {
-    transform: scale(0);
-    pointer-events: none;
-}
-@media (max-width: 576px) {
-    .btn-carrito-flotante { bottom: 18px; right: 18px; width: 56px; height: 56px; }
-    .btn-carrito-flotante svg { width: 22px; height: 22px; }
-    .btn-carrito-flotante .subtotal-flotante { font-size: 7px; }
-}
-
-/* ============================================================
-   CARRITO: TOAST NOTIFICACIÓN
-   ============================================================ */
+/* CARRITO: TOAST NOTIFICACIÓN */
 .toast-carrito {
     position: fixed;
     bottom: 100px;
@@ -4264,4 +4255,78 @@ p, .lead, .introduccion-historia, .footer-text, .info-store-texto,
 }
 @media (max-width: 480px) {
     .leyenda-campos { margin-bottom: 10px; }
+}
+
+/* ============================================================
+   CARRITO: BOTÓN FLOTANTE (versión definitiva fuera del menú)
+   ============================================================ */
+.carrito-flotante-wrap {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9999;
+}
+
+.carrito-flotante-btn {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #857059, #3f3428);
+    border: 3px solid #ECC998;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35), 0 0 0 0 rgba(236, 201, 152, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 10;
+    padding: 0;
+}
+.carrito-flotante-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45), 0 0 0 6px rgba(236, 201, 152, 0.2);
+}
+.carrito-flotante-btn svg.icon-cart {
+    display: block;
+    pointer-events: none;
+}
+.carrito-flotante-btn .count-products {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    z-index: 11;
+}
+
+/* El panel abre hacia arriba desde el botón (vence los !important previos) */
+.carrito-flotante-wrap .container-cart-products {
+    position: absolute !important;
+    top: auto !important;
+    bottom: 82px !important;
+    right: 0 !important;
+    left: auto !important;
+    width: 360px !important;
+    max-width: calc(100vw - 124px) !important;
+    z-index: 9999 !important;
+}
+
+@media (max-width: 576px) {
+    .carrito-flotante-wrap {
+        bottom: 18px;
+        right: 18px;
+    }
+    .carrito-flotante-btn {
+        width: 56px;
+        height: 56px;
+    }
+    .carrito-flotante-wrap .container-cart-products {
+        position: fixed !important;
+        bottom: 84px !important;
+        right: 16px !important;
+        left: 16px !important;
+        top: auto !important;
+        width: auto !important;
+        max-width: none !important;
+        max-height: 70vh !important;
+    }
 }

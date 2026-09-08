@@ -57,7 +57,7 @@ A continuación, el papel de cada pantalla desde la visión **funcional**: qué 
 | Aspecto | Descripción |
 |---|---|
 | **Función para el cliente** | **Explorar y elegir calzado**: ver el catálogo de cada marca, ampliar cada producto (vista rápida con tallas), agregar al carrito y gestionar su pedido. |
-| **Propósito** | Vender el calzado de la marca: mostrar productos con badges (Más vendido / Nuevo), permitir seleccionar talla y cantidad, y llevar el control del carrito en pantalla. |
+| **Propósito** | Vender el calzado de la marca: mostrar productos con badges (Más vendido / Nuevo), permitir seleccionar talla y cantidad, y llevar el control del carrito en pantalla. Cada título de marca incluye una **descripción motivacional** y una **franja con las 5 marcas** para navegar rápido entre ellas. |
 | **Información que maneja** | Datos del **producto** (nombre, marca, precio, talla, color) y del **cliente** vía registro obligatorio previo (nombre, cédula, teléfono) para poder su compra. |
 
 ### 📄 `shopping-cart.html` — Carrito y resumen del pedido
@@ -90,6 +90,9 @@ A continuación, el papel de cada pantalla desde la visión **funcional**: qué 
 - Hoja de estilos global compartida (header, footer, tarjetas, modales, botón volver-arriba).
 - **Estética del negocio**: paleta café + dorado, tipografía Poppins, sello de confianza y sección garantía.
 - **Estados visuales de producto**: badges "Más vendido" (dorado) / "Nuevo" (azul) e indicador horario animado.
+- **Menú mejorado**: logo más grande con brillo dorado, marca en fuente serif elegante, enlaces más legibles, página activa como pastilla dorada y hamburguesa visible en móvil.
+- **Títulos de marca** con efecto dorado metalizado y descripción motivacional centrada; **logos con marco elegante** (medallón dorado, destello al pasar el mouse) y **franja de marcas** navegable.
+- **Carrusel de marcas** de la portada rediseñado: medallones dorados con nombre de cada marca, fondo degradado café/dorado premium y logo a color.
 
 ### ⚙️ Lógica del navegador (JavaScript)
 - **`js/main.js`**: comportamiento global (menú, volver-arriba) y el **muro de Términos y Condiciones** que el cliente debe aceptar antes de usar el sitio.
@@ -159,6 +162,8 @@ Tablas principales del sistema y la información que almacenan:
 
 **🛒 Carrito de compras**
 - ✅ Carrito que se guarda en el navegador (`localStorage`) mientras el cliente arma su pedido.
+- ✅ Botón **flotante** del carrito fuera del menú (esquina inferior derecha): el panel abre hacia arriba, con badge contador dorado.
+- ✅ Métodos de pago como **tarjetas visuales** (Nequi, Daviplata y Contraentrega) con selección y check; el campo pide **"INGRESA EL NÚMERO DE CUENTA"**.
 - ✅ Carrito mejorado: logo, miniaturas, layout horizontal, scroll, borde dorado por item.
 - ✅ Botón "Seguir Comprando", badge dorado pulse, flash en icono y toast de confirmación.
 - ✅ El checkout envía el pedido con el cliente vinculado al **registro en BD**.
@@ -183,7 +188,11 @@ Tablas principales del sistema y la información que almacenan:
 
 **🎨 Transversales** (el diseño/estilo que acompaña todo el proceso)
 - ✅ Estética STORE DANY (paleta café + dorado, tipografía Poppins, fondo crema arena) en todo el sitio.
-- ✅ Sello de confianza con 4 badges en index, catálogo y marcas.
+- ✅ Menú modernizado: logo grande con brillo, título en serif elegante, enlaces legibles, página activa en pastilla dorada y hamburguesa bien visible en móvil.
+- ✅ Títulos de marca con **efecto dorado metalizado** + descripción motivacional centrada bajo cada título.
+- ✅ Logos de marca con **marco elegante, animación de destello** y **franja de las 5 marcas** de navegación rápida en cada página.
+- ✅ **Carrusel de marcas** en la portada con medallones dorados, logos a color y fondo degradado premium.
+- ✅ Sello de confianza con 4 badges únicamente en el **index** (retirado del catálogo y de las páginas de marca).
 - ✅ Sección Garantía y Cambios (daño de fábrica, 1 mes, cambio de producto).
 - ✅ Stepper de progreso Registro → Carrito → Pago → Confirmación en todo el flujo.
 - ✅ Muro de Términos y Condiciones con sellos de seguridad y aceptación obligatoria.
@@ -221,5 +230,11 @@ Registro de las sesiones de desarrollo y las fechas reales en que se trabajó el
 | 02 sep 2026 | Actualización del README | Documentación actualizada (muro de términos, flujo de cliente, bitácora de trabajo). | ✅ Completado |
 | 02 sep 2026 | Lazy loading de imágenes | Se agregó `loading="lazy"` a las 45 imágenes de producto del catálogo (9 por cada una de las 5 marcas) para mejorar la carga inicial. | ✅ Completado |
 | 02 sep 2026 | Stepper: pasos 2 y 3 automáticos | El paso 2 (Carrito) se marca completado al añadir ≥1 producto, y el paso 3 (Pago) al seleccionar método de pago y contar con la cuenta (Nequi/Daviplata) o solo el método (contra entrega). | ✅ Completado |
+| 07 sep 2026 | Carrito flotante y botón fuera del menú | El carrito deja el menú y se convierte en **botón flotante** (esquina inferior derecha) que abre el panel hacia arriba; se reconstruyó el bloque del carrito en las 5 páginas de marca y quedó el badge contador sobre el botón. | ✅ Completado |
+| 07 sep 2026 | Campo de cuenta renombrado | Se cambia la petición de "celular" por **"INGRESA EL NÚMERO DE CUENTA"** en el campo de pago digital (HTML y JS de las 5 marcas). | ✅ Completado |
+| 07 sep 2026 | Menú modernizado | Logo más grande con brillo dorado, título en fuente serif elegante, enlaces más grandes y legibles, página activa en pastilla dorada, CHAT ONLINE en cápsula y hamburguesa bien visible en móvil (con dropdown más claro). | ✅ Completado |
+| 07 sep 2026 | Títulos, logos y carrusel de marcas | Título de cada marca con **efecto dorado metalizado**; descripción motivacional centrada bajo cada título; logos con **marco elegante y destello** al pasar el mouse; **franja de las 5 marcas** navegable en cada página; **carrusel de portada** rediseñado con medallones dorados, logos a color y fondo degradado premium (sin enlaces). | ✅ Completado |
+| 07 sep 2026 | Sello de confianza retirado | Los 4 badges "Pago seguro / Envío confiable / Productos originales / Garantía" se eliminan de las **5 páginas de marca** y del **catálogo**; se conservan únicamente en el **index**. | ✅ Completado |
+| 07 sep 2026 | Actualización del README | Documentación puesta al día con el carrito flotante, el menú, los títulos/logos y el carrusel de marcas, además del sello de confianza. | ✅ Completado |
 
-*Última actualización: 02 de septiembre de 2026.*
+*Última actualización: 07 de septiembre de 2026.*

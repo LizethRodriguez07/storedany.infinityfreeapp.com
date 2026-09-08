@@ -188,7 +188,7 @@
         var pista = document.createElement('div');
         pista.className = 'barra-anuncio-pista';
 
-        var texto = '🚚 ENVÍOS GRATIS A TODA COLOMBIA &nbsp;✦&nbsp; ¡GRACIAS POR CONFIAR EN NOSOTROS! &nbsp;✦&nbsp; ';
+        var texto = 'Desde el corazón de Santander, te damos la bienvenida a STORE DANY 🚚 Envíos gratis a toda Colombia &nbsp;✦&nbsp; Gracias por confiar en nosotros &nbsp;✦&nbsp; ';
         pista.innerHTML = '<span class="barra-anuncio-texto">' + texto.repeat(6) + '</span>';
 
         barra.appendChild(pista);

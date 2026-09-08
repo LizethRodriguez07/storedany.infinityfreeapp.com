@@ -61,31 +61,38 @@
                 <li class="nav-item"> 
                     <a class="nav-link text-chat-online" href="contactar.html">CHAT ONLINE</a>
                                
-                  <!-- Carrito de Compras -->
-<li class="nav-item ml-lg-3 mt-2 mt-lg-0" style="position: relative; list-style: none;">
-    <div class="container-icon" style="position: relative; display: inline-block; vertical-align: middle;">
+                  
+
+            </ul>
+        </div>
+    </nav>
+
+<!-- Carrito flotante -->
+<div class="carrito-flotante-wrap">
+    <button type="button" class="carrito-flotante-btn" id="cart-icon" aria-label="Abrir carrito de compras">
         
         <!-- 🛒 ICONO DEL BOLSO -->
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-             class="icon-cart" id="cart-icon" style="cursor: pointer; stroke: #ECC998; width: 36px; height: 36px; display: block;">
+             class="icon-cart" style="stroke: #ECC998; width: 34px; height: 34px; display: block; pointer-events: none;">
             <path d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
         </svg>
-        <span class="label-carrito-nav">CARRITO</span>
                 
         <!-- ⚪ BURBUJA CONTADORA SOBRE EL BOLSO -->
         <div class="count-products">
             <span id="contador-productos">0</span>
         </div>
+    </button>
         
         <!-- 📦 VENTANA DESPLEGABLE CARRITO -->
-        <div class="container-cart-products hidden-cart" id="cart-container" style="position: absolute; top: 48px; right: 0; width: 340px; background-color: #ffffff; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.25); padding: 18px; z-index: 99999; border: 1px solid #ECC998; text-align: left; font-family: 'Segoe UI', Roboto, sans-serif; box-sizing: border-box; display: block; max-height: 85vh; overflow-y: auto;">
+        <div class="container-cart-products hidden-cart" id="cart-container" style="position: absolute; bottom: 82px; right: 0; top: auto; width: 340px; background-color: #ffffff; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.25); padding: 18px; z-index: 99999; border: 1px solid #ECC998; text-align: left; font-family: 'Segoe UI', Roboto, sans-serif; box-sizing: border-box; display: block; max-height: 85vh; overflow-y: auto;">
             
             <!-- Encabezado -->
             <div class="cart-header-logo">
                 <img src="logotipo.png" alt="Store Dany">
                 <span>STORE DANY</span>
             </div>
-            <div class="cart-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f5ede2; padding-bottom: 10px; margin-bottom: 12px;">
+
+<div class="cart-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f5ede2; padding-bottom: 10px; margin-bottom: 12px;">
                 <h5 style="margin: 0; font-weight: 700; color: #4a3b32; font-size: 15px; letter-spacing: 0.5px;">Tu Carrito de Compras</h5>
                 <button id="cerrar-carrito" type="button" style="background: none; border: none; font-size: 24px; cursor: pointer; color: #857059; padding: 0 5px;">&times;</button>
             </div>
@@ -114,12 +121,39 @@
             <!-- PASO 1: Selección del Método de Pago -->
             <div class="medio-pago-seccion" style="margin-bottom: 12px; clear: both;">
                 <label for="metodo-pago" style="font-weight: 700; font-size: 11px; color: #857059; display: block; margin-bottom: 5px; letter-spacing: 0.3px;">💰 MÉTODO DE PAGO SEGURO:</label>
-                <select id="metodo-pago" class="select-custom" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ECC998; font-weight: 600; font-size: 13px; color: #4a3b32; background-color: #ffffff; cursor: pointer; display: block;">
-                    <option value="" disabled selected>Selecciona cómo deseas pagar...</option>
-                    <option value="Nequi">📱 Nequi (Transferencia Directa)</option>
-                    <option value="Daviplata">💬 Daviplata (Transferencia Directa)</option>
-                    <option value="Contraentrega">🚚 Pago Contraentrega (Pagas al recibir)</option>
+                <select id="metodo-pago" class="select-custom" style="display: none; width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ECC998; font-weight: 600; font-size: 13px; color: #4a3b32; background-color: #ffffff; cursor: pointer;">
+                    <option value="" disabled selected>Selecciona como deseas pagar...</option>
+                    <option value="Nequi">Nequi (Transferencia Directa)</option>
+                    <option value="Daviplata">Daviplata (Transferencia Directa)</option>
+                    <option value="Contraentrega">Pago Contraentrega (Pagas al recibir)</option>
                 </select>
+
+                <div class="opciones-pago" role="radiogroup" aria-label="Metodo de pago">
+                    <button type="button" class="pago-opcion" data-metodo="Nequi" role="radio" aria-checked="false">
+                        <span class="pago-icono" aria-hidden="true">📱</span>
+                        <span class="pago-texto">
+                            <span class="pago-titulo">Nequi</span>
+                            <span class="pago-sub">Transferencia directa</span>
+                        </span>
+                        <span class="pago-check" aria-hidden="true">✔</span>
+                    </button>
+                    <button type="button" class="pago-opcion" data-metodo="Daviplata" role="radio" aria-checked="false">
+                        <span class="pago-icono" aria-hidden="true">💬</span>
+                        <span class="pago-texto">
+                            <span class="pago-titulo">Daviplata</span>
+                            <span class="pago-sub">Transferencia directa</span>
+                        </span>
+                        <span class="pago-check" aria-hidden="true">✔</span>
+                    </button>
+                    <button type="button" class="pago-opcion" data-metodo="Contraentrega" role="radio" aria-checked="false">
+                        <span class="pago-icono" aria-hidden="true">🚚</span>
+                        <span class="pago-texto">
+                            <span class="pago-titulo">Contraentrega</span>
+                            <span class="pago-sub">Pagas al recibir</span>
+                        </span>
+                        <span class="pago-check" aria-hidden="true">✔</span>
+                    </button>
+                </div>
             </div>
 
             <!-- PASO 2: Confirmación visual del Monto (Aparece al seleccionar Nequi/Daviplata/Contraentrega) -->
@@ -130,7 +164,7 @@
 
             <!-- PASO 3: Campo donde el cliente ingresa el valor o número desde el que pagará -->
             <div id="contenedor-cuenta" style="display: none; margin-bottom: 12px; clear: both; background-color: #fdfbf7; border: 1px dashed #ECC998; padding: 10px; border-radius: 6px;">
-                <label id="label-cuenta" for="numero-cuenta" style="font-weight: 700; font-size: 11px; color: #857059; display: block; margin-bottom: 5px; letter-spacing: 0.3px;">📱 INGRESA TU NÚMERO DE CUENTA / CELULAR:</label>
+                <label id="label-cuenta" for="numero-cuenta" style="font-weight: 700; font-size: 11px; color: #857059; display: block; margin-bottom: 5px; letter-spacing: 0.3px;">📱 INGRESA EL NÚMERO DE CUENTA:</label>
                 <input type="tel" id="numero-cuenta" placeholder="Ej: 300 123 4567" maxlength="10" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ECC998; font-weight: 600; font-size: 13px; color: #4a3b32; box-sizing: border-box; outline: none;">
             </div>
 
@@ -139,13 +173,6 @@
                 <span id="titulo-destino" style="font-size: 11px; font-weight: 700; color: #155724; display: block;">TRANSFERIR A LA CUENTA OFICIAL:</span>
                 <strong id="numero-destino" style="font-size: 16px; color: #28a745; display: block; margin: 4px 0;">300 123 4567</strong>
                 <span style="font-size: 10px; color: #155724; display: block;">Realiza la transferencia para confirmar tu pedido.</span>
-            </div>
-
-            <!-- Badges informativos -->
-            <div class="payment-badges" style="display: flex; justify-content: space-around; align-items: center; background: #fdfdfd; padding: 8px; border-radius: 6px; border: 1px solid #f0f0f0; margin-bottom: 15px; font-size: 12px; font-weight: bold; color: #4a3b32; clear: both;">
-                <span>📱 Nequi</span>
-                <span>💬 Daviplata</span>
-                <span class="badge-text" style="color: #28a745;">🚚 Envío Seguro</span>
             </div>
 
             <!-- Botones de Acción -->
@@ -167,26 +194,40 @@
             </p>
         </div>
     </div>
-</li>
-            </ul>
-        </div>
-    </nav>
 
     <main class="container content-wrapper" style="margin-top: 20px; margin-bottom: 60px;">
         <div class="text-center mb-5 animate-fade-in">
             <h2 class="titulo-marcas d-inline-flex align-items-center justify-content-center">
                 CALZADO PUMA
-                <img src="Imagenes Puma/logo puma.jpg" alt="Logo Puma" class="ml-3 rounded-circle"
-                     style="width: 50px; height: 50px; object-fit: contain; border: 1px solid #857059;">
+                <span class="logo-marca logo-marca-puma ml-3" aria-label="Logo Puma">
+                    <img src="Imagenes Puma/logo puma.jpg" alt="Logo Puma">
+                </span>
             </h2>
+            <p class="descripcion-marca">🐆 Siempre un paso adelante.<br>Energía, velocidad y estilo que te hacen imparable en el día a día.</p>
         </div>
 
-        <!-- 🛡️ SELLO DE CONFIANZA -->
-        <div class="barra-confianza mb-4" data-reveal>
-            <span class="sello-confianza"><span class="sello-icono">🔒</span> Pago seguro</span>
-            <span class="sello-confianza"><span class="sello-icono">🚚</span> Envío confiable</span>
-            <span class="sello-confianza"><span class="sello-icono">✅</span> Productos originales</span>
-            <span class="sello-confianza"><span class="sello-icono">🛠️</span> Garantía de fábrica</span>
+        <!-- 🏷️ FRANJA DE MARCAS -->
+        <div class="franja-marcas mb-4" data-reveal>
+            <a class="franja-marca" href="nike.html" aria-label="Nike">
+                <span class="franja-marca-logo logo-marca-nike"><img src="Imagenes Nike/Logo Nike.jpg" alt="Logo Nike"></span>
+                <span class="franja-marca-nombre">NIKE</span>
+            </a>
+            <a class="franja-marca" href="adidas.html" aria-label="Adidas">
+                <span class="franja-marca-logo logo-marca-adidas"><img src="Imagenes Adidas/logo adidas.jpg" alt="Logo Adidas"></span>
+                <span class="franja-marca-nombre">ADIDAS</span>
+            </a>
+            <a class="franja-marca activa" href="puma.html" aria-label="Puma">
+                <span class="franja-marca-logo logo-marca-puma"><img src="Imagenes Puma/logo puma.jpg" alt="Logo Puma"></span>
+                <span class="franja-marca-nombre">PUMA</span>
+            </a>
+            <a class="franja-marca" href="new-balance.html" aria-label="New Balance">
+                <span class="franja-marca-logo logo-marca-newbalance"><img src="Imagenes New Balance/Logo New Balance.png" alt="Logo New Balance"></span>
+                <span class="franja-marca-nombre">NEW&nbsp;BALANCE</span>
+            </a>
+            <a class="franja-marca" href="reebok.html" aria-label="Reebok">
+                <span class="franja-marca-logo logo-marca-reebok"><img src="Imagenes Resbook/Logo Resbook.jpg" alt="Logo Reebok"></span>
+                <span class="franja-marca-nombre">REEBOK</span>
+            </a>
         </div>
 
         <!-- 📊 STEPPER DE PROGRESO -->
@@ -210,7 +251,7 @@
                     
                     <div class="inf-product">
                         <h3><strong>PUMA PARK LIFESTYLE</strong></h3>
-                        <p>¿Buscas felicidad? Empieza por tus zapatos.</p>
+                        <p>Serraje y suela de goma; estilo urbano con buen agarre.</p>
                         
                         <div class="mb-2">
 <label class="talla-etiqueta">TALLA</label>
@@ -243,7 +284,7 @@
                     
                     <div class="inf-product">
                         <h3><strong>PUMA RS-FAST</strong></h3>
-                        <p>Define tu camino. Viste tus sueños.</p>
+                        <p>Suela con tecnología RS; ligero y con respuesta rápida.</p>
                         
                         <div class="mb-2">
 <label class="talla-etiqueta">TALLA</label>
@@ -275,7 +316,7 @@
                     
                     <div class="inf-product">
                         <h3><strong>PUMA CAVEN 2.0</strong></h3>
-                        <p>El complemento perfecto para tu outfit y tu actitud.</p>
+                        <p>Cuero y gamuza combinados; diseño casual y resistente.</p>
                         
                         <div class="mb-2">
 <label class="talla-etiqueta">TALLA</label>
@@ -307,7 +348,7 @@
                     
                     <div class="inf-product">
                         <h3><strong>PUMA ONE PIECE</strong></h3>
-                        <p>Estilo que camina contigo</p>
+                        <p>Acabado minimalista y materiales suaves; comodidad diaria.</p>
                         
                         <div class="mb-2">
 <label class="talla-etiqueta">TALLA</label>
@@ -339,7 +380,7 @@
                     
                     <div class="inf-product">
                         <h3><strong>TENIS PUMA RALPH SAMPSON LOW</strong></h3>
-                        <p>Comodidad con carácter.</p>
+                        <p>Suela plana y material resistente; durabilidad para la ciudad.</p>
                         
                         <div class="mb-2">
 <label class="talla-etiqueta">TALLA</label>
@@ -371,7 +412,7 @@
                     
                     <div class="inf-product">
                         <h3><strong>TENIS PUMA PARK LIFESTYLE SD</strong></h3>
-                        <p>Tu marca en cada paso.</p>
+                        <p>Perfil clásico y suela de goma; agarre y confort.</p>
                         
                         <div class="mb-2">
 <label class="talla-etiqueta">TALLA</label>
@@ -403,7 +444,7 @@
                     
                     <div class="inf-product">
                         <form><h3><strong>PUMA BMW</strong></h3>
-                            <p><em>Un par de zapatos puede cambiar tu vida, si no, pregúntale a "STORE DANY".</em></p>
+                            <p>Edición especial BMW con detalles premium; materiales de alta calidad.</p>
                             
                             <div class="mb-2">
 <label class="talla-etiqueta">TALLA</label>
@@ -435,7 +476,7 @@
                     
                     <div class="inf-product">
                         <h3><strong>PUMA X RAY 2</strong></h3>
-                        <p>"Tus movimientos están determinados por tus zapatos; camina con confianza."</p>
+                        <p>Suela con tecnología X-Ray; amortiguación ligera para cada paso.</p>
                         
                         <div class="mb-2">
 <label class="talla-etiqueta">TALLA</label>
@@ -468,7 +509,7 @@
                     
                     <div class="inf-product">
                         <h3><strong>PUMA FUTURE RIDER PLAY ON</strong></h3>
-                        <p>"Calzado que refleja tu estilo y brilla con tu personalidad"</p>
+                        <p>Suela espumada ligera; confort flexible en cada movimiento.</p>
                         
                         <div class="mb-2">
 <label class="talla-etiqueta">TALLA</label>

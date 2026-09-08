@@ -83,7 +83,7 @@ if (selectMetodoPago) {
             if (contenedorCuenta) {
                 contenedorCuenta.style.display = 'block';
                 if (labelCuenta) {
-                    labelCuenta.innerText = `📱 INGRESA TU NÚMERO DE CELULAR DE (${metodo.toUpperCase()}):`;
+                    labelCuenta.innerText = `📱 INGRESA EL NÚMERO DE CUENTA DE (${metodo.toUpperCase()}):`;
                 }
             }
 
@@ -131,6 +131,39 @@ if (inputNumeroCuenta) {
     });
 }
 
+// ==========================================
+// 3.1 TARJETAS VISUALES DE METODO DE PAGO
+// ==========================================
+// Delegar el click sobre las tarjetas de metodo de pago
+document.addEventListener('click', (e) => {
+    const tarjeta = e.target.closest('.pago-opcion');
+    if (!tarjeta) return;
+    const metodo = tarjeta.dataset.metodo;
+    if (selectMetodoPago) {
+        selectMetodoPago.value = metodo;
+        selectMetodoPago.dispatchEvent(new Event('change'));
+    }
+    document.querySelectorAll('.pago-opcion').forEach(btn => {
+        const activa = btn === tarjeta;
+        btn.classList.toggle('pago-opcion-activa', activa);
+        if (btn.getAttribute('role') === 'radio') {
+            btn.setAttribute('aria-checked', activa ? 'true' : 'false');
+        }
+    });
+});
+
+// Sincronizar la clase activa segun el valor del select oculto
+function sincronizarTarjetaPago() {
+    const metodo = selectMetodoPago ? selectMetodoPago.value : '';
+    document.querySelectorAll('.pago-opcion').forEach(btn => {
+        const activa = btn.dataset.metodo === metodo;
+        btn.classList.toggle('pago-opcion-activa', activa);
+        if (btn.getAttribute('role') === 'radio') {
+            btn.setAttribute('aria-checked', activa ? 'true' : 'false');
+        }
+    });
+}
+if (selectMetodoPago) sincronizarTarjetaPago();
 
 // ==========================================
 // 4. AGREGAR PRODUCTOS DESDE EL CATÁLOGO
@@ -303,6 +336,7 @@ if (btnVaciar) {
         if (contenedorCuenta) contenedorCuenta.style.display = 'none';
         if (bannerEstadoPago) bannerEstadoPago.style.display = 'none';
         if (selectMetodoPago) selectMetodoPago.value = "";
+        if (typeof sincronizarTarjetaPago === 'function') sincronizarTarjetaPago();
         if (inputNumeroCuenta) inputNumeroCuenta.value = "";
         
         actualizarCarritoHTML();
