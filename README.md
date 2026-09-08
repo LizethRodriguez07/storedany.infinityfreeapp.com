@@ -93,6 +93,12 @@ A continuación, el papel de cada pantalla desde la visión **funcional**: qué 
 - **Menú mejorado**: logo más grande con brillo dorado, marca en fuente serif elegante, enlaces más legibles, página activa como pastilla dorada y hamburguesa visible en móvil.
 - **Títulos de marca** con efecto dorado metalizado y descripción motivacional centrada; **logos con marco elegante** (medallón dorado, destello al pasar el mouse) y **franja de marcas** navegable.
 - **Carrusel de marcas** de la portada rediseñado: medallones dorados con nombre de cada marca, fondo degradado café/dorado premium y logo a color.
+- **Precio elegante con borde dorado**: etiqueta de precio en crema con borde 2px dorado y texto café oscuro (tarjetas y modal), reemplazando los fondos oscuros por marca.
+- **Info de color rediseñada**: fuente Oswald, sin fondo ni estilo itálica, con **línea dorada decorativa** de 64px bajo el texto (tarjeta y modal).
+- **Tipografía de título de producto**: Oswald (peso 500, mayúsculas) en lugar de la fuente anterior.
+- **Badges en el modal "Ver detalle" únicamente**: los badges "Más vendido / Nuevo" se ocultan en las tarjetas del catálogo y solo aparecen sobre la foto dentro del modal.
+- **Modal con tono de marca**: el recuadro "Ver detalle" toma la tonalidad de cada marca (borde superior, degradado, precio, título, botón y acordeón).
+- **CSS depurado**: eliminadas las reglas en desuso (tarjeta de asesora, sección "en cifras", precios con descuento, estilos de avatar del registro, entre otros) para mantener la hoja de estilos limpia.
 
 ### ⚙️ Lógica del navegador (JavaScript)
 - **`js/main.js`**: comportamiento global (menú, volver-arriba) y el **muro de Términos y Condiciones** que el cliente debe aceptar antes de usar el sitio.
@@ -157,7 +163,9 @@ Tablas principales del sistema y la información que almacenan:
 **🏬 Catálogo y productos**
 - ✅ Catálogo de 5 marcas con vista rápida y tallas.
 - ✅ Diferenciación visual por marca (colores, bordes, botones, badges).
-- ✅ Badges "Más vendido" / "Nuevo" en productos destacados.
+- ✅ Badges "Más vendido" / "Nuevo" visibles **dentro del modal "Ver detalle"** (ocultos en las tarjetas del catálogo).
+- ✅ Precio con **borde dorado elegante** y **línea dorada** bajo la info de color; título de producto en tipografía Oswald.
+- ✅ Modal "Ver detalle" con **tono visual propio por marca**.
 - ✅ Cada producto está registrado en la tabla `producto` → **conlleva a la BD**.
 
 **🛒 Carrito de compras**
@@ -174,6 +182,8 @@ Tablas principales del sistema y la información que almacenan:
 - ✅ Formulario de contacto simplificado (nombre, apellidos, tipo de consulta, mensaje).
 - ✅ Indicador dinámico "Abierto ahora" / "Cerrado" (hora Colombia).
 - ✅ Los datos del registro y el contacto **se guardan en la BD** (tablas `clientes` y `chatonline`).
+- ✅ Recuadro de registro en el index ("¡Registra tus datos! 👤") con 3 pasos, mano 👉 animada y botón verde con detalle dorado hacia el ingreso de datos.
+- ✅ Asesora online integrada en el panel de **Chat Online** (compromisos y caja de confianza) en lugar de estar en el catálogo.
 
 **💳 Backend y recibo** (todo lo que el cliente decide aquí **se registra en la BD**)
 - ✅ Checkout transaccional: el pedido se guarda como **pedido → pago → detalle** (tablas `pedidos`, `pagos`, `detallpago`).
@@ -210,10 +220,13 @@ Pendientes enfocados en **diseño y presentación** de las pantallas existentes 
 - Modo oscuro que se active con un interruptor en el header y guarde la preferencia del usuario.
 
 **3. Mejoras visuales en el panel admin**
-- Afinar el diseño del dashboard (gráfico de ventas y tarjetas KPIs) con la paleta café + dorado para una vista más profesional.
+- ✅ Tarjetas KPI (Ventas de hoy, Ventas del mes y Pedidos totales) con **icono en cápsula dorada**, degradado superior dorado y **animación de entrada escalonada**.
+- ✅ Buscador de guías con **botón de limpiar** (✖) y **contador de guías** en el título de la sección ("X de Y" al filtrar).
+- ✅ Método de pago visible en cada guía (📱 Nequi / 💬 Daviplata / 🚚 Contraentrega), guardado en la columna `metodo` de la tabla `pagos`.
 
 **4. Pulido visual general**
-- Revisión fina de espaciados, sombras y animaciones para que la experiencia en todas las páginas sea más elegante y consistente.
+- ✅ Avanzado: precio con borde dorado, info de color con línea dorada, título Oswald, badge solo en modal, tono de marca en el modal, recuadro de registro en el index, asesora en Chat Online, **depuración del CSS** y **panel admin alineado a la paleta de la marca** (fondo crema, avatar dorado, hovers dorados, botones con borde dorado).
+- ⏳ Queda pendiente el repaso fino de espaciados, sombras y animaciones en el resto de las páginas (portada, catálogo y marcas).
 
 ---
 
@@ -236,5 +249,12 @@ Registro de las sesiones de desarrollo y las fechas reales en que se trabajó el
 | 07 sep 2026 | Títulos, logos y carrusel de marcas | Título de cada marca con **efecto dorado metalizado**; descripción motivacional centrada bajo cada título; logos con **marco elegante y destello** al pasar el mouse; **franja de las 5 marcas** navegable en cada página; **carrusel de portada** rediseñado con medallones dorados, logos a color y fondo degradado premium (sin enlaces). | ✅ Completado |
 | 07 sep 2026 | Sello de confianza retirado | Los 4 badges "Pago seguro / Envío confiable / Productos originales / Garantía" se eliminan de las **5 páginas de marca** y del **catálogo**; se conservan únicamente en el **index**. | ✅ Completado |
 | 07 sep 2026 | Actualización del README | Documentación puesta al día con el carrito flotante, el menú, los títulos/logos y el carrusel de marcas, además del sello de confianza. | ✅ Completado |
+| 08 sep 2026 | Pulido visual: precios, colores, badges y modal | Precio con **borde dorado elegante** en tarjetas y modal; **info de color** rediseñada (Oswald + línea dorada); **título de producto** en Oswald 500; badges "Más vendido / Nuevo" movidos **solo al modal** "Ver detalle"; tono visual **por marca** dentro del modal. | ✅ Completado |
+| 08 sep 2026 | Pulido visual: index, catálogo y chat | Recuadro de registro del index rediseñado (título con 👤, 3 pasos, mano 👉, botón verde con detalle dorado); hero del catálogo con "Sobre STORE DANY" + bloque de confianza unificado (mini-beneficios + cifras); asesora online integrada en **Chat Online**; títulos de navegador unificados en todo el sitio. | ✅ Completado |
+| 08 sep 2026 | Depuración técnica | **Eliminadas las reglas CSS en desuso** (tarjeta de asesora, sección "en cifras", precios con descuento, estilos de avatar del registro) y corregido el bug de badges en el modal de `nike.js`. | ✅ Completado |
+| 08 sep 2026 | Panel admin: pulido de KPIs | Tarjetas KPI (Ventas de hoy, del mes y pedidos) rediseñadas con **icono en cápsula dorada** y **animación de entrada escalonada**; grid de 3 columnas recuperado. | ✅ Completado |
+| 08 sep 2026 | Panel admin: buscador y contador | Buscador de guías con **botón de limpiar** (✖ visible al escribir) y **contador de guías** en el título de la sección ("X de Y" al filtrar, total sin filtro). | ✅ Completado |
+| 08 sep 2026 | Panel admin: colores de marca | Fondo al crema del sitio `#F7F3EA`, avatar del cliente en **degradado dorado**, tarjetas KPI con borde superior dorado, hovers de filas en dorado suave y botones con **borde dorado** al pasar el mouse. | ✅ Completado |
+| 08 sep 2026 | Método de pago en el panel | Se agrega la columna `metodo` a la tabla `pagos` (ALTER en InfinityFree); `procesar_compra.php` guarda el método elegido (Nequi/Daviplata/Contraentrega) y el admin lo muestra con su icono (📱/💬/🚚) en cada guía. | ✅ Completado |
 
-*Última actualización: 07 de septiembre de 2026.*
+*Última actualización: 08 de septiembre de 2026.*

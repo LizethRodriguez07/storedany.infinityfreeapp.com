@@ -423,19 +423,105 @@ if (btnFinalizar) {
 // ==========================================
 actualizarCarritoHTML();
 
+/* ==========================================
+   DATOS EXTENDIDOS DE CADA PRODUCTO (Adidas)
+   ========================================== */
+const DATOS_PRODUCTO = [
+  {
+    descripcion: "Comodidad para todo el día. Suela flexible que sigue tu paso y material transpirable que mantiene el pie fresco incluso en jornadas largas. Negro y gris oscuro con detalles marrón para un acabado sobrio.",
+    ficha: [["Material","Textil transpirable"],["Suela","Goma flexible"],["Uso","Uso diario"]]
+  },
+  {
+    descripcion: "Acolchado ligero con agarre firme, diseñado para jornadas largas de pie. Su perfil negro con detalles gris claro lo hace elegante y funcional a la vez.",
+    ficha: [["Material","Sintético ligero"],["Suela","Goma con agarre firme"],["Uso","Jornadas largas"]]
+  },
+  {
+    descripcion: "Durabilidad que se nota. Cuero suave con costuras reforzadas que resisten el desgaste cotidiano y mantienen la forma. Un gris versátil que combina con todo.",
+    ficha: [["Material","Cuero suave"],["Suela","Goma de goma"],["Uso","Uso diario"]]
+  },
+  {
+    descripcion: "Camina sin cansancio. Amortiguación media con diseño ergonómico que distribuye el peso del paso. Blanco limpio para lucir siempre impecable.",
+    ficha: [["Material","Sintético suave"],["Suela","EVA con amortiguación media"],["Uso","Casual y caminatas"]]
+  },
+  {
+    descripcion: "Pieza de colección. Edición limitada con materiales premium y un acabado de calidad excepcional en gris oscuro. Para quienes buscan algo exclusivo.",
+    ficha: [["Material","Premium de edición"],["Suela","Goma de alta densidad"],["Uso","Casual exclusivo"]]
+  },
+  {
+    descripcion: "El ícono atemporal. Puntera shell inconfundible y cuero resistente que han marcado generaciones. Recupera la esencia clásica con confort actual.",
+    ficha: [["Material","Cuero resistente"],["Suela","Goma con puntera shell"],["Uso","Casual y urbano"]]
+  },
+  {
+    descripcion: "Suavidad que abraza el pie. Espuma confortable en la suela con soporte confiable para tu día a día. Gris claro limpio y fácil de combinar.",
+    ficha: [["Material","Textil flexible"],["Suela","Espuma confortable"],["Uso","Uso diario"]]
+  },
+  {
+    descripcion: "Tecnología de vanguardia. Mediasuela impresa en 4D que ofrece amortiguación avanzada y retorno de energía para entrenamientos serios.",
+    ficha: [["Material","Malla técnica"],["Suela","Mediasuela 4D"],["Uso","Entrenamiento"]]
+  },
+  {
+    descripcion: "Ligero como una pluma. Materiales ligeros con ajuste anatómico que acompañan cada movimiento. Comodidad garantizada durante todo el día.",
+    ficha: [["Material","Tejido ultraligero"],["Suela","Goma ligera"],["Uso","Uso diario y caminatas"]]
+  }
+];
+
 function abrirVisor(contenedor) {
     const visor = document.getElementById("visorImagen");
     if (!visor) return;
     const card = contenedor.closest(".card-producto");
     if (!card) return;
 
+    const btnAcordeon = document.getElementById("visorAcordeonBtn");
+    if (btnAcordeon && !btnAcordeon.dataset.listo) {
+        btnAcordeon.dataset.listo = "1";
+        btnAcordeon.addEventListener('click', function () {
+            const cuerpo = document.getElementById("visorAcordeonCuerpo");
+            const abierto = cuerpo.classList.toggle('abierto');
+            btnAcordeon.classList.toggle('abierto', abierto);
+            btnAcordeon.querySelector('.vista-rapida-acordeon-icon').textContent = abierto ? '−' : '+';
+        });
+    }
+
     document.getElementById("visorImgElemento").src = card.querySelector(".img-tenis").src;
     document.getElementById("visorTextoElemento").innerText = card.querySelector("h3").innerText;
     document.getElementById("visorPrecioElemento").innerText = card.querySelector(".price-tag").innerText;
     const colorEl = card.querySelector(".color-info");
     document.getElementById("visorColorElemento").innerText = colorEl ? colorEl.innerText : "";
+    const badgeCard = card.querySelector(".badge-producto");
+    const badgeVisor = document.getElementById("visorBadgeElemento");
+    if (badgeVisor) {
+        if (badgeCard) {
+            badgeVisor.className = 'badge-producto vista-rapida-badge ' + (badgeCard.classList.contains('vendido') ? 'vendido' : 'nuevo');
+            badgeVisor.innerHTML = badgeCard.innerHTML;
+            badgeVisor.style.display = '';
+        } else {
+            badgeVisor.style.display = 'none';
+        }
+    }
+
     const marcaEl = document.getElementById("visorMarcaElemento");
     if (marcaEl) marcaEl.innerText = card.dataset.marca || "";
+
+    const indice = Array.prototype.indexOf.call(
+        document.querySelectorAll(".card-producto"), card
+    );
+    const datos = (typeof DATOS_PRODUCTO !== "undefined" && DATOS_PRODUCTO[indice]) ? DATOS_PRODUCTO[indice] : null;
+
+    const descEl = document.getElementById("visorDescElemento");
+    if (descEl) {
+        descEl.style.display = (datos && datos.descripcion) ? "block" : "none";
+        descEl.innerText = (datos && datos.descripcion) ? datos.descripcion : "";
+    }
+
+    const fichaEl = document.getElementById("visorFicha");
+    if (fichaEl && datos && datos.ficha) {
+        fichaEl.innerHTML = datos.ficha.map(fila =>
+            "<div class=\"vista-rapida-fila\">" +
+            "<span class=\"vista-rapida-fila-clave\">" + fila[0] + "</span>" +
+            "<span class=\"vista-rapida-fila-valor\">" + fila[1] + "</span>" +
+            "</div>"
+        ).join("");
+    }
 
     const contTallas = document.getElementById("visorTallas");
     contTallas.innerHTML = "";

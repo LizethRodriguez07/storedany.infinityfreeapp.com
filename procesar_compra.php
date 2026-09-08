@@ -87,12 +87,13 @@ try {
     // Estado dinámico según el método de pago: pago previo = Completado, contra entrega = Pendiente
     $metodoPagoNormalizado = strtolower(trim($metodoPago));
     $estadoPago = (strpos($metodoPagoNormalizado, 'contra') !== false) ? 'Pendiente' : 'Completado';
-    $sqlPago = "INSERT INTO pagos (id_pedido, monto, estado) VALUES (:id_pedido, :monto, :estado)";
+    $sqlPago = "INSERT INTO pagos (id_pedido, monto, estado, metodo) VALUES (:id_pedido, :monto, :estado, :metodo)";
     $stmtPago = $pdo->prepare($sqlPago);
     $stmtPago->execute([
         ':id_pedido' => $idPedido,
         ':monto'     => $montoPagado,
-        ':estado'    => $estadoPago
+        ':estado'    => $estadoPago,
+        ':metodo'    => $metodoPago
     ]);
 
             // C. Tabla detallpago

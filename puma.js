@@ -423,19 +423,105 @@ if (btnFinalizar) {
 // ==========================================
 actualizarCarritoHTML();
 
+/* ==========================================
+   DATOS EXTENDIDOS DE CADA PRODUCTO (Puma)
+   ========================================== */
+const DATOS_PRODUCTO = [
+  {
+    descripcion: "Estilo urbano con fundamento. Serraje cuidada y suela de goma con buen agarre, en un diseño blanco que destaca por su línea limpia con detalles negros y grises.",
+    ficha: [["Material","Serraje y textil"],["Suela","Goma con agarre"],["Uso","Urbano casual"]]
+  },
+  {
+    descripcion: "Respuesta inmediata. Suela con tecnología RS que devuelve energía en cada paso. Ligero y ágil, con un contraste negro y rojo que no pasa desapercibido.",
+    ficha: [["Material","Malla técnica"],["Suela","RS con retorno de energía"],["Uso","Urbano y ligero"]]
+  },
+  {
+    descripcion: "Casual con carácter. Cuero y gamuza combinados con detalles perforados que aportan textura y ventilación. Resistente y elegante al mismo tiempo.",
+    ficha: [["Material","Cuero y gamuza"],["Suela","Goma resistente"],["Uso","Casual diario"]]
+  },
+  {
+    descripcion: "Menos es más. Acabado minimalista en negro con materiales suaves que se adaptan al pie. Comodidad diaria sin estridencias.",
+    ficha: [["Material","Sintético suave"],["Suela","Goma flexible"],["Uso","Uso diario"]]
+  },
+  {
+    descripcion: "Durabilidad para la ciudad. Suela plana y material resistente que aguantan el ritmo urbano. El clásico de cuero blanco que nunca falla.",
+    ficha: [["Material","Cuero blanco"],["Suela","Goma plana"],["Uso","Ciudad y diario"]]
+  },
+  {
+    descripcion: "Perfil clásico renovado. Silueta tradicional con suela de goma que garantiza agarre y confort. Negro con detalles blancos, sobrio y efectivo.",
+    ficha: [["Material","Sintético resistente"],["Suela","Goma duradera"],["Uso","Casual clásico"]]
+  },
+  {
+    descripcion: "Exclusividad automotriz. Edición especial BMW con detalles premium y materiales de alta calidad. Un par para coleccionistas que aman la ingeniería.",
+    ficha: [["Material","Premium exclusivo"],["Suela","Goma de agarre"],["Uso","Colección y urbano"]]
+  },
+  {
+    descripcion: "Ligereza con visión. Suela con tecnología X-Ray que ofrece amortiguación ligera en cada zancada. Blanco, negro y rojo para un look activo.",
+    ficha: [["Material","Malla transpirable"],["Suela","X-Ray ligera"],["Uso","Deportivo casual"]]
+  },
+  {
+    descripcion: "Flexibilidad sin límites. Suela espumada ultraligera que se mueve contigo. Gris, blanco y rojo con energía Play On para acompañar tu ritmo.",
+    ficha: [["Material","Tejido flexible"],["Suela","Espuma ligera"],["Uso","Diario y ligero"]]
+  }
+];
+
 function abrirVisor(contenedor) {
     const visor = document.getElementById("visorImagen");
     if (!visor) return;
     const card = contenedor.closest(".card-producto");
     if (!card) return;
 
+    const btnAcordeon = document.getElementById("visorAcordeonBtn");
+    if (btnAcordeon && !btnAcordeon.dataset.listo) {
+        btnAcordeon.dataset.listo = "1";
+        btnAcordeon.addEventListener('click', function () {
+            const cuerpo = document.getElementById("visorAcordeonCuerpo");
+            const abierto = cuerpo.classList.toggle('abierto');
+            btnAcordeon.classList.toggle('abierto', abierto);
+            btnAcordeon.querySelector('.vista-rapida-acordeon-icon').textContent = abierto ? '−' : '+';
+        });
+    }
+
     document.getElementById("visorImgElemento").src = card.querySelector(".img-tenis").src;
     document.getElementById("visorTextoElemento").innerText = card.querySelector("h3").innerText;
     document.getElementById("visorPrecioElemento").innerText = card.querySelector(".price-tag").innerText;
     const colorEl = card.querySelector(".color-info");
     document.getElementById("visorColorElemento").innerText = colorEl ? colorEl.innerText : "";
+    const badgeCard = card.querySelector(".badge-producto");
+    const badgeVisor = document.getElementById("visorBadgeElemento");
+    if (badgeVisor) {
+        if (badgeCard) {
+            badgeVisor.className = 'badge-producto vista-rapida-badge ' + (badgeCard.classList.contains('vendido') ? 'vendido' : 'nuevo');
+            badgeVisor.innerHTML = badgeCard.innerHTML;
+            badgeVisor.style.display = '';
+        } else {
+            badgeVisor.style.display = 'none';
+        }
+    }
+
     const marcaEl = document.getElementById("visorMarcaElemento");
     if (marcaEl) marcaEl.innerText = card.dataset.marca || "";
+
+    const indice = Array.prototype.indexOf.call(
+        document.querySelectorAll(".card-producto"), card
+    );
+    const datos = (typeof DATOS_PRODUCTO !== "undefined" && DATOS_PRODUCTO[indice]) ? DATOS_PRODUCTO[indice] : null;
+
+    const descEl = document.getElementById("visorDescElemento");
+    if (descEl) {
+        descEl.style.display = (datos && datos.descripcion) ? "block" : "none";
+        descEl.innerText = (datos && datos.descripcion) ? datos.descripcion : "";
+    }
+
+    const fichaEl = document.getElementById("visorFicha");
+    if (fichaEl && datos && datos.ficha) {
+        fichaEl.innerHTML = datos.ficha.map(fila =>
+            "<div class=\"vista-rapida-fila\">" +
+            "<span class=\"vista-rapida-fila-clave\">" + fila[0] + "</span>" +
+            "<span class=\"vista-rapida-fila-valor\">" + fila[1] + "</span>" +
+            "</div>"
+        ).join("");
+    }
 
     const contTallas = document.getElementById("visorTallas");
     contTallas.innerHTML = "";

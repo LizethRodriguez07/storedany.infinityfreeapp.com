@@ -423,11 +423,101 @@ if (btnFinalizar) {
 // ==========================================
 actualizarCarritoHTML();
 
+/* ==========================================
+   DATOS EXTENDIDOS DE CADA PRODUCTO (Nike)
+   Descripcion larga + ficha tecnica
+   ========================================== */
+const DATOS_PRODUCTO = [
+  {
+    descripcion: "Tenacidad para tu rutina diaria. Cuero resistente que aguanta el ritmo, suela con agarre superior y detalles en verde encendido que le dan un toque agresivo y moderno. Ideal para entrenar con confianza todo el día.",
+    ficha: [
+      ["Material", "Cuero sintético premium"],
+      ["Suela", "Goma de alto agarre"],
+      ["Uso", "Entrenamiento diario"],
+    ]
+  },
+  {
+    descripcion: "El toque Air que lo cambia todo. Amortiguación Air visible con respuesta inmediata en cada paso, combinada con un acabado negro elegante. Máxima comodidad para jornadas largas sin sacrificar estilo.",
+    ficha: [
+      ["Material", "Malla transpirable + sintético"],
+      ["Suela", "Espuma con unidad Air 270"],
+      ["Uso", "Urbano y casual"],
+    ]
+  },
+  {
+    descripcion: "Ligereza con carácter. Tecnología Air que absorbe cada impacto y una parte superior transpirable para acompañarte durante horas. Su tono ocre desierto lo convierte en un par diferente y llamativo.",
+    ficha: [
+      ["Material", "Malla transpirable"],
+      ["Suela", "Goma con cápsula Air"],
+      ["Uso", "Uso prolongado y casual"],
+    ]
+  },
+  {
+    descripcion: "Flexibilidad para caminar sin límites. Construcción ligera que se adapta al movimiento natural del pie, con combinación de blanco y negro y detalles verdes. Perfecto para caminatas y el día a día.",
+    ficha: [
+      ["Material", "Textil ligero"],
+      ["Suela", "Goma flexible"],
+      ["Uso", "Caminatas y uso casual"],
+    ]
+  },
+  {
+    descripcion: "Tu aliado de todos los días. Material sintético duradero con forro suave que cuida tu pie desde la mañana hasta la noche. Blanco puro con detalles negros: combina con todo.",
+    ficha: [
+      ["Material", "Sintético duradero"],
+      ["Suela", "Goma resistente"],
+      ["Uso", "Uso diario"],
+    ]
+  },
+  {
+    descripcion: "Leyenda con actitud. Cuero premium y amortiguación Air que combinan soporte con estilo inconfundible. Su acabado retro cemento con acentos rojos y negros rinde homenaje al clásico original.",
+    ficha: [
+      ["Material", "Cuero premium"],
+      ["Suela", "Goma con unidades Air"],
+      ["Uso", "Stylo y leve soporte"],
+    ]
+  },
+  {
+    descripcion: "Versatilidad en su forma pura. Amortiguación Air para el deporte y diseño limpio en blanco para el día a día. Un par que se adapta al gimnasio, la calle o la oficina sin esfuerzo.",
+    ficha: [
+      ["Material", "Malla y sintético"],
+      ["Suela", "Goma con tecnología Air"],
+      ["Uso", "Deportivo y casual"],
+    ]
+  },
+  {
+    descripcion: "Un ícono sin tiempo. Cuero resistente con suela reforzada que soporta el uso intenso, en combinación azul y blanca que nunca pasa de moda. El básico que siempre funciona.",
+    ficha: [
+      ["Material", "Cuero resistente"],
+      ["Suela", "Goma reforzada"],
+      ["Uso", "Uso diario clásico"],
+    ]
+  },
+  {
+    descripcion: "Estabilidad en cada paso. Ajuste firme con amortiguación Air y una combinación de blanco, negro y verde que destaca. Soporte confiable para quien exige lo mejor de su calzado.",
+    ficha: [
+      ["Material", "Textil y sintético"],
+      ["Suela", "Goma con unidad Air"],
+      ["Uso", "Soporte y entrenamiento"],
+    ]
+  }
+];
+
 function abrirVisor(contenedor) {
     const visor = document.getElementById("visorImagen");
     if (!visor) return;
     const card = contenedor.closest(".card-producto");
     if (!card) return;
+
+    const btnAcordeon = document.getElementById("visorAcordeonBtn");
+    if (btnAcordeon && !btnAcordeon.dataset.listo) {
+        btnAcordeon.dataset.listo = "1";
+        btnAcordeon.addEventListener('click', function () {
+            const cuerpo = document.getElementById("visorAcordeonCuerpo");
+            const abierto = cuerpo.classList.toggle('abierto');
+            btnAcordeon.classList.toggle('abierto', abierto);
+            btnAcordeon.querySelector('.vista-rapida-acordeon-icon').textContent = abierto ? '−' : '+';
+        });
+    }
 
     document.getElementById("visorImgElemento").src = card.querySelector(".img-tenis").src;
     document.getElementById("visorTextoElemento").innerText = card.querySelector("h3").innerText;
@@ -436,6 +526,39 @@ function abrirVisor(contenedor) {
     document.getElementById("visorColorElemento").innerText = colorEl ? colorEl.innerText : "";
     const marcaEl = document.getElementById("visorMarcaElemento");
     if (marcaEl) marcaEl.innerText = card.dataset.marca || "";
+
+    const badgeCard = card.querySelector(".badge-producto");
+    const badgeVisor = document.getElementById("visorBadgeElemento");
+    if (badgeVisor) {
+        if (badgeCard) {
+            badgeVisor.className = "badge-producto vista-rapida-badge " + (badgeCard.classList.contains("vendido") ? "vendido" : "nuevo");
+            badgeVisor.innerHTML = badgeCard.innerHTML;
+            badgeVisor.style.display = "";
+        } else {
+            badgeVisor.style.display = "none";
+        }
+    }
+
+    const indice = Array.prototype.indexOf.call(
+        document.querySelectorAll(".card-producto"), card
+    );
+    const datos = (typeof DATOS_PRODUCTO !== "undefined" && DATOS_PRODUCTO[indice]) ? DATOS_PRODUCTO[indice] : null;
+
+    const descEl = document.getElementById("visorDescElemento");
+    if (descEl) {
+        descEl.style.display = (datos && datos.descripcion) ? "block" : "none";
+        descEl.innerText = (datos && datos.descripcion) ? datos.descripcion : "";
+    }
+
+    const fichaEl = document.getElementById("visorFicha");
+    if (fichaEl && datos && datos.ficha) {
+        fichaEl.innerHTML = datos.ficha.map(fila =>
+            "<div class=\"vista-rapida-fila\">" +
+            "<span class=\"vista-rapida-fila-clave\">" + fila[0] + "</span>" +
+            "<span class=\"vista-rapida-fila-valor\">" + fila[1] + "</span>" +
+            "</div>"
+        ).join("");
+    }
 
     const contTallas = document.getElementById("visorTallas");
     contTallas.innerHTML = "";

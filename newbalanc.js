@@ -423,19 +423,105 @@ if (btnFinalizar) {
 // ==========================================
 actualizarCarritoHTML();
 
+/* ==========================================
+   DATOS EXTENDIDOS DE CADA PRODUCTO (New Balance)
+   ========================================== */
+const DATOS_PRODUCTO = [
+  {
+    descripcion: "Elegante y estable. Construcción firme con materiales suaves que brindan comodidad diaria. Negro con detalles blanco y turquesa para un toque de distinción.",
+    ficha: [["Material","Textil suave"],["Suela","Caucho estable"],["Uso","Diario elegante"]]
+  },
+  {
+    descripcion: "El clásico que define. Gamuza azul y malla transpirable con acentos naranja, sobre suela de caucho con materiales sostenibles. Estilo retro, confort actual.",
+    ficha: [["Material","Gamuza y malla"],["Suela","Caucho sostenible"],["Uso","Casual clásico"]]
+  },
+  {
+    descripcion: "Control y libertad. Amortiguación ENCAP que controla el movimiento sin sacrificar confort. Blanco con detalles en negro y gris, precisión de diseño.",
+    ficha: [["Material","Malla y cuero"],["Suela","ENCAP amortiguada"],["Uso","Urbano técnico"]]
+  },
+  {
+    descripcion: "Equilibrio perfecto. Gamuza y malla transpirable que unen comodidad y moda. Gris, negro y rojo para destacar con sobriedad.",
+    ficha: [["Material","Gamuza y malla"],["Suela","Caucho"],["Uso","Casual diario"]]
+  },
+  {
+    descripcion: "Soporte firme en cada paso. Acolchado en el cuello y entresuela que aseguran el pie. Blanco con detalles naranja y negro, seguridad con estilo.",
+    ficha: [["Material","Cuero y malla"],["Suela","Goma con entresuela"],["Uso","Soporte diario"]]
+  },
+  {
+    descripcion: "Diseño pensado para tu ritmo. Estructura ergonómica con amortiguación que acompaña cada zancada. Blanco y negro, versatilidad total.",
+    ficha: [["Material","Textil ergonómico"],["Suela","Goma amortiguada"],["Uso","Diario y urbano"]]
+  },
+  {
+    descripcion: "Para los activos. Amortiguación completa con ajuste seguro que acompaña entrenamientos y salidas. Gris con acentos naranjas, actitud en movimiento.",
+    ficha: [["Material","Malla técnica"],["Suela","Goma completa"],["Uso","Uso activo"]]
+  },
+  {
+    descripcion: "Comodidad para entrenar. Tecnología de soporte ergonómico que cuida tus articulaciones. Gris y azul marino, combinación confiable.",
+    ficha: [["Material","Textil transpirable"],["Suela","Soporte ergonómico"],["Uso","Entrenamiento"]]
+  },
+  {
+    descripcion: "Adaptación total. Ajuste anatómico con materiales transpirables para estar fresco todo el día. Azul marino y blanco, elegancia deportiva.",
+    ficha: [["Material","Textil transpirable"],["Suela","Goma anatómica"],["Uso","Todo el día"]]
+  }
+];
+
 function abrirVisor(contenedor) {
     const visor = document.getElementById("visorImagen");
     if (!visor) return;
     const card = contenedor.closest(".card-producto");
     if (!card) return;
 
+    const btnAcordeon = document.getElementById("visorAcordeonBtn");
+    if (btnAcordeon && !btnAcordeon.dataset.listo) {
+        btnAcordeon.dataset.listo = "1";
+        btnAcordeon.addEventListener('click', function () {
+            const cuerpo = document.getElementById("visorAcordeonCuerpo");
+            const abierto = cuerpo.classList.toggle('abierto');
+            btnAcordeon.classList.toggle('abierto', abierto);
+            btnAcordeon.querySelector('.vista-rapida-acordeon-icon').textContent = abierto ? '−' : '+';
+        });
+    }
+
     document.getElementById("visorImgElemento").src = card.querySelector(".img-tenis").src;
     document.getElementById("visorTextoElemento").innerText = card.querySelector("h3").innerText;
     document.getElementById("visorPrecioElemento").innerText = card.querySelector(".price-tag").innerText;
     const colorEl = card.querySelector(".color-info");
     document.getElementById("visorColorElemento").innerText = colorEl ? colorEl.innerText : "";
+    const badgeCard = card.querySelector(".badge-producto");
+    const badgeVisor = document.getElementById("visorBadgeElemento");
+    if (badgeVisor) {
+        if (badgeCard) {
+            badgeVisor.className = 'badge-producto vista-rapida-badge ' + (badgeCard.classList.contains('vendido') ? 'vendido' : 'nuevo');
+            badgeVisor.innerHTML = badgeCard.innerHTML;
+            badgeVisor.style.display = '';
+        } else {
+            badgeVisor.style.display = 'none';
+        }
+    }
+
     const marcaEl = document.getElementById("visorMarcaElemento");
     if (marcaEl) marcaEl.innerText = card.dataset.marca || "";
+
+    const indice = Array.prototype.indexOf.call(
+        document.querySelectorAll(".card-producto"), card
+    );
+    const datos = (typeof DATOS_PRODUCTO !== "undefined" && DATOS_PRODUCTO[indice]) ? DATOS_PRODUCTO[indice] : null;
+
+    const descEl = document.getElementById("visorDescElemento");
+    if (descEl) {
+        descEl.style.display = (datos && datos.descripcion) ? "block" : "none";
+        descEl.innerText = (datos && datos.descripcion) ? datos.descripcion : "";
+    }
+
+    const fichaEl = document.getElementById("visorFicha");
+    if (fichaEl && datos && datos.ficha) {
+        fichaEl.innerHTML = datos.ficha.map(fila =>
+            "<div class=\"vista-rapida-fila\">" +
+            "<span class=\"vista-rapida-fila-clave\">" + fila[0] + "</span>" +
+            "<span class=\"vista-rapida-fila-valor\">" + fila[1] + "</span>" +
+            "</div>"
+        ).join("");
+    }
 
     const contTallas = document.getElementById("visorTallas");
     contTallas.innerHTML = "";

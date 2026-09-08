@@ -423,19 +423,105 @@ if (btnFinalizar) {
 // ==========================================
 actualizarCarritoHTML();
 
+/* ==========================================
+   DATOS EXTENDIDOS DE CADA PRODUCTO (Reebok)
+   ========================================== */
+const DATOS_PRODUCTO = [
+  {
+    descripcion: "Confort clásico que perdura. Serraje suave con amortiguación EVA que cuida cada paso. Gris y azul marino para un look tradicional y resistente.",
+    ficha: [["Material","Serraje suave"],["Suela","EVA amortiguada"],["Uso","Casual diario"]]
+  },
+  {
+    descripcion: "Retro con confort. Diseño clásico con forro acolchado que abraza el pie. Negro y rojo, una combinación llena de carácter.",
+    ficha: [["Material","Cuero y textil"],["Suela","Goma clásica"],["Uso","Diario casual"]]
+  },
+  {
+    descripcion: "Energía sostenible. Materiales reciclados con tecnología de retorno de energía que te impulsa en cada paso. Blanco y azul, frescura con propósito.",
+    ficha: [["Material","Reciclado"],["Suela","Zig retorno de energía"],["Uso","Urbano activo"]]
+  },
+  {
+    descripcion: "Tenacidad pura. Cuero resistente con suela de goma lista para terrenos exigentes. El clásico blanco de toda la vida, reforzado.",
+    ficha: [["Material","Cuero resistente"],["Suela","Goma robusta"],["Uso","Terrenos exigentes"]]
+  },
+  {
+    descripcion: "La nueva generación. Colección 2026 con materiales ligeros y estilo en tendencia. Blanco impecable para estar siempre a la moda.",
+    ficha: [["Material","Materiales ligeros"],["Suela","Goma ligera"],["Uso","Casual moderno"]]
+  },
+  {
+    descripcion: "Comodidad sin peso. Construcción ligera que se adapta al pie como un guante. Blanco, azul marino y amarillo para darle energía a tu día.",
+    ficha: [["Material","Textil ligero"],["Suela","EVA adaptable"],["Uso","Deportivo casual"]]
+  },
+  {
+    descripcion: "A tu ritmo. Tecnología Fusium que combina ligereza y flexibilidad para correr con soltura. Blanco y negro con detalles vino tinto.",
+    ficha: [["Material","Malla Fusium"],["Suela","Goma flexible"],["Uso","Running ligero"]]
+  },
+  {
+    descripcion: "Hecho para aguantar. Suela robusta y material durable pensados para trabajo exigente. El blanco que resiste las jornadas más duras.",
+    ficha: [["Material","Material durable"],["Suela","Goma robusta"],["Uso","Trabajo exigente"]]
+  },
+  {
+    descripcion: "Estabilidad en serio. Material resistente con ajuste estable para uso intenso. Blanco clásico, durabilidad en cada paso.",
+    ficha: [["Material","Resistente"],["Suela","Goma estable"],["Uso","Uso intenso"]]
+  }
+];
+
 function abrirVisor(contenedor) {
     const visor = document.getElementById("visorImagen");
     if (!visor) return;
     const card = contenedor.closest(".card-producto");
     if (!card) return;
 
+    const btnAcordeon = document.getElementById("visorAcordeonBtn");
+    if (btnAcordeon && !btnAcordeon.dataset.listo) {
+        btnAcordeon.dataset.listo = "1";
+        btnAcordeon.addEventListener('click', function () {
+            const cuerpo = document.getElementById("visorAcordeonCuerpo");
+            const abierto = cuerpo.classList.toggle('abierto');
+            btnAcordeon.classList.toggle('abierto', abierto);
+            btnAcordeon.querySelector('.vista-rapida-acordeon-icon').textContent = abierto ? '−' : '+';
+        });
+    }
+
     document.getElementById("visorImgElemento").src = card.querySelector(".img-tenis").src;
     document.getElementById("visorTextoElemento").innerText = card.querySelector("h3").innerText;
     document.getElementById("visorPrecioElemento").innerText = card.querySelector(".price-tag").innerText;
     const colorEl = card.querySelector(".color-info");
     document.getElementById("visorColorElemento").innerText = colorEl ? colorEl.innerText : "";
+    const badgeCard = card.querySelector(".badge-producto");
+    const badgeVisor = document.getElementById("visorBadgeElemento");
+    if (badgeVisor) {
+        if (badgeCard) {
+            badgeVisor.className = 'badge-producto vista-rapida-badge ' + (badgeCard.classList.contains('vendido') ? 'vendido' : 'nuevo');
+            badgeVisor.innerHTML = badgeCard.innerHTML;
+            badgeVisor.style.display = '';
+        } else {
+            badgeVisor.style.display = 'none';
+        }
+    }
+
     const marcaEl = document.getElementById("visorMarcaElemento");
     if (marcaEl) marcaEl.innerText = card.dataset.marca || "";
+
+    const indice = Array.prototype.indexOf.call(
+        document.querySelectorAll(".card-producto"), card
+    );
+    const datos = (typeof DATOS_PRODUCTO !== "undefined" && DATOS_PRODUCTO[indice]) ? DATOS_PRODUCTO[indice] : null;
+
+    const descEl = document.getElementById("visorDescElemento");
+    if (descEl) {
+        descEl.style.display = (datos && datos.descripcion) ? "block" : "none";
+        descEl.innerText = (datos && datos.descripcion) ? datos.descripcion : "";
+    }
+
+    const fichaEl = document.getElementById("visorFicha");
+    if (fichaEl && datos && datos.ficha) {
+        fichaEl.innerHTML = datos.ficha.map(fila =>
+            "<div class=\"vista-rapida-fila\">" +
+            "<span class=\"vista-rapida-fila-clave\">" + fila[0] + "</span>" +
+            "<span class=\"vista-rapida-fila-valor\">" + fila[1] + "</span>" +
+            "</div>"
+        ).join("");
+    }
 
     const contTallas = document.getElementById("visorTallas");
     contTallas.innerHTML = "";

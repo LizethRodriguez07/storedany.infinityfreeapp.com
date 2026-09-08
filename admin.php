@@ -294,7 +294,7 @@ exit();
 }   
 
 // 🔍 5. CONSULTA LOGÍSTICA AVANZADA (Relaciona pedidos con datos del comprador)
-$sql_pedidos = "SELECT p.id AS orden_id, p.fecha_pedido, p.total, c.nombre, c.apellidos, c.cedula, c.celular, c.departamento, c.municipio, c.direccion, pag.estado, pag.monto 
+$sql_pedidos = "SELECT p.id AS orden_id, p.fecha_pedido, p.total, c.nombre, c.apellidos, c.cedula, c.celular, c.departamento, c.municipio, c.direccion, pag.estado, pag.monto, pag.metodo 
                 FROM pedidos p
                 INNER JOIN clientes c ON p.id_cliente = c.id
                 INNER JOIN pagos pag ON pag.id_pedido = p.id
@@ -311,7 +311,6 @@ foreach ($pedidos as $kpiRow) {
     if ($fKpi->format('Y-m-d') === $hoy) { $ventasHoy += $tKpi; }
     if ($fKpi->format('Y-m') === $mesActual) { $ventasMes += $tKpi; }
 }
-$ticketPromedio = count($pedidos) > 0 ? $ventasTotal / count($pedidos) : 0;
 ?>
 
 <!DOCTYPE html>
@@ -324,7 +323,7 @@ $ticketPromedio = count($pedidos) > 0 ? $ventasTotal / count($pedidos) : 0;
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
         :root {
-            --bg-main: #f5efe6;
+            --bg-main: #f7f3ea;
             --bg-card: #ffffff;
             --bg-warm: #faf6f0;
             --text-main: #3a2e24;
@@ -509,12 +508,14 @@ $ticketPromedio = count($pedidos) > 0 ? $ventasTotal / count($pedidos) : 0;
             background: var(--accent-dark);
             color: #fff;
             box-shadow: 0 4px 14px rgba(90, 75, 59, 0.2);
+            border: 1px solid transparent;
         }
 
         .btn-accent:hover {
-            background: var(--accent);
+            background: #3f3428;
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(133, 112, 89, 0.3);
+            box-shadow: 0 8px 24px rgba(133, 112, 89, 0.3), inset 0 0 0 2px var(--dorado-suave);
+            border-color: var(--dorado);
         }
 
         /* ===== ALERTS ===== */
@@ -681,15 +682,16 @@ $ticketPromedio = count($pedidos) > 0 ? $ventasTotal / count($pedidos) : 0;
         .section-avatar {
             width: 44px;
             height: 44px;
-            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
-            color: #fff;
+            background: linear-gradient(135deg, var(--dorado), var(--dorado-suave));
+            color: #4a3b28;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
+            font-weight: 800;
             font-size: 15px;
-            box-shadow: 0 4px 12px rgba(133, 112, 89, 0.2);
+            box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+            border: 2px solid var(--dorado-bg);
         }
 
         .section-label {
@@ -722,7 +724,7 @@ $ticketPromedio = count($pedidos) > 0 ? $ventasTotal / count($pedidos) : 0;
         .data-row:last-child { border-bottom: none; }
 
         .data-row:hover {
-            background: var(--bg-warm);
+            background: var(--dorado-bg);
             transform: translateX(4px);
         }
 
@@ -1066,7 +1068,7 @@ $ticketPromedio = count($pedidos) > 0 ? $ventasTotal / count($pedidos) : 0;
         .btn-volver:hover {
             background: var(--accent);
             color: #fff;
-            border-color: var(--accent);
+            border-color: var(--dorado);
             transform: translateY(-2px);
             box-shadow: 0 8px 24px rgba(133, 112, 89, 0.25);
         }
@@ -1085,13 +1087,24 @@ $ticketPromedio = count($pedidos) > 0 ? $ventasTotal / count($pedidos) : 0;
         .kpis-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin: 0 0 8px; }
         @media (min-width: 1000px) { .kpis-grid { grid-template-columns: repeat(3, 1fr); } }
         .kpi-card {
-            background: var(--bg-card); border: 1px solid #e8ddd0;
-            border-left: 5px solid #ffc107; border-radius: 18px;
+            background: linear-gradient(180deg, var(--dorado-bg), var(--bg-card) 45%);
+            border: 1px solid #e8ddd0;
+            border-top: 4px solid #ffc107; border-radius: 18px;
             padding: 22px 24px; min-height: 96px; display: flex; align-items: center; gap: 16px;
             box-shadow: 0 8px 22px rgba(90, 75, 59, 0.10); transition: all 0.25s ease;
+            animation: kpi-entrada 0.5s ease both;
         }
+        .kpis-grid .kpi-card:nth-child(1) { animation-delay: 0.05s; }
+        .kpis-grid .kpi-card:nth-child(2) { animation-delay: 0.12s; }
+        .kpis-grid .kpi-card:nth-child(3) { animation-delay: 0.19s; }
+        @keyframes kpi-entrada { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
         .kpi-card:hover { transform: translateY(-3px); box-shadow: 0 12px 26px rgba(90, 75, 59, 0.16); }
-        .kpi-icono { font-size: 26px; }
+        .kpi-icono {
+            font-size: 22px; width: 46px; height: 46px; flex-shrink: 0;
+            background: linear-gradient(135deg, #ffc107, #ecc998); color: #4a3b28;
+            border-radius: 13px; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 12px rgba(255, 193, 7, 0.35);
+        }
         .kpi-info { display: flex; flex-direction: column; }
         .kpi-valor { font-family: 'Baloo 2', sans-serif; font-size: 20px; font-weight: 800; color: #3a2e24; line-height: 1.1; }
         .kpi-etiqueta { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); font-weight: 700; margin-top: 3px; }
@@ -1099,8 +1112,24 @@ $ticketPromedio = count($pedidos) > 0 ? $ventasTotal / count($pedidos) : 0;
         .barra-filtros { display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
             background: var(--bg-warm); border: 1px solid #e8ddd0;
             border-radius: 16px; padding: 16px 20px; margin: 20px 0 10px; }
-        .input-buscador { flex: 1; min-width: 220px; padding: 11px 14px; border: 1px solid #e8ddd0; border-radius: 10px; font-size: 13.5px; background: #fff; color: #3a2e24; outline: none; transition: all 0.2s ease; }
+        .input-buscador { flex: 1; min-width: 220px; padding: 11px 40px 11px 14px; border: 1px solid #e8ddd0; border-radius: 10px; font-size: 13.5px; background: #fff; color: #3a2e24; outline: none; transition: all 0.2s ease; }
         .input-buscador:focus { border-color: #857059; box-shadow: 0 0 0 3px rgba(133, 112, 89, 0.12); }
+        .buscador-wrap { flex: 1; min-width: 220px; position: relative; display: flex; align-items: center; }
+        .buscador-wrap .input-buscador { width: 100%; min-width: 0; }
+        .btn-limpiar {
+            position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+            width: 26px; height: 26px; border: none; background: var(--bg-warm);
+            color: var(--accent); font-size: 12px; line-height: 1; border-radius: 50%;
+            cursor: pointer; display: none; align-items: center; justify-content: center;
+            transition: all 0.2s ease;
+        }
+        .btn-limpiar:hover { background: #857059; color: #fff; }
+        .btn-limpiar.visible { display: inline-flex; }
+        .seccion-contador {
+            font-size: 11px; font-weight: 700; color: #5a4b3b; background: var(--dorado-bg);
+            border: 1px solid var(--dorado-suave); border-radius: 50px; padding: 3px 12px;
+            letter-spacing: 0.4px;
+        }
         .select-filtro { padding: 11px 12px; border: 1px solid #e8ddd0; border-radius: 10px; background: #fff; color: #5a4b3b; font-weight: 600; font-size: 13px; cursor: pointer; }
         .resultados-contador { font-size: 12px; color: var(--accent-dark); font-weight: 700; letter-spacing: 0.4px; }
 
@@ -1198,7 +1227,10 @@ $ticketPromedio = count($pedidos) > 0 ? $ventasTotal / count($pedidos) : 0;
 
     <!-- ===== BUSCADOR Y FILTROS ===== -->
     <div class="barra-filtros">
-        <input type="text" id="buscador-pedidos" class="input-buscador" placeholder="&#128269; Buscar por cliente, cedula o numero de guia...">
+        <div class="buscador-wrap">
+            <input type="text" id="buscador-pedidos" class="input-buscador" placeholder="&#128269; Buscar por cliente, cedula o numero de guia...">
+            <button type="button" class="btn-limpiar" id="btn-limpiar" title="Limpiar busqueda" aria-label="Limpiar busqueda">&#10005;</button>
+        </div>
         <span class="resultados-contador" id="contador-resultados"></span>
     </div>
     <!-- ===== ALERTS ===== -->
@@ -1206,7 +1238,7 @@ $ticketPromedio = count($pedidos) > 0 ? $ventasTotal / count($pedidos) : 0;
         <div class="alert alert-success">✔️ El historial logístico ha sido reiniciado con éxito.</div>
     <?php endif; ?>
 
-    <div class="zona-titulo">Guias de despacho</div>
+    <div class="zona-titulo">Guias de despacho <span class="seccion-contador" id="contador-guias"></span></div>
     <?php if (empty($pedidos)): ?>
         <div class="empty-state">
             <div class="empty-state-icon">📋</div>
@@ -1284,6 +1316,18 @@ $ticketPromedio = count($pedidos) > 0 ? $ventasTotal / count($pedidos) : 0;
                         <div class="data-row">
                             <span class="data-label">Dirección:</span>
                             <span class="data-value"><?php echo htmlspecialchars($row['direccion']); ?></span>
+                        </div>
+
+                        <?php
+                            $metodoLimpio = strtolower(trim($row['metodo'] ?? ''));
+                            $iconoMetodo = '💳';
+                            if (strpos($metodoLimpio, 'nequi') !== false) { $iconoMetodo = '📱'; }
+                            elseif (strpos($metodoLimpio, 'davi') !== false) { $iconoMetodo = '💬'; }
+                            elseif (strpos($metodoLimpio, 'contra') !== false) { $iconoMetodo = '🚚'; }
+                        ?>
+                        <div class="data-row">
+                            <span class="data-label">Método de pago:</span>
+                            <span class="data-value"><?php echo $iconoMetodo . ' ' . htmlspecialchars($row['metodo'] ?? '—'); ?></span>
                         </div>
 
                         <div class="data-row">
@@ -1379,7 +1423,13 @@ $checkbox_id = "check_" . $row['orden_id'] . "_" . $index;
     (function () {
         var inp = document.getElementById('buscador-pedidos');
         var cont = document.getElementById('contador-resultados');
+        var btnLimpiar = document.getElementById('btn-limpiar');
+        var contGuias = document.getElementById('contador-guias');
         if (!inp || !cont) return;
+
+        function actualizarVisibilidad() {
+            if (btnLimpiar) btnLimpiar.classList.toggle('visible', (inp.value || '').length > 0);
+        }
 
         function filtrar() {
             var q = (inp.value || '').trim().toLowerCase();
@@ -1393,6 +1443,16 @@ $checkbox_id = "check_" . $row['orden_id'] . "_" . $index;
                 if (mostrar) visibles++;
             }
             cont.textContent = 'Mostrando ' + visibles + ' de ' + total + ' guias';
+            if (contGuias) contGuias.textContent = q ? visibles + ' de ' + total : total;
+            actualizarVisibilidad();
+        }
+
+        if (btnLimpiar) {
+            btnLimpiar.addEventListener('click', function () {
+                inp.value = '';
+                inp.focus();
+                filtrar();
+            });
         }
 
         inp.addEventListener('input', filtrar);
