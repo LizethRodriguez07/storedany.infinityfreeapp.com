@@ -87,12 +87,7 @@ A continuación, el papel de cada pantalla desde la visión **funcional**: qué 
 ---
 
 ### 🎨 Estilos (CSS) — `Style.css`
-Hoja de estilos global compartida por todo el sitio (más de 5.000 líneas). Cubre:
-- **Chrome global**: navbar con efecto al hacer scroll, barra anunciante de envíos gratis, footer, botón volver-arriba y WhatsApp flotante.
-- **Muro de Términos y Condiciones**: tarjeta con logo, sellos SVG animados (pago seguro / envío protegido / datos privados), checkbox a medida con check SVG y botón "ACEPTO Y ACCEDO".
-- **Carrito flotante**: botón de la esquina inferior derecha, panel deslizante, badge contador dorado y estilos de los métodos de pago.
-- **Estilos por pantalla**: portada, catálogo de las 5 marcas, modal "Ver detalle", registro de datos personales, carrito, contacto y panel admin.
-- **Notificaciones elegantes (toasts)**: avisos café/dorado para falta de datos, errores y confirmaciones.
+Hoja de estilos **única y global** (más de 5.000 líneas) que se carga en todo el sitio. Su concepto: definir la **identidad visual de la marca** (paleta café-dorado, tipografías Baloo 2 / Oswald / Poppins) y dar **estilo a cada pantalla y componente** — navbar con efecto al scroll, barra de envíos gratis, carrito flotante, formularios, tarjetas de producto, toasts, muro de Términos y Condiciones y panel admin — manteniendo un solo lugar donde vive el diseño y evitando estilos duplicados por página.
 
 
 ### ⚙️ Lógica del navegador (JavaScript)
