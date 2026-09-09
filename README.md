@@ -190,22 +190,22 @@ Tablas principales del sistema y la información que almacenan:
 
 ### 👤 Historias de usuario (método INVEST)
 
-Historias redactadas con el formato **"Como [rol], quiero [funcionalidad], para [beneficio]"** y evaluadas con el criterio **INVEST**: **I**ndependiente, **N**egociable, **V**aliosa, **E**stimable, **P**equeña y **T**estable.
+Historias con el formato **"Como rol, quiero funcionalidad, para razón/resultado"** y sus criterios de aceptación, evaluadas con el criterio **INVEST**: **I**ndependiente, **N**egociable, **V**aliosa, **E**stimable, **P**equeña y **T**estable.
 
-| ID | Rol | Historia de usuario | Criterio INVEST |
-|---|---|---|---|
-| HU-01 | Cliente | Como cliente, quiero explorar el catálogo por marca y ver el detalle de cada producto, **para** elegir el calzado que más me gusta. | ✅ Independiente · Valiosa · Testable |
-| HU-02 | Cliente | Como cliente, quiero seleccionar mi talla y cantidad antes de agregar al carrito, **para** asegurarme de que el producto me quedará bien. | ✅ Independiente · Valiosa · Testable |
-| HU-03 | Cliente | Como cliente, quiero ver mi carrito en un panel con el total acumulado, **para** revisar mi pedido antes de pagar. | ✅ Independiente · Valiosa · Testable |
-| HU-04 | Cliente | Como cliente, quiero registrar mis datos personales una sola vez por compra, **para** hacer el pedido y recibir mi guía a mi nombre. | ✅ Independiente · Valiosa · Testable |
-| HU-05 | Cliente | Como cliente, quiero elegir entre Nequi, Daviplata o contra entrega e ingresar mi cuenta, **para** pagar de la forma que me quede más cómoda. | ✅ Independiente · Valiosa · Testable |
-| HU-06 | Cliente | Como cliente, quiero recibir un recibo o comprobante de mi compra, **para** tener constancia de mi pedido y su número de guía. | ✅ Independiente · Valiosa · Testable |
-| HU-07 | Cliente | Como cliente, quiero que me avisen de forma clara y elegante si me falta algún dato o hay un error, **para** completar mi compra sin quedarme atascado. | ✅ Independiente · Valiosa · Testable |
-| HU-08 | Cliente | Como cliente, quiero contactar a la tienda y saber si está abierta, **para** resolver mis dudas de compra, devolución o garantía. | ✅ Independiente · Valiosa · Testable |
-| HU-09 | Administrador | Como administrador, quiero ingresar al panel con mi credencial, **para** acceder de forma segura a los pedidos de la tienda. | ✅ Independiente · Valiosa · Testable |
-| HU-10 | Administrador | Como administrador, quiero ver el listado de guías con su estado y método de pago, **para** gestionar los despachos. | ✅ Independiente · Valiosa · Testable |
-| HU-11 | Administrador | Como administrador, quiero buscar una guía por cliente, cédula o número, **para** localizar un pedido rápidamente. | ✅ Independiente · Valiosa · Testable |
-| HU-12 | Administrador | Como administrador, quiero ver KPIs de ventas del día, del mes y total de pedidos, **para** conocer el comportamiento del negocio. | ✅ Independiente · Valiosa · Testable |
+| ID | Historia | Rol | Funcionalidad | Razón / Resultado | Criterios de aceptación (como – quiero – para) |
+|---|---|---|---|---|---|
+| HU-01 | Explorar catálogo | Cliente | Explorar el catálogo por marca y ver el detalle de cada producto | Elegir el calzado que más le gusta | Como cliente, quiero ver el catálogo por marca y el detalle de cada producto, para elegir el calzado adecuado. |
+| HU-02 | Seleccionar talla | Cliente | Elegir talla y cantidad antes de agregar al carrito | Asegurarse de que el producto le quedará bien | Como cliente, quiero seleccionar talla y cantidad antes de agregar al carrito, para asegurarme de que el producto me quedará bien. |
+| HU-03 | Revisar carrito | Cliente | Ver el carrito en un panel con el total acumulado | Revisar el pedido antes de pagar | Como cliente, quiero ver mi carrito con el total acumulado, para revisar mi pedido antes de pagar. |
+| HU-04 | Registrar datos personales | Cliente | Registrar sus datos personales una sola vez por compra | Hacer el pedido y recibir la guía a su nombre | Como cliente, quiero registrar mis datos personales por compra, para hacer el pedido y recibir mi guía a mi nombre. |
+| HU-05 | Elegir método de pago | Cliente | Elegir entre Nequi, Daviplata o contra entrega e ingresar la cuenta | Pagar de la forma más cómoda | Como cliente, quiero elegir el método de pago e ingresar mi cuenta, para pagar de la forma que me quede más cómoda. |
+| HU-06 | Recibir comprobante | Cliente | Recibir un recibo/comprobante de la compra | Tener constancia del pedido y su número de guía | Como cliente, quiero recibir un recibo de mi compra, para tener constancia de mi pedido y su número de guía. |
+| HU-07 | Recibir avisos claros | Cliente | Recibir una notificación elegante si le falta un dato o hay un error | Completar la compra sin quedarse atascado | Como cliente, quiero que me avisen de forma clara si me falta un dato o hay un error, para completar mi compra sin atascarme. |
+| HU-08 | Contactar a la tienda | Cliente | Contactar a la tienda y saber si está abierta | Resolver dudas de compra, devolución o garantía | Como cliente, quiero contactar a la tienda y saber si está abierta, para resolver mis dudas de compra, devolución o garantía. |
+| HU-09 | Ingresar al panel | Administrador | Ingresar al panel con su credencial | Acceder de forma segura a los pedidos | Como administrador, quiero ingresar al panel con mi credencial, para acceder de forma segura a los pedidos de la tienda. |
+| HU-10 | Ver guías de despacho | Administrador | Ver el listado de guías con estado y método de pago | Gestionar los despachos | Como administrador, quiero ver las guías con su estado y método de pago, para gestionar los despachos. |
+| HU-11 | Buscar una guía | Administrador | Buscar una guía por cliente, cédula o número | Localizar un pedido rápidamente | Como administrador, quiero buscar una guía por cliente, cédula o número, para localizar un pedido rápidamente. |
+| HU-12 | Ver KPIs de ventas | Administrador | Ver KPIs de ventas del día, del mes y pedidos totales | Conocer el comportamiento del negocio | Como administrador, quiero ver los KPIs de venta, para conocer el comportamiento del negocio. |
 
 ---
 
@@ -314,5 +314,6 @@ Registro de las sesiones de desarrollo y las fechas reales en que se trabajó el
 | 08 sep 2026 | Método de pago en el panel | Se agrega la columna `metodo` a la tabla `pagos` (ALTER en InfinityFree); `procesar_compra.php` guarda el método elegido (Nequi/Daviplata/Contraentrega) y el admin lo muestra con su icono (📱/💬/🚚) en cada guía. | ✅ Completado |
 | 09 sep 2026 | RNF-06: notificaciones elegantes al cliente | Se crea el sistema de **toasts de notificación** en `js/main.js` (estética café/dorado, tipos falta/error/éxito, auto-cierre) y se reemplazan los 35 `alert()` de las 5 marcas y los 2 de `enviar.php` por avisos elegantes en el proceso de compra. | ✅ Completado |
 | 09 sep 2026 | Sección de requerimientos en el README | Se documentan los **requerimientos funcionales (RF-01 a RF-16)** y **no funcionales (RNF-01 a RNF-06)** implementados, más las **historias de usuario (HU-01 a HU-12)** con el método **INVEST**. | ✅ Completado |
+| 09 sep 2026 | Ajuste de tablas de historias de usuario | La tabla de **historias de usuario** se rediseña con las columnas: ID, Historia, Rol, Funcionalidad, Razón/Resultado y Criterios de aceptación (como – quiero – para), conservando las tablas de requerimientos funcionales y no funcionales. | ✅ Completado |
 
 *Última actualización: 09 de septiembre de 2026.*
