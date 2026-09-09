@@ -91,15 +91,10 @@ Hoja de estilos **única y global** (más de 5.000 líneas) que se carga en todo
 
 
 ### ⚙️ Lógica del navegador (JavaScript)
-- **`js/main.js`**: comportamiento global del sitio:
-  - Navbar que se compacta al hacer scroll y barra anunciante de **Envíos gratis** (cinta en movimiento).
-  - Anulaciones de aparición al hacer scroll (`IntersectionObserver` + `data-reveal`).
-  - Botón **volver-arriba** y botón **WhatsApp flotante** (excepto en las páginas de marca).
-  - **Muro de Términos y Condiciones**: se muestra una vez por sesión y bloquea el sitio hasta que el cliente marca la casilla **y** lee el texto hasta el final (scroll) para habilitar el botón de aceptar.
-  - Selector visual de tallas (píldoras clickeables) en las tarjetas de producto.
-  - **Notificaciones elegantes (RNF-06)**: `storeDanyNotificar(mensaje, tipo)` expuesto globalmente con 3 tipos (`falta`, `error`, `exito`), reemplazando los `alert()`.
-- **`nike.js` / `adidas.js` / `puma.js` / `reebok.js` / `newbalanc.js`**: catálogo, selección de tallas, gestión del carrito, cálculo de totales y envío del pedido al backend de cada marca.
-- **`js/bootstrap-4.3.1.js` + `js/jquery-3.3.1.min.js` + `js/popper.min.js`**: librerías del framework visual Bootstrap 4.
+JavaScript **vanilla, sin frameworks**, cargado en las páginas según su papel:
+- **`js/main.js`** (comportamiento global de todo el sitio): navbar con efecto al hacer scroll, barra de **Envíos gratis**, animaciones de aparición, botón **volver-arriba**, **WhatsApp flotante**, selector visual de tallas, muro de **Términos y Condiciones** (bloquea el sitio hasta marcar la casilla y leer el texto) y las **notificaciones elegantes (RNF-06)** que reemplazan los `alert()`.
+- **`nike.js` / `adidas.js` / `puma.js` / `reebok.js` / `newbalanc.js`** (una por marca): catálogo, selección de tallas, gestión del carrito, cálculo de totales y envío del pedido al backend.
+- **`jquery`, `popper` y `bootstrap`**: librerías del framework visual cargadas junto al CSS.
 
 ---
 
