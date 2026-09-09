@@ -50,8 +50,8 @@ try {
                 ':mensaje' => $mensaje_completo
             ]);
             echo "<script>
-                    alert('¡Tu consulta ha sido registrada con éxito en el Chat Online!');
-                    window.location.href = 'contactar.html';
+                    storeDanyNotificar('¡Tu consulta ha sido registrada con éxito en el Chat Online!', 'exito');
+                    setTimeout(function(){ window.location.href = 'contactar.html'; }, 1600);
                   </script>";
 
         } else {
@@ -100,10 +100,10 @@ try {
                 'nombre'   => trim($nombre . ' ' . $apellidos),
                 'telefono' => $celular
             ), JSON_UNESCAPED_UNICODE);
-            echo "<script>
+echo "<script>
                     try { localStorage.setItem('cliente_dany', " . json_encode($datosClienteJS) . "); } catch(e) {}
-                    alert('Datos registrados con exito');
-                    window.location.href = 'shopping-cart.html';
+                    storeDanyNotificar('Tus datos personales se registraron correctamente.', 'exito');
+                    setTimeout(function(){ window.location.href = 'shopping-cart.html'; }, 1600);
                   </script>";
         }
     }

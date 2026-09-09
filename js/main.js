@@ -196,6 +196,59 @@
         document.body.classList.add('tiene-barra-anuncio');
     }
 
+    /* ---------- 6. NOTIFICACIONES ELEGANTES PARA EL CLIENTE ----------
+       Reemplazan los alert() del navegador durante el proceso de compra.
+       Tipos: 'falta' (requisito del cliente), 'error' (servidor) y
+       'exito' (confirmación). Se exponen como storeDanyNotificar(). */
+    function crearContenedorNotificaciones() {
+        var cont = document.getElementById('store-dany-toasts');
+        if (cont) return cont;
+        cont = document.createElement('div');
+        cont.id = 'store-dany-toasts';
+        cont.className = 'store-dany-toasts';
+        document.body.appendChild(cont);
+        return cont;
+    }
+
+    function storeDanyNotificar(mensaje, tipo) {
+        var cont = crearContenedorNotificaciones();
+        var aviso = document.createElement('div');
+        aviso.className = 'store-dany-notificacion ' + (tipo || 'falta');
+
+        var icono = '⚠️';
+        var titulo = 'Atención';
+        if (tipo === 'error') { icono = '⛔'; titulo = 'Error en el proceso'; }
+        else if (tipo === 'exito') { icono = '✅'; titulo = 'Todo listo'; }
+        else if (tipo === 'falta') { icono = '👟'; titulo = 'Te falta un paso'; }
+
+        aviso.innerHTML =
+            '<div class="store-dany-notif-icono">' + icono + '</div>' +
+            '<div class="store-dany-notif-contenido">' +
+            '<span class="store-dany-notif-titulo">' + titulo + '</span>' +
+            '<span class="store-dany-notif-mensaje">' + mensaje + '</span>' +
+            '</div>' +
+            '<button type="button" class="store-dany-notif-cerrar" aria-label="Cerrar">✕</button>';
+
+        cont.appendChild(aviso);
+        requestAnimationFrame(function () {
+            requestAnimationFrame(function () { aviso.classList.add('visible'); });
+        });
+
+        function cerrar() {
+            aviso.classList.remove('visible');
+            setTimeout(function () {
+                if (aviso.parentNode) aviso.parentNode.removeChild(aviso);
+            }, 320);
+        }
+
+        aviso.querySelector('.store-dany-notif-cerrar').addEventListener('click', cerrar);
+        aviso.contador = setTimeout(cerrar, 6000);
+        aviso.addEventListener('mouseenter', function () { clearTimeout(aviso.contador); });
+        aviso.addEventListener('mouseleave', function () { aviso.contador = setTimeout(cerrar, 2500); });
+    }
+
+    window.storeDanyNotificar = storeDanyNotificar;
+
     /* ---------- 6. INICIALIZACIÓN ---------- */
 
     /* ---------- SELECTOR VISUAL DE TALLAS ---------- */

@@ -154,6 +154,61 @@ Tablas principales del sistema y la información que almacenan:
 
 ---
 
+## Requerimientos del sistema
+
+### 📋 Requerimientos funcionales (RF) — implementados
+
+| ID | Requerimiento funcional | Cumplimiento |
+|---|---|---|
+| RF-01 | El sistema debe mostrar un **catálogo de calzado** organizado por las 5 marcas (Nike, Adidas, Puma, Reebok, New Balance) con vista rápida de cada producto. | ✅ Implementado |
+| RF-02 | El cliente debe poder **elegir talla y cantidad** antes de agregar un producto al carrito; si no elige talla, el sistema debe impedirlo y notificarlo. | ✅ Implementado |
+| RF-03 | El sistema debe mantener un **carrito de compras** en el navegador (`localStorage`) con botón flotante, contador y panel lateral. | ✅ Implementado |
+| RF-04 | El sistema debe **exigir registrar los datos personales** del cliente (nombre, cédula, teléfono, dirección) vinculando el pedido a un cliente nuevo registrado en la BD. | ✅ Implementado |
+| RF-05 | El cliente debe poder elegir el **método de pago**: Nequi, Daviplata o contra entrega. | ✅ Implementado |
+| RF-06 | Para pagos digitales (Nequi/Daviplata) el sistema debe pedir el **número de cuenta** y validarlo (mínimo 7 dígitos). | ✅ Implementado |
+| RF-07 | El sistema debe guardar cada compra como **pedido → pago → detalle** en las tablas `pedidos`, `pagos` y `detallpago`, incluyendo el método de pago. | ✅ Implementado |
+| RF-08 | El sistema debe generar un **número de guía** único (`SD-XXXXX`) y registrar la fecha con **hora de Colombia**. | ✅ Implementado |
+| RF-09 | El sistema debe generar un **recibo (comprobante)** con datos del cliente, productos, totales y cuenta de pago enmascarada, con opción de imprimir. | ✅ Implementado |
+| RF-10 | El sistema debe mostrar un **muro de Términos y Condiciones** con aceptación obligatoria antes de usar el sitio. | ✅ Implementado |
+| RF-11 | El panel admin debe permitir **ingreso con credenciales** y bloquear por intentos fallidos. | ✅ Implementado |
+| RF-12 | El panel admin debe mostrar **guías de despacho** con estado del pago, método de pago (📱/💬/🚚), datos del cliente y los productos. | ✅ Implementado |
+| RF-13 | El panel admin debe mostrar **KPIs** de ventas (hoy, mes, pedidos) y un **buscador** por cliente/cédula/guía con botón de limpiar y contador de guías. | ✅ Implementado |
+| RF-14 | El sistema debe permitir **enviar consultas** mediante el formulario de contacto y guardarlas en la tabla `chatonline`. | ✅ Implementado |
+| RF-15 | El sistema debe mostrar **notificaciones elegantes** al cliente durante el proceso de compra (datos faltantes, carrito vacío, método de pago, cuenta, errores de conexión) reemplazando los `alert()` del navegador. | ✅ Implementado |
+| RF-16 | El sistema debe indicar dinámicamente si la tienda está **"Abierta ahora / Cerrada"** según la hora de Colombia. | ✅ Implementado |
+
+### ⚙️ Requerimientos no funcionales (RNF)
+
+| ID | Requerimiento no funcional | Cumplimiento |
+|---|---|---|
+| RNF-01 | **Seguridad en la gestión del pedido**: la información de la compra (cliente, pago, detalle) debe manejarse de forma segura (consultas preparadas PDO, sin inyección SQL) y el pago enmascarado. | ✅ Implementado |
+| RNF-02 | **Términos y condiciones**: el sitio debe exigir aceptación de los T&C antes de que el cliente haga uso del sistema. | ✅ Implementado |
+| RNF-03 | **Capacidad**: el sistema debe soportar hasta 1000 usuarios simultáneos disponibles 24/7, advirtiendo al cliente cuando se alcance el cupo límite. | ⚠️ Parcial (hosting InfinityFree disponible 24/7; falta el aviso de cupo) |
+| RNF-04 | **Rendimiento**: la respuesta del sistema no debe superar los 10 segundos. | ⚠️ Parcial (sin medición formal) |
+| RNF-05 | **Copias de seguridad**: el sistema debe generar copias de respaldo con una lista de fecha y cliente. | ⚠️ Parcial (InfinityFree hace backups automáticos; falta la lista en el sistema) |
+| RNF-06 | **Notificación de errores**: el cliente debe recibir una notificación elegante y visible cuando falte un dato o ocurra un error en su proceso de compra. | ✅ Implementado (sistema de toasts en `js/main.js`) |
+
+### 👤 Historias de usuario (método INVEST)
+
+Historias redactadas con el formato **"Como [rol], quiero [funcionalidad], para [beneficio]"** y evaluadas con el criterio **INVEST**: **I**ndependiente, **N**egociable, **V**aliosa, **E**stimable, **P**equeña y **T**estable.
+
+| ID | Rol | Historia de usuario | Criterio INVEST |
+|---|---|---|---|
+| HU-01 | Cliente | Como cliente, quiero explorar el catálogo por marca y ver el detalle de cada producto, **para** elegir el calzado que más me gusta. | ✅ Independiente · Valiosa · Testable |
+| HU-02 | Cliente | Como cliente, quiero seleccionar mi talla y cantidad antes de agregar al carrito, **para** asegurarme de que el producto me quedará bien. | ✅ Independiente · Valiosa · Testable |
+| HU-03 | Cliente | Como cliente, quiero ver mi carrito en un panel con el total acumulado, **para** revisar mi pedido antes de pagar. | ✅ Independiente · Valiosa · Testable |
+| HU-04 | Cliente | Como cliente, quiero registrar mis datos personales una sola vez por compra, **para** hacer el pedido y recibir mi guía a mi nombre. | ✅ Independiente · Valiosa · Testable |
+| HU-05 | Cliente | Como cliente, quiero elegir entre Nequi, Daviplata o contra entrega e ingresar mi cuenta, **para** pagar de la forma que me quede más cómoda. | ✅ Independiente · Valiosa · Testable |
+| HU-06 | Cliente | Como cliente, quiero recibir un recibo o comprobante de mi compra, **para** tener constancia de mi pedido y su número de guía. | ✅ Independiente · Valiosa · Testable |
+| HU-07 | Cliente | Como cliente, quiero que me avisen de forma clara y elegante si me falta algún dato o hay un error, **para** completar mi compra sin quedarme atascado. | ✅ Independiente · Valiosa · Testable |
+| HU-08 | Cliente | Como cliente, quiero contactar a la tienda y saber si está abierta, **para** resolver mis dudas de compra, devolución o garantía. | ✅ Independiente · Valiosa · Testable |
+| HU-09 | Administrador | Como administrador, quiero ingresar al panel con mi credencial, **para** acceder de forma segura a los pedidos de la tienda. | ✅ Independiente · Valiosa · Testable |
+| HU-10 | Administrador | Como administrador, quiero ver el listado de guías con su estado y método de pago, **para** gestionar los despachos. | ✅ Independiente · Valiosa · Testable |
+| HU-11 | Administrador | Como administrador, quiero buscar una guía por cliente, cédula o número, **para** localizar un pedido rápidamente. | ✅ Independiente · Valiosa · Testable |
+| HU-12 | Administrador | Como administrador, quiero ver KPIs de ventas del día, del mes y total de pedidos, **para** conocer el comportamiento del negocio. | ✅ Independiente · Valiosa · Testable |
+
+---
+
 ## Estado del proyecto
 
 ### ✅ Implementado — Lista de chequeo 
@@ -206,6 +261,7 @@ Tablas principales del sistema y la información que almacenan:
 - ✅ Sección Garantía y Cambios (daño de fábrica, 1 mes, cambio de producto).
 - ✅ Stepper de progreso Registro → Carrito → Pago → Confirmación en todo el flujo.
 - ✅ Muro de Términos y Condiciones con sellos de seguridad y aceptación obligatoria.
+- ✅ **Notificaciones elegantes al cliente (RNF-06)**: avisos café/dorado que reemplazan los `alert()` del navegador durante el proceso de compra (talla, datos personales, carrito vacío, método de pago, cuenta y errores de conexión).
 - ✅ Lazy loading en las imágenes de producto (mejora la carga inicial).
 - ✅ Botón volver arriba, hover premium, botones elegantes y favicon consistente.
 
@@ -256,5 +312,7 @@ Registro de las sesiones de desarrollo y las fechas reales en que se trabajó el
 | 08 sep 2026 | Panel admin: buscador y contador | Buscador de guías con **botón de limpiar** (✖ visible al escribir) y **contador de guías** en el título de la sección ("X de Y" al filtrar, total sin filtro). | ✅ Completado |
 | 08 sep 2026 | Panel admin: colores de marca | Fondo al crema del sitio `#F7F3EA`, avatar del cliente en **degradado dorado**, tarjetas KPI con borde superior dorado, hovers de filas en dorado suave y botones con **borde dorado** al pasar el mouse. | ✅ Completado |
 | 08 sep 2026 | Método de pago en el panel | Se agrega la columna `metodo` a la tabla `pagos` (ALTER en InfinityFree); `procesar_compra.php` guarda el método elegido (Nequi/Daviplata/Contraentrega) y el admin lo muestra con su icono (📱/💬/🚚) en cada guía. | ✅ Completado |
+| 09 sep 2026 | RNF-06: notificaciones elegantes al cliente | Se crea el sistema de **toasts de notificación** en `js/main.js` (estética café/dorado, tipos falta/error/éxito, auto-cierre) y se reemplazan los 35 `alert()` de las 5 marcas y los 2 de `enviar.php` por avisos elegantes en el proceso de compra. | ✅ Completado |
+| 09 sep 2026 | Sección de requerimientos en el README | Se documentan los **requerimientos funcionales (RF-01 a RF-16)** y **no funcionales (RNF-01 a RNF-06)** implementados, más las **historias de usuario (HU-01 a HU-12)** con el método **INVEST**. | ✅ Completado |
 
-*Última actualización: 08 de septiembre de 2026.*
+*Última actualización: 09 de septiembre de 2026.*

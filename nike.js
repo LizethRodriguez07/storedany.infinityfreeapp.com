@@ -176,7 +176,7 @@ if (listaProductos) {
 
             const selectorTalla = product.querySelector('.talla-seleccion');
             if (!selectorTalla || !selectorTalla.value) {
-                alert('Por favor selecciona tu talla antes de agregar al carrito 👟');
+                storeDanyNotificar('Selecciona tu talla antes de agregar al carrito.', 'falta');
                 const pills = product.querySelectorAll('.talla-pill');
                 if (pills.length) {
                     pills.forEach(p => { p.style.transition = 'transform 0.15s'; });
@@ -354,20 +354,20 @@ if (btnFinalizar) {
         let clienteRegistrado = null;
         try { clienteRegistrado = JSON.parse(localStorage.getItem("cliente_dany")); } catch (e) {}
         if (!clienteRegistrado || !clienteRegistrado.id) {
-            alert("Para realizar tu compra primero debes registrar tus datos personales. Te llevamos al registro.");
+            storeDanyNotificar('Para realizar tu compra primero debes registrar tus datos personales. Te llevamos al registro.', 'falta');
             window.location.href = "personal-data.html";
             return;
         }
         // 1. Validar carrito vacío
         if (productosCarrito.length === 0) {
-            alert("Tu carrito está vacío. Agrega un producto para comprar.");
+            storeDanyNotificar('Tu carrito está vacío. Agrega un producto para comprar.', 'falta');
             return;
         }
 
         // 2. Validar selección de método de pago
         const metodoPagoSeleccionado = selectMetodoPago ? selectMetodoPago.value : "";
         if (!metodoPagoSeleccionado) {
-            alert("Por favor, selecciona un método de pago antes de continuar.");
+            storeDanyNotificar('Por favor, selecciona un método de pago antes de continuar.', 'falta');
             if (selectMetodoPago) selectMetodoPago.focus();
             return;
         }
@@ -377,7 +377,7 @@ if (btnFinalizar) {
         if (metodoPagoSeleccionado === 'Nequi' || metodoPagoSeleccionado === 'Daviplata') {
             numeroCuentaCliente = inputNumeroCuenta ? inputNumeroCuenta.value.trim() : "";
             if (numeroCuentaCliente.length < 7) {
-                alert(`Por favor ingresa tu número de celular registrado en ${metodoPagoSeleccionado}.`);
+                storeDanyNotificar('Ingresa tu número de celular registrado en ' + metodoPagoSeleccionado + '.', 'falta');
                 if (inputNumeroCuenta) inputNumeroCuenta.focus();
                 return;
             }
@@ -412,7 +412,7 @@ if (btnFinalizar) {
         })
         .catch(error => {
             console.error('Error al procesar la compra:', error);
-            alert('Hubo un error al conectar con el servidor.');
+            storeDanyNotificar('Hubo un error al conectar con el servidor. Inténtalo de nuevo.', 'error');
         });
     });
 }
@@ -577,7 +577,7 @@ function abrirVisor(contenedor) {
 
     document.getElementById("visorAgregarBtn").onclick = function () {
         const elegida = contTallas.querySelector(".talla-pill.activa");
-        if (!elegida) { alert("Por favor selecciona tu talla antes de agregar al carrito"); return; }
+        if (!elegida) { storeDanyNotificar('Selecciona tu talla antes de agregar al carrito.', 'falta'); return; }
         if (selector) selector.value = elegida.dataset.talla;
         card.querySelectorAll(".talla-pill").forEach(p => p.classList.toggle("activa", p.dataset.talla === elegida.dataset.talla));
         cerrarVisor();

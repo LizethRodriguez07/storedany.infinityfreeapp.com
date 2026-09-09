@@ -3665,6 +3665,94 @@ a.chip-canal:hover { text-decoration: none; color: inherit; transform: translate
 }
 
 /* ============================================================
+   NOTIFICACIONES ELEGANTES PARA EL CLIENTE (proceso de compra)
+   Reemplazan los alert() del navegador con la estética STORE DANY.
+   ============================================================ */
+.store-dany-toasts {
+    position: fixed;
+    top: 84px;
+    right: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 2147483000;
+    max-width: 360px;
+}
+.store-dany-notificacion {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: #3f3428;
+    color: #f7f3ea;
+    border: 1px solid #ECC998;
+    border-left: 5px solid #ffc107;
+    border-radius: 14px;
+    padding: 14px 15px;
+    box-shadow: 0 10px 30px rgba(30, 20, 10, 0.35);
+    transform: translateX(120%);
+    opacity: 0;
+    transition: transform 0.35s cubic-bezier(0.34, 1.2, 0.64, 1), opacity 0.3s ease;
+    position: relative;
+}
+.store-dany-notificacion.visible {
+    transform: translateX(0);
+    opacity: 1;
+}
+.store-dany-notificacion.error { border-left-color: #e0514f; }
+.store-dany-notificacion.exito { border-left-color: #2e9e5b; }
+.store-dany-notif-icono {
+    font-size: 20px;
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 193, 7, 0.14);
+    border: 1px solid rgba(236, 201, 152, 0.35);
+    border-radius: 10px;
+}
+.store-dany-notificacion.error .store-dany-notif-icono { background: rgba(224, 81, 79, 0.16); border-color: rgba(224, 81, 79, 0.4); }
+.store-dany-notificacion.exito .store-dany-notif-icono { background: rgba(46, 158, 91, 0.16); border-color: rgba(46, 158, 91, 0.4); }
+.store-dany-notif-contenido {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+.store-dany-notif-titulo {
+    font-family: 'Baloo 2', 'Poppins', sans-serif;
+    font-size: 12.5px;
+    font-weight: 800;
+    color: #ffd54a;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+}
+.store-dany-notif-mensaje {
+    font-size: 13px;
+    line-height: 1.4;
+    color: #f0e6d3;
+    word-break: break-word;
+}
+.store-dany-notif-cerrar {
+    background: none;
+    border: none;
+    color: #b8a58c;
+    font-size: 13px;
+    cursor: pointer;
+    padding: 2px 4px;
+    margin-left: auto;
+    flex-shrink: 0;
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+.store-dany-notif-cerrar:hover { color: #ffd54a; }
+@media (max-width: 576px) {
+    .store-dany-toasts { top: 74px; right: 12px; left: 12px; max-width: none; }
+    .store-dany-notificacion { padding: 12px 13px; }
+}
+
+/* ============================================================
    CARRITO: ETIQUETA "CARRITO DE COMPRAS" EN HEADER DEL PANEL
    ============================================================ */
 .cart-header-logo {
