@@ -75,6 +75,7 @@ A continuación, el papel de cada pantalla desde la visión **funcional**: qué 
 | **Función para el cliente** | **Registrarse como comprador** antes de pagar, llenando sus datos personales y de domicilio. |
 | **Propósito** | Identificar de forma **única e individual** a quien compra (cada pedido exige un cliente nuevo registrado), para generar su despacho y su recibo a su nombre. |
 | **Información que maneja** | Datos personales y de contacto: **nombre, apellidos, cédula, celular, correo, departamento, municipio y dirección**. |
+| **Diseño actual** | Formulario rediseñado: cabecera café-dorada con logo, campos con icono SVG en cápsula dorada, validación en vivo con mensajes de error bajo cada campo, botón "ENVIANDO…" con estados y diseño responsive. |
 
 ### 📄 `contactar.html` — Contacto y atención al cliente
 
@@ -87,11 +88,22 @@ A continuación, el papel de cada pantalla desde la visión **funcional**: qué 
 ---
 
 ### 🎨 Estilos (CSS) — `Style.css`
-- Hoja de estilos global compartida (header, footer, tarjetas, modales, botón volver-arriba).
+Hoja de estilos global compartida por todo el sitio (más de 5.000 líneas). Cubre:
+- **Chrome global**: navbar con efecto al hacer scroll, barra anunciante de envíos gratis, footer, botón volver-arriba y WhatsApp flotante.
+- **Muro de Términos y Condiciones**: tarjeta con logo, sellos SVG animados (pago seguro / envío protegido / datos privados), checkbox a medida con check SVG y botón "ACEPTO Y ACCEDO".
+- **Carrito flotante**: botón de la esquina inferior derecha, panel deslizante, badge contador dorado y estilos de los métodos de pago.
+- **Estilos por pantalla**: portada, catálogo de las 5 marcas, modal "Ver detalle", registro de datos personales, carrito, contacto y panel admin.
+- **Notificaciones elegantes (toasts)**: avisos café/dorado para falta de datos, errores y confirmaciones.
 
 
 ### ⚙️ Lógica del navegador (JavaScript)
-- **`js/main.js`**: comportamiento global (menú, volver-arriba) y el **muro de Términos y Condiciones** que el cliente debe aceptar antes de usar el sitio.
+- **`js/main.js`**: comportamiento global del sitio:
+  - Navbar que se compacta al hacer scroll y barra anunciante de **Envíos gratis** (cinta en movimiento).
+  - Anulaciones de aparición al hacer scroll (`IntersectionObserver` + `data-reveal`).
+  - Botón **volver-arriba** y botón **WhatsApp flotante** (excepto en las páginas de marca).
+  - **Muro de Términos y Condiciones**: se muestra una vez por sesión y bloquea el sitio hasta que el cliente marca la casilla **y** lee el texto hasta el final (scroll) para habilitar el botón de aceptar.
+  - Selector visual de tallas (píldoras clickeables) en las tarjetas de producto.
+  - **Notificaciones elegantes (RNF-06)**: `storeDanyNotificar(mensaje, tipo)` expuesto globalmente con 3 tipos (`falta`, `error`, `exito`), reemplazando los `alert()`.
 - **`nike.js` / `adidas.js` / `puma.js` / `reebok.js` / `newbalanc.js`**: catálogo, selección de tallas, gestión del carrito, cálculo de totales y envío del pedido al backend de cada marca.
 - **`js/bootstrap-4.3.1.js` + `js/jquery-3.3.1.min.js` + `js/popper.min.js`**: librerías del framework visual Bootstrap 4.
 
@@ -120,6 +132,8 @@ A continuación, el papel de cada pantalla desde la visión **funcional**: qué 
 | Cuenta de pago | La muestra **enmascarada** (primeros 3 + *** + últimos 2 dígitos) para seguridad |
 | Monto y devuelta | Usa el monto pagado real y calcula la devuelta |
 | Recibo | Muestra el comprobante con logo, datos del cliente, productos y totales, con opción de imprimir |
+| **Codificación** | Envía el recibo con **`Content-Type: text/html; charset=utf-8`** forzado para que las tildes, signos (¡) y emojis se muestren sin errores |
+| **Detalle del pedido** | Las etiquetas Talla / Color se muestran en **pastillas doradas legibles** (tipografía y tamaño mejorados) |
 
 ### 🖥️ `admin.php` — Panel de Logística y Despachos
 
@@ -231,7 +245,7 @@ Tablas principales del sistema y la información que almacenan:
 - ✅ Sello de confianza con 4 badges únicamente en el **index** (retirado del catálogo y de las páginas de marca).
 - ✅ Sección Garantía y Cambios (daño de fábrica, 1 mes, cambio de producto).
 - ✅ Stepper de progreso Registro → Carrito → Pago → Confirmación en todo el flujo.
-- ✅ Muro de Términos y Condiciones con sellos de seguridad y aceptación obligatoria.
+- ✅ Muro de Términos y Condiciones con **sellos SVG animados**, **checkbox a medida**, **aceptación por scroll** (Ley 1581 de 2012) y logo centrado.
 - ✅ **Notificaciones elegantes al cliente (RNF-06)**: avisos café/dorado que reemplazan los `alert()` del navegador durante el proceso de compra (talla, datos personales, carrito vacío, método de pago, cuenta y errores de conexión).
 - ✅ Lazy loading en las imágenes de producto (mejora la carga inicial).
 - ✅ Botón volver arriba, hover premium, botones elegantes y favicon consistente.
@@ -286,5 +300,8 @@ Registro de las sesiones de desarrollo y las fechas reales en que se trabajó el
 | 09 sep 2026 | RNF-06: notificaciones elegantes al cliente | Se crea el sistema de **toasts de notificación** en `js/main.js` (estética café/dorado, tipos falta/error/éxito, auto-cierre) y se reemplazan los 35 `alert()` de las 5 marcas y los 2 de `enviar.php` por avisos elegantes en el proceso de compra. | ✅ Completado |
 | 09 sep 2026 | Sección de requerimientos en el README | Se documentan los **requerimientos funcionales (RF-01 a RF-16)** y **no funcionales (RNF-01 a RNF-06)** implementados, más las **historias de usuario (HU-01 a HU-12)** con el método **INVEST**. | ✅ Completado |
 | 09 sep 2026 | Requerimientos en formato INVEST | La sección de requerimientos se unifica en **2 tablas** (RF y RNF) redactadas con el método **INVEST** y las columnas ID, Historia, Rol, Funcionalidad, Razón/Resultado y Criterios de aceptación (como – quiero – para); se elimina la tabla independiente de historias de usuario. | ✅ Completado |
+| 09 sep 2026 | Muro de T&C rediseñado | **Diseño final del muro de Términos y Condiciones**: logo centrado, sellos con **iconos SVG animados** (pago seguro, envío protegido, datos privados), **checkbox a medida** con check SVG, **aceptación obligatoria vía scroll** (el botón solo se habilita tras leer el texto) y mención de la **Ley 1581 de 2012**. | ✅ Completado |
+| 09 sep 2026 | Comprobante de compra y fix UTF-8 | `procesar_compra.php`: **charset UTF-8 forzado** (evita el error `Â¡` en el hosting), **pastillas Talla/Color** con tipografía y tamaño mejorados, y corrección del cierre `¡Gracias…!`. | ✅ Completado |
+| 09 sep 2026 | Documentación del frontend | README actualizado: se describen el **muro de términos**, el **formulario de datos personales rediseñado**, las **notificaciones elegantes (toasts)** y el **comprobante con UTF-8** y detalle legible. | ✅ Completado |
 
 *Última actualización: 09 de septiembre de 2026.*
