@@ -88,17 +88,7 @@ A continuación, el papel de cada pantalla desde la visión **funcional**: qué 
 
 ### 🎨 Estilos (CSS) — `Style.css`
 - Hoja de estilos global compartida (header, footer, tarjetas, modales, botón volver-arriba).
-- **Estética del negocio**: paleta café + dorado, tipografía Poppins, sello de confianza y sección garantía.
-- **Estados visuales de producto**: badges "Más vendido" (dorado) / "Nuevo" (azul) e indicador horario animado.
-- **Menú mejorado**: logo más grande con brillo dorado, marca en fuente serif elegante, enlaces más legibles, página activa como pastilla dorada y hamburguesa visible en móvil.
-- **Títulos de marca** con efecto dorado metalizado y descripción motivacional centrada; **logos con marco elegante** (medallón dorado, destello al pasar el mouse) y **franja de marcas** navegable.
-- **Carrusel de marcas** de la portada rediseñado: medallones dorados con nombre de cada marca, fondo degradado café/dorado premium y logo a color.
-- **Precio elegante con borde dorado**: etiqueta de precio en crema con borde 2px dorado y texto café oscuro (tarjetas y modal), reemplazando los fondos oscuros por marca.
-- **Info de color rediseñada**: fuente Oswald, sin fondo ni estilo itálica, con **línea dorada decorativa** de 64px bajo el texto (tarjeta y modal).
-- **Tipografía de título de producto**: Oswald (peso 500, mayúsculas) en lugar de la fuente anterior.
-- **Badges en el modal "Ver detalle" únicamente**: los badges "Más vendido / Nuevo" se ocultan en las tarjetas del catálogo y solo aparecen sobre la foto dentro del modal.
-- **Modal con tono de marca**: el recuadro "Ver detalle" toma la tonalidad de cada marca (borde superior, degradado, precio, título, botón y acordeón).
-- **CSS depurado**: eliminadas las reglas en desuso (tarjeta de asesora, sección "en cifras", precios con descuento, estilos de avatar del registro, entre otros) para mantener la hoja de estilos limpia.
+
 
 ### ⚙️ Lógica del navegador (JavaScript)
 - **`js/main.js`**: comportamiento global (menú, volver-arriba) y el **muro de Términos y Condiciones** que el cliente debe aceptar antes de usar el sitio.

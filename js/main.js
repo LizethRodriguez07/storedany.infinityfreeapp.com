@@ -123,34 +123,61 @@
             '<p class="terms-subtitulo">Términos y Condiciones del Servicio</p>' +
             '<p class="terms-texto">Al continuar, confirmas que has leído y aceptas de forma voluntaria ' +
             'nuestras condiciones de servicio: tu pedido será verificado y gestionado con total seriedad; ' +
-            'tus datos personales se mantienen protegidos y en estricta privacidad; y cada compra cuenta ' +
+            'tus datos personales se mantienen protegidos, en estricta privacidad y conforme a la Ley 1581 de 2012 ' +
+            '(Protección de Datos Personales en Colombia); y cada compra cuenta ' +
             'con respaldo, seguimiento y garantía real.</p>' +
             '<p class="terms-destacado">Solo aceptando podrás acceder a la información del negocio, ' +
             'registrar tus datos y navegar por el sitio con total tranquilidad y confianza.</p>' +
             '<div class="terms-sellos">' +
-            '<div class="terms-sello"><span class="terms-sello-icono">🔒</span><span>Pago seguro</span></div>' +
-            '<div class="terms-sello"><span class="terms-sello-icono">🚚</span><span>Envío protegido</span></div>' +
-            '<div class="terms-sello"><span class="terms-sello-icono">🛡️</span><span>Datos privados</span></div>' +
+            '<div class="terms-sello"><span class="terms-sello-icono"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/></svg></span><span>Pago seguro</span></div>' +
+            '<div class="terms-sello"><span class="terms-sello-icono"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-3.75"/></svg></span><span>Envío protegido</span></div>' +
+            '<div class="terms-sello"><span class="terms-sello-icono"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg></span><span>Datos privados</span></div>' +
             '</div>' +
             '<label class="terms-check">' +
             '<input type="checkbox" id="checkTerminosWall">' +
+            '<span class="terms-check-caja" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></span>' +
             '<span>He leído y acepto los términos y condiciones descritos anteriormente.</span>' +
             '</label>' +
-            '<button id="btnAceptarWall" type="button" class="btn-acepto" disabled>ACEPTO Y ACCEDO CON TOTAL CONFIANZA</button>';
+            '<div class="terms-scroll-ayuda">↓ Lee y desplázate hasta el final del texto</div>' +
+            '<button id="btnAceptarWall" type="button" class="btn-acepto" disabled>ACEPTO Y ACCEDO CON TOTAL CONFIANZA</button>' +
+            '<p class="terms-pie">STORE DANY · Santander, Colombia 🇨🇴 · Envíos a todo el país</p>';
 
         muro.appendChild(tarjeta);
         document.body.appendChild(muro);
         document.body.classList.add('site-lockeado');
 
-        // 3. Habilitar el botón únicamente cuando se marque la casilla
+        // 3. Habilitar el botón únicamente cuando: casilla marcada Y texto leído hasta el final
         var check = document.getElementById('checkTerminosWall');
         var btn = document.getElementById('btnAceptarWall');
+        var ayuda = tarjeta.querySelector('.terms-scroll-ayuda');
+        var leidoCompleto = false;
 
-        check.addEventListener('change', function () {
-            var aceptado = check.checked;
-            btn.disabled = !aceptado;
-            btn.classList.toggle('disabled', !aceptado);
-        });
+        function evaluarBoton() {
+            var listo = check.checked && leidoCompleto;
+            btn.disabled = !listo;
+            btn.classList.toggle('disabled', !listo);
+            if (ayuda) {
+                ayuda.style.display = listo ? 'none' : '';
+                ayuda.classList.toggle('ok', leidoCompleto);
+            }
+            ayuda.textContent = leidoCompleto
+                ? '✓ Ya leíste las condiciones. Marca la casilla para continuar.'
+                : '↓ Lee y desplázate hasta el final del texto';
+        }
+
+        function detectarScroll() {
+            var limite = tarjeta.scrollTop + tarjeta.clientHeight >= tarjeta.scrollHeight - 8;
+            if (limite && !leidoCompleto) {
+                leidoCompleto = true;
+                evaluarBoton();
+            }
+        }
+
+        // Si el texto cabe sin scroll (pantallas grandes), se considera leído
+        setTimeout(function () { detectarScroll(); }, 60);
+
+        tarjeta.addEventListener('scroll', detectarScroll);
+        check.addEventListener('change', evaluarBoton);
 
         // 4. Al aceptar: desbloquear el sitio y ocultar el muro
         btn.addEventListener('click', function () {

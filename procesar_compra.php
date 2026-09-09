@@ -1,6 +1,7 @@
 <?php
 // Hora oficial de Colombia para todo el flujo de compra
 date_default_timezone_set('America/Bogota');
+header('Content-Type: text/html; charset=utf-8');
 
 // 1. CONEXIÓN A LA BASE DE DATOS
 if ($_SERVER['HTTP_HOST'] == 'localhost:8080' || $_SERVER['HTTP_HOST'] == '127.0.0.1:8080') {
@@ -477,19 +478,29 @@ try {
             white-space: nowrap;
         }
 
-        .prod-pastillas { display: flex; gap: 6px; flex-wrap: wrap; }
+        .prod-pastillas { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 2px; }
 
         .pastilla {
-            background: #faf6f0;
+            background: linear-gradient(135deg, #fdf8ef, #f5eddd);
             border: 1px solid #d9cfc2;
-            padding: 3px 9px;
-            border-radius: 7px;
-            font-size: 11px;
+            border-left: 4px solid var(--dorado);
+            padding: 5px 12px;
+            border-radius: 10px;
+            font-size: 13px;
             font-weight: 600;
             color: var(--texto);
+            letter-spacing: 0.3px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 0 2px 6px rgba(90, 75, 59, 0.08);
         }
 
-        .pastilla strong { color: var(--cafe-oscuro); }
+        .pastilla strong {
+            color: var(--cafe-oscuro);
+            font-weight: 800;
+            font-size: 13.5px;
+        }
 
         /* Resumen de pago */
         .fila-pago {
