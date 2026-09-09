@@ -156,56 +156,37 @@ Tablas principales del sistema y la información que almacenan:
 
 ## Requerimientos del sistema
 
-### 📋 Requerimientos funcionales (RF) — implementados
-
-| ID | Requerimiento funcional | Cumplimiento |
-|---|---|---|
-| RF-01 | El sistema debe mostrar un **catálogo de calzado** organizado por las 5 marcas (Nike, Adidas, Puma, Reebok, New Balance) con vista rápida de cada producto. | ✅ Implementado |
-| RF-02 | El cliente debe poder **elegir talla y cantidad** antes de agregar un producto al carrito; si no elige talla, el sistema debe impedirlo y notificarlo. | ✅ Implementado |
-| RF-03 | El sistema debe mantener un **carrito de compras** en el navegador (`localStorage`) con botón flotante, contador y panel lateral. | ✅ Implementado |
-| RF-04 | El sistema debe **exigir registrar los datos personales** del cliente (nombre, cédula, teléfono, dirección) vinculando el pedido a un cliente nuevo registrado en la BD. | ✅ Implementado |
-| RF-05 | El cliente debe poder elegir el **método de pago**: Nequi, Daviplata o contra entrega. | ✅ Implementado |
-| RF-06 | Para pagos digitales (Nequi/Daviplata) el sistema debe pedir el **número de cuenta** y validarlo (mínimo 7 dígitos). | ✅ Implementado |
-| RF-07 | El sistema debe guardar cada compra como **pedido → pago → detalle** en las tablas `pedidos`, `pagos` y `detallpago`, incluyendo el método de pago. | ✅ Implementado |
-| RF-08 | El sistema debe generar un **número de guía** único (`SD-XXXXX`) y registrar la fecha con **hora de Colombia**. | ✅ Implementado |
-| RF-09 | El sistema debe generar un **recibo (comprobante)** con datos del cliente, productos, totales y cuenta de pago enmascarada, con opción de imprimir. | ✅ Implementado |
-| RF-10 | El sistema debe mostrar un **muro de Términos y Condiciones** con aceptación obligatoria antes de usar el sitio. | ✅ Implementado |
-| RF-11 | El panel admin debe permitir **ingreso con credenciales** y bloquear por intentos fallidos. | ✅ Implementado |
-| RF-12 | El panel admin debe mostrar **guías de despacho** con estado del pago, método de pago (📱/💬/🚚), datos del cliente y los productos. | ✅ Implementado |
-| RF-13 | El panel admin debe mostrar **KPIs** de ventas (hoy, mes, pedidos) y un **buscador** por cliente/cédula/guía con botón de limpiar y contador de guías. | ✅ Implementado |
-| RF-14 | El sistema debe permitir **enviar consultas** mediante el formulario de contacto y guardarlas en la tabla `chatonline`. | ✅ Implementado |
-| RF-15 | El sistema debe mostrar **notificaciones elegantes** al cliente durante el proceso de compra (datos faltantes, carrito vacío, método de pago, cuenta, errores de conexión) reemplazando los `alert()` del navegador. | ✅ Implementado |
-| RF-16 | El sistema debe indicar dinámicamente si la tienda está **"Abierta ahora / Cerrada"** según la hora de Colombia. | ✅ Implementado |
-
-### ⚙️ Requerimientos no funcionales (RNF)
-
-| ID | Requerimiento no funcional | Cumplimiento |
-|---|---|---|
-| RNF-01 | **Seguridad en la gestión del pedido**: la información de la compra (cliente, pago, detalle) debe manejarse de forma segura (consultas preparadas PDO, sin inyección SQL) y el pago enmascarado. | ✅ Implementado |
-| RNF-02 | **Términos y condiciones**: el sitio debe exigir aceptación de los T&C antes de que el cliente haga uso del sistema. | ✅ Implementado |
-| RNF-03 | **Capacidad**: el sistema debe soportar hasta 1000 usuarios simultáneos disponibles 24/7, advirtiendo al cliente cuando se alcance el cupo límite. | ⚠️ Parcial (hosting InfinityFree disponible 24/7; falta el aviso de cupo) |
-| RNF-04 | **Rendimiento**: la respuesta del sistema no debe superar los 10 segundos. | ⚠️ Parcial (sin medición formal) |
-| RNF-05 | **Copias de seguridad**: el sistema debe generar copias de respaldo con una lista de fecha y cliente. | ⚠️ Parcial (InfinityFree hace backups automáticos; falta la lista en el sistema) |
-| RNF-06 | **Notificación de errores**: el cliente debe recibir una notificación elegante y visible cuando falte un dato o ocurra un error en su proceso de compra. | ✅ Implementado (sistema de toasts en `js/main.js`) |
-
-### 👤 Historias de usuario (método INVEST)
-
-Historias con el formato **"Como rol, quiero funcionalidad, para razón/resultado"** y sus criterios de aceptación, evaluadas con el criterio **INVEST**: **I**ndependiente, **N**egociable, **V**aliosa, **E**stimable, **P**equeña y **T**estable.
+### 📋 Requerimientos funcionales (RF) — redactados con método INVEST
 
 | ID | Historia | Rol | Funcionalidad | Razón / Resultado | Criterios de aceptación (como – quiero – para) |
 |---|---|---|---|---|---|
-| HU-01 | Explorar catálogo | Cliente | Explorar el catálogo por marca y ver el detalle de cada producto | Elegir el calzado que más le gusta | Como cliente, quiero ver el catálogo por marca y el detalle de cada producto, para elegir el calzado adecuado. |
-| HU-02 | Seleccionar talla | Cliente | Elegir talla y cantidad antes de agregar al carrito | Asegurarse de que el producto le quedará bien | Como cliente, quiero seleccionar talla y cantidad antes de agregar al carrito, para asegurarme de que el producto me quedará bien. |
-| HU-03 | Revisar carrito | Cliente | Ver el carrito en un panel con el total acumulado | Revisar el pedido antes de pagar | Como cliente, quiero ver mi carrito con el total acumulado, para revisar mi pedido antes de pagar. |
-| HU-04 | Registrar datos personales | Cliente | Registrar sus datos personales una sola vez por compra | Hacer el pedido y recibir la guía a su nombre | Como cliente, quiero registrar mis datos personales por compra, para hacer el pedido y recibir mi guía a mi nombre. |
-| HU-05 | Elegir método de pago | Cliente | Elegir entre Nequi, Daviplata o contra entrega e ingresar la cuenta | Pagar de la forma más cómoda | Como cliente, quiero elegir el método de pago e ingresar mi cuenta, para pagar de la forma que me quede más cómoda. |
-| HU-06 | Recibir comprobante | Cliente | Recibir un recibo/comprobante de la compra | Tener constancia del pedido y su número de guía | Como cliente, quiero recibir un recibo de mi compra, para tener constancia de mi pedido y su número de guía. |
-| HU-07 | Recibir avisos claros | Cliente | Recibir una notificación elegante si le falta un dato o hay un error | Completar la compra sin quedarse atascado | Como cliente, quiero que me avisen de forma clara si me falta un dato o hay un error, para completar mi compra sin atascarme. |
-| HU-08 | Contactar a la tienda | Cliente | Contactar a la tienda y saber si está abierta | Resolver dudas de compra, devolución o garantía | Como cliente, quiero contactar a la tienda y saber si está abierta, para resolver mis dudas de compra, devolución o garantía. |
-| HU-09 | Ingresar al panel | Administrador | Ingresar al panel con su credencial | Acceder de forma segura a los pedidos | Como administrador, quiero ingresar al panel con mi credencial, para acceder de forma segura a los pedidos de la tienda. |
-| HU-10 | Ver guías de despacho | Administrador | Ver el listado de guías con estado y método de pago | Gestionar los despachos | Como administrador, quiero ver las guías con su estado y método de pago, para gestionar los despachos. |
-| HU-11 | Buscar una guía | Administrador | Buscar una guía por cliente, cédula o número | Localizar un pedido rápidamente | Como administrador, quiero buscar una guía por cliente, cédula o número, para localizar un pedido rápidamente. |
-| HU-12 | Ver KPIs de ventas | Administrador | Ver KPIs de ventas del día, del mes y pedidos totales | Conocer el comportamiento del negocio | Como administrador, quiero ver los KPIs de venta, para conocer el comportamiento del negocio. |
+| RF-01 | Explorar catálogo | Cliente | Explorar el catálogo por cada una de las 5 marcas con vista rápida de cada producto | Elegir el calzado que más le guste | Como cliente, quiero ver el catálogo por marca y el detalle de cada producto, para elegir el calzado adecuado. |
+| RF-02 | Seleccionar talla | Cliente | Elegir talla y cantidad antes de agregar al carrito; si no elige talla, el sistema lo impide y lo notifica | Asegurarse de que el producto le quede bien | Como cliente, quiero elegir talla y cantidad antes de agregar al carrito, para asegurarme de que el producto me quedará bien. |
+| RF-03 | Revisar carrito | Cliente | Ver el carrito en el navegador (`localStorage`) con botón flotante, contador, panel lateral y total acumulado | Revisar el pedido antes de pagar | Como cliente, quiero ver mi carrito con el total acumulado, para revisar mi pedido antes de pagar. |
+| RF-04 | Registrar datos personales | Cliente | Registrar sus datos personales (nombre, cédula, teléfono, dirección) vinculados a un pedido nuevo en la BD | Hacer el pedido y recibir la guía a su nombre | Como cliente, quiero registrar mis datos personales por compra, para hacer el pedido y recibir mi guía a mi nombre. |
+| RF-05 | Elegir método de pago | Cliente | Elegir entre Nequi, Daviplata o contra entrega | Pagar de la forma más cómoda | Como cliente, quiero elegir mi método de pago, para pagar de la forma que me quede más cómoda. |
+| RF-06 | Ingresar número de cuenta | Cliente | Ingresar y validar (mínimo 7 dígitos) el número de cuenta en pagos digitales | Validar el pago digital | Como cliente, quiero ingresar mi número de cuenta al pagar con Nequi/Daviplata, para que mi pago sea válido. |
+| RF-07 | Guardar la compra | Sistema | Guardar cada compra como pedido → pago → detalle en las tablas `pedidos`, `pagos` y `detallpago`, incluyendo el método de pago | Registrar la transacción completa en la BD | Como sistema, quiero guardar cada compra como pedido → pago → detalle, para registrar la transacción completa en la BD. |
+| RF-08 | Generar número de guía | Sistema | Generar una guía única (`SD-XXXXX`) con la fecha y hora de Colombia | Identificar cada pedido | Como sistema, quiero generar una guía única con la hora de Colombia, para identificar cada pedido. |
+| RF-09 | Recibir recibo | Cliente | Generar un comprobante con datos del cliente, productos, totales y cuenta enmascarada, con opción de imprimir | Tener constancia del pedido | Como cliente, quiero recibir mi recibo de compra, para tener constancia de mi pedido y su número de guía. |
+| RF-10 | Aceptar términos y condiciones | Cliente | Aceptar el muro de Términos y Condiciones antes de usar el sitio | Uso regulado del sitio | Como cliente, quiero aceptar los términos y condiciones, para usar el sitio de forma autorizada. |
+| RF-11 | Ingresar al panel admin | Administrador | Ingresar con credenciales y bloquear el acceso por intentos fallidos | Acceso seguro al panel | Como administrador, quiero ingresar al panel con mis credenciales, para acceder de forma segura a los pedidos de la tienda. |
+| RF-12 | Ver guías de despacho | Administrador | Ver las guías con estado del pago, método de pago (📱/💬/🚚), datos del cliente y los productos | Gestionar los despachos | Como administrador, quiero ver las guías con su estado y método de pago, para gestionar los despachos. |
+| RF-13 | Ver KPIs y buscar guías | Administrador | Ver KPIs de ventas (hoy, mes, pedidos) y buscar guías por cliente/cédula/guía con botón de limpiar y contador | Conocer el negocio y localizar pedidos | Como administrador, quiero ver los KPIs y buscar una guía, para conocer el negocio y localizar un pedido. |
+| RF-14 | Enviar consultas | Cliente | Enviar consultas desde el formulario de contacto y guardarlas en la tabla `chatonline` | Resolver dudas | Como cliente, quiero enviar mis consultas, para resolver mis dudas de compra, devolución o garantía. |
+| RF-15 | Recibir avisos claros | Cliente | Recibir notificaciones elegantes si falta un dato o hay un error en el proceso de compra (reemplazan los `alert()`) | Completar la compra sin quedarse atascado | Como cliente, quiero que me avisen de forma clara si me falta un dato o hay un error, para completar mi compra sin atascarme. |
+| RF-16 | Saber el horario de la tienda | Cliente | Indicar dinámicamente si la tienda está "Abierta ahora / Cerrada" según la hora de Colombia | Saber si la tienda está disponible | Como cliente, quiero saber si la tienda está abierta, para saber cuándo puedo ser atendido. |
+
+### ⚙️ Requerimientos no funcionales (RNF) — redactados con método INVEST
+
+| ID | Historia | Rol | Funcionalidad | Razón / Resultado | Criterios de aceptación (como – quiero – para) |
+|---|---|---|---|---|---|
+| RNF-01 | Seguridad en la gestión del pedido | Sistema | Manejar la información de la compra de forma segura (consultas preparadas PDO, sin inyección SQL) y enmascarar el pago | Proteger la información del cliente | Como sistema, quiero manejar la compra con consultas seguras y el pago enmascarado, para proteger los datos del cliente. ✅ |
+| RNF-02 | Términos y condiciones | Cliente | Exigir la aceptación de los T&C antes de hacer uso del sistema | Uso regulado del sitio | Como sistema, quiero exigir la aceptación de los T&C antes del uso, para garantizar un uso regulado del sitio. ✅ |
+| RNF-03 | Capacidad del sistema | Sistema | Soportar hasta 1000 usuarios simultáneos disponibles 24/7 y avisar cuando se alcance el cupo límite | Garantizar disponibilidad constante | Como sistema, quiero soportar 1000 usuarios 24/7 y avisar el cupo límite, para garantizar disponibilidad. ⚠️ Parcial (falta el aviso de cupo) |
+| RNF-04 | Rendimiento | Sistema | Responder cada acción en menos de 10 segundos | Compra ágil | Como sistema, quiero responder en menos de 10 segundos, para que la compra sea ágil. ⚠️ Parcial (sin medición formal) |
+| RNF-05 | Copias de seguridad | Sistema | Generar copias de respaldo con una lista de fecha y cliente | Recuperar la información | Como sistema, quiero generar copias de seguridad con fecha y cliente, para recuperar la información. ⚠️ Parcial (InfinityFree hace backups automáticos; falta la lista) |
+| RNF-06 | Notificación de errores | Cliente | Recibir una notificación elegante y visible al faltar un dato o ocurrir un error en el proceso de compra | Completar la compra sin atascarse | Como cliente, quiero recibir notificaciones elegantes ante faltas o errores, para completar mi proceso de compra. ✅ (toasts en `js/main.js`) |
 
 ---
 
@@ -314,6 +295,6 @@ Registro de las sesiones de desarrollo y las fechas reales en que se trabajó el
 | 08 sep 2026 | Método de pago en el panel | Se agrega la columna `metodo` a la tabla `pagos` (ALTER en InfinityFree); `procesar_compra.php` guarda el método elegido (Nequi/Daviplata/Contraentrega) y el admin lo muestra con su icono (📱/💬/🚚) en cada guía. | ✅ Completado |
 | 09 sep 2026 | RNF-06: notificaciones elegantes al cliente | Se crea el sistema de **toasts de notificación** en `js/main.js` (estética café/dorado, tipos falta/error/éxito, auto-cierre) y se reemplazan los 35 `alert()` de las 5 marcas y los 2 de `enviar.php` por avisos elegantes en el proceso de compra. | ✅ Completado |
 | 09 sep 2026 | Sección de requerimientos en el README | Se documentan los **requerimientos funcionales (RF-01 a RF-16)** y **no funcionales (RNF-01 a RNF-06)** implementados, más las **historias de usuario (HU-01 a HU-12)** con el método **INVEST**. | ✅ Completado |
-| 09 sep 2026 | Ajuste de tablas de historias de usuario | La tabla de **historias de usuario** se rediseña con las columnas: ID, Historia, Rol, Funcionalidad, Razón/Resultado y Criterios de aceptación (como – quiero – para), conservando las tablas de requerimientos funcionales y no funcionales. | ✅ Completado |
+| 09 sep 2026 | Requerimientos en formato INVEST | La sección de requerimientos se unifica en **2 tablas** (RF y RNF) redactadas con el método **INVEST** y las columnas ID, Historia, Rol, Funcionalidad, Razón/Resultado y Criterios de aceptación (como – quiero – para); se elimina la tabla independiente de historias de usuario. | ✅ Completado |
 
 *Última actualización: 09 de septiembre de 2026.*
