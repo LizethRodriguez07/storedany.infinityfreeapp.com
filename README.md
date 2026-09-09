@@ -49,24 +49,8 @@ A continuación, el papel de cada pantalla desde la visión **funcional**: qué 
 | Aspecto | Descripción |
 |---|---|
 | **Función para el cliente** | Es la **puerta de entrada**. Le permite conocer la tienda, ver las categorías por marca, abrir el carrito, ir a los datos de registro y al contacto. |
-| **Propósito** | Presentar la marca STORE DANY de forma atractiva, dar confianza (sello de 4 badges: pago seguro, envío, originales, garantía) y encauzar al cliente hacia la compra o la consulta. |
-| **Información que maneja** | Información de presentación (marcas, ofertas, confianza); no recopila datos personales en esta pantalla. |
-
-### 📄 Páginas de marca: `nike.html`, `adidas.html`, `puma.html`, `reebok.html`, `new-balance.html`
-
-| Aspecto | Descripción |
-|---|---|
-| **Función para el cliente** | **Explorar y elegir calzado**: ver el catálogo de cada marca, ampliar cada producto (vista rápida con tallas), agregar al carrito y gestionar su pedido. |
-| **Propósito** | Vender el calzado de la marca: mostrar productos con badges (Más vendido / Nuevo), permitir seleccionar talla y cantidad, y llevar el control del carrito en pantalla. Cada título de marca incluye una **descripción motivacional** y una **franja con las 5 marcas** para navegar rápido entre ellas. |
-| **Información que maneja** | Datos del **producto** (nombre, marca, precio, talla, color) y del **cliente** vía registro obligatorio previo (nombre, cédula, teléfono) para poder su compra. |
-
-### 📄 `shopping-cart.html` — Carrito y resumen del pedido
-
-| Aspecto | Descripción |
-|---|---|
-| **Función para el cliente** | **Revisar y confirmar su pedido**: ver el catálogo completo, desplegar marcas, revisar el carrito con el resumen del total y acceder a su registro. |
-| **Propósito** | Que el cliente verifique qué va a comprar y cuánto pagará antes de finalizar, usando el sello de confianza y la sección de Garantía y Cambios para tranquilidad. |
-| **Información que maneja** | Resumen del **pedido** (productos, cantidades, totales) y datos de **registro del cliente** para continuar la compra. |
+| **Propósito** | Presentar la marca STORE DANY de forma atractiva y encauzar al cliente hacia la compra o la consulta. |
+| **Información que maneja** | Información de presentación (marcas, ofertas, confianza). |
 
 ### 📄 `personal-data.html` — Registro de datos del cliente
 
@@ -75,14 +59,29 @@ A continuación, el papel de cada pantalla desde la visión **funcional**: qué 
 | **Función para el cliente** | **Registrarse como comprador** antes de pagar, llenando sus datos personales y de domicilio. |
 | **Propósito** | Identificar de forma **única e individual** a quien compra (cada pedido exige un cliente nuevo registrado), para generar su despacho y su recibo a su nombre. |
 | **Información que maneja** | Datos personales y de contacto: **nombre, apellidos, cédula, celular, correo, departamento, municipio y dirección**. |
-| **Diseño actual** | Formulario rediseñado: cabecera café-dorada con logo, campos con icono SVG en cápsula dorada, validación en vivo con mensajes de error bajo cada campo, botón "ENVIANDO…" con estados y diseño responsive. |
+
+### 📄 Páginas de marca: `nike.html`, `adidas.html`, `puma.html`, `reebok.html`, `new-balance.html`
+
+| Aspecto | Descripción |
+|---|---|
+| **Función para el cliente** | **Explorar y elegir calzado**: ver el catálogo de cada marca, ampliar cada producto (vista rápida con tallas), agregar al carrito y gestionar su pedido. |
+| **Propósito** | Vender el calzado de la marca: permitir seleccionar talla y cantidad, y llevar el control del carrito en pantalla. Cada título de marca incluye una **franja con las 5 marcas** para navegar rápido entre ellas. |
+| **Información que maneja** | Datos del **producto** (nombre, marca, precio, talla, color) y del **cliente** vía registro obligatorio previo (nombre, cédula, teléfono) para poder su compra. |
+
+### 📄 `shopping-cart.html` — Carrito y resumen del pedido
+
+| Aspecto | Descripción |
+|---|---|
+| **Función para el cliente** | **Revisar y confirmar su pedido**: ver el catálogo completo, desplegar marcas, revisar el carrito con el resumen del total y acceder a su registro. |
+| **Propósito** | Que el cliente verifique qué va a comprar y cuánto pagará antes de finalizar, usando la sección de Garantía y Cambios para tranquilidad. |
+| **Información que maneja** | Resumen del **pedido** (productos, cantidades, totales) y datos de **registro del cliente** para continuar la compra. |
 
 ### 📄 `contactar.html` — Contacto y atención al cliente
 
 | Aspecto | Descripción |
 |---|---|
 | **Función para el cliente** | **Comunicarse con la tienda**: ver canales directos (teléfono, WhatsApp, horario, punto físico), saber si la tienda está abierta y enviar una consulta. |
-| **Propósito** | Brindar atención y soporte (compras, devoluciones, garantías), indicando el horario real según la hora de Colombia. |
+| **Propósito** | Brindar atención y soporte (compras, devoluciones, garantías), indicando el horario de la tienda. |
 | **Información que maneja** | Datos de la **consulta**: **nombres, apellidos, correo, teléfono, tipo de consulta (compra/devolución/garantía/otro) y mensaje**. |
 
 ---
