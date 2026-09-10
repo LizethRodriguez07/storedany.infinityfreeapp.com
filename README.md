@@ -202,7 +202,7 @@ Tablas principales del sistema y la información que almacenan:
 - ✅ Botón **flotante** del carrito fuera del menú (esquina inferior derecha): el panel abre hacia arriba, con badge contador dorado.
 - ✅ Métodos de pago como **tarjetas visuales** (Nequi, Daviplata y Contraentrega) con selección y check; el campo pide **"INGRESA EL NÚMERO DE CUENTA"**.
 - ✅ Carrito mejorado: logo, miniaturas, layout horizontal, scroll, borde dorado por item.
-- ✅ Carrito modal: al abrirse se **centra en pantalla** sobre un **fondo oscuro desenfocado**, con cabecera de marca (logo + título/subtítulo) y contador de ítems.
+- ✅ Carrito modal: al abrirse **se desliza desde el lado derecho** sobre un **fondo oscuro desenfocado**, con cabecera de marca (logo + título/subtítulo) y contador de ítems.
 - ✅ Botón "Seguir Comprando", badge dorado pulse, flash en icono y toast de confirmación.
 - ✅ El checkout envía el pedido con el cliente vinculado al **registro en BD**.
 - ✅ Al finalizar se limpia el carrito para que el siguiente pedido exija registro nuevo.
@@ -295,6 +295,6 @@ Registro de las sesiones de desarrollo y las fechas reales en que se trabajó el
 | 09 sep 2026 | Documentación del frontend | README actualizado: se describen el **muro de términos**, el **formulario de datos personales rediseñado**, las **notificaciones elegantes (toasts)** y el **comprobante con UTF-8** y detalle legible. | ✅ Completado |
 | 10 sep 2026 | Pulido del carrito de compras | Precio por ítem con **degradado café-dorado** (no compite con el total) y **total en cápsula dorada** (fondo dorado en degradado, más grande y destacado). | ✅ Completado |
 | 10 sep 2026 | Logo y marca en el carrito | Cabecera del carrito rediseñada: **logo más grande** (28px → 54px, marco dorado y sombra) con "STORE DANY" en **dorado metalizado** (Baloo 2, 21px) sobre franja degradada crema. | ✅ Completado |
-| 10 sep 2026 | Carrito modal con fondo desenfocado | Al abrir el carrito se **centra en pantalla (modal)** sobre un **fondo oscuro transparente y desenfocado** (blur); cabecera con **logo + título "GESTIÓN DE VENTAS ONLINE" y subtítulo "STORE DANY"** a la izquierda, **contador de ítems**, y cierre por botón ✕, clic fuera o tecla **Esc**. | ✅ Completado |
+| 10 sep 2026 | Carrito modal con fondo desenfocado | Al abrir el carrito se **desliza desde el lado derecho** sobre un **fondo oscuro transparente y desenfocado** (blur) que queda detrás del panel; cabecera con **logo + título "GESTIÓN DE VENTAS ONLINE" y subtítulo "STORE DANY"** a la izquierda, **contador de ítems**, y cierre por botón ✕, clic fuera o tecla **Esc**. | ✅ Completado |
 
 *Última actualización: 10 de septiembre de 2026.*

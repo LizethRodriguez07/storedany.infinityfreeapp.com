@@ -5061,22 +5061,25 @@ p, .lead, .introduccion-historia, .footer-text,
 
 .carrito-flotante-wrap #cart-container:not(.hidden-cart) {
     position: fixed !important;
-    top: 50% !important;
-    left: 50% !important;
-    right: auto !important;
-    bottom: auto !important;
-    transform: translate(-50%, -50%) !important;
-    width: min(460px, calc(100vw - 32px)) !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: auto !important;
+    transform: none !important;
+    width: min(430px, 100vw) !important;
     max-width: none !important;
-    max-height: 92vh !important;
+    max-height: 100vh !important;
+    height: 100vh !important;
     overflow-y: auto !important;
     margin: 0 !important;
-    border-radius: 20px !important;
+    border-radius: 20px 0 0 20px !important;
+    border-right: none !important;
+    box-shadow: -18px 0 50px rgba(20, 15, 10, 0.35), 0 0 0 1px rgba(236, 201, 152, 0.35) !important;
     animation: entradaModalCarrito 0.35s cubic-bezier(0.22, 1, 0.36, 1) !important;
 }
 @keyframes entradaModalCarrito {
-    from { opacity: 0; transform: translate(-50%, -47%) scale(0.96); }
-    to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    from { opacity: 0; transform: translateX(48px); }
+    to   { opacity: 1; transform: translateX(0); }
 }
 
 .cart-header-logo {
