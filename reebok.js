@@ -48,6 +48,11 @@ let productosCarrito = JSON.parse(localStorage.getItem('carrito_tienda')) || [];
 // ==========================================
 const cartBackdrop = document.createElement('div');
 cartBackdrop.id = 'cart-backdrop';
+cartBackdrop.innerHTML = '<div class="cart-brand-panel">' +
+    '<img src="logotipo.png" alt="Store Dany">' +
+    '<span class="cart-brand-panel-titulo">Gestión de Ventas Online</span>' +
+    '<span class="cart-brand-panel-subtitulo">STORE DANY</span>' +
+    '</div>';
 document.body.appendChild(cartBackdrop);
 
 function setCarritoModal(abrir) {
