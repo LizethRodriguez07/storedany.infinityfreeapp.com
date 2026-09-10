@@ -44,19 +44,35 @@ let productosCarrito = JSON.parse(localStorage.getItem('carrito_tienda')) || [];
 
 
 // ==========================================
-// 2. MOSTRAR / OCULTAR CARRITO
+// 2. MOSTRAR / OCULTAR CARRITO (MODAL + FONDO DESENFOCADO)
 // ==========================================
+const cartBackdrop = document.createElement('div');
+cartBackdrop.id = 'cart-backdrop';
+document.body.appendChild(cartBackdrop);
+
+function setCarritoModal(abrir) {
+    if (containerCartProducts) containerCartProducts.classList.toggle('hidden-cart', !abrir);
+    cartBackdrop.classList.toggle('active', !!abrir);
+}
+
 if (btnCart && containerCartProducts) {
     btnCart.addEventListener('click', () => {
-        containerCartProducts.classList.toggle('hidden-cart');
+        setCarritoModal(containerCartProducts.classList.contains('hidden-cart'));
     });
 }
 
 if (btnCerrarCarrito && containerCartProducts) {
     btnCerrarCarrito.addEventListener('click', () => {
-        containerCartProducts.classList.add('hidden-cart');
+        setCarritoModal(false);
     });
 }
+
+cartBackdrop.addEventListener('click', function () {
+    setCarritoModal(false);
+});
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') setCarritoModal(false);
+});
 
 
 // ==========================================
@@ -304,8 +320,10 @@ const actualizarCarritoHTML = () => {
     const formatoMoneda = `$${totalDinero.toLocaleString('es-CO')}`;
 
     if (valorTotal) valorTotal.innerText = formatoMoneda;
-    if (valorSubtotal) valorSubtotal.innerText = formatoMoneda;
+if (valorSubtotal) valorSubtotal.innerText = formatoMoneda;
     if (contadorProductos) contadorProductos.innerText = totalItems;
+    const contadorCartHeader = document.getElementById('cart-header-contador');
+    if (contadorCartHeader) contadorCartHeader.innerText = totalItems > 0 ? '(' + totalItems + ')' : '';
     if (montoConfirmado) montoConfirmado.innerText = formatoMoneda;
 
     // Persistir en LocalStorage
