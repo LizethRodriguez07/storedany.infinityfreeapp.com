@@ -11,7 +11,7 @@
     <!-- Framework Bootstrap 4.3.1 -->
     <link href="css/bootstrap-4.3.1.css" rel="stylesheet" type="text/css">
     <!-- estilos css -->
-    <link href="Style.css" rel="stylesheet" type="text/css">
+    <link href="Style.css?v=4" rel="stylesheet" type="text/css">
     
 </head>
 <body>
@@ -95,6 +95,11 @@
             <!-- ↕️ Productos Seleccionados -->
             <div id="row-product" class="row-product-scroll" style="max-height: 150px; overflow-y: auto; margin-bottom: 12px; padding-right: 5px; display: block; clear: both;">
             </div>
+
+            <button type="button" class="btn-seguir-comprando" onclick="document.getElementById('cart-container').classList.add('hidden-cart');document.getElementById('cart-backdrop').classList.remove('active');">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/></svg>
+                Seguir Comprando
+            </button>
             
             <!-- Resumen de Costos -->
             <div class="cart-summary-details" style="background-color: #fdfbf7; border-radius: 8px; padding: 12px; margin-bottom: 12px; border: 1px solid #f5ede2; clear: both;">
@@ -180,8 +185,7 @@
                 
                 <button id="vaciar-carrito" type="button" class="btn-empty" style="width: 100%; background-color: transparent; border: 1px solid #dc3545; color: #dc3545; padding: 9px; border-radius: 6px; font-weight: 600; font-size: 12px; cursor: pointer; display: block; text-align: center;">Vaciar Carrito</button>
                 
-                <button type="button" class="btn-seguir-comprando" onclick="document.getElementById('cart-container').classList.add('hidden-cart');document.getElementById('cart-backdrop').classList.remove('active');">🛒 Seguir Comprando</button>
-            </div>
+                </div>
 
             <!-- Informe de protección -->
             <p class="secure-footer-text" style="text-align: center; font-size: 10px; color: #a0a0a0; margin-top: 12px; margin-bottom: 0; clear: both;">
@@ -588,7 +592,7 @@
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap-4.3.1.js"></script>
     <script src="js/main.js"></script>
-<script src="nike.js"></script> 
+<script src="nike.js?v=4"></script> 
     
     
     <div id="visorImagen" class="visor-pantalla-completa" onclick="cerrarVisor()">

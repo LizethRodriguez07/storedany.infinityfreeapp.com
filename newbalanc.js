@@ -305,8 +305,11 @@ const actualizarCarritoHTML = () => {
             <div class="cart-item-info">
                 <img src="${product.imagen}" alt="${product.titulo}" class="cart-item-thumb">
                 <div class="cart-item-texto">
-                    <p class="cart-item-title">${product.cantidad}x ${product.titulo}</p>
-                    <small class="cart-item-details">Talla: ${product.talla} | Color: ${product.color}</small>
+                    <p class="cart-item-title"><span class="cart-item-qty">${product.cantidad}x</span>${product.titulo}</p>
+                    <div class="cart-item-variantes">
+                        <span class="cart-badge"><em>Talla</em> ${product.talla}</span>
+                        <span class="cart-badge"><em>Color</em> ${product.color}</span>
+                    </div>
                     <span class="cart-item-price">${product.precio}</span>
                 </div>
             </div>

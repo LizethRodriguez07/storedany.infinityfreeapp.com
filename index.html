@@ -11,7 +11,7 @@
     <!-- Framework Bootstrap 4.3.1 -->
     <link href="css/bootstrap-4.3.1.css" rel="stylesheet" type="text/css">
     <!-- Tu archivo de estilos unificado y corregido -->
-    <link href="Style.css" rel="stylesheet" type="text/css">
+    <link href="Style.css?v=7" rel="stylesheet" type="text/css">
 </head>
 <body>
     
@@ -176,33 +176,107 @@
             <span class="sello-confianza"><span class="sello-icono">🛠️</span> Garantía de fábrica</span>
         </div>
         
-        <!-- CUADRÍCULA DINÁMICA DE COMPROMISOS --> 
-        <div class="row text-center mb-5"> 
+        <!-- CUADRÍCULA DINÁMICA DE COMPROMISOS (Acordeón interactivo) --> 
+        <div class="row text-center align-items-start mb-5"> 
             <!-- Tarjeta 1: Marcas --> 
             <div class="col-md-4 mb-4" data-reveal> 
-                <div class="tarjeta-dinamica h-100 shadow-sm"> 
-                    <div class="icono-tarjeta">👟</div> 
-                    <h4>Marcas Top</h4> 
-                    <p>Traemos las últimas tendencias globales en calzado para hombre: <strong>Adidas, Nike, New Balance, Puma y Reebok</strong>.</p> 
+                <div class="tarjeta-dinamica h-100 shadow-sm tarjeta-acordeon"> 
+                    <div class="acordeon-cabeza" role="button" tabindex="0" aria-expanded="false"> 
+                        <div class="icono-tarjeta">👟</div> 
+                        <div class="acordeon-titulo-fila">
+                            <h4>Marcas Top</h4>
+                            <span class="acordeon-boton" aria-hidden="true">+</span>
+                        </div>
+                    </div> 
+                    <div class="acordeon-contenido"> 
+                        <p>Traemos las últimas tendencias globales en calzado para hombre:</p>
+                        <div class="chips-marcas">
+                            <span class="chip-marca">NIKE</span>
+                            <span class="chip-marca">ADIDAS</span>
+                            <span class="chip-marca">NEW BALANCE</span>
+                            <span class="chip-marca">PUMA</span>
+                            <span class="chip-marca">REEBOK</span>
+                        </div>
+                    </div>
                 </div> 
             </div> 
         
             
             <!-- Tarjeta 2: Asesoría --> 
             <div class="col-md-4 mb-4" data-reveal> 
-                <div class="tarjeta-dinamica h-100 shadow-sm"> 
-                    <div class="icono-tarjeta">✨</div>
-                    <h4>Innovación y Estilo</h4>
-                    <p>Nuestro propósito es guiarte de manera personalizada para que encuentres el estilo que se adapte perfectamente a ti.</p> 
-                </div> 
+                <div class="tarjeta-dinamica h-100 shadow-sm tarjeta-acordeon"> 
+                    <div class="acordeon-cabeza" role="button" tabindex="0" aria-expanded="false"> 
+                        <div class="icono-tarjeta">✨</div>
+                        <div class="acordeon-titulo-fila">
+                            <h4>Innovación y Estilo</h4>
+                            <span class="acordeon-boton" aria-hidden="true">+</span>
+                        </div>
+                    </div>
+                    <div class="acordeon-contenido">
+                        <p>Nuestro propósito es guiarte de manera personalizada para que encuentres el estilo que se adapte perfectamente a ti.</p>
+                        <div class="acordeon-items">
+                            <div class="acordeon-item">
+                                <span class="acordeon-item-icono">✓</span>
+                                <div class="acordeon-item-texto">
+                                    <strong>Guía de tallas</strong>
+                                    <span>te ayudamos a definir tu número exacto.</span>
+                                </div>
+                            </div>
+                            <div class="acordeon-item">
+                                <span class="acordeon-item-icono">✓</span>
+                                <div class="acordeon-item-texto">
+                                    <strong>Para cada ocasión</strong>
+                                    <span>deportivo, casual y de uso diario.</span>
+                                </div>
+                            </div>
+                            <div class="acordeon-item">
+                                <span class="acordeon-item-icono">✓</span>
+                                <div class="acordeon-item-texto">
+                                    <strong>Asesoría 1 a 1</strong>
+                                    <span>por WhatsApp antes de que compres.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             
             <!-- Tarjeta 3: Seguridad --> 
             <div class="col-md-4 mb-4" data-reveal>
-                <div class="tarjeta-dinamica h-100 shadow-sm"> 
-                    <div class="icono-tarjeta">🔒</div>
-                    <h4>Compra Segura</h4> 
-                    <p>Construimos confianza mutua, validando rigurosamente cada pago para garantizar un proceso de entrega legal y sin estafas.</p> 
+                <div class="tarjeta-dinamica h-100 shadow-sm tarjeta-acordeon"> 
+                    <div class="acordeon-cabeza" role="button" tabindex="0" aria-expanded="false"> 
+                        <div class="icono-tarjeta">🔒</div>
+                        <div class="acordeon-titulo-fila">
+                            <h4>Compra Segura</h4>
+                            <span class="acordeon-boton" aria-hidden="true">+</span>
+                        </div>
+                    </div>
+                    <div class="acordeon-contenido">
+                        <p>Construimos confianza mutua, validando rigurosamente cada pago para garantizar un proceso de entrega legal y sin estafas.</p>
+                        <div class="acordeon-items">
+                            <div class="acordeon-item">
+                                <span class="acordeon-item-icono">✓</span>
+                                <div class="acordeon-item-texto">
+                                    <strong>Elige tu método</strong>
+                                    <span>Nequi, Daviplata o Contraentrega.</span>
+                                </div>
+                            </div>
+                            <div class="acordeon-item">
+                                <span class="acordeon-item-icono">✓</span>
+                                <div class="acordeon-item-texto">
+                                    <strong>Validamos el pago</strong>
+                                    <span>confirmamos todo antes de despachar.</span>
+                                </div>
+                            </div>
+                            <div class="acordeon-item">
+                                <span class="acordeon-item-icono">✓</span>
+                                <div class="acordeon-item-texto">
+                                    <strong>Entrega verificada</strong>
+                                    <span>legal y sin estafas.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -350,6 +424,6 @@
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap-4.3.1.js"></script>
-<script src="js/main.js"></script>
+<script src="js/main.js?v=5"></script>
 </body>
 </html>

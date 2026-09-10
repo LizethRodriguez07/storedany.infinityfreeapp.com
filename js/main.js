@@ -63,9 +63,30 @@
         });
     }
 
+    // Acordeón interactivo de las tarjetas de compromisos (portada)
+    function activarAcordeones() {
+        var tarjetas = document.querySelectorAll('.tarjeta-acordeon');
+        tarjetas.forEach(function (tarjeta) {
+            var cabeza = tarjeta.querySelector('.acordeon-cabeza');
+            if (!cabeza) return;
+            cabeza.addEventListener('click', function (e) {
+                if (e.target.closest('a')) return;
+                var abierta = tarjeta.classList.toggle('abierta');
+                cabeza.setAttribute('aria-expanded', abierta ? 'true' : 'false');
+            });
+            cabeza.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    cabeza.click();
+                }
+            });
+        });
+    }
+
     window.addEventListener('load', function () {
         agregarAnimaciones();
         agregarRevelado();
+        activarAcordeones();
     });
 
     /* ---------- 3. BOTÓN VOLVER ARRIBA ---------- */
