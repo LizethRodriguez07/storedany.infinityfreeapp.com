@@ -3929,25 +3929,34 @@ a.chip-canal:hover { text-decoration: none; color: inherit; transform: translate
 .cart-header-logo {
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-bottom: 8px;
-    padding-bottom: 8px;
-    border-bottom: 2px solid #ECC998;
+    gap: 13px;
+    margin-bottom: 12px;
+    padding: 10px 6px 12px;
+    border-bottom: 2px dashed rgba(236, 201, 152, 0.65);
+    background: linear-gradient(90deg, #fffdf8 0%, #fcf2df 100%);
+    border-radius: 14px 14px 0 0;
 }
 .cart-header-logo img {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
+    width: 54px;
+    height: 54px;
+    border-radius: 16px;
     object-fit: contain;
-    border: 1px solid #ECC998;
+    border: 2px solid var(--dorado-suave);
+    box-shadow: 0 4px 14px rgba(133, 112, 89, 0.30);
+    flex-shrink: 0;
 }
 .cart-header-logo span {
     font-family: 'Baloo 2', 'Segoe UI', sans-serif;
-    font-size: 10px;
+    font-size: 21px;
     font-weight: 800;
     letter-spacing: 2px;
-    color: #857059;
     text-transform: uppercase;
+    line-height: 1.1;
+    color: #b8860b;
+    background: linear-gradient(135deg, #e0a83c 0%, #b8860b 55%, #6b4a1d 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 /* Miniatura en items del carrito */
