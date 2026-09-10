@@ -3532,7 +3532,12 @@ select.talla-seleccion[hidden] {
 }
 .cart-item-price {
     font-size: 14px !important;
-    font-weight: 800 !important;
+    font-weight: 900 !important;
+    color: #b8860b !important;
+    background: linear-gradient(135deg, #8a6d53, #3f3428) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
 }
 .icon-close {
     width: 20px !important; height: 20px !important;
@@ -3561,8 +3566,15 @@ select.talla-seleccion[hidden] {
 }
 .total-pagar {
     font-family: 'Baloo 2', 'Segoe UI', sans-serif !important;
-    font-size: 21px !important;
+    font-size: 24px !important;
     letter-spacing: 0.5px !important;
+    display: inline-block !important;
+    line-height: 1.2 !important;
+    background: linear-gradient(135deg, var(--dorado), #e6a817) !important;
+    color: #3f3428 !important;
+    padding: 7px 20px !important;
+    border-radius: 999px !important;
+    box-shadow: 0 5px 14px rgba(43, 33, 24, 0.20), inset 0 0 0 2px rgba(255, 255, 255, 0.45) !important;
 }
 .medio-pago-seccion > label {
     display: inline-flex !important; align-items: center !important;

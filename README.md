@@ -292,5 +292,6 @@ Registro de las sesiones de desarrollo y las fechas reales en que se trabajó el
 | 09 sep 2026 | Muro de T&C rediseñado | **Diseño final del muro de Términos y Condiciones**: logo centrado, sellos con **iconos SVG animados** (pago seguro, envío protegido, datos privados), **checkbox a medida** con check SVG, **aceptación obligatoria vía scroll** (el botón solo se habilita tras leer el texto) y mención de la **Ley 1581 de 2012**. | ✅ Completado |
 | 09 sep 2026 | Comprobante de compra y fix UTF-8 | `procesar_compra.php`: **charset UTF-8 forzado** (evita el error `Â¡` en el hosting), **pastillas Talla/Color** con tipografía y tamaño mejorados, y corrección del cierre `¡Gracias…!`. | ✅ Completado |
 | 09 sep 2026 | Documentación del frontend | README actualizado: se describen el **muro de términos**, el **formulario de datos personales rediseñado**, las **notificaciones elegantes (toasts)** y el **comprobante con UTF-8** y detalle legible. | ✅ Completado |
+| 10 sep 2026 | Pulido del carrito de compras | Precio por ítem con **degradado café-dorado** (no compite con el total) y **total en cápsula dorada** (fondo dorado en degradado, más grande y destacado). | ✅ Completado |
 
-*Última actualización: 09 de septiembre de 2026.*
+*Última actualización: 10 de septiembre de 2026.*
