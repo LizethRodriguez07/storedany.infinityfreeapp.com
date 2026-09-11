@@ -208,74 +208,34 @@ Tablas principales del sistema y la información que almacenan:
 > **Hilo conductor del proyecto:** cada acción del cliente (elegir, registrarse, pagar, confirmar) conlleva un **dato que se guarda en la base de datos `gst_ventasonline`**, y cada pantalla tiene un **diseño/estilo** que sostiene ese proceso.
 
 **🏬 Catálogo y productos**
-- ✅ Catálogo de 5 marcas con vista rápida y tallas.
-- ✅ Diferenciación visual por marca (colores, bordes, botones, badges).
 - ✅ Badges "Más vendido" / "Nuevo" visibles **dentro del modal "Ver detalle"** (ocultos en las tarjetas del catálogo).
 - ✅ Precio con **borde dorado elegante** y **línea dorada** bajo la info de color; título de producto en tipografía Oswald.
 - ✅ Modal "Ver detalle" con **tono visual propio por marca**.
 - ✅ Cada producto está registrado en la tabla `producto` → **conlleva a la BD**.
 
 **🛒 Carrito de compras**
-- ✅ Carrito que se guarda en el navegador (`localStorage`) mientras el cliente arma su pedido.
-- ✅ Botón **flotante** del carrito fuera del menú (esquina inferior derecha): el panel abre hacia arriba, con badge contador dorado.
-- ✅ Métodos de pago como **tarjetas visuales** (Nequi, Daviplata y Contraentrega) con selección y check; el campo pide **"INGRESA EL NÚMERO DE CUENTA"**.
 - ✅ Carrito mejorado: logo, miniaturas, layout horizontal, scroll, borde dorado por item.
 - ✅ Carrito modal: al abrirse **se desliza desde el lado derecho** sobre un **fondo oscuro desenfocado**, con **marca (logo + título/subtítulo) en el lado izquierdo** y contador de ítems.
 - ✅ Botón "Seguir Comprando", badge dorado pulse, flash en icono y toast de confirmación.
 - ✅ El checkout envía el pedido con el cliente vinculado al **registro en BD**.
-- ✅ Al finalizar se limpia el carrito para que el siguiente pedido exija registro nuevo.
 
 **👤 Registro y contacto**
-- ✅ Registro del cliente vinculado a la compra; sin registro válido el sistema **rechaza** el pedido.
 - ✅ Formulario de contacto simplificado (nombre, apellidos, tipo de consulta, mensaje).
-- ✅ Indicador dinámico "Abierto ahora" / "Cerrado" (hora Colombia).
-- ✅ Los datos del registro y el contacto **se guardan en la BD** (tablas `clientes` y `chatonline`).
 - ✅ Recuadro de registro en el index ("¡Registra tus datos! 👤") con 3 pasos, mano 👉 animada y botón verde con detalle dorado hacia el ingreso de datos.
 - ✅ Asesora online integrada en el panel de **Chat Online** (compromisos y caja de confianza) en lugar de estar en el catálogo.
 
 **💳 Backend y recibo** (todo lo que el cliente decide aquí **se registra en la BD**)
 - ✅ Checkout transaccional: el pedido se guarda como **pedido → pago → detalle** (tablas `pedidos`, `pagos`, `detallpago`).
 - ✅ Registrar el pedido dejando el estado de pago (Completado / Pendiente) según el método elegido.
-- ✅ Generar el número de guía `SD-00001` y la fecha con hora de Colombia.
-- ✅ Mostrar el **recibo** con los productos, totales y la cuenta de pago enmascarada.
-
-**👨‍💼 Panel admin** (leer la información que conllevó a la BD)
-- ✅ Login de administrador con acceso restringido y bloqueo por intentos fallidos.
-- ✅ KPIs de ventas (hoy, mes, pedidos) + buscador por cliente/cédula/guía.
-- ✅ Guías de despacho con estado de pago dinámico, consultando **directamente la BD**.
 
 **🎨 Transversales** (el diseño/estilo que acompaña todo el proceso)
 - ✅ Estética STORE DANY (paleta café + dorado, tipografía Poppins, fondo crema arena) en todo el sitio.
 - ✅ Menú modernizado: logo grande con brillo, título en serif elegante, enlaces legibles, página activa en pastilla dorada y hamburguesa bien visible en móvil.
 - ✅ Títulos de marca con **efecto dorado metalizado** + descripción motivacional centrada bajo cada título.
 - ✅ Logos de marca con **marco elegante, animación de destello** y **franja de las 5 marcas** de navegación rápida en cada página.
-- ✅ **Carrusel de marcas** en la portada con medallones dorados, logos a color y fondo degradado premium.
-- ✅ Sello de confianza con 4 badges únicamente en el **index** (retirado del catálogo y de las páginas de marca).
 - ✅ Sección Garantía y Cambios (daño de fábrica, 1 mes, cambio de producto).
 - ✅ Stepper de progreso Registro → Carrito → Pago → Confirmación en todo el flujo.
-- ✅ Muro de Términos y Condiciones con **sellos SVG animados**, **checkbox a medida**, **aceptación por scroll** (Ley 1581 de 2012) y logo centrado.
-- ✅ **Notificaciones elegantes al cliente (RNF-06)**: avisos café/dorado que reemplazan los `alert()` del navegador durante el proceso de compra (talla, datos personales, carrito vacío, método de pago, cuenta y errores de conexión).
-- ✅ Lazy loading en las imágenes de producto (mejora la carga inicial).
-- ✅ Botón volver arriba, hover premium, botones elegantes y favicon consistente.
-
-### 🎨 Nuevos pendientes / Mejoras de diseño
-
-Pendientes enfocados en **diseño y presentación** de las pantallas existentes (sin crear más páginas).
-
-**1. Resumen sticky en el carrito**
-- Que el panel lateral del carrito (total y botón de compra) permanezca visible al hacer scroll, sin perderse al bajar por el catálogo.
-
-**2. Dark mode global**
-- Modo oscuro que se active con un interruptor en el header y guarde la preferencia del usuario.
-
-**3. Mejoras visuales en el panel admin**
-- ✅ Tarjetas KPI (Ventas de hoy, Ventas del mes y Pedidos totales) con **icono en cápsula dorada**, degradado superior dorado y **animación de entrada escalonada**.
-- ✅ Buscador de guías con **botón de limpiar** (✖) y **contador de guías** en el título de la sección ("X de Y" al filtrar).
-- ✅ Método de pago visible en cada guía (📱 Nequi / 💬 Daviplata / 🚚 Contraentrega), guardado en la columna `metodo` de la tabla `pagos`.
-
-**4. Pulido visual general**
-- ✅ Avanzado: precio con borde dorado, info de color con línea dorada, título Oswald, badge solo en modal, tono de marca en el modal, recuadro de registro en el index, asesora en Chat Online, **depuración del CSS** y **panel admin alineado a la paleta de la marca** (fondo crema, avatar dorado, hovers dorados, botones con borde dorado).
-- ⏳ Queda pendiente el repaso fino de espaciados, sombras y animaciones en el resto de las páginas (portada, catálogo y marcas).
+- ✅ Hover premium, botones elegantes y favicon consistente.
 
 ---
 
