@@ -145,7 +145,7 @@ JavaScript **vanilla, sin frameworks**, cargado en las páginas según su papel:
 
 ---
 
-## Backend (PHP y Base de Datos)
+## Backend (PHP)
 
 ### 🖥️ `enviar.php` — Recepción de registro y contacto
 
