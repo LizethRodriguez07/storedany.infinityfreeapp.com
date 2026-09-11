@@ -2,6 +2,26 @@
 
 Tienda online de calzado para hombre. Desarrollada con un stack de código abierto: **PHP + MySQL (MariaDB)** en el backend, con **frontend en HTML, CSS y JavaScript vanilla** y **Bootstrap 4** como framework de estilos. El entorno de desarrollo corre con **Docker Compose sobre WSL** (`docker-compose.yml`): un contenedor **Apache con PHP 8.2** (servidor web, puerto 8080) y un contenedor **MariaDB 10.6** (base de datos, puerto 3306). La base de datos se llama **`gst_ventasonline`** (en el contenedor y también en la nube como `if0_41988386_gst_ventasonline` con InfinityFree). Enfoque del proyecto: **comercio electrónico (e-commerce)** tipo catálogo con registro de cliente por pedido, carrito de compras, checkout y panel logístico de despachos.
 
+## Tabla de contenido
+
+- [Arquitectura y diseño](#arquitectura-y-diseño)
+- [Stack tecnológico](#stack-tecnológico)
+- [Características principales](#características-principales)
+- [Licencia](#licencia)
+- [Estructura general del flujo de compra](#estructura-general-del-flujo-de-compra)
+- [Frontend (HTML, CSS y JS del navegador)](#frontend-html-css-y-js-del-navegador)
+  - [index.html — Portada de la tienda](#-indexhtml--portada-de-la-tienda)
+  - [personal-data.html — Registro de datos del cliente](#-personaldatahtml--registro-de-datos-del-cliente)
+  - [Páginas de marca](#-páginas-de-marca-nikehtmladidashtmlpumahtmlreebokhtmlnew-balancehtml)
+  - [shopping-cart.html — Carrito y resumen del pedido](#-shoppingcarthtml--carrito-y-resumen-del-pedido)
+  - [contactar.html — Contacto y atención al cliente](#-contactarhtml--contacto-y-atención-al-cliente)
+  - [Lógica del navegador (JavaScript)](#-lógica-del-navegador-javascript)
+- [Backend (PHP)](#backend-php)
+  - [enviar.php — Recepción de registro y contacto](#-enviarphp--recepción-de-registro-y-contacto)
+  - [procesar_compra.php — Proceso de compra y recibo](#-procesarcompraphp--proceso-de-compra-y-recibo)
+  - [admin.php — Panel de Logística y Despachos](#-adminphp--panel-de-logística-y-despachos)
+- [Bitácora / Cronograma de trabajo](#-bitácora--cronograma-de-trabajo)
+
 ---
 
 ## Arquitectura y diseño
@@ -187,35 +207,19 @@ Registro de las sesiones de desarrollo y las fechas reales en que se trabajó el
 
 | Fecha | Actividad / Mejora | Detalle | Estado |
 |---|---|---|---|
-| 20–21 may 2026 | **Diseño y desarrollo del código** | Se diseñó y escribió el código base del proyecto en Visual Studio: todas las páginas (HTML), los scripts de cada marca (JS), la hoja de estilos (CSS) y los archivos del backend (PHP) con su base de datos. | ✅ Completado |
-| 25 ago 2026 | Primera entrega del proyecto | Se subió el proyecto final al repositorio (catálogo, carrito, registro, compra, panel admin). | ✅ Completado |
-| 31 ago 2026 | Mejoras de diseño y flujo | Fondo crema arena `#E2D5BE`, stepper de progreso (Registro → Carrito → Pago → Confirmación), panel admin (sin filtro de estado, estado dinámico), panel de marcas, sección garantía, recibo en columna centrada, `new-balance.js` renombrado. | ✅ Completado |
-| 02 sep 2026 | Muro de términos y flujo de cliente | Muro de Términos y Condiciones rediseñado (sellos de seguridad animados, texto destacado, botón "ACEPTO Y ACCEDO CON TOTAL CONFIANZA") y **cada pedido exige un cliente nuevo registrado** (no se reutiliza el último). | ✅ Completado |
-| 02 sep 2026 | Actualización del README | Documentación actualizada (muro de términos, flujo de cliente, bitácora de trabajo). | ✅ Completado |
-| 02 sep 2026 | Lazy loading de imágenes | Se agregó `loading="lazy"` a las 45 imágenes de producto del catálogo (9 por cada una de las 5 marcas) para mejorar la carga inicial. | ✅ Completado |
-| 02 sep 2026 | Stepper: pasos 2 y 3 automáticos | El paso 2 (Carrito) se marca completado al añadir ≥1 producto, y el paso 3 (Pago) al seleccionar método de pago y contar con la cuenta (Nequi/Daviplata) o solo el método (contra entrega). | ✅ Completado |
-| 07 sep 2026 | Carrito flotante y botón fuera del menú | El carrito deja el menú y se convierte en **botón flotante** (esquina inferior derecha) que abre el panel hacia arriba; se reconstruyó el bloque del carrito en las 5 páginas de marca y quedó el badge contador sobre el botón. | ✅ Completado |
-| 07 sep 2026 | Campo de cuenta renombrado | Se cambia la petición de "celular" por **"INGRESA EL NÚMERO DE CUENTA"** en el campo de pago digital (HTML y JS de las 5 marcas). | ✅ Completado |
-| 07 sep 2026 | Menú modernizado | Logo más grande con brillo dorado, título en fuente serif elegante, enlaces más grandes y legibles, página activa en pastilla dorada, CHAT ONLINE en cápsula y hamburguesa bien visible en móvil (con dropdown más claro). | ✅ Completado |
-| 07 sep 2026 | Títulos, logos y carrusel de marcas | Título de cada marca con **efecto dorado metalizado**; descripción motivacional centrada bajo cada título; logos con **marco elegante y destello** al pasar el mouse; **franja de las 5 marcas** navegable en cada página; **carrusel de portada** rediseñado con medallones dorados, logos a color y fondo degradado premium (sin enlaces). | ✅ Completado |
-| 07 sep 2026 | Sello de confianza retirado | Los 4 badges "Pago seguro / Envío confiable / Productos originales / Garantía" se eliminan de las **5 páginas de marca** y del **catálogo**; se conservan únicamente en el **index**. | ✅ Completado |
-| 07 sep 2026 | Actualización del README | Documentación puesta al día con el carrito flotante, el menú, los títulos/logos y el carrusel de marcas, además del sello de confianza. | ✅ Completado |
-| 08 sep 2026 | Pulido visual: precios, colores, badges y modal | Precio con **borde dorado elegante** en tarjetas y modal; **info de color** rediseñada (Oswald + línea dorada); **título de producto** en Oswald 500; badges "Más vendido / Nuevo" movidos **solo al modal** "Ver detalle"; tono visual **por marca** dentro del modal. | ✅ Completado |
-| 08 sep 2026 | Pulido visual: index, catálogo y chat | Recuadro de registro del index rediseñado (título con 👤, 3 pasos, mano 👉, botón verde con detalle dorado); hero del catálogo con "Sobre STORE DANY" + bloque de confianza unificado (mini-beneficios + cifras); asesora online integrada en **Chat Online**; títulos de navegador unificados en todo el sitio. | ✅ Completado |
-| 08 sep 2026 | Depuración técnica | **Eliminadas las reglas CSS en desuso** (tarjeta de asesora, sección "en cifras", precios con descuento, estilos de avatar del registro) y corregido el bug de badges en el modal de `nike.js`. | ✅ Completado |
-| 08 sep 2026 | Panel admin: pulido de KPIs | Tarjetas KPI (Ventas de hoy, del mes y pedidos) rediseñadas con **icono en cápsula dorada** y **animación de entrada escalonada**; grid de 3 columnas recuperado. | ✅ Completado |
-| 08 sep 2026 | Panel admin: buscador y contador | Buscador de guías con **botón de limpiar** (✖ visible al escribir) y **contador de guías** en el título de la sección ("X de Y" al filtrar, total sin filtro). | ✅ Completado |
-| 08 sep 2026 | Panel admin: colores de marca | Fondo al crema del sitio `#F7F3EA`, avatar del cliente en **degradado dorado**, tarjetas KPI con borde superior dorado, hovers de filas en dorado suave y botones con **borde dorado** al pasar el mouse. | ✅ Completado |
-| 08 sep 2026 | Método de pago en el panel | Se agrega la columna `metodo` a la tabla `pagos` (ALTER en InfinityFree); `procesar_compra.php` guarda el método elegido (Nequi/Daviplata/Contraentrega) y el admin lo muestra con su icono (📱/💬/🚚) en cada guía. | ✅ Completado |
-| 09 sep 2026 | RNF-06: notificaciones elegantes al cliente | Se crea el sistema de **toasts de notificación** en `js/main.js` (estética café/dorado, tipos falta/error/éxito, auto-cierre) y se reemplazan los 35 `alert()` de las 5 marcas y los 2 de `enviar.php` por avisos elegantes en el proceso de compra. | ✅ Completado |
-| 09 sep 2026 | Sección de requerimientos en el README | Se documentan los **requerimientos funcionales (RF-01 a RF-16)** y **no funcionales (RNF-01 a RNF-06)** implementados, más las **historias de usuario (HU-01 a HU-12)** con el método **INVEST**. | ✅ Completado |
-| 09 sep 2026 | Requerimientos en formato INVEST | La sección de requerimientos se unifica en **2 tablas** (RF y RNF) redactadas con el método **INVEST** y las columnas ID, Historia, Rol, Funcionalidad, Razón/Resultado y Criterios de aceptación (como – quiero – para); se elimina la tabla independiente de historias de usuario. | ✅ Completado |
-| 09 sep 2026 | Muro de T&C rediseñado | **Diseño final del muro de Términos y Condiciones**: logo centrado, sellos con **iconos SVG animados** (pago seguro, envío protegido, datos privados), **checkbox a medida** con check SVG, **aceptación obligatoria vía scroll** (el botón solo se habilita tras leer el texto) y mención de la **Ley 1581 de 2012**. | ✅ Completado |
-| 09 sep 2026 | Comprobante de compra y fix UTF-8 | `procesar_compra.php`: **charset UTF-8 forzado** (evita el error `Â¡` en el hosting), **pastillas Talla/Color** con tipografía y tamaño mejorados, y corrección del cierre `¡Gracias…!`. | ✅ Completado |
-| 09 sep 2026 | Documentación del frontend | README actualizado: se describen el **muro de términos**, el **formulario de datos personales rediseñado**, las **notificaciones elegantes (toasts)** y el **comprobante con UTF-8** y detalle legible. | ✅ Completado |
-| 10 sep 2026 | Pulido del carrito de compras | Precio por ítem con **degradado café-dorado** (no compite con el total) y **total en cápsula dorada** (fondo dorado en degradado, más grande y destacado). | ✅ Completado |
-| 10 sep 2026 | Logo y marca en el carrito | Cabecera del carrito rediseñada: **logo más grande** (28px → 54px, marco dorado y sombra) con "STORE DANY" en **dorado metalizado** (Baloo 2, 21px) sobre franja degradada crema. | ✅ Completado |
-| 10 sep 2026 | Carrito modal con fondo desenfocado | Al abrir el carrito se **desliza desde el lado derecho** sobre un **fondo oscuro transparente y desenfocado** (blur) que queda detrás del panel; cabecera con **logo + título "GESTIÓN DE VENTAS ONLINE" y subtítulo "STORE DANY"** a la izquierda, **contador de ítems**, y cierre por botón ✕, clic fuera o tecla **Esc**. | ✅ Completado |
-| 10 sep 2026 | Marca en el lado izquierdo del carrito | Al abrir el cajón, la **marca (logo + título "Gestión de Ventas Online" + subtítulo "STORE DANY") se muestra en el lado izquierdo** sobre el fondo desenfocado; el cajón derecho queda solo con "TU CARRITO DE COMPRAS", contador y ✕. En móvil el panel de marca se oculta. | ✅ Completado |
+| 20–21 may 2026 | **Diseño y desarrollo del código** | Se diseñó y escribió el código base del proyecto: todas las páginas (HTML), los scripts de cada marca (JS), la hoja de estilos (CSS) y los archivos del backend (PHP) con su base de datos. | ✅ Completado |
+| 31 ago 2026 | Mejoras de diseño y flujo | Fondo crema arena `#E2D5BE`, stepper de progreso (Registro → Carrito → Pago → Confirmación), panel admin con estado dinámico, panel de marcas, sección garantía, recibo en columna centrada y `new-balance.js` renombrado. | ✅ Completado |
+| 02 sep 2026 | Muro de términos y flujo de cliente | Muro de Términos y Condiciones rediseñado y **cada pedido exige un cliente nuevo registrado** (no se reutiliza el último). | ✅ Completado |
+| 07 sep 2026 | Carrito flotante y botón fuera del menú | El carrito deja el menú y se convierte en **botón flotante** (esquina inferior derecha) que abre el panel hacia arriba, con badge contador. | ✅ Completado |
+| 07 sep 2026 | Menú modernizado | Logo más grande con brillo dorado, título en fuente serif, enlaces legibles, página activa en pastilla dorada, CHAT ONLINE en cápsula y hamburguesa visible en móvil. | ✅ Completado |
+| 07 sep 2026 | Títulos, logos y carrusel de marcas | Título de cada marca con **efecto dorado metalizado**, descripción motivacional centrada, logos con **marco y destello**, **franja de las 5 marcas** navegable y **carrusel de portada** con medallones dorados. | ✅ Completado |
+| 08 sep 2026 | Pulido visual: precios, colores, badges y modal | Precio con **borde dorado**, info de color con línea dorada, título en Oswald, badges "Más vendido/Nuevo" **solo en el modal** "Ver detalle" y tono visual **por marca**. | ✅ Completado |
+| 08 sep 2026 | Pulido visual: index, catálogo y chat | Recuadro de registro del index (3 pasos, mano 👉, botón verde con detalle dorado), hero del catálogo con "Sobre STORE DANY" y bloque de confianza, asesora online integrada en **Chat Online** y títulos de navegador unificados. | ✅ Completado |
+| 08 sep 2026 | Panel admin: KPIs, buscador y colores de marca | Tarjetas KPI con **icono en cápsula dorada** y entrada escalonada; **buscador de guías** con botón de limpiar (✖) y **contador "X de Y"**; fondos y hovers en la paleta crema/dorada de la marca. | ✅ Completado |
+| 08 sep 2026 | Método de pago en el panel | Se agrega la columna `metodo` a la tabla `pagos`; `procesar_compra.php` guarda el método elegido y el admin lo muestra con su icono (📱/💬/🚚) en cada guía. | ✅ Completado |
+| 09 sep 2026 | RNF-06: notificaciones elegantes al cliente | Sistema de **toasts** en `js/main.js` (café/dorado, falta/error/éxito, auto-cierre) que reemplazan los 35 `alert()` de las marcas y los 2 de `enviar.php`. | ✅ Completado |
+| 09 sep 2026 | Muro de T&C rediseñado | Diseño final: logo centrado, sellos con **iconos SVG animados**, **checkbox a medida** con check SVG, **aceptación obligatoria vía scroll** y mención de la **Ley 1581 de 2012**. | ✅ Completado |
+| 09 sep 2026 | Comprobante de compra y fix UTF-8 | `procesar_compra.php`: **charset UTF-8 forzado** (evita el error `Â¡`), **pastillas Talla/Color** legibles y corrección del cierre `¡Gracias…!`. | ✅ Completado |
+| 10 sep 2026 | Pulido del cajón del carrito | Precio por ítem con **degradado café-dorado**, **total en cápsula dorada** destacado, cabecera con logo grande y "STORE DANY" en **dorado metalizado**; el panel **se desliza desde la derecha sobre fondo desenfocado** con la **marca en el lado izquierdo**, contador y cierre por ✕, clic fuera o Esc. | ✅ Completado |
 
 *Última actualización: 10 de septiembre de 2026.*
