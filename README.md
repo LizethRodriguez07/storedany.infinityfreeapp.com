@@ -4,6 +4,60 @@ Tienda online de calzado para hombre. Desarrollada con un stack de código abier
 
 ---
 
+## Arquitectura y diseño
+
+El proyecto usa una **arquitectura de 3 capas**, simple de desplegar tanto en local (Docker) como en la nube (InfinityFree):
+
+```
+┌─ CAPA DE PRESENTACIÓN (navegador)
+│  HTML5 · CSS3 · JavaScript vanilla · Bootstrap 4
+│  Carrito y cliente temporal en localStorage
+│  index.html · personal-data.html · nike.html · adidas.html · puma.html
+│  reebok.html · new-balance.html · shopping-cart.html · contactar.html
+├─ CAPA DE APLICACIÓN (servidor)
+│  PHP 8.2 sobre Apache, con PDO y consultas preparadas
+│  enviar.php · procesar_compra.php · admin.php
+└─ CAPA DE DATOS
+   MariaDB / MySQL — base gst_ventasonline
+   clientes · producto · pedidos · pagos · detallpago · chatonline
+```
+
+- **Diseño funcional:** el flujo completo sigue **4 pasos** (Registro → Carrito → Pago → Confirmación). Cada acción del cliente conlleva un dato que se guarda en la base de datos, y cada pantalla tiene un **diseño/estilo propio** que sostiene ese proceso.
+- **Diseño de datos:** la base separa el catálogo (`producto`) del cliente (`clientes`), la cabecera de compra (`pedidos`), el pago (`pagos`) con su método y estado, el detalle de ítems (`detallpago`) y las consultas de ejemplo o contacto (`chatonline`).
+- **Diseño visual:** identidad **STORE DANY** con paleta **café–dorado**, fondo crema arena, tipografías **Baloo 2 / Oswald / Poppins** y hoja de estilos única global (`Style.css`).
+
+## Stack tecnológico
+
+| Capa | Tecnología | Detalle |
+|---|---|---|
+| **Frontend** | HTML5 · CSS3 · JavaScript vanilla | Sin frameworks JS: el comportamiento global vive en `js/main.js` y hay un script por marca (`nike.js`, `adidas.js`, `puma.js`, `reebok.js`, `newbalanc.js`). |
+| **Framework CSS** | Bootstrap 4.3.1 (+ jQuery 3.3.1 y Popper) | Sistema de rejilla, navbar, dropdowns y componentes responsive. |
+| **Backend** | PHP 8.2 | Scripts procedimentales `enviar.php`, `procesar_compra.php` y `admin.php`, con conexión por **PDO** y **consultas preparadas** (sin inyección SQL). |
+| **Base de datos** | MariaDB 10.6 / MySQL | Base `gst_ventasonline` (local) e `if0_41988386_gst_ventasonline` (nube InfinityFree). |
+| **Entorno local** | Docker Compose (WSL) | Contenedor Apache **PHP 8.2** (puerto 8080) + contenedor **MariaDB 10.6** (puerto 3306). |
+| **Producción** | InfinityFree | Hosting PHP + MySQL donde se desplegó el proyecto tal cual: las páginas dependen solo de HTML/CSS/JS y los scripts PHP se conectan **directamente a la BD de la nube** (`sql201.infinityfree.com` / `if0_41988386_gst_ventasonline`), por lo que el sitio funciona en la web con la misma lógica del entorno local. |
+
+## Características principales
+
+- 🏬 **Catálogo de 5 marcas** (Nike, Adidas, Puma, Reebok, New Balance) con vista rápida de producto, selector de tallas y diferenciación visual por marca.
+- 🛒 **Carrito flotante / cajón lateral** guardado en `localStorage`: panel de marca, contador, resumen de totales, métodos de pago como tarjetas y limpieza al finalizar la compra.
+- 👤 **Registro por pedido**: cada compra exige un **cliente nuevo registrado** (guardado en BD), con validaciones y notificaciones elegantes.
+- 💳 **3 métodos de pago** (Nequi, Daviplata y contra entrega) con campo de cuenta validado y cuenta destino oficial de la tienda.
+- 🧾 **Recibo de compra**: guía `SD-XXXXX`, hora de Colombia, cuenta enmascarada, fechas en español y opción de imprimir (con UTF-8).
+- 👨‍💼 **Panel admin**: login con bloqueo por intentos fallidos, KPIs del día/mes, buscador de guías y estado de pago dinámico por método.
+- 🔒 **Muro de Términos y Condiciones** con aceptación por scroll (Ley 1581 de 2012).
+- 📣 **Notificaciones elegantes (toasts)** que reemplazan los `alert()` durante todo el proceso de compra.
+- 💬 **Chat online**: canales directos (WhatsApp, teléfono), indicador "Abierto ahora / Cerrado" según la hora de Colombia y consultas guardadas en BD.
+- 📱 **Responsive** con detalles de presentación: carrusel de marcas, sello de confianza, botón volver arriba, WhatsApp flotante y *lazy loading* de imágenes.
+
+## Licencia
+
+**© 2026 STORE DANY — Todos los derechos reservados.**
+
+Este proyecto es **propietario (código cerrado)** y pertenece al negocio **STORE DANY** (San Vicente de Chucurí, Santander, Colombia). No cuenta con ninguna licencia open-source: **no está permitido copiar, modificar, distribuir ni usar comercialmente** el código, los recursos (logos, imágenes, videos) ni el contenido sin la autorización escrita de su propietaria, Katherine Rodríguez. Esta condición coincide con el aviso del pie de página del sitio web: *"© 2026 STORE DANY. Todos los derechos reservados."*
+
+---
+
 ## Estructura general del flujo de compra
 
 El proceso de compra sigue un orden de **4 pasos**: **1. Registro → 2. Carrito → 3. Pago → 4. Confirmación**.
