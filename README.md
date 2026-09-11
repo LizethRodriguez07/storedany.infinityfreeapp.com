@@ -9,16 +9,24 @@ Tienda online de calzado para hombre. Desarrollada con un stack de código abier
 El proyecto usa una **arquitectura de 3 capas**, simple de desplegar tanto en local (Docker) como en la nube (InfinityFree):
 
 ```
-┌─ CAPA DE PRESENTACIÓN (navegador)
+┌─ CAPA DE PRESENTACIÓN (FRONTEND · navegador)
 │  HTML5 · CSS3 · JavaScript vanilla · Bootstrap 4
 │  Carrito y cliente temporal en localStorage
-│  index.html · personal-data.html · nike.html · adidas.html · puma.html
-│  reebok.html · new-balance.html · shopping-cart.html · contactar.html
-├─ CAPA DE APLICACIÓN (servidor)
-│  PHP 8.2 sobre Apache, con PDO y consultas preparadas
-│  enviar.php · procesar_compra.php · admin.php
-└─ CAPA DE DATOS
-   MariaDB / MySQL — base gst_ventasonline
+│
+│  · index.html            →  portada de la tienda
+│  · personal-data.html    →  Paso 1 · registro del cliente
+│  · nike / adidas / puma / reebok / new-balance.html
+│                          →  Paso 2 · catálogo y carrito (vista rápida)
+│  · shopping-cart.html    →  Paso 2 · carrito y resumen del pedido
+│  · contactar.html        →  atención al cliente (chat online)
+│
+├─ CAPA DE APLICACIÓN (BACKEND · servidor Apache)
+│  PHP 8.2 con PDO y consultas preparadas
+│  · enviar.php            →  guarda registro del cliente y consultas
+│  · procesar_compra.php   →  Paso 3 y 4 · guarda el pedido y genera el recibo
+│  · admin.php             →  panel de guías / despachos del administrador
+│
+└─ CAPA DE DATOS (MariaDB / MySQL — base gst_ventasonline)
    clientes · producto · pedidos · pagos · detallpago · chatonline
 ```
 
@@ -61,29 +69,6 @@ Este proyecto es **propietario (código cerrado)** y pertenece al negocio **STOR
 ## Estructura general del flujo de compra
 
 El proceso de compra sigue un orden de **4 pasos**: **1. Registro → 2. Carrito → 3. Pago → 4. Confirmación**.
-
-```
-index.html (inicio)
-   │
-   ▼
-Paso 1 · Registro del cliente
-   en: personal-data.html  →  enviar.php  (guarda cliente en BD + localStorage)
-   │
-   ▼
-Paso 2 · Selección de pedidos (Carrito)
-   en: nike.html · adidas.html · puma.html · reebok.html · new-balance.html  (vista rápida)
-       └── ▶ continuar en shopping-cart.html  (carrito + resumen)
-   │
-   ▼
-Paso 3 · Pago
-   │
-   ▼
-Paso 4 · Confirmación (recibo)
-   en: procesar_compra.php  (guarda pedido + genera recibo)
-   │
-   ▼
-admin.php  (panel de guías / despachos del ADMIN)
-```
 
 | Paso | Nombre | Página / archivo | Qué ocurre |
 |---|---|---|---|
