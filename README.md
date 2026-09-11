@@ -33,7 +33,9 @@ El proyecto usa una **arquitectura de 3 capas**, simple de desplegar tanto en lo
 - **Diseño funcional:** el flujo completo sigue **4 pasos** (Registro → Carrito → Pago → Confirmación). Cada acción del cliente conlleva un dato que se guarda en la base de datos, y cada pantalla tiene un **diseño/estilo propio** que sostiene ese proceso.
 - **Diseño visual:** identidad **STORE DANY** con paleta **café–dorado**, fondo crema arena, tipografías **Baloo 2 / Oswald / Poppins** y hoja de estilos única global (`Style.css`).
 
-**🗄️ Base de Datos — `gst_ventasonline`** · la capa de datos separa el catálogo (`producto`) del cliente (`clientes`), la cabecera de cada compra (`pedidos`), el pago (`pagos`) con su método y estado, el detalle de los ítems (`detallpago`) y las consultas de contacto (`chatonline`):
+**🗄️ Base de Datos — `gst_ventasonline`**
+
+Estructura de las tablas principales del sistema y la información que almacenan:
 
 | Tabla | Información que guarda |
 |---|---|
