@@ -126,7 +126,7 @@ A continuación, el papel de cada pantalla desde la visión **funcional**: qué 
 ---
 
 ### 🎨 Estilos (CSS) — `Style.css`
-Hoja de estilos **única y global** (más de 5.000 líneas) que se carga en todo el sitio. Su concepto: definir la **identidad visual de la marca** (paleta café-dorado, tipografías Baloo 2 / Oswald / Poppins) y dar **estilo a cada pantalla y componente** — navbar con efecto al scroll, barra de envíos gratis, carrito flotante, formularios, tarjetas de producto, toasts, muro de Términos y Condiciones y panel admin — manteniendo un solo lugar donde vive el diseño y evitando estilos duplicados por página.
+Hoja de estilos de **más de 5.000 líneas** que se carga en todo el sitio y da **estilo a cada pantalla y componente** — navbar con efecto al scroll, barra de envíos gratis, carrito flotante, formularios, tarjetas de producto, toasts, muro de Términos y Condiciones y panel admin — manteniendo un solo lugar donde vive el diseño y evitando estilos duplicados por página. La identidad visual (paleta, fondo y tipografías) se describe en el **Diseño visual** de la sección **Arquitectura y diseño**.
 
 
 ### ⚙️ Lógica del navegador (JavaScript)
@@ -183,44 +183,6 @@ Tablas principales del sistema y la información que almacenan:
 | `detallpago` | Detalle de los **productos** de cada pedido (artículo, talla, color, cantidad, subtotal). |
 | `producto` | Catálogo de calzado (nombre, marca, precio, imagen). |
 | `chatonline` | Mensajes enviados por los clientes desde el formulario de contacto. |
-
----
-
-## Estado del proyecto
-
-### ✅ Implementado — Lista de chequeo 
-
-> **Hilo conductor del proyecto:** cada acción del cliente (elegir, registrarse, pagar, confirmar) conlleva un **dato que se guarda en la base de datos `gst_ventasonline`**, y cada pantalla tiene un **diseño/estilo** que sostiene ese proceso.
-
-**🏬 Catálogo y productos**
-- ✅ Badges "Más vendido" / "Nuevo" visibles **dentro del modal "Ver detalle"** (ocultos en las tarjetas del catálogo).
-- ✅ Precio con **borde dorado elegante** y **línea dorada** bajo la info de color; título de producto en tipografía Oswald.
-- ✅ Modal "Ver detalle" con **tono visual propio por marca**.
-- ✅ Cada producto está registrado en la tabla `producto` → **conlleva a la BD**.
-
-**🛒 Carrito de compras**
-- ✅ Carrito mejorado: logo, miniaturas, layout horizontal, scroll, borde dorado por item.
-- ✅ Carrito modal: al abrirse **se desliza desde el lado derecho** sobre un **fondo oscuro desenfocado**, con **marca (logo + título/subtítulo) en el lado izquierdo** y contador de ítems.
-- ✅ Botón "Seguir Comprando", badge dorado pulse, flash en icono y toast de confirmación.
-- ✅ El checkout envía el pedido con el cliente vinculado al **registro en BD**.
-
-**👤 Registro y contacto**
-- ✅ Formulario de contacto simplificado (nombre, apellidos, tipo de consulta, mensaje).
-- ✅ Recuadro de registro en el index ("¡Registra tus datos! 👤") con 3 pasos, mano 👉 animada y botón verde con detalle dorado hacia el ingreso de datos.
-- ✅ Asesora online integrada en el panel de **Chat Online** (compromisos y caja de confianza) en lugar de estar en el catálogo.
-
-**💳 Backend y recibo** (todo lo que el cliente decide aquí **se registra en la BD**)
-- ✅ Checkout transaccional: el pedido se guarda como **pedido → pago → detalle** (tablas `pedidos`, `pagos`, `detallpago`).
-- ✅ Registrar el pedido dejando el estado de pago (Completado / Pendiente) según el método elegido.
-
-**🎨 Transversales** (el diseño/estilo que acompaña todo el proceso)
-- ✅ Estética STORE DANY (paleta café + dorado, tipografía Poppins, fondo crema arena) en todo el sitio.
-- ✅ Menú modernizado: logo grande con brillo, título en serif elegante, enlaces legibles, página activa en pastilla dorada y hamburguesa bien visible en móvil.
-- ✅ Títulos de marca con **efecto dorado metalizado** + descripción motivacional centrada bajo cada título.
-- ✅ Logos de marca con **marco elegante, animación de destello** y **franja de las 5 marcas** de navegación rápida en cada página.
-- ✅ Sección Garantía y Cambios (daño de fábrica, 1 mes, cambio de producto).
-- ✅ Stepper de progreso Registro → Carrito → Pago → Confirmación en todo el flujo.
-- ✅ Hover premium, botones elegantes y favicon consistente.
 
 ---
 
