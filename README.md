@@ -31,8 +31,18 @@ El proyecto usa una **arquitectura de 3 capas**, simple de desplegar tanto en lo
 ```
 
 - **Diseño funcional:** el flujo completo sigue **4 pasos** (Registro → Carrito → Pago → Confirmación). Cada acción del cliente conlleva un dato que se guarda en la base de datos, y cada pantalla tiene un **diseño/estilo propio** que sostiene ese proceso.
-- **Diseño de datos:** la base separa el catálogo (`producto`) del cliente (`clientes`), la cabecera de compra (`pedidos`), el pago (`pagos`) con su método y estado, el detalle de ítems (`detallpago`) y las consultas de ejemplo o contacto (`chatonline`).
 - **Diseño visual:** identidad **STORE DANY** con paleta **café–dorado**, fondo crema arena, tipografías **Baloo 2 / Oswald / Poppins** y hoja de estilos única global (`Style.css`).
+
+**🗄️ Base de Datos — `gst_ventasonline`** · la capa de datos separa el catálogo (`producto`) del cliente (`clientes`), la cabecera de cada compra (`pedidos`), el pago (`pagos`) con su método y estado, el detalle de los ítems (`detallpago`) y las consultas de contacto (`chatonline`):
+
+| Tabla | Información que guarda |
+|---|---|
+| `clientes` | Datos personales y de contacto de cada comprador registrado. |
+| `pedidos` | Cabecera de cada compra (fecha, total, código de guía, cliente). |
+| `pagos` | Datos del pago (método, cuenta, estado: completado/pendiente, monto recibido). |
+| `detallpago` | Detalle de los **productos** de cada pedido (artículo, talla, color, cantidad, subtotal). |
+| `producto` | Catálogo de calzado (nombre, marca, precio, imagen). |
+| `chatonline` | Mensajes enviados por los clientes desde el formulario de contacto. |
 
 ## Stack tecnológico
 
@@ -125,10 +135,6 @@ A continuación, el papel de cada pantalla desde la visión **funcional**: qué 
 
 ---
 
-### 🎨 Estilos (CSS) — `Style.css`
-Hoja de estilos de **más de 5.000 líneas** que se carga en todo el sitio y da **estilo a cada pantalla y componente** — navbar con efecto al scroll, barra de envíos gratis, carrito flotante, formularios, tarjetas de producto, toasts, muro de Términos y Condiciones y panel admin — manteniendo un solo lugar donde vive el diseño y evitando estilos duplicados por página. La identidad visual (paleta, fondo y tipografías) se describe en el **Diseño visual** de la sección **Arquitectura y diseño**.
-
-
 ### ⚙️ Lógica del navegador (JavaScript)
 JavaScript **vanilla, sin frameworks**, cargado en las páginas según su papel:
 - **`js/main.js`** (comportamiento global de todo el sitio): navbar con efecto al hacer scroll, barra de **Envíos gratis**, animaciones de aparición, botón **volver-arriba**, **WhatsApp flotante**, selector visual de tallas, muro de **Términos y Condiciones** (bloquea el sitio hasta marcar la casilla y leer el texto) y las **notificaciones elegantes (RNF-06)** que reemplazan los `alert()`.
@@ -170,19 +176,6 @@ JavaScript **vanilla, sin frameworks**, cargado en las páginas según su papel:
 | **Función** | Es la **vista del negocio**: permite al administrador ingresar con credenciales e inspeccionar los pedidos/despachos. |
 | **Propósito** | Llevar el **control logístico**: consultar las guías de despacho, el estado de pago de cada pedido y las ventas, para gestionar las entregas. |
 | **Información que maneja** | Ventas del día/mes, pedidos totales, y por cada guía: **cliente** (nombre, cédula, celular, dirección), **productos** (tallas/colores), **estado de pago** y fecha de despacho. |
-
-### 🗄️ Base de Datos — `gst_ventasonline`
-
-Tablas principales del sistema y la información que almacenan:
-
-| Tabla | Información que guarda |
-|---|---|
-| `clientes` | Datos personales y de contacto de cada comprador registrado. |
-| `pedidos` | Cabecera de cada compra (fecha, total, código de guía, cliente). |
-| `pagos` | Datos del pago (método, cuenta, estado: completado/pendiente, monto recibido). |
-| `detallpago` | Detalle de los **productos** de cada pedido (artículo, talla, color, cantidad, subtotal). |
-| `producto` | Catálogo de calzado (nombre, marca, precio, imagen). |
-| `chatonline` | Mensajes enviados por los clientes desde el formulario de contacto. |
 
 ---
 
