@@ -9,7 +9,7 @@
     <!-- Framework Bootstrap 4.3.1 -->
     <link href="css/bootstrap-4.3.1.css" rel="stylesheet" type="text/css">
     <!-- Tu archivo de estilos -->
-    <link href="Style.css" rel="stylesheet" type="text/css">
+    <link href="Style.css?v=8" rel="stylesheet" type="text/css">
 </head>
 <body>
     
@@ -132,13 +132,15 @@
                         <div class="dato-rapido">
                             <span class="dato-rapido-valor">37-42</span>
                             <span class="dato-rapido-etiqueta">Tallas</span>
+                            <small class="dato-rapido-nota">👟 Al elegir tu talla verás su equivalencia US · UK · cm</small>
                         </div>
                     </div>
                 </div>
-                <!-- Boton de Ver Marcas -->
-                <div class="text-center text-lg-right">
+<!-- Boton de Ver Marcas -->
+                <div class="text-center text-lg-right mt-2">
                     <button class="btn-ver-marcas btn-accion-brillo" type="button" data-toggle="collapse" data-target="#marcasColapsables" aria-expanded="false" aria-controls="marcasColapsables">
-👁️ VER MARCAS DISPONIBLES</button>
+                        <span class="marca-btn-icono" aria-hidden="true">👁️</span> VER MARCAS DISPONIBLES <span class="marca-chevron" aria-hidden="true">▾</span>
+                    </button>
                 </div>
 
             </div>
@@ -153,44 +155,34 @@
                     <h3 class="titulo-seccion text-center mb-2">
                         Selecciona tu marca favorita:
                     </h3>
-                    <!-- justify-content-center centra la fila en móviles -->
-                    <div class="row px-2 justify-content-center">
-                        
-                        <div class="col-6 col-auto mb-3">
-                            <a href="nike.html" class="tarjeta-marca-link marca-nike">
-                                <span class="icono-tenis">👟</span>
-                                <span class="texto-marca">NIKE</span>
-                            </a>
-                        </div>
-                        
-                        <div class="col-6 col-auto mb-3">
-                            <a href="adidas.html" class="tarjeta-marca-link marca-adidas">
-                                <span class="icono-tenis">👟</span>
-                                <span class="texto-marca">ADIDAS</span>
-                            </a>
-                        </div>
-                        
-                        <div class="col-6 col-auto mb-3">
-                            <a href="puma.html" class="tarjeta-marca-link marca-puma">
-                                <span class="icono-tenis">👟</span>
-                                <span class="texto-marca">PUMA</span>
-                            </a>
-                        </div>
-                        
-                        <div class="col-6 col-auto mb-3">
-                            <a href="new-balance.html" class="tarjeta-marca-link marca-newbalance">
-                                <span class="icono-tenis">👟</span>
-                                <span class="texto-marca">NEW Balance</span>
-                            </a>
-                        </div>
-                        
-                        <div class="col-6 col-auto mb-3">
-                            <a href="reebok.html" class="tarjeta-marca-link marca-reebok">
-                                <span class="icono-tenis">👟</span>
-                                <span class="texto-marca">REEBOK</span>
-                            </a>
-                        </div>
-                        
+                    <!-- Una sola línea con los logos de las marcas -->
+                    <div class="marcas-linea">
+
+                        <a href="nike.html" class="marca-linea-item" title="Nike">
+                            <span class="marca-linea-medallon"><img src="Imagenes Nike/Logo Nike.jpg" alt="Nike"></span>
+                            <span class="marca-linea-nombre">NIKE</span>
+                        </a>
+
+                        <a href="adidas.html" class="marca-linea-item" title="Adidas">
+                            <span class="marca-linea-medallon"><img src="Imagenes Adidas/logo adidas.jpg" alt="Adidas"></span>
+                            <span class="marca-linea-nombre">ADIDAS</span>
+                        </a>
+
+                        <a href="puma.html" class="marca-linea-item" title="Puma">
+                            <span class="marca-linea-medallon"><img src="Imagenes Puma/logo puma.jpg" alt="Puma"></span>
+                            <span class="marca-linea-nombre">PUMA</span>
+                        </a>
+
+                        <a href="new-balance.html" class="marca-linea-item" title="New Balance">
+                            <span class="marca-linea-medallon"><img src="Imagenes New Balance/Logo New Balance.png" alt="New Balance"></span>
+                            <span class="marca-linea-nombre">NEW&nbsp;BALANCE</span>
+                        </a>
+
+                        <a href="reebok.html" class="marca-linea-item" title="Reebok">
+                            <span class="marca-linea-medallon"><img src="Imagenes Resbook/Logo Resbook.jpg" alt="Reebok"></span>
+                            <span class="marca-linea-nombre">REEBOK</span>
+                        </a>
+
                     </div>
                 </div>
             </div>
@@ -258,25 +250,33 @@
         <!-- 🛡️ GARANTÍA Y CAMBIOS -->
         <div class="container mb-5">
             <div class="seccion-garantia" data-reveal>
-                <h3 class="titulo-seccion text-center garantia-titulo">🛡️ Garantía y cambios</h3>
-                <p class="text-center text-muted mb-4">En STORE DANY nos respaldamos y respaldamos tu compra. Si tu producto presenta un daño de fábrica, tienes hasta <span class="garantia-em">1 mes</span> para solicitar el cambio.</p>
+                <span class="garantia-escudo" aria-hidden="true">🛡️</span>
+                <h3 class="titulo-seccion text-center garantia-titulo">Garantía y cambios</h3>
+                <p class="text-center text-muted mb-4 garantia-intro">En STORE DANY nos respaldamos y respaldamos tu compra. Si tu producto presenta un daño de fábrica, tienes hasta <span class="garantia-em">1 mes</span> para solicitar el cambio.</p>
                 <div class="garantia-items">
                     <div class="garantia-item">
+                        <span class="garantia-numero">01</span>
                         <span class="garantia-icono">🏭</span>
                         <p class="mb-1">Garantía por daño de fábrica</p>
                         <small class="text-muted">Cubrimos defectos de fabricación que impidan el uso normal del calzado.</small>
                     </div>
+                    <span class="garantia-arrow" aria-hidden="true">→</span>
                     <div class="garantia-item">
+                        <span class="garantia-numero">02</span>
                         <span class="garantia-icono">📅</span>
                         <p class="mb-1">Dentro del primer mes</p>
                         <small class="text-muted">El cambio se procesa dentro del primer mes desde la entrega del producto.</small>
                     </div>
+                    <span class="garantia-arrow" aria-hidden="true">→</span>
                     <div class="garantia-item">
+                        <span class="garantia-numero">03</span>
                         <span class="garantia-icono">🔄</span>
                         <p class="mb-1">Cambio, no devolución</p>
                         <small class="text-muted">Realizamos cambio por el mismo modelo o similar, no devolución del dinero.</small>
                     </div>
+                    <span class="garantia-arrow" aria-hidden="true">→</span>
                     <div class="garantia-item">
+                        <span class="garantia-numero">04</span>
                         <span class="garantia-icono">🤝</span>
                         <p class="mb-1">Proceso sencillo</p>
                         <small class="text-muted">Contactas con nosotras, revisamos el producto y coordinamos el cambio sin complicaciones.</small>
@@ -347,6 +347,6 @@
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap-4.3.1.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/main.js?v=7"></script>
 </body>
 </html>
