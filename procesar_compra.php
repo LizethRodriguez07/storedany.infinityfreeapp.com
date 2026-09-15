@@ -8,12 +8,12 @@ if ($_SERVER['HTTP_HOST'] == 'localhost:8080' || $_SERVER['HTTP_HOST'] == '127.0
     $host = 'base_datos'; 
     $db   = 'gst_ventasonline'; 
     $user = 'root';              
-    $pass = 'clave_storedany_2026'; 
+    $pass = '********'; 
 } else {
     $host = 'sql201.infinityfree.com';
     $db   = 'if0_41988386_gst_ventasonline';
     $user = 'if0_41988386';
-    $pass = 'NJvVj32GYWri';
+    $pass = '********';
 }
 
 try {

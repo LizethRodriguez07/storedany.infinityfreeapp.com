@@ -3,7 +3,8 @@
 $host = 'sql201.infinityfree.com';
 $db   = 'if0_41988386_gst_ventasonline';
 $user = 'if0_41988386';
-$pass = 'NJvVj32GYWri';
+// 🔒 Contraseña real aplicada solo en despliegue (oculta en este repositorio)
+$pass = '********';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";

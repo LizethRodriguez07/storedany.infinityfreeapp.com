@@ -19,7 +19,8 @@ services:
     ports:
       - "3306:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: clave_storedany_2026
+      # 🔒 Contraseñas reales se configuran en el despliegue local (ocultas en este repositorio)
+      MYSQL_ROOT_PASSWORD: ********
       MYSQL_DATABASE: gst_ventasonline
       MYSQL_USER: usuario_storedany
-      MYSQL_PASSWORD: clave_usuario_2026
+      MYSQL_PASSWORD: ********
