@@ -1,6 +1,6 @@
 # STORE DANY — Documentación del Proyecto
 
-Tienda online de calzado para hombre. Desarrollada con un stack de código abierto: **PHP + MySQL (MariaDB)** en el backend, con **frontend en HTML, CSS y JavaScript vanilla** y **Bootstrap 4** como framework de estilos. El entorno de desarrollo corre con **Docker Compose sobre WSL** (`docker-compose.yml`): un contenedor **Apache con PHP 8.2** (servidor web, puerto 8080) y un contenedor **MariaDB 10.6** (base de datos, puerto 3306). La base de datos se llama **`gst_ventasonline`** (en el contenedor y también en la nube como `if0_41988386_gst_ventasonline` con InfinityFree). Enfoque del proyecto: **comercio electrónico (e-commerce)** tipo catálogo con registro de cliente por pedido, carrito de compras, checkout y panel logístico de despachos.
+Tienda online de calzado para hombre. Desarrollada con un stack de código abierto: **PHP + MySQL (MariaDB)** en el backend, con **frontend en HTML, CSS y JavaScript vanilla** y **Bootstrap 4** como framework de estilos. El entorno de desarrollo corre con **Docker Compose sobre WSL** (`docker-compose.yml`): un contenedor **Apache con PHP 8.2** (servidor web, puerto 8080) y un contenedor **MariaDB 10.6** (base de datos, puerto 3306). La base de datos se llama **`gst_ventasonline`** (en el contenedor y también en la nube como `if0_41988386_gst_ventasonline` con InfinityFree). Enfoque del proyecto: **comercio electrónico (e-commerce)** tipo catálogo con registro de cliente por pedido, carrito de compras, checkout y panel logístico de despachos. Asimismo, el proyecto se apoya en una **infraestructura virtualizada y de redes**: el sistema base corre sobre **Linux**, la virtualización de equipos se realiza con **VMware Workstation Pro**, el modelado de las topologías de red se hace con **GNS3** y la conectividad entre máquinas virtuales se logra mediante la tarjeta virtual **VMware Network Adapter (VMnet1)**.
 
 ## Tabla de contenido
 
@@ -75,6 +75,7 @@ Estructura de las tablas principales del sistema y la información que almacenan
 | **Backend** | PHP 8.2 | Scripts procedimentales `enviar.php`, `procesar_compra.php` y `admin.php`, con conexión por **PDO** y **consultas preparadas** (sin inyección SQL). |
 | **Base de datos** | MariaDB 10.6 / MySQL | Base `gst_ventasonline` (local) e `if0_41988386_gst_ventasonline` (nube InfinityFree). |
 | **Entorno local** | Docker Compose (WSL) | Contenedor Apache **PHP 8.2** (puerto 8080) + contenedor **MariaDB 10.6** (puerto 3306). |
+| **Infraestructura y redes** | Linux · VMware Workstation Pro · GNS3 | Sistema base **Linux**, virtualización de equipos con **VMware Workstation Pro**, modelado de topologías de red con **GNS3** y conexión entre máquinas virtuales a través de la red virtual **VMware Network Adapter VMnet1**. |
 | **Producción** | InfinityFree | Hosting PHP + MySQL donde se desplegó el proyecto tal cual: las páginas dependen solo de HTML/CSS/JS y los scripts PHP se conectan **directamente a la BD de la nube** (`sql201.infinityfree.com` / `if0_41988386_gst_ventasonline`), por lo que el sitio funciona en la web con la misma lógica del entorno local. |
 
 ## Características principales
