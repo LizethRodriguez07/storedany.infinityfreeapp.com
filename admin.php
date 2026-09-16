@@ -4,7 +4,7 @@ date_default_timezone_set('America/Bogota');
 
 // 🔒 2. CONTROL DE ACCESO (Credenciales autorizadas para el negocio)
 $USUARIO_ADMIN = "storedany_admin";
-// 🔒 Contraseña real aplicada solo en despliegue (oculta en este repositorio)
+// 🔒 Contraseña real SOLO local (este valor no se sube al repositorio)
 $CLAVE_ADMIN   = "********";
 
 session_start();
@@ -292,10 +292,26 @@ if (!isset($_SESSION['admin_logeado'])) {
 </body></html>
 <?php
 exit();
-}   
+}
+
+// 🚚 5.1 CAMBIO DE ESTADO DE ENVÍO (Pendiente → Empacado → Enviado)
+if ($_SERVER['REQUEST_METHOD'] === 'POST'
+    && !empty($_POST['cambiar_estado_envio'])
+    && isset($_POST['orden_id'], $_POST['nuevo_estado'])) {
+    $orden_envio = intval($_POST['orden_id']);
+    $nuevo_envio = in_array($_POST['nuevo_estado'], ['pendiente', 'empacado', 'enviado'], true)
+        ? $_POST['nuevo_estado']
+        : null;
+    if ($nuevo_envio && $orden_envio > 0) {
+        $stmt_envio = $pdo->prepare("UPDATE pedidos SET estado_envio = :estado, fecha_estado = NOW() WHERE id = :id");
+        $stmt_envio->execute([':estado' => $nuevo_envio, ':id' => $orden_envio]);
+    }
+    header("Location: admin.php");
+    exit();
+}
 
 // 🔍 5. CONSULTA LOGÍSTICA AVANZADA (Relaciona pedidos con datos del comprador)
-$sql_pedidos = "SELECT p.id AS orden_id, p.fecha_pedido, p.total, c.nombre, c.apellidos, c.cedula, c.celular, c.departamento, c.municipio, c.direccion, pag.estado, pag.monto, pag.metodo 
+$sql_pedidos = "SELECT p.id AS orden_id, p.fecha_pedido, p.total, p.estado_envio, p.fecha_estado, c.nombre, c.apellidos, c.cedula, c.celular, c.departamento, c.municipio, c.direccion, pag.estado, pag.monto, pag.metodo 
                 FROM pedidos p
                 INNER JOIN clientes c ON p.id_cliente = c.id
                 INNER JOIN pagos pag ON pag.id_pedido = p.id
@@ -982,6 +998,63 @@ foreach ($pedidos as $kpiRow) {
             to { transform: translateX(300%); }
         }
 
+        /* ===== FLUJO DE ENVÍO (estado del pedido) ===== */
+        .card-footer { flex-wrap: wrap; gap: 14px; }
+        .envio-bloque {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        .envio-pasos {
+            display: flex;
+            align-items: stretch;
+            gap: 7px;
+            padding: 0;
+            margin: 0;
+            background: none;
+            border: none;
+            box-shadow: none;
+        }
+        .envio-paso {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 13px;
+            border-radius: 50px;
+            border: 1.5px solid var(--border);
+            background: #ffffff;
+            color: var(--accent-dark);
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .envio-paso:hover:not(:disabled) {
+            border-color: var(--dorado);
+            background: var(--dorado-bg);
+            transform: translateY(-1px);
+        }
+        .envio-paso:disabled { cursor: default; }
+        .envio-paso:disabled:not(.activo) { opacity: 0.72; background: #fbf7f0; }
+        .envio-paso.activo { box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.18); }
+        .envio-paso.activo.estado-pendiente { background: var(--warning-bg); color: var(--warning); border-color: var(--warning); }
+        .envio-paso.activo.estado-empacado { background: var(--dorado-bg); color: var(--accent-dark); border-color: var(--dorado); }
+        .envio-paso.activo.estado-enviado { background: var(--success-bg); color: var(--success); border-color: var(--success); }
+        .envio-paso-txt { letter-spacing: 0.4px; }
+        .envio-marca {
+            font-size: 9px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            background: var(--dorado);
+            color: #3f3428;
+            padding: 2px 7px;
+            border-radius: 50px;
+        }
+        .envio-check { color: var(--success); font-weight: 900; font-size: 13px; }
+
         /* ===== FOOTER ===== */
         .card-footer {
             display: flex;
@@ -1268,7 +1341,7 @@ foreach ($pedidos as $kpiRow) {
 
 
 
-            <div class="orden-card colapsada" data-busqueda="<?php echo strtolower(htmlspecialchars(($row['nombre'] ?? '') . ' ' . ($row['apellidos'] ?? '') . ' ' . ($row['cedula'] ?? '') . ' ' . $row['orden_id'])); ?>">
+            <div class="orden-card colapsada" data-busqueda="<?php echo strtolower(htmlspecialchars(($row['nombre'] ?? '') . ' ' . ($row['apellidos'] ?? '') . ' ' . ($row['cedula'] ?? '') . ' ' . $row['orden_id'] . ' ' . ($row['estado_envio'] ?? ''))); ?>">
                 
                 <!-- Encabezado -->
                 <div class="orden-header" onclick="toggleOrden(this)" title="Clic para ver u ocultar el detalle"><span class="plegable-flecha">&#9662;</span>
@@ -1397,11 +1470,39 @@ $checkbox_id = "check_" . $row['orden_id'] . "_" . $index;
                 <!-- Footer -->
                 <div class="card-footer">
                     <div style="display: flex; align-items: center; gap: 10px;">
-                        <span class="data-label">Estado:</span>
+                        <span class="data-label">Pago:</span>
                         <span class="status-badge" style="background-color: <?php echo $bg_estado; ?>; color: <?php echo $color_estado; ?>;">
                             <span class="status-dot" style="background-color: <?php echo $color_estado; ?>;"></span>
                             <?php echo htmlspecialchars($row['estado']); ?>
                         </span>
+                    </div>
+                    <div class="envio-bloque">
+                        <span class="data-label">Envío:</span>
+                        <form method="POST" action="admin.php" class="envio-pasos">
+                            <input type="hidden" name="cambiar_estado_envio" value="1">
+                            <input type="hidden" name="orden_id" value="<?php echo $row['orden_id']; ?>">
+                            <?php
+                                $pasosEnvio = [
+                                    'pendiente' => ['🕒', 'Pendiente'],
+                                    'empacado'  => ['📦', 'Empacado'],
+                                    'enviado'   => ['🚚', 'Enviado'],
+                                ];
+                                $nivelesEnvio = ['pendiente' => 1, 'empacado' => 2, 'enviado' => 3];
+                                $estadoEnvioActual = $row['estado_envio'] ?? 'pendiente';
+                                $nivelEnvActual = $nivelesEnvio[$estadoEnvioActual] ?? 1;
+                                foreach ($pasosEnvio as $clavePaso => $infoPaso):
+                                    $esPasoActual = ($clavePaso === $estadoEnvioActual);
+                                    $esPasoSuperado = ($nivelesEnvio[$clavePaso] < $nivelEnvActual);
+                            ?>
+                            <button type="submit" name="nuevo_estado" value="<?php echo $clavePaso; ?>"
+                                    class="envio-paso <?php echo $esPasoActual ? 'activo estado-' . $clavePaso : ''; ?>"
+                                    <?php echo $esPasoActual ? 'disabled' : ''; ?>>
+                                <?php echo $infoPaso[0] . ' <span class="envio-paso-txt">' . $infoPaso[1] . '</span>'; ?>
+                                <?php if ($esPasoActual): ?><span class="envio-marca">ACTUAL</span><?php endif; ?>
+                                <?php if ($esPasoSuperado): ?><span class="envio-check">✓</span><?php endif; ?>
+                            </button>
+                            <?php endforeach; ?>
+                        </form>
                     </div>
                     <div class="total-section">
                         <div class="total-label">Valor Declarado</div>

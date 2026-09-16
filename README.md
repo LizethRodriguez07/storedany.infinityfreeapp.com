@@ -60,7 +60,7 @@ Estructura de las tablas principales del sistema y la información que almacenan
 | Tabla | Información que guarda |
 |---|---|
 | `clientes` | Datos personales y de contacto de cada comprador registrado. |
-| `pedidos` | Cabecera de cada compra (fecha, total, código de guía, cliente). |
+| `pedidos` | Cabecera de cada compra (fecha, total, **estado de envío**: Pendiente/Empacado/Enviado + fecha del cambio, código de guía, cliente). |
 | `pagos` | Datos del pago (método, cuenta, estado: completado/pendiente, monto recibido). |
 | `detallpago` | Detalle de los **productos** de cada pedido (artículo, talla, color, cantidad, subtotal). |
 | `producto` | Catálogo de calzado (nombre, marca, precio, imagen). |
@@ -109,7 +109,7 @@ El proceso de compra sigue un orden de **4 pasos**: **1. Registro → 2. Carrito
 | 2 | **Carrito** | páginas de marca → `shopping-cart.html` | Se seleccionan los productos y se confirma el pedido.
 | 3 | **Pago** | páginas de marca / `shopping-cart.html` | Se elige método de pago (Nequi, Daviplata o contra entrega).
 | 4 | **Confirmación** | `procesar_compra.php` | Se registra el pedido, se calcula el recibo y se muestra el comprobante.
-| — | **Despacho** | `admin.php` | El administrador consulta las guías/pedidos.
+| — | **Despacho** | `admin.php` | El administrador consulta las guías/pedidos y actualiza su **estado de envío** (Pendiente → Empacado → Enviado).
 
 ---
 ## Frontend (HTML, CSS y JS del navegador)
@@ -196,9 +196,9 @@ JavaScript **vanilla, sin frameworks**, cargado en las páginas según su papel:
 
 | Aspecto | Descripción |
 |---|---|
-| **Función** | Es la **vista del negocio**: permite al administrador ingresar con credenciales e inspeccionar los pedidos/despachos. |
-| **Propósito** | Llevar el **control logístico**: consultar las guías de despacho, el estado de pago de cada pedido y las ventas, para gestionar las entregas. |
-| **Información que maneja** | Ventas del día/mes, pedidos totales, y por cada guía: **cliente** (nombre, cédula, celular, dirección), **productos** (tallas/colores), **estado de pago** y fecha de despacho. |
+| **Función** | Es la **vista del negocio**: permite al administrador ingresar con credenciales, consultar los pedidos/despachos y actualizar su **estado de envío**. |
+| **Propósito** | Llevar el **control logístico**: consultar las guías de despacho, el **estado de envío** (🕒 Pendiente → 📦 Empacado → 🚚 Enviado) y el **estado de pago** de cada pedido, para gestionar las entregas. |
+| **Información que maneja** | Ventas del día/mes, pedidos totales, y por cada guía: **cliente** (nombre, cédula, celular, dirección), **productos** (tallas/colores), **estado de pago**, **estado de envío + fecha del cambio** y valor declarado. |
 
 ---
 
@@ -223,5 +223,6 @@ Registro de las sesiones de desarrollo y las fechas reales en que se trabajó el
 | 09 sep 2026 | Comprobante de compra y fix UTF-8 | `procesar_compra.php`: **charset UTF-8 forzado** (evita el error `Â¡`), **pastillas Talla/Color** legibles y corrección del cierre `¡Gracias…!`. | ✅ Completado |
 | 10 sep 2026 | Pulido del cajón del carrito | Precio por ítem con **degradado café-dorado**, **total en cápsula dorada** destacado, cabecera con logo grande y "STORE DANY" en **dorado metalizado**; el panel **se desliza desde la derecha sobre fondo desenfocado** con la **marca en el lado izquierdo**, contador y cierre por ✕, clic fuera o Esc. | ✅ Completado |
 | 14 sep 2026 | Rediseño UX: catálogo, garantía y portada | Selector de tallas con **equivalencias US/UK/cm** y nota "100% fabricadas en Vietnam"; panel "Ver marcas disponibles" en **una sola línea de medallones con logos reales**; garantía como **flujo numerado 01–04 con flechas animadas**; bienvenida del index con **sello dorado, divisor con brillo, STORE DANY en dorado brillante y tagline**; réplica del botón verde estilo registro en ENVIAR/REGISTRAR DATOS; **SVG oficial de WhatsApp** en el botón flotante y píldoras de **dominios de correo rápido** (@gmail, @hotmail, @outlook, @yahoo). | ✅ Completado |
+| 15 sep 2026 | **Panel admin: estados de envío** | Flujo logístico **🕒 Pendiente → 📦 Empacado → 🚚 Enviado** con **stepper de estados** por guía (botones que actualizan `pedidos.estado_envio` + `fecha_estado`), el estado actual resaltado con su color, pasos superados con ✓ y `estado_envio.sql` listo para aplicar en la BD local y en InfinityFree. | ✅ Completado |
 
-*Última actualización: 14 de septiembre de 2026.*
+*Última actualización: 15 de septiembre de 2026.*
