@@ -3073,46 +3073,176 @@ body {
     box-shadow: 0 10px 26px rgba(255, 193, 7, 0.45);
 }
 
+@media (max-width: 576px) {
+    #btn-volver-arriba { width: 44px; height: 44px; bottom: 18px; left: 14px; }
+}
+
 /* ============================================================
-   BOTÓN FLOTANTE DE WHATSAPP (lo crea main.js)
+   BURBUJA DE AYUDA / PREGUNTAS FRECUENTES (creada por js/faq-chat.js)
    ============================================================ */
-#btn-whatsapp-flotante {
+#faq-chat-btn {
     position: fixed;
-    bottom: 24px;
+    bottom: 104px;
     right: 24px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid #ECC998;
+    background: linear-gradient(135deg, #857059, #3f3428);
+    color: #fff;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 9990;
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 12px 18px;
-    border: none;
-    border-radius: 50px;
-    background: linear-gradient(135deg, #25d366, #128c7e);
-    color: #ffffff;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-    z-index: 9000;
-    text-decoration: none;
-    box-shadow: 0 8px 22px rgba(37, 211, 102, 0.45);
-    animation: latidoWhatsapp 2.6s ease-in-out infinite;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
-
-#btn-whatsapp-flotante:hover {
-    transform: translateY(-3px) scale(1.04);
-    box-shadow: 0 12px 30px rgba(37, 211, 102, 0.55);
-    color: #ffffff;
+#faq-chat-btn:hover { transform: scale(1.08); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45); }
+#faq-chat-btn .faq-chat-pulso {
+    position: absolute;
+    inset: -5px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 193, 7, 0.45);
+    animation: faqChatPulso 2.4s ease-out infinite;
+    pointer-events: none;
+}
+@keyframes faqChatPulso {
+    0% { transform: scale(1); opacity: 1; }
+    70%, 100% { transform: scale(1.45); opacity: 0; }
+}
+#faq-chat-panel {
+    position: fixed;
+    bottom: 110px;
+    right: 18px;
+    width: 385px;
+    max-width: calc(100vw - 36px);
+    max-height: min(72vh, 660px);
+    background: #fffdf8;
+    border: 1px solid #ECC998;
+    border-radius: 18px;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+    z-index: 9991;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+#faq-chat-panel.abierto { display: flex; }
+.faq-chat-cabecera {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 18px;
+    background: linear-gradient(135deg, #857059, #3f3428);
+    color: #fff;
+}
+.faq-chat-cabecera .faq-chat-logo {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #ffc107;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    box-shadow: 0 3px 10px rgba(255, 193, 7, 0.4);
+}
+.faq-chat-titulo { font-family: 'Baloo 2', cursive; font-size: 16px; margin: 0; line-height: 1.1; }
+.faq-chat-subtitulo { font-size: 11px; opacity: 0.85; }
+#faq-chat-cerrar {
+    margin-left: auto;
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    color: #fff;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1;
+}
+#faq-chat-cerrar:hover { background: rgba(255, 255, 255, 0.3); }
+.faq-chat-cuerpo {
+    overflow-y: auto;
+    min-height: 0;
+    flex: 1 1 auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+}
+.faq-chat-item {
+    flex-shrink: 0;
+    border: 1px solid #eadfce;
+    border-left: 4px solid #ffc107;
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: box-shadow 0.2s ease;
+}
+.faq-chat-item:hover { box-shadow: 0 4px 14px rgba(133, 112, 89, 0.16); }
+.faq-chat-pregunta {
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 13px 14px;
+    text-align: left;
+    font-family: inherit;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #3f3428;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+.faq-chat-pregunta .faq-chat-flecha {
+    margin-left: auto;
+    color: #857059;
+    font-size: 11px;
+    transition: transform 0.25s ease;
+}
+.faq-chat-item.abierto .faq-chat-flecha { transform: rotate(90deg); }
+.faq-chat-respuesta {
+    display: none;
+    padding: 0 14px 14px;
+    font-size: 13px;
+    line-height: 1.65;
+    color: #5a4b3b;
+}
+.faq-chat-item.abierto .faq-chat-respuesta { display: block; }
+.faq-chat-pie {
+    padding: 14px 16px 16px;
+    border-top: 1px solid #eadfce;
+    background: #fbf5ea;
+}
+.faq-chat-pie-texto { font-size: 12px; color: #857059; margin: 0 0 12px; text-align: center; }
+.faq-chat-botones { display: flex; gap: 10px; }
+.faq-chat-boton {
+    flex: 1;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 10px;
+    font-size: 12.5px;
+    font-weight: 800;
+    cursor: pointer;
+    text-align: center;
     text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
-@keyframes latidoWhatsapp {
-    0%, 100% { box-shadow: 0 8px 22px rgba(37, 211, 102, 0.45); }
-    50% { box-shadow: 0 8px 22px rgba(37, 211, 102, 0.45), 0 0 0 10px rgba(37, 211, 102, 0.12); }
-}
-
+.faq-chat-boton:hover { transform: translateY(-2px); }
+.faq-chat-boton-wa { background: linear-gradient(135deg, #25d366, #128c7e); color: #fff; box-shadow: 0 6px 16px rgba(37, 211, 102, 0.35); }
+.faq-chat-boton-form { background: #fff; color: #3f3428; border: 2px solid #ffc107; }
 @media (max-width: 576px) {
-    #btn-whatsapp-flotante { padding: 12px 14px; font-size: 13px; bottom: 18px; right: 14px; }
-    #btn-volver-arriba { width: 44px; height: 44px; bottom: 18px; left: 14px; }
+    #faq-chat-btn { bottom: 84px; right: 14px; width: 56px; height: 56px; font-size: 22px; }
+    #faq-chat-panel { bottom: 94px; right: 12px; width: calc(100vw - 24px); max-width: calc(100vw - 24px); }
 }
 
 /* ============================================================
