@@ -318,6 +318,10 @@
             {
                 q: '💬 ¿Puedo hablar directo con la asesora?',
                 a: 'Sí, claro. Al momento de realizar la asesoría por medio de WhatsApp, ella se comunicará contigo justo cuando notifiques tu mensaje.'
+            },
+            {
+                q: '📝 Ya compré antes, ¿puedo volver a comprar?',
+                a: 'Sí. Regístrate con la misma cédula y tu nombre completo: el sistema reconoce que eres tú y actualiza tus datos automáticamente. Ten en cuenta que si cambiaste de dirección o de número de celular, esos datos quedan actualizados para tu nueva compra.'
             }
         ];
 

@@ -82,14 +82,14 @@ Estructura de las tablas principales del sistema y la información que almacenan
 
 - 🏬 **Catálogo de 5 marcas** (Nike, Adidas, Puma, Reebok, New Balance) con vista rápida de producto, selector de tallas y diferenciación visual por marca.
 - 🛒 **Carrito flotante / cajón lateral** guardado en `localStorage`: panel de marca, contador, resumen de totales, métodos de pago como tarjetas y limpieza al finalizar la compra.
-- 👤 **Registro por pedido**: cada compra exige un **cliente nuevo registrado** (guardado en BD), con validaciones y notificaciones elegantes.
+- 👤 **Registro del cliente**: antes de pagar se guardan sus datos en BD, con **validación de cédula** (no se repite con un nombre distinto) y actualización del mismo cliente si vuelve a comprar.
 - 💳 **3 métodos de pago** (Nequi, Daviplata y contra entrega) con campo de cuenta validado y cuenta destino oficial de la tienda.
 - 🧾 **Recibo de compra**: guía `SD-XXXXX`, hora de Colombia, cuenta enmascarada, fechas en español y opción de imprimir (con UTF-8).
 - 👨‍💼 **Panel admin**: login con bloqueo por intentos fallidos, KPIs del día/mes, buscador de guías y estado de pago dinámico por método.
 - 🔒 **Muro de Términos y Condiciones** con aceptación por scroll (Ley 1581 de 2012).
-- 📣 **Notificaciones elegantes (toasts)** que reemplazan los `alert()` durante todo el proceso de compra.
+- 📣 **Notificaciones elegantes (toasts)** para los avisos de la compra y para el rechazo de cédula en el registro.
 - 💬 **Chat online**: canales directos (WhatsApp, teléfono), indicador "Abierto ahora / Cerrado" según la hora de Colombia y consultas guardadas en BD.
-- 📱 **Responsive** con detalles de presentación: carrusel de marcas, sello de confianza, botón volver arriba, WhatsApp flotante y *lazy loading* de imágenes.
+- 📱 **Responsive** con detalles de presentación: carrusel de marcas, sello de confianza, botón volver arriba y *lazy loading* de imágenes.
 
 ## Licencia
 
@@ -129,7 +129,7 @@ A continuación, el papel de cada pantalla desde la visión **funcional**: qué 
 | Aspecto | Descripción |
 |---|---|
 | **Función para el cliente** | **Registrarse como comprador** antes de pagar, llenando sus datos personales y de domicilio. |
-| **Propósito** | Identificar de forma **única e individual** a quien compra (cada pedido exige un cliente nuevo registrado), para generar su despacho y su recibo a su nombre. |
+| **Propósito** | Identificar de forma **única e individual** a quien compra mediante su **cédula**, para generar su despacho y su recibo a su nombre. Si la cédula ya existe y el nombre completo coincide, se actualizan sus datos y se reutiliza el registro; si la cédula existe con otro nombre, se **bloquea** el registro porque el número no es correcto. |
 | **Información que maneja** | Datos personales y de contacto: **nombre, apellidos, cédula, celular, correo, departamento, municipio y dirección**. |
 
 ### 📄 Páginas de marca: `nike.html`, `adidas.html`, `puma.html`, `reebok.html`, `new-balance.html`
@@ -160,7 +160,7 @@ A continuación, el papel de cada pantalla desde la visión **funcional**: qué 
 
 ### ⚙️ Lógica del navegador (JavaScript)
 JavaScript **vanilla, sin frameworks**, cargado en las páginas según su papel:
-- **`js/main.js`** (comportamiento global de todo el sitio): navbar con efecto al hacer scroll, barra de **Envíos gratis**, animaciones de aparición, botón **volver-arriba**, **WhatsApp flotante**, selector visual de tallas, muro de **Términos y Condiciones** (bloquea el sitio hasta marcar la casilla y leer el texto) y las **notificaciones elegantes (RNF-06)** que reemplazan los `alert()`.
+- **`js/main.js`** (comportamiento global de todo el sitio): navbar con efecto al hacer scroll, barra de **Envíos gratis**, animaciones de aparición, botón **volver-arriba**, selector visual de tallas, muro de **Términos y Condiciones** (bloquea el sitio hasta marcar la casilla y leer el texto), la **burbuja de preguntas frecuentes (FAQ)** y las **notificaciones elegantes (RNF-06)** que reemplazan los `alert()`.
 - **`nike.js` / `adidas.js` / `puma.js` / `reebok.js` / `newbalanc.js`** (una por marca): catálogo, selección de tallas, gestión del carrito, cálculo de totales y envío del pedido al backend.
 - **`jquery`, `popper` y `bootstrap`**: librerías del framework visual cargadas junto al CSS.
 
@@ -172,8 +172,8 @@ JavaScript **vanilla, sin frameworks**, cargado en las páginas según su papel:
 
 | Aspecto | Descripción |
 |---|---|
-| **Función** | Recibe y **guarda los datos** que el cliente envía desde el formulario de registro o de contacto. |
-| **Propósito** | Registrar al cliente para que pueda comprar (cada pedido exige un cliente nuevo) y almacenar las consultas de contacto. |
+| **Función** | Recibe y **guarda los datos** que el cliente envía desde el formulario de registro o de contacto, validando la **cédula**. |
+| **Propósito** | Registrar al cliente para que pueda comprar y almacenar las consultas de contacto. La cédula no puede repetirse con un nombre distinto: si ya existe y el **nombre completo coincide**, se **actualizan** los datos (dirección/celular); si existe con **otro nombre**, se rechaza con un aviso elegante. |
 | **Información que maneja** | Del **registro**: nombre, apellidos, cédula, celular, correo y dirección. Del **contacto**: nombres, apellidos, correo, teléfono y mensaje. |
 
 ### 🖥️ `procesar_compra.php` — Proceso de compra y recibo
@@ -181,7 +181,7 @@ JavaScript **vanilla, sin frameworks**, cargado en las páginas según su papel:
 | Función | Qué hace |
 |---|---|
 | Conexión BD | Local (Docker) o remota (InfinityFree) según el servidor |
-| Cliente real | Solo acepta un **cliente recién registrado**; si no existe, **rechaza el pedido** e invita a registrarse |
+| Cliente real | Solo acepta un **cliente registrado en la tienda**; si no existe, **rechaza el pedido** e invita a registrarse |
 | Registro del pedido | Guarda el **pedido → pago → detalle** y marca el pago (Completado en Nequi/Daviplata, Pendiente en contra entrega) |
 | **Hora del pedido** | Usa la hora de **Colombia** (PHP/Bogotá), no depende del servidor |
 | Código de orden | Genera el número de guía `SD-00001` |
@@ -210,7 +210,7 @@ Registro de las sesiones de desarrollo y las fechas reales en que se trabajó el
 |---|---|---|---|
 | 20–21 may 2026 | **Diseño y desarrollo del código** | Se diseñó y escribió el código base del proyecto: todas las páginas (HTML), los scripts de cada marca (JS), la hoja de estilos (CSS) y los archivos del backend (PHP) con su base de datos. | ✅ Completado |
 | 31 ago 2026 | Mejoras de diseño y flujo | Fondo crema arena `#E2D5BE`, stepper de progreso (Registro → Carrito → Pago → Confirmación), panel admin con estado dinámico, panel de marcas, sección garantía, recibo en columna centrada y `new-balance.js` renombrado. | ✅ Completado |
-| 02 sep 2026 | Muro de términos y flujo de cliente | Muro de Términos y Condiciones rediseñado y **cada pedido exige un cliente nuevo registrado** (no se reutiliza el último). | ✅ Completado |
+| 02 sep 2026 | Muro de términos y flujo de cliente | Muro de Términos y Condiciones rediseñado y ajustes al flujo de registro del cliente. | ✅ Completado |
 | 07 sep 2026 | Carrito flotante y botón fuera del menú | El carrito deja el menú y se convierte en **botón flotante** (esquina inferior derecha) que abre el panel hacia arriba, con badge contador. | ✅ Completado |
 | 07 sep 2026 | Menú modernizado | Logo más grande con brillo dorado, título en fuente serif, enlaces legibles, página activa en pastilla dorada, CHAT ONLINE en cápsula y hamburguesa visible en móvil. | ✅ Completado |
 | 07 sep 2026 | Títulos, logos y carrusel de marcas | Título de cada marca con **efecto dorado metalizado**, descripción motivacional centrada, logos con **marco y destello**, **franja de las 5 marcas** navegable y **carrusel de portada** con medallones dorados. | ✅ Completado |
@@ -218,12 +218,14 @@ Registro de las sesiones de desarrollo y las fechas reales en que se trabajó el
 | 08 sep 2026 | Pulido visual: index, catálogo y chat | Recuadro de registro del index (3 pasos, mano 👉, botón verde con detalle dorado), hero del catálogo con "Sobre STORE DANY" y bloque de confianza, asesora online integrada en **Chat Online** y títulos de navegador unificados. | ✅ Completado |
 | 08 sep 2026 | Panel admin: KPIs, buscador y colores de marca | Tarjetas KPI con **icono en cápsula dorada** y entrada escalonada; **buscador de guías** con botón de limpiar (✖) y **contador "X de Y"**; fondos y hovers en la paleta crema/dorada de la marca. | ✅ Completado |
 | 08 sep 2026 | Método de pago en el panel | Se agrega la columna `metodo` a la tabla `pagos`; `procesar_compra.php` guarda el método elegido y el admin lo muestra con su icono (📱/💬/🚚) en cada guía. | ✅ Completado |
-| 09 sep 2026 | RNF-06: notificaciones elegantes al cliente | Sistema de **toasts** en `js/main.js` (café/dorado, falta/error/éxito, auto-cierre) que reemplazan los 35 `alert()` de las marcas y los 2 de `enviar.php`. | ✅ Completado |
+| 09 sep 2026 | RNF-06: notificaciones elegantes al cliente | Sistema de **toasts** en `js/main.js` (café/dorado, falta/error/éxito, auto-cierre) que reemplazan los `alert()` de las páginas de marca y del carrito. | ✅ Completado |
 | 09 sep 2026 | Muro de T&C rediseñado | Diseño final: logo centrado, sellos con **iconos SVG animados**, **checkbox a medida** con check SVG, **aceptación obligatoria vía scroll** y mención de la **Ley 1581 de 2012**. | ✅ Completado |
 | 09 sep 2026 | Comprobante de compra y fix UTF-8 | `procesar_compra.php`: **charset UTF-8 forzado** (evita el error `Â¡`), **pastillas Talla/Color** legibles y corrección del cierre `¡Gracias…!`. | ✅ Completado |
 | 10 sep 2026 | Pulido del cajón del carrito | Precio por ítem con **degradado café-dorado**, **total en cápsula dorada** destacado, cabecera con logo grande y "STORE DANY" en **dorado metalizado**; el panel **se desliza desde la derecha sobre fondo desenfocado** con la **marca en el lado izquierdo**, contador y cierre por ✕, clic fuera o Esc. | ✅ Completado |
-| 14 sep 2026 | Rediseño UX: catálogo, garantía y portada | Selector de tallas con **equivalencias US/UK/cm** y nota "100% fabricadas en Vietnam"; panel "Ver marcas disponibles" en **una sola línea de medallones con logos reales**; garantía como **flujo numerado 01–04 con flechas animadas**; bienvenida del index con **sello dorado, divisor con brillo, STORE DANY en dorado brillante y tagline**; réplica del botón verde estilo registro en ENVIAR/REGISTRAR DATOS; **SVG oficial de WhatsApp** en el botón flotante y píldoras de **dominios de correo rápido** (@gmail, @hotmail, @outlook, @yahoo). | ✅ Completado |
+| 14 sep 2026 | Rediseño UX: catálogo, garantía y portada | Selector de tallas con **equivalencias US/UK/cm** y nota "100% fabricadas en Vietnam"; panel "Ver marcas disponibles" en **una sola línea de medallones con logos reales**; garantía como **flujo numerado 01–04 con flechas animadas**; bienvenida del index con **sello dorado, divisor con brillo, STORE DANY en dorado brillante y tagline**; réplica del botón verde estilo registro en ENVIAR/REGISTRAR DATOS y píldoras de **dominios de correo rápido** (@gmail, @hotmail, @outlook, @yahoo). | ✅ Completado |
 | 15 sep 2026 | **Panel admin: estados de envío** | Flujo logístico **🕒 Pendiente → 📦 Empacado → 🚚 Enviado** con **stepper de estados** por guía (botones que actualizan `pedidos.estado_envio` + `fecha_estado`), el estado actual resaltado con su color, pasos superados con ✓ y `estado_envio.sql` listo para aplicar en la BD local y en InfinityFree. | ✅ Completado |
-| 15 sep 2026 | **Burbuja de ayuda con preguntas frecuentes** | Widget flotante **💬 en la esquina inferior derecha** (encima del carrito, sin estorbarse) visible en **3 páginas**: `index.html`, catálogo (`shopping-cart.html`) y chat online (`contactar.html`). `js/faq-chat.js` crea la burbuja con **6 preguntas frecuentes** tipo acordeón (tiempos de entrega + factura, confirmación de pago, garantía/devoluciones, cambio de talla y contacto con la asesora), cabecera en tonos de la marca y pie con botones a **WhatsApp** y a la página **CHAT ONLINE**. Se **retiró el botón flotante verde de WhatsApp** que había a la derecha para no duplicar canales; el contacto por WhatsApp sigue disponible en la burbuja y en la página de contacto. Las respuestas se editan en el arreglo `FAQS` del archivo. | ✅ Completado |
+| 15 sep 2026 | **Burbuja de ayuda con preguntas frecuentes** | Widget flotante **💬 en la esquina inferior derecha** (encima del carrito, sin estorbarse) visible en **3 páginas**: `index.html`, catálogo (`shopping-cart.html`) y chat online (`contactar.html`). La función `crearFaqChat()` de `js/main.js` crea la burbuja con **7 preguntas frecuentes** tipo acordeón (tiempos de entrega + factura, confirmación de pago, garantía/devoluciones, cambio de talla, contacto con la asesora y recompra actualizando datos), cabecera en tonos de la marca y pie con botones a **WhatsApp** y a la página **CHAT ONLINE**. Se **retiró el botón flotante verde de WhatsApp** que había a la derecha para no duplicar canales; el contacto por WhatsApp sigue disponible en la burbuja y en la página de contacto. Las respuestas se editan en el arreglo `FAQS` de `js/main.js`. | ✅ Completado |
+| 17 sep 2026 | **Validación de cédula en el registro** | `enviar.php` valida la cédula: si ya existe y el **nombre completo coincide** (comparación tolerante a mayúsculas, tildes y espacios), **actualiza** los datos del mismo cliente (dirección/celular) sin duplicar; si existe con **otro nombre**, **bloquea** el registro con un aviso elegante (el mismo toast de las tallas) y devuelve al formulario. | ✅ Completado |
+| 17 sep 2026 | **Fix chat online y precios** | El formulario de contacto enviaba el campo `mensaje` pero el backend leía `textarea`, por lo que solo se guardaba el tipo de consulta: ahora se guarda el mensaje completo con los datos de contacto. Se corrigió también el signo `$` faltante en el 8.º producto de `nike`, `puma`, `new-balance` y `reebok`. | ✅ Completado |
 
-*Última actualización: 15 de septiembre de 2026.*
+*Última actualización: 17 de septiembre de 2026.*
