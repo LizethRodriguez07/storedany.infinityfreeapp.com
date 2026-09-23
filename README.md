@@ -2,8 +2,25 @@
 
 Tienda online de calzado para hombre. Desarrollada con un stack de código abierto: **PHP + MySQL (MariaDB)** en el backend, con **frontend en HTML, CSS y JavaScript vanilla** y **Bootstrap 4** como framework de estilos. El entorno de desarrollo corre con **Docker Compose sobre WSL** (`docker-compose.yml`): un contenedor **Apache con PHP 8.2** (servidor web, puerto 8080) y un contenedor **MariaDB 10.6** (base de datos, puerto 3306). La base de datos se llama **`gst_ventasonline`** (en el contenedor y también en la nube como `if0_41988386_gst_ventasonline` con InfinityFree). Enfoque del proyecto: **comercio electrónico (e-commerce)** tipo catálogo con registro de cliente por pedido, carrito de compras, checkout y panel logístico de despachos. Asimismo, el proyecto se apoya en una **infraestructura virtualizada y de redes**: el sistema base corre sobre **Linux**, la virtualización de equipos se realiza con **VMware Workstation Pro**, el modelado de las topologías de red se hace con **GNS3** y la conectividad entre máquinas virtuales se logra mediante la tarjeta virtual **VMware Network Adapter (VMnet1)**.
 
+## Objetivos
+
+**Objetivo general**
+
+Desarrollar e implementar la tienda virtual de calzado para hombre **STORE DANY**, construida con tecnologías de código abierto (PHP, MySQL/MariaDB, HTML5, CSS3, JavaScript vanilla y Bootstrap 4), que automatice el proceso de venta en línea —catálogo, carrito de compras, registro del cliente con validación de cédula, métodos de pago, generación del recibo y despacho— y que brinde al negocio una gestión logística y de atención al cliente eficiente a través de un panel administrativo.
+
+**Objetivos específicos**
+
+1. **Definir la arquitectura y el diseño de la tienda** en tres capas (presentación, aplicación y datos), con la identidad visual de la marca (paleta café–dorado, tipografías Baloo 2 / Oswald / Poppins) y diseño responsive.
+2. **Desarrollar el catálogo de calzado de las 5 marcas** (Nike, Adidas, Puma, Reebok, New Balance) con vista rápida de producto, selector de tallas con equivalencias US/UK/cm y carrito persistente en `localStorage`.
+3. **Implementar el registro del cliente** con validación de la cédula: bloqueo del registro cuando el número ya existe con un nombre diferente al titular y actualización de los datos del mismo cliente en compras posteriores.
+4. **Automatizar el proceso de compra**: selección del método de pago (Nequi, Daviplata o contra entrega), registro del pedido en la base de datos y generación del recibo imprimible con guía `SD-XXXXX` y hora de Colombia.
+5. **Desarrollar el panel administrativo** para consultar pedidos y despachos, visualizar KPIs del día/mes, buscar guías por cliente o cédula y actualizar el estado de envío (🕒 Pendiente → 📦 Empacado → 🚚 Enviado) y el estado del pago.
+6. **Brindar atención y confianza al cliente** mediante el muro de Términos y Condiciones (Ley 1581 de 2012), el chat online con consultas guardadas en BD, las notificaciones elegantes (toasts) y la burbuja de preguntas frecuentes.
+7. **Desplegar el proyecto en la nube** (InfinityFree) manteniéndolo desarrollado en un entorno local con Docker Compose (Apache con PHP 8.2 + MariaDB), de modo que funcione con la misma lógica en ambos ambientes.
+
 ## Tabla de contenido
 
+- [Objetivos](#objetivos)
 - [Arquitectura y diseño](#arquitectura-y-diseño)
 - [Stack tecnológico](#stack-tecnológico)
 - [Características principales](#características-principales)
